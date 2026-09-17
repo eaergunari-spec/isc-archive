@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="ISC 154 official voting room." />
+  <meta name="description" content="International Song Contest official voting room." />
   <meta name="theme-color" content="#0b0a0e" />
   <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/vote.html" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="International Song Contest" />
-  <meta property="og:title" content="ISC 154 — Voting Room" />
-  <meta property="og:description" content="Delegasyonunu doğrula ve ISC 154’te 12–10–8–6–4–2–1 puanlarını sırala." />
+  <meta property="og:title" content="ISC — Voting Room" />
+  <meta property="og:description" content="Delegasyonunu doğrula ve güncel ISC edisyonunda resmi pusulanı gönder." />
   <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/vote.html" />
-  <meta property="og:image" content="https://eaergunari-spec.github.io/isc-archive/03-meira-omar-liamoo.webp" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <title>ISC 154 — Voting Room</title>
+  <meta name="twitter:card" content="summary" />
+  <title>ISC — Voting Room</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
@@ -29,7 +28,7 @@
   <header class="site-header vote-header">
     <a class="brand" href="index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
     <nav>
-      <a href="index.html">ISC 154</a>
+      <a id="current-edition-nav" href="index.html">Current edition</a>
       <a href="index.html#entries">Katılımcılar</a>
       <a data-results-link href="results.html">Results 🔒</a>
       <a class="nav-vote" href="vote.html">Voting Room</a>
@@ -39,18 +38,18 @@
   <main class="vote-page">
     <section class="vote-hero">
       <div class="vote-hero-copy">
-        <div class="vote-live"><span></span> ISC 154 · VOTING OPEN</div>
+        <div class="vote-live" id="vote-live-pill"><span></span> CURRENT EDITION · LOADING</div>
         <h1>Your country.<br><em>Your ranking.</em></h1>
-        <p>Yedi rakip şarkıyı sürükleyerek sırala. Her satırın puanı artık <strong>sabit</strong>: 12, 10, 8, 6, 4, 2 ve 1. Kendi ülken sıralamaya dahil edilmez.</p>
+        <p id="vote-intro">Güncel edisyon ve puanlama sistemi yükleniyor…</p>
         <div class="vote-rule-strip" aria-label="Voting rules">
           <span>01 · Ülkeni doğrula</span>
-          <span>02 · Kartları puan slotlarına sırala</span>
+          <span>02 · Entry’leri puan sırasına taşı</span>
           <span>03 · Oyunu gönder</span>
         </div>
       </div>
       <div class="vote-hero-graphic" aria-hidden="true">
-        <span class="hero-twelve">12</span>
-        <span class="hero-points">10 · 8 · 6 · 4 · 2 · 1</span>
+        <span class="hero-twelve" id="hero-top-points">—</span>
+        <span class="hero-points" id="hero-other-points">Puanlama yükleniyor</span>
       </div>
     </section>
 
@@ -59,15 +58,15 @@
       <div class="identity-copy">
         <span class="eyebrow">Who are you voting as?</span>
         <h2>Önce delegasyonunu seç.</h2>
-        <p>Ülkeni seçtikten sonra sana verilen voter code ile giriş yap. Kod yalnızca o delegasyonun pusulasını açar.</p>
+        <p>Ülkeni seçtikten sonra kalıcı voter code’un ile giriş yap. Kod yalnızca o delegasyonun güncel edisyondaki pusulasını açar.</p>
       </div>
       <div class="identity-form">
         <label for="country-select">Ülke</label>
-        <select id="country-select"><option value="">Ülkeni seç...</option></select>
+        <select id="country-select" disabled><option value="">Ülkeler yükleniyor…</option></select>
         <div id="code-wrap" class="code-wrap" hidden>
           <label for="voter-code">Voter code</label>
           <div class="code-row">
-            <input id="voter-code" type="text" autocomplete="off" spellcheck="false" placeholder="ISC154-XXXXXXXX" />
+            <input id="voter-code" type="password" autocomplete="current-password" spellcheck="false" placeholder="Kalıcı voter code" />
             <button id="enter-voting" class="enter-button">Pusulayı aç <span>→</span></button>
           </div>
         </div>
@@ -87,50 +86,42 @@
       <div class="ballot-control ranking-status-card">
         <div class="progress-copy">
           <span>Pusula durumu</span>
-          <strong><b id="progress-count">7</b>/7 RANKED</strong>
+          <strong><b id="progress-count">0</b>/<b id="progress-total">0</b> SCORE SLOTS</strong>
         </div>
         <div class="progress-track" aria-hidden="true"><div id="progress-fill" class="progress-fill"></div></div>
-        <p class="slot-explainer"><strong>Puanlar yerinde kalır, şarkılar hareket eder.</strong> Bir kartı tutup başka bir satıra sürükle; o satırın puanı otomatik olarak o şarkıya geçer.</p>
+        <p class="slot-explainer" id="slot-explainer"><strong>Puanlar yerinde kalır, şarkılar hareket eder.</strong></p>
       </div>
 
       <div class="ballot-help">
         <span class="help-icon">↕</span>
-        <p><strong>12 puan en üstte.</strong> Kartları yalnızca sağdaki sürükleme tutamacından taşı. Telefonda tutamaca kısa süre basılı tutup yukarı veya aşağı sürükleyebilirsin.</p>
+        <p id="ballot-help-copy"><strong>En yüksek puan en üstte.</strong> Kartları sağdaki sürükleme tutamacından taşı. Telefonda tutamaca kısa süre basılı tutup yukarı veya aşağı sürükleyebilirsin.</p>
       </div>
 
       <div id="self-entry-note" class="self-entry-note"></div>
 
-      <div class="ranking-board" aria-label="ISC 154 puan sıralaması">
-        <div class="point-rail" aria-hidden="true">
-          <div class="point-slot point-slot-top"><strong>12</strong><span>POINTS</span></div>
-          <div class="point-slot"><strong>10</strong><span>POINTS</span></div>
-          <div class="point-slot"><strong>8</strong><span>POINTS</span></div>
-          <div class="point-slot"><strong>6</strong><span>POINTS</span></div>
-          <div class="point-slot"><strong>4</strong><span>POINTS</span></div>
-          <div class="point-slot"><strong>2</strong><span>POINTS</span></div>
-          <div class="point-slot"><strong>1</strong><span>POINT</span></div>
-        </div>
+      <div class="ranking-board" id="ranking-board" aria-label="ISC puan sıralaması">
+        <div class="point-rail" id="point-rail" aria-hidden="true"></div>
         <div id="ballot-list" class="ballot-list ranking-list"></div>
       </div>
 
-      <p class="ranking-note" id="ranking-keyboard-help">İpucu: Masaüstünde tutamacı sürükle. Klavyede tutamaç odaktayken ↑ ↓ ile bir sıra, Home / End ile en üste veya en alta taşı. Mobilde tutamaca basılı tutup hareket ettir.</p>
+      <p class="ranking-note" id="ranking-keyboard-help">İpucu: Masaüstünde tutamacı sürükle. Klavyede ↑ ↓ ile bir sıra, Home / End ile en üste veya en alta taşı. Mobilde tutamaca basılı tutup hareket ettir.</p>
 
       <div class="ballot-submit-zone sticky-submit-zone">
         <div class="submit-state-copy">
           <span class="eyebrow">FINAL CHECK</span>
           <h3>Sıralaman hazır mı?</h3>
-          <p id="ballot-message" class="status-line" aria-live="polite">7/7 entry sıralandı · değişiklikler otomatik kaydedilir.</p>
+          <p id="ballot-message" class="status-line" aria-live="polite">Pusula yükleniyor…</p>
         </div>
         <div class="submit-state-action">
-          <span class="submit-rank-count"><b>7/7</b> RANKED</span>
-          <button id="submit-ballot" class="submit-ballot">OYUMU GÖNDER <span>→</span></button>
+          <span class="submit-rank-count"><b id="submit-rank-count">0/0</b> SCORED</span>
+          <button id="submit-ballot" class="submit-ballot" disabled>OYUMU GÖNDER <span>→</span></button>
         </div>
       </div>
     </section>
 
     <section class="privacy-note">
       <div class="privacy-lock">✦</div>
-      <div><strong>Results stay backstage.</strong><p>Toplam puanlar arka planda hesaplanır; oylama boyunca hiçbir ülkenin toplamı kamuya gösterilmez.</p></div>
+      <div><strong>Results stay backstage.</strong><p>Toplam puanlar arka planda hesaplanır; sonuçlar reveal edilene kadar hiçbir ülkenin toplamı kamuya gösterilmez.</p></div>
     </section>
   </main>
 
