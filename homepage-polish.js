@@ -1,4 +1,76 @@
 (() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const artistPhotos = {
+    '01': { src: 'assets/artists/01-lambrini-girls.webp', focus: '50% 46%' },
+    '02': { src: 'assets/artists/02-elise-de-lune.webp', focus: '50% 38%' },
+    '03': { src: 'assets/artists/03-meira-omar-liamoo.png', focus: '50% 44%' },
+    '04': { src: 'assets/artists/04-saint-levant.webp', focus: '50% 30%' },
+    '05': { src: 'assets/artists/05-hayq.jpg', focus: '50% 18%' },
+    '06': { src: 'assets/artists/06-laura-pausini.webp', focus: '50% 30%' },
+    '07': { src: 'assets/artists/07-Audrey-Hobert.jpg', focus: '50% 42%' },
+    '08': { src: 'assets/artists/08-galena.jpg', focus: '50% 30%' }
+  };
+
+  const artworkToOrder = {
+    '01-lambrini-girls.webp': '01',
+    '02-elise-de-lune.webp': '02',
+    '03-meira-omar-liamoo.webp': '03',
+    '04-saint-levant.webp': '04',
+    '05-hayq.webp': '05',
+    '06-laura-pausini.webp': '06',
+    '07-audrey-hobert.webp': '07',
+    '08-galena.webp': '08'
+  };
+
+  function useArtistPhoto(image, order) {
+    const photo = artistPhotos[order];
+    if (!image || !photo) return;
+    image.onerror = null;
+    if (image.getAttribute('src') !== photo.src) image.setAttribute('src', photo.src);
+    image.style.objectPosition = photo.focus;
+    image.decoding = 'async';
+  }
+
+  function localizeEntryCards() {
+    document.querySelectorAll('.entry-card[data-entry]').forEach(card => {
+      useArtistPhoto(card.querySelector('.entry-card-image'), card.dataset.entry);
+    });
+  }
+
+  const hero = document.getElementById('hero-feature-image');
+  if (hero) {
+    const artist = document.getElementById('hero-feature-artist');
+    const country = document.getElementById('hero-feature-country');
+    const song = document.getElementById('hero-feature-song');
+    const order = document.getElementById('hero-feature-order');
+
+    const freezeHero = () => {
+      if (!reduceMotion) return false;
+      useArtistPhoto(hero, '03');
+      if (artist) artist.textContent = 'Meira Omar & LIAMOO';
+      if (country) country.textContent = 'GÜNEŞ DİYARI';
+      if (song) song.textContent = 'MAZAA';
+      if (order) order.textContent = '03';
+      return true;
+    };
+
+    const localizeHero = () => {
+      if (freezeHero()) return;
+      const src = hero.getAttribute('src') || '';
+      if (src.startsWith('assets/artists/')) return;
+      const basename = src.split('/').pop().split('?')[0];
+      const entryOrder = artworkToOrder[basename];
+      if (entryOrder) useArtistPhoto(hero, entryOrder);
+    };
+
+    localizeHero();
+    new MutationObserver(localizeHero).observe(hero, { attributes: true, attributeFilter: ['src'] });
+    if (reduceMotion && artist) {
+      new MutationObserver(freezeHero).observe(artist, { childList: true, characterData: true, subtree: true });
+    }
+  }
+
   function loadEmbed(host, provider, originalSrc, title) {
     const frame = document.createElement('iframe');
     let src = originalSrc;
@@ -21,7 +93,7 @@
     const title = host.dataset.embedTitle;
     const button = host.querySelector('.embed-gate-button');
     if (!provider || !originalSrc || !button) return;
-    button.addEventListener('click', () => loadEmbed(host, provider, originalSrc, title), { once:true });
+    button.addEventListener('click', () => loadEmbed(host, provider, originalSrc, title), { once: true });
   }
 
   function makeLegacyGate(iframe, provider) {
@@ -54,11 +126,13 @@
         </span>`;
     }
 
-    button.addEventListener('click', () => loadEmbed(host, provider, originalSrc, title), { once:true });
+    button.addEventListener('click', () => loadEmbed(host, provider, originalSrc, title), { once: true });
     host.appendChild(button);
   }
 
   document.querySelectorAll('.embed-gate[data-embed-src]').forEach(wireStaticGate);
   document.querySelectorAll('.youtube-frame-wrap iframe').forEach(frame => makeLegacyGate(frame, 'YouTube'));
   document.querySelectorAll('.spotify-embed-wrap iframe').forEach(frame => makeLegacyGate(frame, 'Spotify'));
+
+  localizeEntryCards();
 })();
