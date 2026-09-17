@@ -154,7 +154,7 @@
 
   <dialog id="confirm-dialog" class="admin-confirm-dialog">
     <form method="dialog" class="admin-confirm-inner" id="confirm-form">
-      <button class="confirm-close" id="confirm-close" value="cancel" aria-label="Pencereyi kapat">×</button>
+      <button class="confirm-close" id="confirm-close" type="button" aria-label="Pencereyi kapat" onclick="this.closest('dialog').close()">×</button>
       <span class="control-kicker" id="confirm-kicker">Critical operation</span>
       <h2 id="confirm-title">İşlemi onayla.</h2>
       <p id="confirm-copy"></p>
@@ -164,7 +164,7 @@
       <input id="confirm-input" type="text" autocomplete="off" spellcheck="false" />
       <p id="confirm-error" class="confirm-error" aria-live="polite"></p>
       <div class="confirm-buttons">
-        <button id="confirm-cancel" class="admin-secondary" value="cancel">Vazgeç</button>
+        <button id="confirm-cancel" class="admin-secondary" type="button" onclick="this.closest('dialog').close()">Vazgeç</button>
         <button id="confirm-submit" class="admin-danger" type="button" disabled>Onayla</button>
       </div>
     </form>
