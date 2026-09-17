@@ -44,6 +44,8 @@ const escapeHtml = (value) => String(value ?? '')
   .replace(/"/g, '&quot;')
   .replace(/'/g, '&#39;');
 
+const countryProfileHref = slug => slug ? `countries/${encodeURIComponent(slug)}/` : 'countries/';
+
 async function loadResults() {
   const { data, error } = await db.rpc('isc_public_current_results_hub');
   if (error || !data?.ok) {
@@ -127,7 +129,7 @@ function renderWinner(rows, topPoints) {
     winnerImage.hidden = true;
   }
   winnerImage.alt = `${winner.artist} — ${winner.song}`;
-  winnerCountry.textContent = winner.country;
+  winnerCountry.innerHTML = `<a href="${countryProfileHref(winner.country_slug)}">${escapeHtml(winner.country)}</a>`;
   winnerArtist.textContent = winner.artist;
   winnerSong.textContent = `“${winner.song}”`;
   winnerPoints.textContent = winner.total_points;
@@ -140,7 +142,7 @@ function renderPodium(rows) {
   podiumGrid.innerHTML = top.map((row, index) => `
     <article class="podium-card">
       <span class="podium-position">${String(index + 1).padStart(2, '0')}</span>
-      <span class="podium-country">${escapeHtml(row.country)}</span>
+      <a class="podium-country" href="${countryProfileHref(row.country_slug)}">${escapeHtml(row.country)}</a>
       <h3>${escapeHtml(row.artist)}</h3>
       <p>${escapeHtml(row.song)}</p>
       <div class="podium-points">${row.total_points}<small>pts</small></div>
@@ -153,7 +155,7 @@ function renderScoreboard(rows) {
   scoreboard.innerHTML = rows.map((row, index) => `
     <article class="score-row">
       <div class="score-rank">${String(index + 1).padStart(2, '0')}</div>
-      <div class="score-country">${escapeHtml(row.country)}</div>
+      <div class="score-country"><a href="${countryProfileHref(row.country_slug)}">${escapeHtml(row.country)}</a></div>
       <div class="score-act"><strong>${escapeHtml(row.artist)}</strong><span>${escapeHtml(row.song)}</span></div>
       <div class="score-bar" aria-hidden="true"><i style="width:${Math.max(3, (Number(row.total_points || 0) / maxPoints) * 100)}%"></i></div>
       <div class="score-points">${row.total_points}<small>points</small></div>
@@ -187,7 +189,7 @@ function renderBallotExplorer(ballots) {
 
   ballotFocus.innerHTML = `
     <div class="ballot-focus-head">
-      <div><span>FULL BALLOT</span><h3>${escapeHtml(ballot.voter_country)}</h3></div>
+      <div><span>FULL BALLOT</span><h3><a href="${countryProfileHref(ballot.voter_slug)}">${escapeHtml(ballot.voter_country)}</a></h3></div>
       <small>${escapeHtml(submittedAt)}</small>
     </div>
     <div class="ballot-votes">
@@ -195,7 +197,7 @@ function renderBallotExplorer(ballots) {
         <div class="ballot-vote">
           <div class="points">${vote.points}</div>
           <strong>${escapeHtml(vote.artist)}</strong>
-          <span>${escapeHtml(vote.country)} · ${escapeHtml(vote.song)}</span>
+          <span><a href="${countryProfileHref(vote.country_slug)}">${escapeHtml(vote.country)}</a> · ${escapeHtml(vote.song)}</span>
         </div>
       `).join('')}
     </div>
@@ -209,9 +211,9 @@ function renderTopScores(ballots, topPoints) {
     return `
       <article class="twelve-card">
         <div>
-          <span>${escapeHtml(ballot.voter_country)} gives ${target || 'top score'} to</span>
+          <span><a href="${countryProfileHref(ballot.voter_slug)}">${escapeHtml(ballot.voter_country)}</a> gives ${target || 'top score'} to</span>
           <strong>${topVote ? escapeHtml(topVote.artist) : '—'}</strong>
-          <div class="recipient">${topVote ? escapeHtml(topVote.country) : ''}</div>
+          <div class="recipient">${topVote ? `<a href="${countryProfileHref(topVote.country_slug)}">${escapeHtml(topVote.country)}</a>` : ''}</div>
         </div>
         <div class="arrow">→</div>
       </article>
@@ -221,7 +223,7 @@ function renderTopScores(ballots, topPoints) {
 
 function renderMatrix(rows, ballots) {
   const headCells = rows
-    .map(row => `<th>#${String(row.running_order).padStart(2, '0')}<br>${escapeHtml(row.country)}</th>`)
+    .map(row => `<th>#${String(row.running_order).padStart(2, '0')}<br><a href="${countryProfileHref(row.country_slug)}">${escapeHtml(row.country)}</a></th>`)
     .join('');
 
   const bodyRows = ballots.map(ballot => {
@@ -231,7 +233,7 @@ function renderMatrix(rows, ballots) {
       const isTop = points !== undefined && points === Number(lastPayload?.top_points || 0);
       return `<td class="${isTop ? 'score-12' : ''}">${points ?? '—'}</td>`;
     }).join('');
-    return `<tr><td>${escapeHtml(ballot.voter_country)}</td>${cells}</tr>`;
+    return `<tr><td><a href="${countryProfileHref(ballot.voter_slug)}">${escapeHtml(ballot.voter_country)}</a></td>${cells}</tr>`;
   }).join('');
 
   const totals = rows.map(row => `<td>${row.total_points}</td>`).join('');
