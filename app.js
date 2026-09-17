@@ -15,6 +15,114 @@ const escapeAttr = (value) => String(value)
   .replace(/</g, "&lt;")
   .replace(/>/g, "&gt;");
 
+const LIVE_STATUS_URL = "https://knwvnbfqnccjiezprrme.supabase.co/rest/v1/rpc/isc154_public_live_status";
+const LIVE_STATUS_KEY = "sb_publishable_Zw8H9mMmUop7wkYNKtZB3Q_7dM1QHut";
+let liveStatus = {
+  edition_number: 154,
+  voting_open: true,
+  results_revealed: false,
+  delegations: 8,
+  submitted_delegations: 0,
+  last_submitted_at: null
+};
+let currentFeaturedEntry = entries[2];
+let nowPlayingEntry = null;
+
+function relativeActivityTime(iso) {
+  if (!iso) return "Henüz tamamlanmış oy gelmedi";
+  const seconds = Math.max(0, Math.floor((Date.now() - new Date(iso).getTime()) / 1000));
+  if (seconds < 45) return "Az önce bir oy gönderildi";
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `Son oy ${minutes} dk önce geldi`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `Son oy ${hours} sa önce geldi`;
+  const days = Math.floor(hours / 24);
+  return `Son oy ${days} gün önce geldi`;
+}
+
+function buildTickerGroup() {
+  const spotlight = nowPlayingEntry || currentFeaturedEntry;
+  const spotlightLabel = nowPlayingEntry ? "NOW PLAYING" : "NOW FEATURED";
+  const submitted = Number(liveStatus.submitted_delegations || 0);
+  const delegations = Number(liveStatus.delegations || 8);
+  const votingLabel = liveStatus.voting_open ? "VOTING OPEN" : "VOTING CLOSED";
+  const votingClass = liveStatus.voting_open ? "lime" : "pink";
+  const resultsLabel = liveStatus.results_revealed ? "RESULTS LIVE" : "RESULTS LOCKED";
+  const resultsText = liveStatus.results_revealed ? "Scoreboard artık yayında" : "Toplam puanlar reveal anına kadar gizli";
+
+  return `
+    <div class="ticker-item ticker-spotlight">
+      <span class="ticker-status-badge">${spotlightLabel}</span>
+      <span class="ticker-no">${spotlight.order}</span>
+      <span class="ticker-country">${escapeAttr(spotlight.country)}</span>
+      <span class="ticker-artist">${escapeAttr(spotlight.artist)}</span>
+      <span class="ticker-song">“${escapeAttr(spotlight.song)}”</span>
+    </div>
+    <div class="ticker-item ticker-status ${votingClass}">
+      <span class="ticker-status-badge">${votingLabel}</span>
+      <span class="ticker-count">${submitted}/${delegations}</span>
+      <span class="ticker-status-text">delegasyon oyunu gönderdi</span>
+    </div>
+    <div class="ticker-item ticker-status">
+      <span class="ticker-status-badge">BALLOT WATCH</span>
+      <span class="ticker-status-text">${relativeActivityTime(liveStatus.last_submitted_at)}</span>
+    </div>
+    <a class="ticker-item ticker-editorial" href="entries/03-meira-omar-liamoo.html">
+      <span class="ticker-status-badge">MAGAZINE</span>
+      <span class="ticker-status-text">Cover story · MAZAA’nın dünyasına gir →</span>
+    </a>
+    <a class="ticker-item ticker-editorial" href="#listen">
+      <span class="ticker-status-badge">PLAYLIST LIVE</span>
+      <span class="ticker-status-text">8 entry · YouTube + Spotify →</span>
+    </a>
+    <div class="ticker-item ticker-status ${liveStatus.results_revealed ? "lime" : "pink"}">
+      <span class="ticker-status-badge">${resultsLabel}</span>
+      <span class="ticker-status-text">${resultsText}</span>
+    </div>
+    <div class="ticker-item ticker-status ticker-data-note">
+      <span class="ticker-status-badge">LIVE DATA</span>
+      <span class="ticker-status-text">Oylama durumu otomatik yenileniyor</span>
+    </div>
+  `;
+}
+
+function renderLiveTicker() {
+  const groups = document.querySelectorAll(".ticker-group");
+  if (!groups.length) return;
+  const html = buildTickerGroup();
+  groups.forEach((group, index) => {
+    group.innerHTML = html;
+    if (index > 0) group.setAttribute("aria-hidden", "true");
+  });
+}
+
+async function refreshLiveStatus() {
+  try {
+    const response = await fetch(LIVE_STATUS_URL, {
+      method: "POST",
+      headers: {
+        apikey: LIVE_STATUS_KEY,
+        Authorization: `Bearer ${LIVE_STATUS_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: "{}"
+    });
+    if (!response.ok) return;
+    const data = await response.json();
+    if (data && typeof data === "object") {
+      liveStatus = { ...liveStatus, ...data };
+      renderLiveTicker();
+    }
+  } catch (_) {
+    // Keep the last known public status if the network is temporarily unavailable.
+  }
+}
+
+renderLiveTicker();
+refreshLiveStatus();
+setInterval(refreshLiveStatus, 20000);
+setInterval(renderLiveTicker, 60000);
+
 const entryGrid = document.getElementById("entry-grid");
 
 if (entryGrid) {
@@ -82,6 +190,8 @@ if (entryGrid) {
   function openPlayer(button) {
     lastFocused = button;
     const video = button.dataset.video;
+    nowPlayingEntry = entries.find((entry) => entry.order === button.dataset.order) || null;
+    renderLiveTicker();
     title.textContent = button.dataset.artist;
     song.textContent = `“${button.dataset.song}”`;
     country.textContent = button.dataset.country;
@@ -98,6 +208,8 @@ if (entryGrid) {
     modal.classList.remove("is-open");
     document.body.classList.remove("player-open");
     frame.src = "";
+    nowPlayingEntry = null;
+    renderLiveTicker();
     setTimeout(() => {
       modal.hidden = true;
       if (lastFocused) lastFocused.focus();
@@ -134,6 +246,8 @@ if (heroImage && heroOrder && heroArtist && heroCountry && heroSong) {
     const maxres = `https://i.ytimg.com/vi/${entry.video}/maxresdefault.jpg`;
     const fallback = `https://i.ytimg.com/vi/${entry.video}/hqdefault.jpg`;
 
+    currentFeaturedEntry = entry;
+    if (!nowPlayingEntry) renderLiveTicker();
     heroImage.classList.add("is-changing");
     setTimeout(() => {
       heroImage.src = maxres;
