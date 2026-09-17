@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="ISC 154 official results, scoreboard and full delegation ballots." />
+  <meta name="description" content="International Song Contest official results, scoreboard and delegation ballots." />
   <meta name="theme-color" content="#0b0a0e" />
   <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/results.html" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="International Song Contest" />
-  <meta property="og:title" content="ISC 154 — Results" />
-  <meta property="og:description" content="ISC 154 resmi scoreboard, delegasyon pusulaları ve voting history." />
+  <meta property="og:title" content="ISC — Results" />
+  <meta property="og:description" content="Güncel ISC edisyonunun resmi scoreboard, delegasyon pusulaları ve voting history merkezi." />
   <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/results.html" />
-  <meta property="og:image" content="https://eaergunari-spec.github.io/isc-archive/03-meira-omar-liamoo.webp" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <title>ISC 154 — Results</title>
+  <meta name="twitter:card" content="summary" />
+  <title>ISC — Results</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
@@ -27,7 +26,7 @@
   <header class="site-header results-header">
     <a class="brand" href="index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
     <nav>
-      <a href="index.html">ISC 154</a>
+      <a id="current-edition-nav" href="index.html">Current edition</a>
       <a href="index.html#entries">Katılımcılar</a>
       <a class="results-nav-current" href="results.html">Results</a>
       <a class="nav-vote" href="vote.html">Oy Ver</a>
@@ -37,18 +36,18 @@
   <main>
     <section class="results-hero">
       <div class="results-hero-copy">
-        <span class="results-live-pill" id="results-live-pill"><i></i> RESULTS LOCKED</span>
-        <p class="results-kicker">International Song Contest · Edition 154</p>
+        <span class="results-live-pill" id="results-live-pill"><i></i> RESULTS LOADING</span>
+        <p class="results-kicker" id="results-kicker">International Song Contest · Current edition</p>
         <h1>The <em>results.</em></h1>
-        <p id="results-hero-deck">Oylar arka planda toplanıyor. Scoreboard, delegasyon pusulaları ve 12 puan akışı reveal anına kadar gizli.</p>
+        <p id="results-hero-deck">Güncel edisyon durumu yükleniyor…</p>
       </div>
       <div class="results-hero-mark" aria-hidden="true">
-        <span id="results-hero-symbol">🔒</span>
-        <small>ISC 154</small>
+        <span id="results-hero-symbol">✦</span>
+        <small id="results-hero-edition">ISC</small>
       </div>
     </section>
 
-    <nav class="edition-tabs" aria-label="ISC 154 sections">
+    <nav class="edition-tabs" id="edition-tabs" aria-label="Current edition sections">
       <a href="index.html">Overview</a>
       <a href="index.html#entries">Participants</a>
       <a class="active" href="results.html">Results</a>
@@ -59,7 +58,7 @@
       <div class="locked-copy">
         <span class="eyebrow">Scoreboard backstage</span>
         <h2>Sonuçlar henüz açıklanmadı.</h2>
-        <p>Oylama sırasında hiçbir toplam puan, sıralama veya delegasyon pusulası kamuya gösterilmez. Reveal açıldığı anda bu sayfa otomatik olarak tam sonuç merkezine dönüşecek.</p>
+        <p>Oylama sırasında hiçbir toplam puan, sıralama veya delegasyon pusulası kamuya gösterilmez. Reveal açıldığı anda bu sayfa otomatik olarak tam sonuç merkezine dönüşür.</p>
         <div class="locked-actions">
           <a href="vote.html">Voting Room →</a>
           <a class="ghost" href="index.html#entries">Katılımcılara dön</a>
@@ -67,7 +66,7 @@
       </div>
       <div class="locked-status">
         <article><span>Voting</span><strong id="locked-voting">—</strong></article>
-        <article><span>Submitted</span><strong id="locked-submitted">0 / 8</strong></article>
+        <article><span>Submitted</span><strong id="locked-submitted">— / —</strong></article>
         <article><span>Results</span><strong>LOCKED</strong></article>
       </div>
     </section>
@@ -79,13 +78,13 @@
           <span class="winner-rank">01</span>
         </div>
         <div class="winner-copy">
-          <span class="eyebrow">ISC 154 Winner</span>
+          <span class="eyebrow" id="winner-eyebrow">ISC Winner</span>
           <p class="winner-country" id="winner-country"></p>
           <h2 id="winner-artist"></h2>
           <p class="winner-song" id="winner-song"></p>
           <div class="winner-stats">
             <div><strong id="winner-points">0</strong><span>POINTS</span></div>
-            <div><strong id="winner-twelves">0</strong><span>12 POINTS</span></div>
+            <div><strong id="winner-top-count">0</strong><span id="winner-top-label">TOP SCORES</span></div>
           </div>
         </div>
       </section>
@@ -93,15 +92,15 @@
       <section class="podium-section results-section">
         <div class="results-section-heading compact">
           <div><span class="eyebrow">Top three</span><h2>The podium.</h2></div>
-          <p>ISC 154’ün ilk üç sırası ve final toplam puanları.</p>
+          <p>Güncel edisyonun ilk üç sırası ve final toplam puanları.</p>
         </div>
         <div class="podium-grid" id="podium-grid"></div>
       </section>
 
       <section class="scoreboard-section results-section">
         <div class="results-section-heading">
-          <div><span class="eyebrow">Final scoreboard</span><h2>Eight songs. One table.</h2></div>
-          <p>Tüm delegasyonların gönderilmiş pusulalarından oluşan final toplamları.</p>
+          <div><span class="eyebrow">Final scoreboard</span><h2 id="scoreboard-heading">The final table.</h2></div>
+          <p>Tüm gönderilmiş delegasyon pusulalarından oluşan final toplamları.</p>
         </div>
         <div class="scoreboard" id="scoreboard"></div>
       </section>
@@ -109,7 +108,7 @@
       <section class="ballots-section results-section dark-section">
         <div class="results-section-heading inverse">
           <div><span class="eyebrow">Who voted for whom?</span><h2>Delegasyon delegasyon.</h2></div>
-          <p>Bir delegasyon seç; 12’den 1’e kadar gönderdiği tam pusulayı gör.</p>
+          <p>Bir delegasyon seç; o edisyonda kullandığı resmi puan şemasına göre gönderdiği tam pusulayı gör.</p>
         </div>
         <div class="delegation-tabs" id="delegation-tabs"></div>
         <div class="ballot-focus" id="ballot-focus"></div>
@@ -117,8 +116,8 @@
 
       <section class="twelves-section results-section">
         <div class="results-section-heading compact">
-          <div><span class="eyebrow">Twelve points exchange</span><h2>Who got the twelve?</h2></div>
-          <p>Her delegasyonun gecenin en yüksek puanını verdiği entry.</p>
+          <div><span class="eyebrow" id="top-exchange-eyebrow">Top score exchange</span><h2 id="top-exchange-heading">Who got the top score?</h2></div>
+          <p id="top-exchange-copy">Her delegasyonun gecenin en yüksek puanını verdiği entry.</p>
         </div>
         <div class="twelves-grid" id="twelves-grid"></div>
       </section>
@@ -135,7 +134,7 @@
 
   <footer class="results-footer">
     <div class="footer-brand">ISC</div>
-    <p>International Song Contest · Edition 154</p>
+    <p id="results-footer-edition">International Song Contest · Current edition</p>
     <p>Official scoreboard · delegation ballots · voting history</p>
   </footer>
 
