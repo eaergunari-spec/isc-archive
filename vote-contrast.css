@@ -1,0 +1,17 @@
+.ballot-stage{color:#fff}
+.ballot-row{color:#fff;background:#18161d;border-color:rgba(255,255,255,.12)}
+.ballot-row:hover{border-color:rgba(216,255,62,.48)}
+.ballot-row.assigned{background:linear-gradient(135deg,rgba(255,61,129,.22),rgba(114,216,255,.10)),#17151c;border-color:rgba(255,255,255,.20)}
+.ballot-entry strong{color:#fff!important;text-shadow:0 1px 16px rgba(0,0,0,.18)}
+.ballot-entry span{color:rgba(255,255,255,.76)!important}
+.ballot-order{color:#ff3d81!important}
+.self-row{opacity:.58;background:#111015}
+.self-row .ballot-entry strong{color:rgba(255,255,255,.78)!important}
+.self-row .ballot-entry span{color:rgba(255,255,255,.48)!important}
+.self-row .self-label{color:#ff5f96!important}
+.score-badge{color:rgba(255,255,255,.42);border-color:rgba(255,255,255,.18)}
+.ballot-row.assigned .score-badge{background:#d8ff3e;color:#111;border-color:#d8ff3e;box-shadow:0 8px 28px rgba(216,255,62,.16)}
+.ballot-help,.ballot-help p{color:rgba(255,255,255,.72)}
+.ballot-help strong{color:#fff}
+.points-bank-label,.progress-copy span{color:rgba(255,255,255,.66)}
+@media(max-width:700px){.ballot-entry strong{font-size:24px}.ballot-entry span{font-size:12px}}
