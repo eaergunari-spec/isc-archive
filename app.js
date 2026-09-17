@@ -28,6 +28,28 @@ let liveStatus = {
 let currentFeaturedEntry = entries[2];
 let nowPlayingEntry = null;
 
+const homeNav = document.querySelector(".home-page .site-header nav");
+const heroResultsNote = document.querySelector(".hero-side-note");
+let homeResultsLink = document.querySelector("[data-results-link]");
+if (homeNav && !homeResultsLink) {
+  homeResultsLink = document.createElement("a");
+  homeResultsLink.href = "results.html";
+  homeResultsLink.dataset.resultsLink = "";
+  const voteLink = homeNav.querySelector(".nav-vote");
+  homeNav.insertBefore(homeResultsLink, voteLink || null);
+}
+
+function updateResultsStateChrome() {
+  const revealed = Boolean(liveStatus.results_revealed);
+  if (homeResultsLink) {
+    homeResultsLink.textContent = revealed ? "Results" : "Results 🔒";
+    homeResultsLink.classList.toggle("results-live-link", revealed);
+  }
+  if (heroResultsNote) {
+    heroResultsNote.textContent = revealed ? "RESULTS LIVE — OPEN SCOREBOARD" : "RESULTS HIDDEN UNTIL REVEAL";
+  }
+}
+
 function relativeActivityTime(iso) {
   if (!iso) return "Henüz tamamlanmış oy gelmedi";
   const seconds = Math.max(0, Math.floor((Date.now() - new Date(iso).getTime()) / 1000));
@@ -49,6 +71,9 @@ function buildTickerGroup() {
   const votingClass = liveStatus.voting_open ? "lime" : "pink";
   const resultsLabel = liveStatus.results_revealed ? "RESULTS LIVE" : "RESULTS LOCKED";
   const resultsText = liveStatus.results_revealed ? "Scoreboard artık yayında" : "Toplam puanlar reveal anına kadar gizli";
+  const resultsItem = liveStatus.results_revealed
+    ? `<a class="ticker-item ticker-status lime ticker-editorial" href="results.html"><span class="ticker-status-badge">${resultsLabel}</span><span class="ticker-status-text">${resultsText} →</span></a>`
+    : `<div class="ticker-item ticker-status pink"><span class="ticker-status-badge">${resultsLabel}</span><span class="ticker-status-text">${resultsText}</span></div>`;
 
   return `
     <div class="ticker-item ticker-spotlight">
@@ -75,10 +100,7 @@ function buildTickerGroup() {
       <span class="ticker-status-badge">PLAYLIST LIVE</span>
       <span class="ticker-status-text">8 entry · YouTube + Spotify →</span>
     </a>
-    <div class="ticker-item ticker-status ${liveStatus.results_revealed ? "lime" : "pink"}">
-      <span class="ticker-status-badge">${resultsLabel}</span>
-      <span class="ticker-status-text">${resultsText}</span>
-    </div>
+    ${resultsItem}
     <div class="ticker-item ticker-status ticker-data-note">
       <span class="ticker-status-badge">LIVE DATA</span>
       <span class="ticker-status-text">Oylama durumu otomatik yenileniyor</span>
@@ -112,12 +134,14 @@ async function refreshLiveStatus() {
     if (data && typeof data === "object") {
       liveStatus = { ...liveStatus, ...data };
       renderLiveTicker();
+      updateResultsStateChrome();
     }
   } catch (_) {
     // Keep the last known public status if the network is temporarily unavailable.
   }
 }
 
+updateResultsStateChrome();
 renderLiveTicker();
 refreshLiveStatus();
 setInterval(refreshLiveStatus, 20000);
