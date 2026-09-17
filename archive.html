@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="International Song Contest archive — permanent edition, country, entry, results and voting history." />
+  <meta name="description" content="International Song Contest archive explorer — browse editions by number, country, winner, scoring system and participant count." />
   <meta name="theme-color" content="#0b0a0e" />
   <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/archive.html" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="International Song Contest" />
-  <meta property="og:title" content="ISC Archive" />
-  <meta property="og:description" content="International Song Contest’ın kalıcı edisyon, ülke, katılımcı, sonuç ve voting history arşivi." />
+  <meta property="og:title" content="ISC Archive Explorer" />
+  <meta property="og:description" content="International Song Contest’ın kalıcı edisyon arşivini ülke, winner, puanlama sistemi ve katılımcı sayısına göre keşfet." />
   <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/archive.html" />
   <meta name="twitter:card" content="summary" />
-  <title>ISC Archive</title>
+  <title>ISC Archive Explorer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="archive-edition.css" />
+  <link rel="stylesheet" href="archive-explorer.css" />
   <link rel="stylesheet" href="technical-polish.css" />
 </head>
 <body class="archive-body">
@@ -37,37 +38,102 @@
     <section class="archive-hero">
       <span class="archive-kicker">The permanent record</span>
       <h1>ISC<br>Archive</h1>
-      <p>Her edisyon kendi line-up’ı, sanatçıları, şarkıları, resmî sonucu ve voting history’siyle kalıcı bir kayıt. Güncel yarışma ile tamamlanmış edisyonlar aynı ilişkisel veri mimarisinde birbirine bağlanır.</p>
+      <p>Her edisyon line-up’ı, ülke kadrosu, puanlama sistemi, resmî sonucu ve voting history’siyle kalıcı bir kayıt. Bu sayfa artık yalnızca edisyon kartları değil; yıllar büyüdükçe arşivin tamamını filtreleyip sıralayabileceğin bir explorer.</p>
     </section>
 
-    <section class="archive-shell">
-      <div class="archive-heading">
+    <section class="archive-explorer-summary" aria-label="Archive summary">
+      <article><strong id="archive-stat-editions">—</strong><span>Recorded editions</span></article>
+      <article><strong id="archive-stat-archived">—</strong><span>Completed records</span></article>
+      <article><strong id="archive-stat-countries">—</strong><span>Delegations represented</span></article>
+      <article><strong id="archive-stat-entries">—</strong><span>Total appearances</span></article>
+    </section>
+
+    <section class="archive-shell archive-explorer-shell" aria-labelledby="archive-explorer-title">
+      <div class="archive-explorer-intro">
         <div>
-          <span class="archive-kicker">Browse the record</span>
-          <h2>Yıla göre. Ülkeye göre. Arayarak.</h2>
+          <span class="archive-kicker">Explore the record</span>
+          <h2 id="archive-explorer-title">Bir edisyonu bul.</h2>
         </div>
-        <div>
-          <p>Edisyon kartları doğrudan ilişkisel arşiv verisinden beslenir. Ülke profilleri aynı kayıtları delegasyon geçmişi, başarılar ve voting relationships ekseninde yeniden birleştirir; Global Search ise sanatçı, şarkı, ülke ve edisyonu tek alanda bulur.</p>
-          <p style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap"><a class="button button-ghost" href="countries/">Country profiles →</a><a class="button button-ghost" href="search.html">Global search →</a></p>
-        </div>
+        <p>Edisyon numarası, katılan ülke, winner, scoring system, katılımcı sayısı veya durum üzerinden filtrele. Kart görünümünden compact listeye geç; latest, oldest veya winner adına göre sırala. Filtrelerin URL’de korunur, böylece aynı arşiv görünümünü doğrudan paylaşabilirsin.</p>
       </div>
 
-      <div class="archive-grid" id="archive-grid" aria-live="polite">
-        <article class="edition-card archive-placeholder">
-          <div class="edition-card-no">…</div>
-          <div class="edition-card-copy">
-            <small>Archive loading</small>
-            <strong>Edisyonlar yükleniyor</strong>
-            <p>Kalıcı arşiv verileri hazırlanıyor.</p>
+      <section class="archive-explorer-controls" aria-label="Archive filters">
+        <div class="archive-filter-grid">
+          <label class="archive-filter-field" for="archive-filter-edition">
+            <span>Edition</span>
+            <input id="archive-filter-edition" type="search" inputmode="numeric" autocomplete="off" placeholder="153, 154…" />
+          </label>
+
+          <label class="archive-filter-field" for="archive-filter-country">
+            <span>Participating country</span>
+            <select id="archive-filter-country"><option value="">All countries</option></select>
+          </label>
+
+          <label class="archive-filter-field" for="archive-filter-winner">
+            <span>Winner</span>
+            <select id="archive-filter-winner"><option value="">All winners</option></select>
+          </label>
+
+          <label class="archive-filter-field" for="archive-filter-scheme">
+            <span>Scoring system</span>
+            <select id="archive-filter-scheme"><option value="">All systems</option></select>
+          </label>
+
+          <label class="archive-filter-field" for="archive-filter-participants">
+            <span>Participants</span>
+            <select id="archive-filter-participants"><option value="">Any count</option></select>
+          </label>
+
+          <label class="archive-filter-field" for="archive-filter-status">
+            <span>Status</span>
+            <select id="archive-filter-status">
+              <option value="">Current + archived</option>
+              <option value="current">Current only</option>
+              <option value="archived">Archived only</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="archive-explorer-utility">
+          <p class="archive-result-status" id="archive-result-status" aria-live="polite">Arşiv hazırlanıyor…</p>
+
+          <label class="archive-sort-wrap" for="archive-sort">
+            <span class="archive-utility-label">Sort</span>
+            <select class="archive-sort-select" id="archive-sort">
+              <option value="latest">Latest first</option>
+              <option value="oldest">Oldest first</option>
+              <option value="winner">Winner A–Z</option>
+              <option value="participants-desc">Most participants</option>
+              <option value="participants-asc">Fewest participants</option>
+            </select>
+          </label>
+
+          <div class="archive-view-toggle" role="group" aria-label="Archive view">
+            <button type="button" id="archive-view-cards" data-view="cards" aria-pressed="true">Cards</button>
+            <button type="button" id="archive-view-list" data-view="list" aria-pressed="false">Compact</button>
           </div>
-        </article>
+
+          <button class="archive-clear" id="archive-clear-filters" type="button" hidden>Filtreleri temizle</button>
+        </div>
+      </section>
+
+      <div class="archive-active-filters" id="archive-active-filters" aria-label="Active filters"></div>
+
+      <div class="archive-records view-cards" id="archive-grid" aria-live="polite">
+        <div class="archive-loading-record">Kalıcı edisyon kayıtları yükleniyor…</div>
       </div>
 
-      <div class="archive-note">Arşiv katmanı edisyonları, ülkeleri, entry’leri, sanatçıları, medya kayıtlarını, puan şemalarını, delegasyon pusulalarını ve resmî sonuçları ayrı ama bağlantılı veri varlıkları olarak tutar. Country Profile ve Global Search katmanları açıklanmamış güncel sonuçları hiçbir zaman kamuya sızdırmaz.</div>
+      <div class="archive-no-results" id="archive-no-results" hidden>
+        <strong>Bu filtrelerle eşleşen edisyon yok.</strong>
+        <p>Bir veya daha fazla filtreyi kaldırarak arşiv görünümünü genişletebilirsin.</p>
+        <button id="archive-no-results-clear" type="button">Tüm filtreleri temizle</button>
+      </div>
+
+      <div class="archive-note">Arşiv explorer yalnızca kamuya açık kayıtları kullanır. Güncel edisyonun sonucu reveal edilmediyse winner, placement veya gizli delegasyon oyları bu sayfaya taşınmaz. Scoring-system bilgisi ve katılımcı listesi ise edisyon metadata’sından gelir; final sonucu açıklanınca winner bilgisi otomatik olarak aynı kayda eklenir.</div>
     </section>
   </main>
 
-  <footer><div class="footer-brand">ISC</div><p>International Song Contest · Archive</p></footer>
+  <footer><div class="footer-brand">ISC</div><p>International Song Contest · Archive Explorer</p></footer>
   <script src="archive.js"></script>
 </body>
 </html>
