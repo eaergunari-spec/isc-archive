@@ -1,0 +1,142 @@
+.isc-ticker{
+  position:relative;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:stretch;
+  overflow:hidden;
+  min-height:54px;
+  background:#09090d;
+  color:#fff;
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  box-shadow:0 10px 28px rgba(0,0,0,.08);
+}
+.ticker-label{
+  position:relative;
+  z-index:4;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:0 20px 0 clamp(22px,5vw,80px);
+  background:#ff3d81;
+  color:#fff;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  box-shadow:18px 0 28px rgba(9,9,13,.28);
+}
+.ticker-label::before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#d8ff3e;
+  box-shadow:0 0 0 4px rgba(216,255,62,.16);
+}
+.ticker-viewport{
+  min-width:0;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  mask-image:linear-gradient(90deg,transparent 0,#000 38px,#000 calc(100% - 38px),transparent 100%);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 38px,#000 calc(100% - 38px),transparent 100%);
+}
+.ticker-track{
+  display:flex;
+  align-items:center;
+  width:max-content;
+  will-change:transform;
+  animation:iscTicker 62s linear infinite;
+}
+.isc-ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-group{
+  display:flex;
+  align-items:center;
+  flex-shrink:0;
+}
+.ticker-item{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  height:54px;
+  padding:0 17px;
+  white-space:nowrap;
+  border-right:1px solid rgba(255,255,255,.1);
+}
+.ticker-no{
+  display:inline-grid;
+  place-items:center;
+  min-width:30px;
+  height:26px;
+  padding:0 7px;
+  border-radius:999px;
+  background:#ff3d81;
+  color:white;
+  font:700 9px/1 "DM Sans",sans-serif;
+  letter-spacing:.1em;
+}
+.ticker-country{
+  color:#d8ff3e;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.ticker-artist{
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+.ticker-song{
+  color:rgba(255,255,255,.68);
+  font-family:"Libre Caslon Display",serif;
+  font-size:15px;
+  font-style:italic;
+}
+.ticker-status{
+  gap:10px;
+  background:rgba(255,255,255,.035);
+  padding-left:21px;
+  padding-right:21px;
+}
+.ticker-status-badge{
+  display:inline-flex;
+  align-items:center;
+  min-height:24px;
+  padding:0 9px;
+  border-radius:999px;
+  color:#111;
+  background:#72d8ff;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.ticker-status.pink .ticker-status-badge{background:#ff3d81;color:#fff}
+.ticker-status.lime .ticker-status-badge{background:#d8ff3e;color:#111}
+.ticker-status-text{
+  color:rgba(255,255,255,.75);
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+@keyframes iscTicker{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@media(max-width:760px){
+  .isc-ticker{grid-template-columns:1fr;min-height:86px}
+  .ticker-label{height:32px;padding:0 16px;font-size:8px;box-shadow:none}
+  .ticker-viewport{height:54px}
+  .ticker-track{animation-duration:52s}
+  .ticker-item{padding:0 13px}
+  .ticker-song{font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){
+  .ticker-track{animation:none;transform:none}
+  .ticker-viewport{overflow-x:auto;mask-image:none;-webkit-mask-image:none}
+}
