@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="vote.css" />
   <link rel="stylesheet" href="vote-contrast.css" />
+  <link rel="stylesheet" href="vote-ranking.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="vote-body">
@@ -27,12 +28,12 @@
     <section class="vote-hero">
       <div class="vote-hero-copy">
         <div class="vote-live"><span></span> ISC 154 · VOTING OPEN</div>
-        <h1>Your country.<br><em>Your points.</em></h1>
-        <p>Yedi rakip şarkı, yedi farklı puan. <strong>12, 10, 8, 6, 4, 2 ve 1</strong> puanlarını dağıt; kendi ülkene oy veremezsin.</p>
+        <h1>Your country.<br><em>Your ranking.</em></h1>
+        <p>Yedi rakip şarkıyı sürükleyerek sırala. <strong>En üstteki 12</strong>, ardından 10, 8, 6, 4, 2 ve 1 puan alır. Kendi ülken sıralamaya dahil edilmez.</p>
         <div class="vote-rule-strip" aria-label="Voting rules">
           <span>01 · Ülkeni doğrula</span>
-          <span>02 · Puanları dağıt</span>
-          <span>03 · Oyunu gönder</span>
+          <span>02 · Şarkıları sürükle</span>
+          <span>03 · Sıralamanı gönder</span>
         </div>
       </div>
       <div class="vote-hero-graphic" aria-hidden="true">
@@ -54,7 +55,7 @@
         <div id="code-wrap" class="code-wrap" hidden>
           <label for="voter-code">Voter code</label>
           <div class="code-row">
-            <input id="voter-code" type="password" autocomplete="off" placeholder="ISC154-••••••••" />
+            <input id="voter-code" type="text" autocomplete="off" spellcheck="false" placeholder="ISC154-XXXXXXXX" />
             <button id="enter-voting" class="enter-button">Pusulayı aç <span>→</span></button>
           </div>
         </div>
@@ -73,30 +74,31 @@
 
       <div class="ballot-control">
         <div class="progress-copy">
-          <span>Puan dağılımı</span>
-          <strong><b id="progress-count">0</b>/7 tamamlandı</strong>
+          <span>Sıralama sistemi</span>
+          <strong><b id="progress-count">7</b>/7 entry sıralanıyor</strong>
         </div>
         <div class="progress-track" aria-hidden="true"><div id="progress-fill" class="progress-fill"></div></div>
-        <div class="points-bank-wrap">
-          <span class="points-bank-label">Bir puan seç, sonra bir entry’ye tıkla</span>
-          <div id="points-bank" class="points-bank" aria-label="Available points"></div>
+        <div class="ranking-scale" aria-label="Point scale from top to bottom">
+          <span>12</span><span>10</span><span>8</span><span>6</span><span>4</span><span>2</span><span>1</span>
         </div>
       </div>
 
       <div class="ballot-help">
-        <span class="help-icon">↘</span>
-        <p><strong>Puan seç → entry seç.</strong> Bir puanı başka bir entry’ye taşırsan sistem eski atamayı otomatik kaldırır. Her değişiklik otomatik kaydedilir.</p>
+        <span class="help-icon">↕</span>
+        <p><strong>Kartları yukarı-aşağı sürükle.</strong> Listenin en üstündeki şarkı 12 puan alır; aşağı indikçe puanlar otomatik olarak 10, 8, 6, 4, 2 ve 1 olur. Her sıralama değişikliği otomatik kaydedilir.</p>
       </div>
 
-      <div id="ballot-list" class="ballot-list"></div>
+      <div id="self-entry-note" class="self-entry-note"></div>
+      <div id="ballot-list" class="ballot-list ranking-list"></div>
+      <p class="ranking-note">Masaüstünde kartı tutup sürükleyebilirsin. Telefonda karta basılı tutup yukarı veya aşağı taşı.</p>
 
       <div class="ballot-submit-zone">
         <div>
           <span class="eyebrow">FINAL CHECK</span>
-          <h3>Yedi puanın da hazır mı?</h3>
-          <p id="ballot-message" class="status-line" aria-live="polite">Tüm puanları dağıttığında gönder butonu aktif olacak.</p>
+          <h3>Sıralaman hazır mı?</h3>
+          <p id="ballot-message" class="status-line" aria-live="polite">Sıralama değiştikçe puanlar otomatik güncellenir.</p>
         </div>
-        <button id="submit-ballot" class="submit-ballot" disabled>OYUMU GÖNDER <span>→</span></button>
+        <button id="submit-ballot" class="submit-ballot">OYUMU GÖNDER <span>→</span></button>
       </div>
     </section>
 
@@ -111,7 +113,7 @@
       <span class="eyebrow">READY TO SUBMIT?</span>
       <h2>Son kontrol.</h2>
       <div id="confirm-summary" class="confirm-summary"></div>
-      <p>Gönderdikten sonra oylama açık kaldığı sürece pusulanı tekrar açıp değiştirebilirsin.</p>
+      <p>Gönderdikten sonra oylama açık kaldığı sürece pusulanı tekrar açıp sıralamanı değiştirebilirsin.</p>
       <div class="confirm-actions">
         <button id="cancel-submit" class="dialog-secondary">Geri dön</button>
         <button id="confirm-submit" class="dialog-primary">Oyları gönder →</button>
@@ -119,6 +121,7 @@
     </div>
   </dialog>
 
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
   <script src="vote.js"></script>
 </body>
 </html>
