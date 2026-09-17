@@ -12,6 +12,19 @@
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 
+  const countryHref = slug => `../../countries/${encodeURIComponent(slug)}/`;
+  const countrySlugMap = data => {
+    const map = new Map();
+    (data.entries || []).forEach(entry => {
+      if (entry.country_slug) {
+        map.set(entry.display_name, entry.country_slug);
+        map.set(entry.country, entry.country_slug);
+        map.set(entry.short_name, entry.country_slug);
+      }
+    });
+    return map;
+  };
+
   const lineup = document.getElementById('history-lineup');
   const resultsBody = document.getElementById('history-results-body');
   const podium = document.getElementById('history-podium');
@@ -76,6 +89,7 @@
   function renderMeta(data) {
     const schemePoints = data.voting_scheme?.points || [];
     const perBallot = schemePoints.reduce((sum, item) => sum + Number(item.points || 0), 0);
+    const slugs = countrySlugMap(data);
     if (meta) {
       meta.innerHTML = `
         <span>${data.entries.length} countries</span>
@@ -85,8 +99,12 @@
     }
     const winner = (data.results || []).find(row => Number(row.place) === 1);
     if (winnerBox && winner) {
+      const winnerSlug = slugs.get(winner.country);
+      const countryMarkup = winnerSlug
+        ? `<a href="${countryHref(winnerSlug)}">${escapeHtml(winner.country)}</a>`
+        : escapeHtml(winner.country);
       winnerBox.innerHTML = `
-        <small>Winner · ${escapeHtml(winner.country)}</small>
+        <small>Winner · ${countryMarkup}</small>
         <strong>${escapeHtml(winner.artist)}</strong>
         <span>“${escapeHtml(winner.song)}” · ${escapeHtml(winner.points)} points</span>`;
     }
@@ -111,7 +129,7 @@
         </div>
         <div class="edition-entry-copy">
           <span class="edition-entry-no">${String(entry.running_order).padStart(2, '0')}</span>
-          <span class="edition-entry-country">${escapeHtml(entry.display_name)}</span>
+          <a class="edition-entry-country" href="${countryHref(entry.country_slug)}">${escapeHtml(entry.display_name)}</a>
           <strong>${escapeHtml(entry.artist)}</strong>
           <span class="song">${escapeHtml(entry.song)}</span>
         </div>`;
@@ -122,25 +140,34 @@
   }
 
   function renderResults(data) {
+    const slugs = countrySlugMap(data);
     if (resultsBody) {
-      resultsBody.innerHTML = data.results.map(row => `
+      resultsBody.innerHTML = data.results.map(row => {
+        const slug = slugs.get(row.country) || slugs.get(row.short_name);
+        const country = slug ? `<a href="${countryHref(slug)}">${escapeHtml(row.country)}</a>` : escapeHtml(row.country);
+        return `
         <tr class="place-${Number(row.place)}">
           <td><span class="result-place">${Number(row.place) <= 3 ? ['🥇','🥈','🥉'][Number(row.place)-1] + ' ' : ''}${escapeHtml(row.place)}</span></td>
-          <td><strong>${escapeHtml(row.country)}</strong><small>${escapeHtml(row.short_name)}</small></td>
+          <td><strong>${country}</strong><small>${escapeHtml(row.short_name)}</small></td>
           <td>${escapeHtml(row.artist)}</td>
           <td>${escapeHtml(row.song)}</td>
           <td class="result-points">${escapeHtml(row.points)}</td>
-        </tr>`).join('');
+        </tr>`;
+      }).join('');
     }
     if (podium) {
-      podium.innerHTML = data.results.slice(0, 3).map(row => `
+      podium.innerHTML = data.results.slice(0, 3).map(row => {
+        const slug = slugs.get(row.country) || slugs.get(row.short_name);
+        const country = slug ? `<a href="${countryHref(slug)}">${escapeHtml(row.country)}</a>` : escapeHtml(row.country);
+        return `
         <article class="podium-card place-${escapeHtml(row.place)}">
           <span>${['🥇','🥈','🥉'][Number(row.place)-1] || row.place}</span>
-          <small>${escapeHtml(row.country)}</small>
+          <small>${country}</small>
           <strong>${escapeHtml(row.artist)}</strong>
           <em>“${escapeHtml(row.song)}”</em>
           <b>${escapeHtml(row.points)} pts</b>
-        </article>`).join('');
+        </article>`;
+      }).join('');
     }
   }
 
@@ -148,29 +175,43 @@
     if (!matrix) return;
     const entries = [...data.entries].sort((a,b) => a.running_order - b.running_order);
     const ballots = [...data.ballots].sort((a,b) => a.running_order - b.running_order);
-    const header = entries.map(entry => `<th title="${escapeHtml(entry.display_name)}">${escapeHtml(entry.short_name)}</th>`).join('');
+    const schemePoints = data.voting_scheme?.points || [];
+    const topPoints = Math.max(0, ...schemePoints.map(item => Number(item.points || 0)));
+    const slugs = countrySlugMap(data);
+    const header = entries.map(entry => `<th title="${escapeHtml(entry.display_name)}"><a href="${countryHref(entry.country_slug)}">${escapeHtml(entry.short_name)}</a></th>`).join('');
     const rows = ballots.map(ballot => {
       const scoreMap = new Map((ballot.scores || []).map(score => [Number(score.recipient_running_order), Number(score.points)]));
       const cells = entries.map(entry => {
         if (Number(entry.running_order) === Number(ballot.running_order)) return '<td class="self-vote">—</td>';
         const points = scoreMap.get(Number(entry.running_order));
-        const cls = points === 12 ? ' class="twelve"' : '';
+        const cls = points === topPoints ? ' class="twelve"' : '';
         return `<td${cls}>${points ?? ''}</td>`;
       }).join('');
-      return `<tr><th>${escapeHtml(ballot.voter_short_name)}</th>${cells}</tr>`;
+      const voterSlug = slugs.get(ballot.voter_country) || slugs.get(ballot.voter_short_name);
+      const voter = voterSlug ? `<a href="${countryHref(voterSlug)}">${escapeHtml(ballot.voter_short_name)}</a>` : escapeHtml(ballot.voter_short_name);
+      return `<tr><th>${voter}</th>${cells}</tr>`;
     }).join('');
     matrix.innerHTML = `<thead><tr><th>Veren \\ Alan</th>${header}</tr></thead><tbody>${rows}</tbody>`;
   }
 
   function renderBallots(data) {
     if (!ballotGrid) return;
+    const schemePoints = data.voting_scheme?.points || [];
+    const topPoints = Math.max(0, ...schemePoints.map(item => Number(item.points || 0)));
+    const slugs = countrySlugMap(data);
     ballotGrid.innerHTML = data.ballots.map(ballot => {
       const scores = [...(ballot.scores || [])].sort((a,b) => Number(b.points) - Number(a.points));
+      const voterSlug = slugs.get(ballot.voter_country) || slugs.get(ballot.voter_short_name);
+      const voter = voterSlug ? `<a href="${countryHref(voterSlug)}">${escapeHtml(ballot.voter_country)}</a>` : escapeHtml(ballot.voter_country);
       return `
         <article class="ballot-card">
-          <div class="ballot-card-head"><span>Veren</span><strong>${escapeHtml(ballot.voter_country)}</strong></div>
+          <div class="ballot-card-head"><span>Veren</span><strong>${voter}</strong></div>
           <div class="ballot-points">
-            ${scores.map(score => `<div class="ballot-point ${Number(score.points) === 12 ? 'max' : ''}"><b>${escapeHtml(score.points)}</b><span>${escapeHtml(score.recipient_short_name)}</span></div>`).join('')}
+            ${scores.map(score => {
+              const recipientSlug = slugs.get(score.recipient_country) || slugs.get(score.recipient_short_name);
+              const recipient = recipientSlug ? `<a href="${countryHref(recipientSlug)}">${escapeHtml(score.recipient_short_name)}</a>` : escapeHtml(score.recipient_short_name);
+              return `<div class="ballot-point ${Number(score.points) === topPoints ? 'max' : ''}"><b>${escapeHtml(score.points)}</b><span>${recipient}</span></div>`;
+            }).join('')}
           </div>
         </article>`;
     }).join('');
@@ -183,7 +224,7 @@
   }
 
   function showError() {
-    const message = 'ISC 153 arşiv verisi şu anda yüklenemedi. Sayfayı yenileyip tekrar deneyin.';
+    const message = `ISC ${editionNumber} arşiv verisi şu anda yüklenemedi. Sayfayı yenileyip tekrar deneyin.`;
     if (lineup) lineup.innerHTML = `<div class="archive-loading archive-error">${message}</div>`;
     if (resultsBody) resultsBody.innerHTML = `<tr><td colspan="5">${message}</td></tr>`;
     if (matrix) matrix.innerHTML = `<tbody><tr><td>${message}</td></tr></tbody>`;
