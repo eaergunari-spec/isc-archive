@@ -130,9 +130,47 @@
     host.appendChild(button);
   }
 
+  function enhanceArchivePreview() {
+    const section = document.querySelector('.archive-section');
+    if (!section) return;
+    const placeholder = section.querySelector('.archive-card.placeholder');
+    if (placeholder) {
+      const card = document.createElement('a');
+      card.className = 'archive-card archived';
+      card.href = 'editions/153/';
+      card.style.color = 'inherit';
+      card.style.textDecoration = 'none';
+      card.innerHTML = `
+        <span>153</span>
+        <div>
+          <small>ARCHIVED · FINAL COMPLETE</small>
+          <strong>ISC 153</strong>
+          <p>Winner: SUPERLAND · LA NIÑA · 51 points</p>
+        </div>`;
+      placeholder.replaceWith(card);
+    }
+    const current = section.querySelector('.archive-card.current');
+    if (current && current.tagName !== 'A') {
+      current.style.cursor = 'pointer';
+      current.setAttribute('role', 'link');
+      current.setAttribute('tabindex', '0');
+      const openCurrent = () => { window.location.href = 'editions/154/'; };
+      current.addEventListener('click', openCurrent);
+      current.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openCurrent();
+        }
+      });
+    }
+    const copy = section.querySelector('.section-heading > p');
+    if (copy) copy.textContent = 'Canlı ISC 154 ve tamamlanmış ISC 153 artık aynı kalıcı arşivde. Geçmiş edisyonlarda line-up, resmî sonuç ve delegasyon oyları birlikte saklanıyor.';
+  }
+
   document.querySelectorAll('.embed-gate[data-embed-src]').forEach(wireStaticGate);
   document.querySelectorAll('.youtube-frame-wrap iframe').forEach(frame => makeLegacyGate(frame, 'YouTube'));
   document.querySelectorAll('.spotify-embed-wrap iframe').forEach(frame => makeLegacyGate(frame, 'Spotify'));
 
   localizeEntryCards();
+  enhanceArchivePreview();
 })();
