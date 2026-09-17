@@ -1,0 +1,176 @@
+/* Homepage hierarchy pass — loaded last */
+
+.home-page .entries-section{
+  padding-top:92px;
+  padding-bottom:92px;
+}
+
+.home-page .entries-section::before{
+  top:36px;
+  opacity:.9;
+}
+
+/* Compact listening hub */
+.listen-stage.compact-listen{
+  max-width:none;
+  margin:0;
+  padding:72px clamp(22px,7vw,110px);
+  background:#111015;
+  color:#fff;
+}
+
+.compact-listen .listen-stage-head{
+  max-width:1420px;
+  margin:0 auto 34px;
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(280px,.75fr);
+  gap:48px;
+  align-items:end;
+}
+
+.compact-listen .listen-stage-head h2{
+  margin:8px 0 0;
+  font-family:"Libre Caslon Display",serif;
+  font-size:clamp(48px,5vw,80px);
+  font-weight:400;
+  line-height:.92;
+  letter-spacing:-.035em;
+}
+
+.compact-listen .listen-stage-head .eyebrow{color:var(--pop-blue)}
+.compact-listen .listen-stage-intro{margin:0;color:rgba(255,255,255,.62);line-height:1.7;max-width:620px}
+
+.compact-listen .listen-platforms{
+  max-width:1420px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:18px;
+}
+
+.compact-listen .platform-card{
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:22px;
+  background:#19171f;
+  box-shadow:none;
+  overflow:hidden;
+}
+
+.compact-listen .platform-topline,
+.compact-listen .platform-footer{
+  padding:16px 18px;
+}
+
+.compact-listen .platform-brand{color:#fff}
+.compact-listen .platform-meta,
+.compact-listen .platform-footer-copy span{color:rgba(255,255,255,.5)}
+.compact-listen .platform-footer-copy strong{color:#fff}
+.compact-listen .platform-open{background:#fff;color:#111}
+.compact-listen .spotify-card .platform-open{background:#1ed760;color:#07170c}
+
+.compact-listen .youtube-frame-wrap{aspect-ratio:16/7.2;background:#09090d}
+.compact-listen .youtube-frame-wrap iframe{width:100%;height:100%;border:0;display:block}
+.compact-listen .spotify-embed-wrap{padding:0 14px 14px}
+.compact-listen .spotify-embed-wrap iframe{width:100%;height:232px;border:0;display:block}
+
+.compact-listen .listen-quickrow{
+  max-width:1420px;
+  margin:18px auto 0;
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:1px;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;
+  overflow:hidden;
+}
+.compact-listen .listen-quickrow a{
+  min-width:0;
+  padding:13px 10px;
+  background:#121116;
+  color:#fff;
+}
+.compact-listen .listen-quickrow a:hover{background:#211e29}
+.compact-listen .listen-quickrow b{color:var(--pop-pink)}
+.compact-listen .listen-quickrow span{color:rgba(255,255,255,.7)}
+
+/* The ticker becomes a live transition rather than a separate destination. */
+.home-page .isc-ticker{border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+
+/* Editorial / magazine teasers */
+.stories-section{
+  max-width:1500px;
+  margin:0 auto;
+  padding:108px clamp(22px,5vw,80px) 112px;
+}
+
+.stories-heading{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:44px;
+  align-items:end;
+  margin-bottom:38px;
+}
+.stories-heading h2{
+  margin:8px 0 0;
+  font-family:"Libre Caslon Display",serif;
+  font-size:clamp(54px,6vw,94px);
+  font-weight:400;
+  line-height:.9;
+  letter-spacing:-.04em;
+}
+.stories-heading>p{margin:0;color:var(--muted);line-height:1.7;max-width:560px;justify-self:end}
+
+.story-grid{
+  display:grid;
+  grid-template-columns:1.18fr .91fr .91fr;
+  gap:18px;
+}
+.story-card{
+  position:relative;
+  min-height:460px;
+  overflow:hidden;
+  border-radius:24px;
+  background:#111;
+  color:#fff;
+  isolation:isolate;
+}
+.story-card:first-child{min-height:530px}
+.story-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .55s ease,filter .4s ease;filter:saturate(.86) contrast(1.04)}
+.story-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,7,8,.03) 24%,rgba(8,7,8,.22) 55%,rgba(8,7,8,.92) 100%);z-index:1}
+.story-card:hover img{transform:scale(1.045);filter:saturate(1) contrast(1.04)}
+.story-copy{position:absolute;z-index:2;left:24px;right:24px;bottom:24px}
+.story-tag{display:inline-flex;padding:7px 9px;border-radius:999px;background:var(--pop-pink);color:#fff;font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.story-card:nth-child(2) .story-tag{background:var(--pop-lime);color:#111}
+.story-card:nth-child(3) .story-tag{background:var(--pop-blue);color:#111}
+.story-copy h3{margin:0;font-family:"Libre Caslon Display",serif;font-size:clamp(30px,3vw,48px);font-weight:400;line-height:.98}
+.story-copy p{margin:10px 0 0;color:rgba(255,255,255,.68);font-size:12px;line-height:1.55}
+.story-arrow{display:inline-block;margin-top:16px;color:#fff;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+
+/* Give the CTA more breathing room between listening and editorial. */
+.home-page .vote-splash{margin-top:0}
+.home-page .archive-section{padding-top:96px}
+
+@media(max-width:980px){
+  .compact-listen .listen-stage-head,
+  .stories-heading{grid-template-columns:1fr}
+  .stories-heading>p{justify-self:start}
+  .compact-listen .listen-platforms{grid-template-columns:1fr}
+  .compact-listen .listen-quickrow{grid-template-columns:repeat(4,1fr)}
+  .story-grid{grid-template-columns:1fr 1fr}
+  .story-card:first-child{grid-column:1/-1;min-height:480px}
+}
+
+@media(max-width:680px){
+  .home-page .entries-section{padding-top:72px;padding-bottom:72px}
+  .listen-stage.compact-listen{padding:58px 18px}
+  .compact-listen .listen-stage-head{gap:20px;margin-bottom:24px}
+  .compact-listen .listen-platforms{gap:14px}
+  .compact-listen .youtube-frame-wrap{aspect-ratio:16/9}
+  .compact-listen .spotify-embed-wrap iframe{height:152px}
+  .compact-listen .listen-quickrow{grid-template-columns:repeat(2,1fr)}
+  .stories-section{padding:76px 18px 82px}
+  .stories-heading{gap:18px;margin-bottom:26px}
+  .story-grid{grid-template-columns:1fr}
+  .story-card,.story-card:first-child{grid-column:auto;min-height:430px}
+}
