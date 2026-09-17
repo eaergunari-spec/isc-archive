@@ -42,7 +42,6 @@ async function login() {
     adminCode = code;
     const data = await rpc('isc_admin_current_dashboard', { p_code: adminCode });
     sessionStorage.setItem('isc_admin_code', adminCode);
-    sessionStorage.removeItem('isc154_admin_code');
     dashboardData = data;
     loginSection.hidden = true;
     dashboard.hidden = false;
@@ -50,7 +49,6 @@ async function login() {
     startAutoRefresh();
   } catch (err) {
     sessionStorage.removeItem('isc_admin_code');
-    sessionStorage.removeItem('isc154_admin_code');
     adminCode = '';
     adminMessage.textContent = 'Admin code geçersiz veya güncel edisyon bulunamadı.';
   } finally {
