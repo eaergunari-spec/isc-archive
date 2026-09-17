@@ -9,6 +9,7 @@
   const heading = document.getElementById('search-heading');
   const emptyState = document.getElementById('search-empty-state');
   const filters = document.getElementById('search-filters');
+  const shortcutLabel = document.querySelector('.search-shortcut');
   const filterButtons = [...document.querySelectorAll('[data-filter]')];
   const exampleButtons = [...document.querySelectorAll('[data-search-example]')];
 
@@ -25,6 +26,11 @@
   let debounceTimer = null;
   let abortController = null;
   let currentQuery = '';
+  let lastCompletedQuery = '';
+
+  if (shortcutLabel) {
+    shortcutLabel.textContent = /Mac|iPhone|iPad|iPod/i.test(navigator.userAgent) ? '⌘ K' : 'Ctrl K';
+  }
 
   const escapeHtml = value => String(value ?? '')
     .replace(/&/g, '&amp;')
@@ -32,6 +38,8 @@
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
+
+  const cleanSubtitle = value => String(value ?? '').replace(/(\d+)\.00(?= pts\b)/g, '$1');
 
   const typeLabel = row => ({
     artist: 'Artist',
@@ -89,7 +97,7 @@
     filters.hidden = allResults.length === 0;
 
     if (!rows.length) {
-      results.innerHTML = `<div class="search-no-results"><strong>Bu filtrede sonuç yok.</strong> Başka bir kategori seçebilir ya da arama terimini değiştirebilirsin.</div>`;
+      results.innerHTML = '<div class="search-no-results"><strong>Bu filtrede sonuç yok.</strong> Başka bir kategori seçebilir ya da arama terimini değiştirebilirsin.</div>';
       return;
     }
 
@@ -109,7 +117,7 @@
           <div class="search-result-copy">
             <div class="search-result-type"><b>${escapeHtml(typeLabel(row))}</b><span>${escapeHtml(meta)}</span></div>
             <h3>${escapeHtml(row.title)}</h3>
-            <p>${escapeHtml(row.subtitle)}</p>
+            <p>${escapeHtml(cleanSubtitle(row.subtitle))}</p>
           </div>
           <div class="search-result-arrow" aria-hidden="true">→</div>
         </a>`;
@@ -156,8 +164,10 @@
     updateUrl(trimmed);
 
     if (!trimmed) {
+      if (abortController) abortController.abort();
       allResults = [];
       activeFilter = 'all';
+      lastCompletedQuery = '';
       heading.textContent = 'Ne arıyorsun?';
       status.textContent = 'Edisyon, ülke, sanatçı veya şarkı adıyla başlayabilirsin.';
       filterButtons.forEach(button => button.classList.toggle('active', button.dataset.filter === 'all'));
@@ -186,6 +196,7 @@
 
       if (trimmed !== currentQuery) return;
       allResults = payload.results || [];
+      lastCompletedQuery = trimmed;
       activeFilter = 'all';
       filterButtons.forEach(button => button.classList.toggle('active', button.dataset.filter === 'all'));
       updateCounts();
@@ -198,7 +209,6 @@
       heading.textContent = `“${trimmed}”`;
       status.textContent = `${allResults.length} sonuç bulundu. En güçlü eşleşmeler önce gösteriliyor.`;
       renderResults();
-      saveRecent(trimmed);
     } catch (error) {
       if (error.name === 'AbortError') return;
       console.error('ISC search failed', error);
@@ -208,6 +218,8 @@
 
   function scheduleSearch() {
     clearTimeout(debounceTimer);
+    currentQuery = input.value.trim();
+    if (abortController) abortController.abort();
     debounceTimer = setTimeout(() => runSearch(input.value), 180);
   }
 
@@ -220,13 +232,19 @@
         first.focus();
       }
     } else if (event.key === 'Enter') {
+      const query = input.value.trim();
       const first = results.querySelector('.search-result');
-      if (first && input.value.trim()) {
+      if (first && query && query === lastCompletedQuery) {
         event.preventDefault();
         first.click();
+      } else if (query) {
+        event.preventDefault();
+        clearTimeout(debounceTimer);
+        runSearch(query);
       }
     } else if (event.key === 'Escape') {
       input.value = '';
+      clearTimeout(debounceTimer);
       runSearch('');
     }
   });
@@ -250,6 +268,7 @@
 
   clearButton.addEventListener('click', () => {
     input.value = '';
+    clearTimeout(debounceTimer);
     runSearch('');
     input.focus();
   });
@@ -257,6 +276,7 @@
   exampleButtons.forEach(button => {
     button.addEventListener('click', () => {
       input.value = button.dataset.searchExample || '';
+      clearTimeout(debounceTimer);
       runSearch(input.value);
       input.focus();
     });
@@ -272,17 +292,6 @@
       input.select();
     }
   });
-
-  function saveRecent(query) {
-    try {
-      const key = 'isc_global_search_recent';
-      const previous = JSON.parse(localStorage.getItem(key) || '[]');
-      const next = [query, ...previous.filter(item => item.toLowerCase() !== query.toLowerCase())].slice(0, 6);
-      localStorage.setItem(key, JSON.stringify(next));
-    } catch (_) {
-      // Search must keep working when storage is unavailable.
-    }
-  }
 
   const initialQuery = new URLSearchParams(window.location.search).get('q') || '';
   input.value = initialQuery;
