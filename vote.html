@@ -3,56 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ISC 154 — Oy Ver</title>
+  <meta name="description" content="ISC 154 official voting room." />
+  <title>ISC 154 — Voting Room</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="vote.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
-  <header class="site-header">
+<body class="vote-body">
+  <header class="site-header vote-header">
     <a class="brand" href="index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
-    <nav><a href="index.html">ISC 154</a><a href="index.html#entries">Katılımcılar</a><a class="nav-vote" href="vote.html">Oy Ver</a></nav>
+    <nav>
+      <a href="index.html">ISC 154</a>
+      <a href="index.html#entries">Katılımcılar</a>
+      <a class="nav-vote" href="vote.html">Voting Room</a>
+    </nav>
   </header>
 
   <main class="vote-page">
     <section class="vote-hero">
-      <span class="eyebrow">ISC 154 · Voting room</span>
-      <h1>Oyunu gönder.</h1>
-      <p>Önce ülkeni seç. Kendi entry’ne oy veremezsin. Kalan yedi şarkıya 12, 10, 8, 6, 4, 2 ve 1 puanlarını birer kez dağıt.</p>
+      <div class="vote-hero-copy">
+        <div class="vote-live"><span></span> ISC 154 · VOTING OPEN</div>
+        <h1>Your country.<br><em>Your points.</em></h1>
+        <p>Yedi rakip şarkı, yedi farklı puan. <strong>12, 10, 8, 6, 4, 2 ve 1</strong> puanlarını dağıt; kendi ülkene oy veremezsin.</p>
+        <div class="vote-rule-strip" aria-label="Voting rules">
+          <span>01 · Ülkeni doğrula</span>
+          <span>02 · Puanları dağıt</span>
+          <span>03 · Oyunu gönder</span>
+        </div>
+      </div>
+      <div class="vote-hero-graphic" aria-hidden="true">
+        <span class="hero-twelve">12</span>
+        <span class="hero-points">10 · 8 · 6 · 4 · 2 · 1</span>
+      </div>
     </section>
 
-    <section class="vote-panel" id="login-step">
-      <div class="vote-step-no">01</div>
-      <div>
-        <span class="eyebrow">Kim oy kullanıyor?</span>
-        <h2>Ülkeni seç</h2>
-        <select id="country-select"><option value="">Ülke seç...</option></select>
+    <section class="identity-stage" id="login-step">
+      <div class="stage-kicker">STEP 01</div>
+      <div class="identity-copy">
+        <span class="eyebrow">Who are you voting as?</span>
+        <h2>Önce delegasyonunu seç.</h2>
+        <p>Ülkeni seçtikten sonra sana verilen voter code ile giriş yap. Kod yalnızca o delegasyonun pusulasını açar.</p>
+      </div>
+      <div class="identity-form">
+        <label for="country-select">Ülke</label>
+        <select id="country-select"><option value="">Ülkeni seç...</option></select>
         <div id="code-wrap" class="code-wrap" hidden>
           <label for="voter-code">Voter code</label>
-          <div class="code-row"><input id="voter-code" type="password" autocomplete="off" placeholder="ISC154-..." /><button id="enter-voting" class="button button-primary">Devam et</button></div>
-          <p id="login-message" class="status-line"></p>
+          <div class="code-row">
+            <input id="voter-code" type="password" autocomplete="off" placeholder="ISC154-••••••••" />
+            <button id="enter-voting" class="enter-button">Pusulayı aç <span>→</span></button>
+          </div>
         </div>
+        <p id="login-message" class="status-line" aria-live="polite"></p>
       </div>
     </section>
 
-    <section class="vote-panel" id="ballot-step" hidden>
-      <div class="vote-step-no">02</div>
-      <div class="ballot-main">
-        <div class="ballot-heading"><div><span class="eyebrow">Puanlarını dağıt</span><h2 id="ballot-country"></h2></div><div id="save-status" class="save-status">Hazır</div></div>
-        <div class="points-key">12 · 10 · 8 · 6 · 4 · 2 · 1 — her biri yalnızca bir kez kullanılabilir.</div>
-        <div id="ballot-list" class="ballot-list"></div>
-        <div class="ballot-footer">
-          <p id="ballot-message" class="status-line"></p>
-          <button id="submit-ballot" class="button button-primary" disabled>Oyları onayla</button>
+    <section class="ballot-stage" id="ballot-step" hidden>
+      <div class="ballot-topbar">
+        <div>
+          <span class="eyebrow">STEP 02 · YOU ARE VOTING AS</span>
+          <h2 id="ballot-country"></h2>
         </div>
+        <div class="autosave-pill"><span class="autosave-dot"></span><span id="save-status">Hazır</span></div>
+      </div>
+
+      <div class="ballot-control">
+        <div class="progress-copy">
+          <span>Puan dağılımı</span>
+          <strong><b id="progress-count">0</b>/7 tamamlandı</strong>
+        </div>
+        <div class="progress-track" aria-hidden="true"><div id="progress-fill" class="progress-fill"></div></div>
+        <div class="points-bank-wrap">
+          <span class="points-bank-label">Bir puan seç, sonra bir entry’ye tıkla</span>
+          <div id="points-bank" class="points-bank" aria-label="Available points"></div>
+        </div>
+      </div>
+
+      <div class="ballot-help">
+        <span class="help-icon">↘</span>
+        <p><strong>Puan seç → entry seç.</strong> Bir puanı başka bir entry’ye taşırsan sistem eski atamayı otomatik kaldırır. Her değişiklik otomatik kaydedilir.</p>
+      </div>
+
+      <div id="ballot-list" class="ballot-list"></div>
+
+      <div class="ballot-submit-zone">
+        <div>
+          <span class="eyebrow">FINAL CHECK</span>
+          <h3>Yedi puanın da hazır mı?</h3>
+          <p id="ballot-message" class="status-line" aria-live="polite">Tüm puanları dağıttığında gönder butonu aktif olacak.</p>
+        </div>
+        <button id="submit-ballot" class="submit-ballot" disabled>OYUMU GÖNDER <span>→</span></button>
       </div>
     </section>
 
-    <section class="privacy-note"><strong>Sonuçlar gizli.</strong> Toplam puanlar arka planda hesaplanır; sonuçlar yalnızca reveal açıldığında görünür.</section>
+    <section class="privacy-note">
+      <div class="privacy-lock">✦</div>
+      <div><strong>Results stay backstage.</strong><p>Toplam puanlar arka planda hesaplanır; oylama boyunca hiçbir ülkenin toplamı kamuya gösterilmez.</p></div>
+    </section>
   </main>
+
+  <dialog id="confirm-dialog" class="confirm-dialog">
+    <div class="confirm-inner">
+      <span class="eyebrow">READY TO SUBMIT?</span>
+      <h2>Son kontrol.</h2>
+      <div id="confirm-summary" class="confirm-summary"></div>
+      <p>Gönderdikten sonra oylama açık kaldığı sürece pusulanı tekrar açıp değiştirebilirsin.</p>
+      <div class="confirm-actions">
+        <button id="cancel-submit" class="dialog-secondary">Geri dön</button>
+        <button id="confirm-submit" class="dialog-primary">Oyları gönder →</button>
+      </div>
+    </div>
+  </dialog>
 
   <script src="vote.js"></script>
 </body>
