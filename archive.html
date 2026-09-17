@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="International Song Contest archive — permanent edition, entry, results and voting history." />
+  <meta name="description" content="International Song Contest archive — permanent edition, country, entry, results and voting history." />
   <meta name="theme-color" content="#0b0a0e" />
   <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/archive.html" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="International Song Contest" />
   <meta property="og:title" content="ISC Archive" />
-  <meta property="og:description" content="International Song Contest’ın kalıcı edisyon, katılımcı, sonuç ve voting history arşivi." />
+  <meta property="og:description" content="International Song Contest’ın kalıcı edisyon, ülke, katılımcı, sonuç ve voting history arşivi." />
   <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/archive.html" />
   <meta name="twitter:card" content="summary" />
   <title>ISC Archive</title>
@@ -26,6 +26,7 @@
     <a class="brand" href="index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
     <nav>
       <a id="archive-current-nav" href="index.html">Current edition</a>
+      <a href="countries/">Countries</a>
       <a href="results.html">Results</a>
       <a class="nav-vote" href="vote.html">Oy Ver</a>
     </nav>
@@ -41,10 +42,13 @@
     <section class="archive-shell">
       <div class="archive-heading">
         <div>
-          <span class="archive-kicker">Editions</span>
-          <h2>Her edisyon bir dönem.</h2>
+          <span class="archive-kicker">Browse the record</span>
+          <h2>Yıla göre. Ülkeye göre.</h2>
         </div>
-        <p>Edisyon kartları doğrudan ilişkisel arşiv verisinden beslenir. Yeni yarışmalar eklendikçe running order, sonuçlar, medya ve delegasyon oyları aynı kronolojik yapıda büyür.</p>
+        <div>
+          <p>Edisyon kartları doğrudan ilişkisel arşiv verisinden beslenir. Ülke profilleri ise aynı kayıtları delegasyon geçmişi, başarılar ve voting relationships ekseninde yeniden birleştirir.</p>
+          <p style="margin-top:16px"><a class="button button-ghost" href="countries/">Country profiles →</a></p>
+        </div>
       </div>
 
       <div class="archive-grid" id="archive-grid" aria-live="polite">
@@ -58,7 +62,7 @@
         </article>
       </div>
 
-      <div class="archive-note">Arşiv katmanı edisyonları, ülkeleri, entry’leri, sanatçıları, medya kayıtlarını, puan şemalarını, delegasyon pusulalarını ve resmî sonuçları ayrı ama bağlantılı veri varlıkları olarak tutar.</div>
+      <div class="archive-note">Arşiv katmanı edisyonları, ülkeleri, entry’leri, sanatçıları, medya kayıtlarını, puan şemalarını, delegasyon pusulalarını ve resmî sonuçları ayrı ama bağlantılı veri varlıkları olarak tutar. Country Profile katmanı, açıklanmamış güncel sonuçları hiçbir zaman istatistiklere veya voting ilişkilerine dahil etmez.</div>
     </section>
   </main>
 
