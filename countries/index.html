@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="ISC delegation directory — all participating countries, appearances, wins, best results and latest entries." />
+  <meta name="theme-color" content="#f4efe5" />
+  <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/countries/" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="International Song Contest" />
+  <meta property="og:title" content="ISC Countries — Delegation Directory" />
+  <meta property="og:description" content="ISC ülkelerini katılım geçmişi, sonuçları ve country profile sayfalarıyla keşfet." />
+  <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/countries/" />
+  <meta name="twitter:card" content="summary" />
+  <title>ISC Countries — Delegation Directory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../country-profile.css" />
+  <link rel="stylesheet" href="../technical-polish.css" />
+</head>
+<body class="country-directory-body">
+  <header class="site-header">
+    <a class="brand" href="../index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
+    <nav>
+      <a href="../index.html">Current</a>
+      <a href="./" aria-current="page">Countries</a>
+      <a href="../archive.html">Archive</a>
+      <a href="../results.html">Results</a>
+      <a class="nav-vote" href="../vote.html">Oy Ver</a>
+    </nav>
+  </header>
+
+  <main class="country-shell">
+    <section class="country-directory-hero">
+      <div class="country-directory-hero-grid">
+        <div>
+          <span class="country-kicker">Delegation index · permanent record</span>
+          <h1>ISC<br><em>Countries</em></h1>
+        </div>
+        <div>
+          <p class="country-directory-deck">Her ülkenin ISC hikâyesi tek profilde.</p>
+          <p class="country-directory-note">Katılım sayısı, debut edisyonu, galibiyetler, en iyi derece, açıklanmış puan toplamları, 12 puan alışverişi ve edisyon geçmişi country profile sayfalarında veri tabanından canlı olarak derlenir.</p>
+        </div>
+      </div>
+      <div class="country-directory-summary" aria-label="Country archive summary">
+        <article><strong id="summary-countries">—</strong><span>Delegations</span></article>
+        <article><strong id="summary-appearances">—</strong><span>Total appearances</span></article>
+        <article><strong id="summary-wins">—</strong><span>Recorded wins</span></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="country-directory-heading">
+      <div class="country-directory-controls">
+        <div class="country-search">
+          <label class="country-kicker" for="country-search-input" id="country-directory-heading">Find a delegation</label>
+          <input id="country-search-input" type="search" autocomplete="off" placeholder="Ülke, sanatçı, şarkı veya edisyon ara…" />
+          <span aria-hidden="true">⌕</span>
+        </div>
+        <div class="country-sort">
+          <label for="country-sort-select">Sort</label>
+          <select id="country-sort-select">
+            <option value="name">A–Z</option>
+            <option value="appearances">Most appearances</option>
+            <option value="wins">Most wins</option>
+            <option value="best">Best result</option>
+          </select>
+        </div>
+      </div>
+      <p id="country-directory-status" class="country-kicker" aria-live="polite">Delegasyonlar yükleniyor…</p>
+      <div id="country-directory-grid" class="country-directory-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer><div class="footer-brand">ISC</div><p>International Song Contest · Country archive</p></footer>
+  <script src="../country-directory.js"></script>
+</body>
+</html>
