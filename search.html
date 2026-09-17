@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="International Song Contest global search — find editions, countries, artists and songs across the permanent archive." />
+  <meta name="theme-color" content="#0b0a0e" />
+  <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/search.html" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="International Song Contest" />
+  <meta property="og:title" content="ISC Search" />
+  <meta property="og:description" content="Search the permanent ISC archive by edition, country, artist or song." />
+  <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/search.html" />
+  <meta name="twitter:card" content="summary" />
+  <title>ISC Search — International Song Contest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="search.css" />
+  <link rel="stylesheet" href="technical-polish.css" />
+</head>
+<body class="search-body">
+  <header class="site-header search-header">
+    <a class="brand" href="index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
+    <nav>
+      <a href="index.html">Current</a>
+      <a href="countries/">Countries</a>
+      <a href="archive.html">Archive</a>
+      <a href="results.html">Results</a>
+      <a class="search-nav-current" href="search.html" aria-current="page">Ara</a>
+    </nav>
+  </header>
+
+  <main class="search-main">
+    <section class="search-hero">
+      <div class="search-shell">
+        <div class="search-hero-copy">
+          <span class="search-kicker">The whole archive · one field</span>
+          <h1>ISC’yi<br><em>ara.</em></h1>
+          <p>Bir edisyon numarası, ülke, sanatçı ya da şarkı yaz. Arama tüm kalıcı ISC kayıtlarını tek yüzeyde tarar.</p>
+        </div>
+
+        <div class="search-command" role="search">
+          <label class="sr-only" for="global-search-input">ISC arşivinde ara</label>
+          <div class="search-input-wrap">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input id="global-search-input" type="search" inputmode="search" autocomplete="off" spellcheck="false" placeholder="LA NIÑA, Superland, Közge, 153…" aria-describedby="search-help" />
+            <button id="search-clear" class="search-clear" type="button" aria-label="Aramayı temizle" hidden>×</button>
+            <span class="search-shortcut" aria-hidden="true">⌘ K</span>
+          </div>
+          <p id="search-help" class="search-help">Aksan kullanmak zorunda değilsin: “Elise”, “Gunes Diyari” veya “Kozge” de çalışır.</p>
+        </div>
+
+        <div class="search-examples" aria-label="Örnek aramalar">
+          <span>Try</span>
+          <button type="button" data-search-example="LA NIÑA">LA NIÑA</button>
+          <button type="button" data-search-example="Superland">Superland</button>
+          <button type="button" data-search-example="Közge">Közge</button>
+          <button type="button" data-search-example="153">153</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="search-results-section">
+      <div class="search-shell">
+        <div class="search-results-topline">
+          <div>
+            <span class="search-kicker">Archive index</span>
+            <h2 id="search-heading">Ne arıyorsun?</h2>
+          </div>
+          <p id="search-status" class="search-status" aria-live="polite">Edisyon, ülke, sanatçı veya şarkı adıyla başlayabilirsin.</p>
+        </div>
+
+        <div id="search-filters" class="search-filters" hidden aria-label="Arama sonucu filtreleri">
+          <button type="button" data-filter="all" class="active">Tümü <span id="filter-all-count">0</span></button>
+          <button type="button" data-filter="artist">Sanatçılar <span id="filter-artist-count">0</span></button>
+          <button type="button" data-filter="song">Şarkılar <span id="filter-song-count">0</span></button>
+          <button type="button" data-filter="country">Ülkeler <span id="filter-country-count">0</span></button>
+          <button type="button" data-filter="edition">Edisyonlar <span id="filter-edition-count">0</span></button>
+        </div>
+
+        <div id="search-empty-state" class="search-empty-state">
+          <div class="empty-mark">ISC</div>
+          <div>
+            <strong>Tüm arşiv burada.</strong>
+            <p>Örneğin <b>LA NIÑA</b> sanatçıyı, <b>Superland</b> ülke profilini, <b>Közge</b> şarkıyı ve <b>153</b> ilgili edisyonu doğrudan bulur.</p>
+          </div>
+        </div>
+
+        <div id="search-results" class="search-results" role="list" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="search-footer">
+    <div class="footer-brand">ISC</div>
+    <p>International Song Contest · Global Search</p>
+    <p>Editions · Countries · Artists · Songs</p>
+  </footer>
+
+  <script src="search.js"></script>
+</body>
+</html>
