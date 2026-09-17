@@ -1,0 +1,152 @@
+.entries-section .entry-grid {
+  gap: 22px;
+}
+
+.entries-section .entry-card {
+  position: relative;
+  display: block;
+  min-height: 0;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 0;
+  background: #171311;
+  box-shadow: 0 1px 0 rgba(24,21,18,.08);
+  isolation: isolate;
+}
+
+.entries-section .entry-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(12,9,8,.22) 0%, rgba(12,9,8,0) 30%, rgba(12,9,8,.08) 52%, rgba(12,9,8,.86) 100%);
+}
+
+.entries-section .entry-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 48px rgba(29,18,15,.16);
+}
+
+.entries-section .entry-card-image-wrap {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+  overflow: hidden;
+  background: #2a2420;
+}
+
+.entries-section .entry-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.01);
+  filter: saturate(.9) contrast(1.03);
+  transition: transform .55s cubic-bezier(.2,.7,.2,1), filter .4s ease;
+}
+
+.entries-section .entry-card:hover .entry-card-image {
+  transform: scale(1.055);
+  filter: saturate(1.03) contrast(1.04);
+}
+
+.entries-section .entry-card-shade {
+  display: none;
+}
+
+.entries-section .entry-card-top {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 4;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.entries-section .entry-country {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  min-height: 28px;
+  padding: 7px 10px 6px;
+  border: 1px solid rgba(255,255,255,.48);
+  background: rgba(18,14,12,.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.entries-section .entry-no {
+  position: static;
+  color: #fff;
+  font-family: "Libre Caslon Display", serif;
+  font-size: 34px;
+  line-height: .8;
+  text-shadow: 0 2px 16px rgba(0,0,0,.35);
+}
+
+.entries-section .entry-meta {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 4;
+  padding: 0;
+  color: #fff;
+}
+
+.entries-section .entry-artist {
+  margin: 0 0 7px;
+  color: #fff;
+  font-family: "Libre Caslon Display", serif;
+  font-size: clamp(29px, 2.3vw, 39px);
+  line-height: .96;
+  letter-spacing: -.02em;
+}
+
+.entries-section .entry-song {
+  color: rgba(255,255,255,.8);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.entries-section .entry-link {
+  display: inline-block;
+  margin-top: 16px;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .78;
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.entries-section .entry-card:hover .entry-link {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+@media (max-width: 980px) {
+  .entries-section .entry-grid {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 620px) {
+  .entries-section .entry-card {
+    aspect-ratio: 4 / 5;
+  }
+
+  .entries-section .entry-artist {
+    font-size: 36px;
+  }
+}
