@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="homepage-clean.css" />
   <link rel="stylesheet" href="homepage-cards.css" />
+  <link rel="stylesheet" href="homepage-entertainment.css" />
 </head>
-<body>
+<body class="home-page">
   <header class="site-header">
     <a class="brand" href="#top"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
     <nav>
@@ -31,8 +31,14 @@
         <p class="hero-deck">Sekiz şarkı. Tek bir edisyon. Arşiv, dergi ve oylama aynı yerde.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#entries">Katılımcıları keşfet</a>
-          <a class="button button-ghost" href="#archive">Arşive göz at</a>
+          <a class="button button-ghost" href="vote.html">Oyunu gönder</a>
         </div>
+        <div class="hero-live">Voting is live now</div>
+      </div>
+      <div class="hero-stats" aria-label="ISC 154 edition facts">
+        <div class="hero-stat"><strong>8</strong><span>Countries</span></div>
+        <div class="hero-stat"><strong>8</strong><span>Songs</span></div>
+        <div class="hero-stat"><strong>58</strong><span>Points / ballot</span></div>
       </div>
     </section>
 
@@ -46,7 +52,7 @@
           <span class="eyebrow">Running order</span>
           <h2>ISC 154 Katılımcıları</h2>
         </div>
-        <p>Temsilcileri doğrudan keşfet. Her kart sanatçı ve şarkı dosyasına açılır; dergi içeriği detay sayfasında devam eder.</p>
+        <p>Bu yılın sekiz temsilcisi. Kartlara tıklayarak sanatçı dosyasına, resmî videoya ve entry detaylarına ulaşabilirsin.</p>
       </div>
       <div id="entry-grid" class="entry-grid"></div>
     </section>
