@@ -74,13 +74,14 @@ nav { display: flex; gap: 28px; align-items: center; font-size: 12px; text-trans
 .section-heading > p { max-width: 430px; color: var(--muted); line-height: 1.6; margin:0; }
 
 .entry-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; }
-.entry-card { position: relative; min-height: 310px; padding: 18px; border: 1px solid var(--line); background: var(--white); display: flex; flex-direction: column; justify-content: space-between; transition: transform .25s ease, box-shadow .25s ease; overflow:hidden; }
-.entry-card:hover { transform: translateY(-4px); box-shadow: 0 18px 35px rgba(0,0,0,.08); }
+.entry-card { position: relative; min-height: 310px; padding: 18px; border: 1px solid var(--line); background: var(--white); display: flex; flex-direction: column; justify-content: space-between; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; overflow:hidden; }
+.entry-card:hover { transform: translateY(-6px); box-shadow: 0 22px 44px rgba(0,0,0,.09); border-color: rgba(111,19,32,.35); }
 .entry-no { font-family: "Libre Caslon Display", serif; font-size: 54px; color: var(--wine); }
 .entry-meta { position: relative; z-index:2; }
 .entry-country { font-size: 10px; text-transform:uppercase; letter-spacing:.17em; color:var(--muted); min-height:14px; }
 .entry-artist { font-family: "Libre Caslon Display", serif; font-size: 28px; line-height:1; margin:8px 0 6px; }
 .entry-song { font-size:13px; color:var(--muted); }
+.entry-link { display:inline-block; margin-top:14px; color:var(--wine); font-size:10px; text-transform:uppercase; letter-spacing:.15em; font-weight:600; }
 .entry-card::before { content:""; position:absolute; width:180px; height:180px; border-radius:50%; right:-70px; top:-60px; background: radial-gradient(circle, rgba(111,19,32,.13), transparent 68%); }
 
 .vote-section { padding-top: 28px; }
@@ -95,6 +96,25 @@ nav { display: flex; gap: 28px; align-items: center; font-size: 12px; text-trans
 .archive-card p { color:var(--muted); margin:6px 0 0; }
 .placeholder { opacity:.55; }
 
+.entry-page { max-width:1500px; margin:0 auto; }
+.entry-hero { padding:70px clamp(22px,5vw,80px) 38px; border-bottom:1px solid var(--line); }
+.entry-hero-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:56px; align-items:end; }
+.entry-hero h1 { margin:10px 0 0; font-family:"Libre Caslon Display", serif; font-weight:400; font-size:clamp(64px,9vw,138px); line-height:.86; letter-spacing:-.04em; }
+.entry-song-title { margin:20px 0 0; font-family:"Libre Caslon Display", serif; font-size:clamp(30px,4vw,58px); color:var(--wine); font-weight:400; }
+.entry-index { font-family:"Libre Caslon Display", serif; font-size:clamp(100px,14vw,210px); line-height:.72; color:var(--wine); text-align:right; }
+.entry-body { display:grid; grid-template-columns:.8fr 1.2fr; gap:72px; padding:64px clamp(22px,5vw,80px) 90px; }
+.entry-sidebar { border-top:1px solid var(--ink); padding-top:18px; }
+.entry-sidebar dl { margin:0; }
+.entry-sidebar div { padding:14px 0; border-bottom:1px solid var(--line); }
+.entry-sidebar dt { font-size:10px; letter-spacing:.17em; text-transform:uppercase; color:var(--muted); margin-bottom:5px; }
+.entry-sidebar dd { margin:0; font-family:"Libre Caslon Display", serif; font-size:22px; }
+.entry-story { max-width:760px; }
+.entry-story h2 { font-family:"Libre Caslon Display", serif; font-size:clamp(36px,4vw,58px); font-weight:400; margin:0 0 22px; }
+.entry-story p { font-family:"Libre Caslon Display", serif; font-size:23px; line-height:1.5; margin:0 0 22px; }
+.entry-story .small-copy { font-family:"DM Sans",sans-serif; font-size:15px; line-height:1.75; color:var(--muted); }
+.entry-navigation { display:flex; justify-content:space-between; gap:18px; border-top:1px solid var(--line); margin-top:46px; padding-top:24px; }
+.entry-navigation a { font-size:11px; text-transform:uppercase; letter-spacing:.14em; color:var(--wine); font-weight:600; }
+
 footer { display:grid; grid-template-columns:auto 1fr auto; gap:28px; align-items:center; padding:34px clamp(22px,5vw,80px); border-top:1px solid var(--line); color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.1em; }
 .footer-brand { font-family:"Libre Caslon Display", serif; color:var(--wine); font-size:34px; }
 
@@ -106,6 +126,8 @@ footer { display:grid; grid-template-columns:auto 1fr auto; gap:28px; align-item
   .vote-card { grid-template-columns:1fr; align-items:start; }
   .section-heading { display:block; }
   .section-heading > p { margin-top:18px; }
+  .entry-hero-grid, .entry-body { grid-template-columns:1fr; }
+  .entry-index { text-align:left; margin-top:24px; }
   footer { grid-template-columns:1fr; }
 }
 
@@ -120,4 +142,7 @@ footer { display:grid; grid-template-columns:auto 1fr auto; gap:28px; align-item
   .archive-row { grid-template-columns:1fr; }
   .archive-card + .archive-card { padding-left:0; border-left:none; }
   .hero-deck { font-size:28px; }
+  .entry-hero { padding:54px 18px 30px; }
+  .entry-body { padding:48px 18px 68px; gap:42px; }
+  .entry-story p { font-size:20px; }
 }
