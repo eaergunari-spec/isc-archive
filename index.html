@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="homepage-entertainment.css" />
   <link rel="stylesheet" href="homepage-live.css" />
   <link rel="stylesheet" href="homepage-ticker.css" />
+  <link rel="stylesheet" href="homepage-listen.css" />
 </head>
 <body class="home-page">
   <header class="site-header">
@@ -40,7 +41,7 @@
         <h1>ISC <em>154</em></h1>
         <p class="live-hero-deck">8 ülke. 8 şarkı. Gecenin kaderi oylarında.</p>
         <div class="live-hero-actions">
-          <a class="cta cta-play" href="https://www.youtube.com/watch?v=20TDd19oA1Q&list=PLPbHH_7WOiG0" target="_blank" rel="noopener"><span class="play-icon">▶</span> 8 şarkıyı dinle</a>
+          <a class="cta cta-play" href="#listen"><span class="play-icon">▶</span> 8 şarkıyı dinle</a>
           <a class="cta cta-vote" href="vote.html">Oy ver</a>
           <a class="cta cta-text" href="#entries">Katılımcıları keşfet ↓</a>
         </div>
@@ -62,15 +63,61 @@
       <div><strong>12</strong><span>MAKSİMUM PUAN</span></div>
     </section>
 
-    <section class="listen-bar" id="listen">
-      <div class="listen-copy">
-        <span class="eyebrow">Listen now</span>
-        <h2>ISC 154 tek playlistte.</h2>
+    <section class="listen-stage" id="listen">
+      <div class="listen-stage-head">
+        <div>
+          <span class="eyebrow">Listen everywhere</span>
+          <h2>ISC 154’ü aç. Baştan sona dinle.</h2>
+        </div>
+        <p class="listen-stage-intro">Sekiz entry tek yerde. YouTube’da videolarıyla izle ya da Spotify playlistini doğrudan buradan aç. İstersen aşağıdaki numaralardan doğrudan bir entry dosyasına geç.</p>
       </div>
-      <div class="listen-numbers" aria-hidden="true">
-        <span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span>
+
+      <div class="listen-platforms">
+        <article class="platform-card youtube-card">
+          <div class="platform-topline">
+            <div class="platform-brand"><span class="platform-dot"></span> YouTube playlist</div>
+            <div class="platform-meta">8 videos · ISC 154</div>
+          </div>
+          <div class="youtube-frame-wrap">
+            <iframe src="https://www.youtube.com/embed/videoseries?list=PLPbHH_7WOiG0" title="ISC 154 YouTube playlist" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="platform-footer">
+            <div class="platform-footer-copy">
+              <strong>Watch all eight</strong>
+              <span>Official ISC 154 running order</span>
+            </div>
+            <a class="platform-open" href="https://www.youtube.com/watch?v=20TDd19oA1Q&list=PLPbHH_7WOiG0" target="_blank" rel="noopener">YouTube’da aç ↗</a>
+          </div>
+        </article>
+
+        <article class="platform-card spotify-card">
+          <div class="platform-topline">
+            <div class="platform-brand"><span class="platform-dot"></span> Spotify playlist</div>
+            <div class="platform-meta">ISC 154 · Official playlist</div>
+          </div>
+          <div class="spotify-embed-wrap">
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4hB3qRsl2LdarN78KrNtxM?utm_source=generator" title="ISC 154 Spotify playlist" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+          </div>
+          <div class="platform-footer">
+            <div class="platform-footer-copy">
+              <strong>Press play</strong>
+              <span>8 songs · one edition</span>
+            </div>
+            <a class="platform-open" href="https://open.spotify.com/playlist/4hB3qRsl2LdarN78KrNtxM?si=B4vJLFFPQ1ei8DyaEHXOMg" target="_blank" rel="noopener">Spotify’da aç ↗</a>
+          </div>
+        </article>
       </div>
-      <a class="listen-button" href="https://www.youtube.com/watch?v=20TDd19oA1Q&list=PLPbHH_7WOiG0" target="_blank" rel="noopener">PLAY ALL 8 ↗</a>
+
+      <div class="listen-quickrow" aria-label="Entry quick links">
+        <a href="entries/01-lambrini-girls.html"><b>01</b><span>Lambrini Girls</span></a>
+        <a href="entries/02-elise-de-lune.html"><b>02</b><span>Élise de Lune</span></a>
+        <a href="entries/03-meira-omar-liamoo.html"><b>03</b><span>Meira &amp; LIAMOO</span></a>
+        <a href="entries/04-saint-levant.html"><b>04</b><span>Saint Levant</span></a>
+        <a href="entries/05-hayq.html"><b>05</b><span>HAYQ</span></a>
+        <a href="entries/06-laura-pausini.html"><b>06</b><span>Laura Pausini</span></a>
+        <a href="entries/07-audrey-hobert.html"><b>07</b><span>Audrey Hobert</span></a>
+        <a href="entries/08-galena.html"><b>08</b><span>GALENA</span></a>
+      </div>
     </section>
 
     <section class="isc-ticker" aria-label="ISC 154 live music feed">
