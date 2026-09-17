@@ -151,6 +151,126 @@
 .home-page .vote-splash{margin-top:0}
 .home-page .archive-section{padding-top:96px}
 
+/* ------------------------------------------------------------
+   VISUAL SYSTEM PASS
+   black = live/event · cream = editorial/archive
+   pink/lime = action/status
+   ------------------------------------------------------------ */
+:root{
+  --isc-black:#0b0a0e;
+  --isc-black-soft:#151319;
+  --isc-cream:#f7f1e8;
+  --isc-cream-soft:#fffaf2;
+  --isc-pink:#ff3d81;
+  --isc-lime:#d8ff3e;
+  --isc-wine:#73192d;
+}
+
+.home-page{background:var(--isc-cream)}
+.home-page .site-header{background:rgba(11,10,14,.96);box-shadow:none;border-bottom:1px solid rgba(255,255,255,.09)}
+.home-page .brand-mark{color:var(--isc-pink)}
+.home-page .nav-vote{background:var(--isc-lime)!important;color:#111!important;box-shadow:none}
+
+/* Hero: remove the blue/violet festival wash and keep one live-event world. */
+.home-page .live-hero{background:var(--isc-black)}
+.home-page .live-hero-wash{
+  background:
+    radial-gradient(circle at 76% 18%,rgba(255,61,129,.13),transparent 28%),
+    radial-gradient(circle at 72% 82%,rgba(216,255,62,.07),transparent 28%);
+  mix-blend-mode:screen;
+}
+.home-page .live-hero-media img{filter:saturate(.82) contrast(1.07)}
+.home-page .live-hero .hero-kicker{color:var(--isc-lime)}
+.home-page .live-hero h1 em{color:var(--isc-pink)}
+.home-page .hero-feature-copy{border-left-color:var(--isc-pink)}
+.home-page .hero-feature-copy b{color:var(--isc-lime)}
+.home-page .live-pill span{background:var(--isc-pink)}
+.home-page .cta-vote{background:var(--isc-lime);color:#111}
+.home-page .cta-play{background:var(--isc-cream-soft);color:#111}
+
+/* Editorial areas all live on the same warm paper. */
+.home-page .entries-section,
+.stories-section,
+.home-page .archive-section{background:var(--isc-cream);color:#171313}
+.home-page .entries-section .eyebrow,
+.stories-section .eyebrow,
+.home-page .archive-section .eyebrow{color:var(--isc-wine)!important}
+.home-page .entries-section::before{color:rgba(115,25,45,.045)}
+.stories-heading>p,
+.home-page .archive-section .section-heading>p{color:#706761}
+
+/* Entry cards: accents are only pink + lime. */
+.home-page .entry-card{background:var(--isc-black);box-shadow:0 12px 30px rgba(24,13,13,.10)}
+.home-page .entry-card .entry-link{color:var(--isc-lime)}
+.home-page .entry-card::after{background:var(--isc-pink)}
+.home-page .entry-card:hover{box-shadow:0 26px 58px rgba(24,13,13,.17)}
+
+/* Listening is a live/event surface, not a separate Spotify-themed mini-site. */
+.listen-stage.compact-listen{background:var(--isc-black);color:#fff}
+.compact-listen .listen-stage-head .eyebrow{color:var(--isc-pink)}
+.compact-listen .platform-card{background:var(--isc-black-soft);border-color:rgba(255,255,255,.10);border-radius:20px}
+.compact-listen .platform-card::before{content:"";display:block;height:3px;background:var(--isc-pink)}
+.compact-listen .spotify-card::before{background:var(--isc-lime)}
+.compact-listen .platform-dot{background:var(--isc-pink)!important;box-shadow:none!important}
+.compact-listen .spotify-card .platform-dot{background:var(--isc-lime)!important}
+.compact-listen .platform-open,
+.compact-listen .spotify-card .platform-open{background:var(--isc-cream-soft);color:#111;border:1px solid rgba(255,255,255,.08)}
+.compact-listen .spotify-card .platform-open:hover{background:var(--isc-lime)}
+.compact-listen .youtube-card .platform-open:hover{background:var(--isc-pink);color:#fff}
+.compact-listen .listen-quickrow{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.08)}
+.compact-listen .listen-quickrow a{background:#111015}
+.compact-listen .listen-quickrow a:hover{background:#1a181e}
+.compact-listen .listen-quickrow b{color:var(--isc-pink)}
+.compact-listen .listen-quickrow a:nth-child(even) b{color:var(--isc-lime)}
+
+/* Broadcast strip: no cyan badge family; status language is pink/lime/cream only. */
+.home-page .isc-ticker{background:var(--isc-black);box-shadow:none}
+.home-page .ticker-label{background:var(--isc-black);color:#fff;border-right:1px solid rgba(255,255,255,.12);box-shadow:none}
+.home-page .ticker-label::before{background:var(--isc-pink);box-shadow:0 0 0 4px rgba(255,61,129,.12)}
+.home-page .ticker-no{background:var(--isc-pink)}
+.home-page .ticker-country{color:var(--isc-lime)}
+.home-page .ticker-status-badge{background:var(--isc-cream-soft);color:#111}
+.home-page .ticker-status.pink .ticker-status-badge{background:var(--isc-pink);color:#fff}
+.home-page .ticker-status.lime .ticker-status-badge{background:var(--isc-lime);color:#111}
+
+/* Vote: same live/event black, action always lime; pink becomes emphasis, not another background family. */
+.home-page .vote-splash{background:var(--isc-black)}
+.home-page .vote-splash::before{
+  background:
+    radial-gradient(circle at 12% 50%,rgba(255,61,129,.18),transparent 27%),
+    radial-gradient(circle at 72% 18%,rgba(216,255,62,.06),transparent 24%);
+}
+.home-page .vote-splash-number{color:var(--isc-pink)}
+.home-page .vote-splash-copy .eyebrow{color:var(--isc-lime)}
+.home-page .vote-big-button{background:var(--isc-lime);color:#111}
+
+/* Stories: one editorial family, two accent colours only. */
+.story-card{background:var(--isc-black);border-radius:22px}
+.story-tag{background:var(--isc-pink)}
+.story-card:nth-child(2) .story-tag{background:var(--isc-lime);color:#111}
+.story-card:nth-child(3) .story-tag{background:var(--isc-pink);color:#fff}
+.story-arrow{color:var(--isc-lime)}
+.story-card:nth-child(2) .story-arrow{color:#fff}
+
+/* Archive: remove the isolated pastel-blue card. */
+.home-page .archive-card{background:var(--isc-cream-soft);box-shadow:inset 0 0 0 1px rgba(60,40,20,.09)}
+.home-page .archive-card.current{background:var(--isc-wine);color:#fff}
+.home-page .archive-card.current>span{color:var(--isc-lime)}
+.home-page .archive-card.placeholder{background:#efe6db;color:#171313}
+.home-page .archive-card.placeholder>span{color:var(--isc-wine)}
+
+.home-page footer{background:var(--isc-black)}
+.home-page footer .footer-brand{color:var(--isc-pink)}
+
+/* Shared interaction language. */
+.home-page .nav-vote,
+.home-page .cta,
+.home-page .platform-open,
+.home-page .vote-big-button,
+.home-page .story-tag{transition:transform .18s ease,background .18s ease,color .18s ease,opacity .18s ease}
+.home-page .nav-vote:hover,
+.home-page .vote-big-button:hover{transform:translateY(-2px);background:#e6ff75}
+
 @media(max-width:980px){
   .compact-listen .listen-stage-head,
   .stories-heading{grid-template-columns:1fr}
