@@ -60,6 +60,10 @@ countrySelect.addEventListener('change', () => {
   ballotStep.hidden = true;
 });
 
+voterCode.addEventListener('keydown', event => {
+  if (event.key === 'Enter') enterVoting.click();
+});
+
 enterVoting.addEventListener('click', async () => {
   const slug = countrySelect.value;
   const code = voterCode.value.trim();
@@ -109,7 +113,7 @@ enterVoting.addEventListener('click', async () => {
     ? 'Daha önce gönderilmiş sıralaman yüklendi.'
     : (data.scores || []).length
       ? 'Kaydedilmiş sıralaman yüklendi.'
-      : 'Doğrulandı. Kartları sürükleyerek sıralamanı oluştur.';
+      : 'Doğrulandı. Kartları sabit puan slotlarına göre sırala.';
 
   ballotStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
@@ -125,7 +129,7 @@ function renderSelfEntry(ownEntry) {
       <strong>${escapeHtml(ownEntry.artist_name)}</strong>
       <small>${escapeHtml(ownEntry.song_title)}</small>
     </div>
-    <div class="self-entry-lock">KENDİ ENTRY’N · SIRALAMAYA DAHİL DEĞİL</div>
+    <div class="self-entry-lock">KENDİ ENTRY’N · OY VERİLEMEZ</div>
   `;
 }
 
@@ -137,6 +141,10 @@ function deriveScores() {
   return next;
 }
 
+function countryNameFor(entry) {
+  return countries.find(country => country.id === entry.country_id)?.name || '';
+}
+
 function renderBallot() {
   if (sortable) {
     sortable.destroy();
@@ -144,32 +152,33 @@ function renderBallot() {
   }
 
   ballotList.innerHTML = ranking.map((entry, index) => `
-    <div class="ranking-row" data-entry-id="${entry.id}">
-      <div class="rank-score">${POINTS[index]}</div>
+    <div class="ranking-card" data-entry-id="${entry.id}">
       <div class="rank-entry-order">${String(entry.running_order).padStart(2,'0')}</div>
       <div class="rank-entry-copy">
+        <span class="rank-country">${escapeHtml(countryNameFor(entry))}</span>
         <strong>${escapeHtml(entry.artist_name)}</strong>
-        <span>${escapeHtml(entry.song_title)}</span>
+        <span class="rank-song">${escapeHtml(entry.song_title)}</span>
       </div>
-      <div class="drag-grip" aria-label="Sürükle ve sırala">
+      <div class="drag-grip" role="button" tabindex="0" aria-label="${escapeHtml(entry.artist_name)} kartını sürükle">
         <div class="rank-move-buttons">
           <button type="button" class="move-up" aria-label="Yukarı taşı" ${index === 0 ? 'disabled' : ''}>↑</button>
           <button type="button" class="move-down" aria-label="Aşağı taşı" ${index === ranking.length - 1 ? 'disabled' : ''}>↓</button>
         </div>
-        <span aria-hidden="true">⋮⋮</span>
+        <span class="grip-mark" aria-hidden="true">⠿</span>
+        <small>SÜRÜKLE</small>
       </div>
     </div>
   `).join('');
 
   ballotList.querySelectorAll('.move-up').forEach((button, index) => {
-    button.addEventListener('click', (event) => {
+    button.addEventListener('click', event => {
       event.stopPropagation();
       moveEntry(index, index - 1);
     });
   });
 
   ballotList.querySelectorAll('.move-down').forEach((button, index) => {
-    button.addEventListener('click', (event) => {
+    button.addEventListener('click', event => {
       event.stopPropagation();
       moveEntry(index, index + 1);
     });
@@ -177,15 +186,19 @@ function renderBallot() {
 
   if (window.Sortable) {
     sortable = new Sortable(ballotList, {
-      animation: 190,
+      animation: 210,
       direction: 'vertical',
       ghostClass: 'is-ghost',
       chosenClass: 'is-dragging',
       dragClass: 'is-dragging',
-      handle: '.ranking-row',
-      delay: 0,
+      handle: '.drag-grip',
+      delay: 140,
       delayOnTouchOnly: true,
-      touchStartThreshold: 4,
+      touchStartThreshold: 5,
+      fallbackTolerance: 4,
+      scroll: true,
+      scrollSensitivity: 80,
+      scrollSpeed: 14,
       onEnd: syncRankingFromDom
     });
   }
@@ -199,7 +212,7 @@ function moveEntry(fromIndex, toIndex) {
 }
 
 function syncRankingFromDom() {
-  const ids = [...ballotList.querySelectorAll('.ranking-row')].map(row => Number(row.dataset.entryId));
+  const ids = [...ballotList.querySelectorAll('.ranking-card')].map(row => Number(row.dataset.entryId));
   ranking = ids.map(id => entries.find(entry => entry.id === id)).filter(Boolean);
   afterRankingChange();
 }
@@ -222,7 +235,7 @@ function updateSubmitState() {
   const valid = ranking.length === 7 && vals.length === 7 && new Set(vals).size === 7 && POINTS.every(p => vals.includes(p));
   submitBallot.disabled = !valid;
   ballotMessage.textContent = valid
-    ? 'Sıralaman hazır. Göndermeden önce son kontrolü açabilirsin.'
+    ? '7/7 entry sıralandı · değişiklikler otomatik kaydedilir.'
     : 'Yedi rakip entry’nin tamamı sıralamada olmalı.';
 }
 
@@ -285,7 +298,7 @@ confirmSubmit.addEventListener('click', async () => {
 function buildConfirmSummary() {
   confirmSummary.innerHTML = ranking.map((entry, index) => `
     <div class="confirm-row">
-      <span>${escapeHtml(entry.artist_name)} · ${escapeHtml(entry.song_title)}</span>
+      <span><b>${POINTS[index]}</b> · ${escapeHtml(entry.artist_name)} · ${escapeHtml(entry.song_title)}</span>
       <strong>${POINTS[index]}</strong>
     </div>
   `).join('');
