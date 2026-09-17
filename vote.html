@@ -4,6 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="ISC 154 official voting room." />
+  <meta name="theme-color" content="#0b0a0e" />
+  <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/vote.html" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="International Song Contest" />
+  <meta property="og:title" content="ISC 154 — Voting Room" />
+  <meta property="og:description" content="Delegasyonunu doğrula ve ISC 154’te 12–10–8–6–4–2–1 puanlarını sırala." />
+  <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/vote.html" />
+  <meta property="og:image" content="https://eaergunari-spec.github.io/isc-archive/03-meira-omar-liamoo.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
   <title>ISC 154 — Voting Room</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +22,7 @@
   <link rel="stylesheet" href="vote.css" />
   <link rel="stylesheet" href="vote-contrast.css" />
   <link rel="stylesheet" href="vote-ranking.css" />
+  <link rel="stylesheet" href="technical-polish.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="vote-body">
@@ -102,7 +113,7 @@
         <div id="ballot-list" class="ballot-list ranking-list"></div>
       </div>
 
-      <p class="ranking-note">İpucu: Masaüstünde tutamacı sürükle. Mobilde tutamaca basılı tutup hareket ettir. Yukarı/aşağı düğmeleri alternatif olarak her zaman kullanılabilir.</p>
+      <p class="ranking-note" id="ranking-keyboard-help">İpucu: Masaüstünde tutamacı sürükle. Klavyede tutamaç odaktayken ↑ ↓ ile bir sıra, Home / End ile en üste veya en alta taşı. Mobilde tutamaca basılı tutup hareket ettir.</p>
 
       <div class="ballot-submit-zone sticky-submit-zone">
         <div class="submit-state-copy">
@@ -139,5 +150,6 @@
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
   <script src="results-nav.js"></script>
   <script src="vote.js"></script>
+  <script src="vote-polish.js"></script>
 </body>
 </html>
