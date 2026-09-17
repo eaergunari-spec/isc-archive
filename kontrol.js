@@ -3,7 +3,7 @@ const SUPABASE_KEY = 'sb_publishable_Zw8H9mMmUop7wkYNKtZB3Q_7dM1QHut';
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-let adminCode = sessionStorage.getItem('isc154_admin_code') || '';
+let adminCode = sessionStorage.getItem('isc_admin_code') || '';
 let dashboardData = null;
 let refreshTimer = null;
 
@@ -22,6 +22,8 @@ const refreshDashboard = document.getElementById('refresh-dashboard');
 const countryStatusList = document.getElementById('country-status-list');
 const totalsTable = document.getElementById('totals-table');
 const lastRefresh = document.getElementById('last-refresh');
+const dashboardEditionLabel = document.getElementById('dashboard-edition-label');
+const schemeSummary = document.getElementById('scheme-summary');
 
 adminCodeInput.value = adminCode;
 
@@ -38,30 +40,34 @@ async function login() {
   adminEnter.disabled = true;
   try {
     adminCode = code;
-    const data = await rpc('isc154_admin_dashboard', { p_code: adminCode });
-    sessionStorage.setItem('isc154_admin_code', adminCode);
+    const data = await rpc('isc_admin_current_dashboard', { p_code: adminCode });
+    sessionStorage.setItem('isc_admin_code', adminCode);
+    sessionStorage.removeItem('isc154_admin_code');
     dashboardData = data;
     loginSection.hidden = true;
     dashboard.hidden = false;
     renderDashboard();
     startAutoRefresh();
   } catch (err) {
+    sessionStorage.removeItem('isc_admin_code');
     sessionStorage.removeItem('isc154_admin_code');
     adminCode = '';
-    adminMessage.textContent = 'Admin code geçersiz.';
+    adminMessage.textContent = 'Admin code geçersiz veya güncel edisyon bulunamadı.';
   } finally {
     adminEnter.disabled = false;
   }
 }
 
 adminEnter.addEventListener('click', login);
-adminCodeInput.addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
+adminCodeInput.addEventListener('keydown', event => {
+  if (event.key === 'Enter') login();
+});
 
 async function loadDashboard(silent = false) {
   if (!adminCode) return;
   if (!silent) refreshDashboard.disabled = true;
   try {
-    dashboardData = await rpc('isc154_admin_dashboard', { p_code: adminCode });
+    dashboardData = await rpc('isc_admin_current_dashboard', { p_code: adminCode });
     renderDashboard();
   } catch (err) {
     if (!silent) alert('Control Room verileri yenilenemedi.');
@@ -72,14 +78,26 @@ async function loadDashboard(silent = false) {
 
 function renderDashboard() {
   const data = dashboardData;
-  if (!data) return;
-  const open = !!data.edition.voting_open;
-  const revealed = !!data.edition.results_revealed;
+  if (!data?.edition) return;
 
+  const ed = data.edition;
+  const scheme = data.voting_scheme || {};
+  const open = Boolean(ed.voting_open);
+  const revealed = Boolean(ed.results_revealed);
+  const entryCount = Number(ed.entry_count || (data.countries || []).length || 0);
+  const label = ed.title || `ISC ${ed.edition_number}`;
+  const points = (scheme.points || []).map(row => Number(row.points));
+
+  document.title = `${label} · Control Room`;
+  dashboardEditionLabel.textContent = `${label} · private dashboard`;
   votingState.textContent = open ? 'Açık' : 'Kapalı';
-  submittedCount.textContent = `${data.submitted_count || 0} / 8`;
+  submittedCount.textContent = `${data.submitted_count || 0} / ${entryCount}`;
   draftCount.textContent = String(data.draft_count || 0);
   resultsState.textContent = revealed ? 'Yayında' : 'Gizli';
+
+  schemeSummary.textContent = points.length
+    ? `Voting scheme · ${points.join('–')} · ${scheme.points_per_ballot || points.reduce((sum, point) => sum + point, 0)} points / ballot · ${scheme.self_vote_allowed ? 'self-vote allowed' : 'self-vote disabled'}`
+    : 'Voting scheme bulunamadı.';
 
   toggleVoting.textContent = open ? 'Oylamayı kapat' : 'Oylamayı aç';
   toggleVoting.classList.toggle('danger', open);
@@ -89,35 +107,35 @@ function renderDashboard() {
   toggleResults.disabled = !revealed && open;
 
   countryStatusList.innerHTML = (data.countries || []).map(row => {
-    const label = row.status === 'submitted' ? 'Gönderildi' : row.status === 'draft' ? 'Draft' : 'Başlamadı';
+    const statusLabel = row.status === 'submitted' ? 'Gönderildi' : row.status === 'draft' ? 'Draft' : 'Başlamadı';
     const stamp = row.submitted_at || row.updated_at;
     return `<div class="country-status-row">
-      <div class="order">${String(row.running_order).padStart(2,'0')}</div>
+      <div class="order">${String(row.running_order).padStart(2, '0')}</div>
       <div class="country">${escapeHtml(row.country)}</div>
-      <div class="status-badge ${row.status}">${label}</div>
+      <div class="status-badge ${escapeHtml(row.status)}">${statusLabel}</div>
       <div class="timestamp">${stamp ? formatTime(stamp) : '—'}</div>
     </div>`;
   }).join('');
 
-  totalsTable.innerHTML = (data.totals || []).map((row, i) => `<div class="total-row">
-    <div class="total-rank">${i + 1}</div>
-    <div class="total-order">#${String(row.running_order).padStart(2,'0')}</div>
+  totalsTable.innerHTML = (data.totals || []).map((row, index) => `<div class="total-row">
+    <div class="total-rank">${index + 1}</div>
+    <div class="total-order">#${String(row.running_order).padStart(2, '0')}</div>
     <div class="total-country">${escapeHtml(row.country)}</div>
     <div class="total-entry"><strong>${escapeHtml(row.artist)}</strong><span>${escapeHtml(row.song)}</span></div>
     <div class="total-points">${row.points}</div>
   </div>`).join('');
 
-  lastRefresh.textContent = `Son yenileme · ${new Intl.DateTimeFormat('tr-TR',{hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(new Date())}`;
+  lastRefresh.textContent = `Son yenileme · ${new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date())}`;
 }
 
 toggleVoting.addEventListener('click', async () => {
-  if (!dashboardData) return;
-  const current = !!dashboardData.edition.voting_open;
+  if (!dashboardData?.edition) return;
+  const current = Boolean(dashboardData.edition.voting_open);
   const next = !current;
   if (!next && !confirm('Oylamayı şimdi kapatmak istediğine emin misin? Seçmenler bundan sonra oy kaydedemez.')) return;
   toggleVoting.disabled = true;
   try {
-    await rpc('isc154_admin_set_voting', { p_code: adminCode, p_open: next });
+    await rpc('isc_admin_current_set_voting', { p_code: adminCode, p_open: next });
     await loadDashboard(true);
   } catch (err) {
     alert(err.message || 'Oylama durumu değiştirilemedi.');
@@ -126,13 +144,13 @@ toggleVoting.addEventListener('click', async () => {
 });
 
 toggleResults.addEventListener('click', async () => {
-  if (!dashboardData) return;
-  const current = !!dashboardData.edition.results_revealed;
+  if (!dashboardData?.edition) return;
+  const current = Boolean(dashboardData.edition.results_revealed);
   const next = !current;
-  if (next && !confirm('SONUÇLARI YAYINLAMAK üzeresin. Bu işlem sonuçları halka açık hale getirir. Devam edilsin mi?')) return;
+  if (next && !confirm('SONUÇLARI YAYINLAMAK üzeresin. Bu işlem güncel edisyon sonuçlarını halka açık hale getirir. Devam edilsin mi?')) return;
   toggleResults.disabled = true;
   try {
-    await rpc('isc154_admin_set_results', { p_code: adminCode, p_revealed: next });
+    await rpc('isc_admin_current_set_results', { p_code: adminCode, p_revealed: next });
     await loadDashboard(true);
   } catch (err) {
     alert(err.message || 'Sonuç durumu değiştirilemedi.');
@@ -149,12 +167,16 @@ function startAutoRefresh() {
 
 function formatTime(value) {
   try {
-    return new Intl.DateTimeFormat('tr-TR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}).format(new Date(value));
-  } catch { return '—'; }
+    return new Intl.DateTimeFormat('tr-TR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }).format(new Date(value));
+  } catch {
+    return '—';
+  }
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>'"]/g, char => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+  }[char]));
 }
 
 if (adminCode) login();
