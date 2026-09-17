@@ -29,11 +29,11 @@
       <div class="vote-hero-copy">
         <div class="vote-live"><span></span> ISC 154 · VOTING OPEN</div>
         <h1>Your country.<br><em>Your ranking.</em></h1>
-        <p>Yedi rakip şarkıyı sürükleyerek sırala. <strong>En üstteki 12</strong>, ardından 10, 8, 6, 4, 2 ve 1 puan alır. Kendi ülken sıralamaya dahil edilmez.</p>
+        <p>Yedi rakip şarkıyı sürükleyerek sırala. Her satırın puanı artık <strong>sabit</strong>: 12, 10, 8, 6, 4, 2 ve 1. Kendi ülken sıralamaya dahil edilmez.</p>
         <div class="vote-rule-strip" aria-label="Voting rules">
           <span>01 · Ülkeni doğrula</span>
-          <span>02 · Şarkıları sürükle</span>
-          <span>03 · Sıralamanı gönder</span>
+          <span>02 · Kartları puan slotlarına sırala</span>
+          <span>03 · Oyunu gönder</span>
         </div>
       </div>
       <div class="vote-hero-graphic" aria-hidden="true">
@@ -72,33 +72,47 @@
         <div class="autosave-pill"><span class="autosave-dot"></span><span id="save-status">Hazır</span></div>
       </div>
 
-      <div class="ballot-control">
+      <div class="ballot-control ranking-status-card">
         <div class="progress-copy">
-          <span>Sıralama sistemi</span>
-          <strong><b id="progress-count">7</b>/7 entry sıralanıyor</strong>
+          <span>Pusula durumu</span>
+          <strong><b id="progress-count">7</b>/7 RANKED</strong>
         </div>
         <div class="progress-track" aria-hidden="true"><div id="progress-fill" class="progress-fill"></div></div>
-        <div class="ranking-scale" aria-label="Point scale from top to bottom">
-          <span>12</span><span>10</span><span>8</span><span>6</span><span>4</span><span>2</span><span>1</span>
-        </div>
+        <p class="slot-explainer"><strong>Puanlar yerinde kalır, şarkılar hareket eder.</strong> Bir kartı tutup başka bir satıra sürükle; o satırın puanı otomatik olarak o şarkıya geçer.</p>
       </div>
 
       <div class="ballot-help">
         <span class="help-icon">↕</span>
-        <p><strong>Kartları yukarı-aşağı sürükle.</strong> Listenin en üstündeki şarkı 12 puan alır; aşağı indikçe puanlar otomatik olarak 10, 8, 6, 4, 2 ve 1 olur. Her sıralama değişikliği otomatik kaydedilir.</p>
+        <p><strong>12 puan en üstte.</strong> Kartları yalnızca sağdaki sürükleme tutamacından taşı. Telefonda tutamaca kısa süre basılı tutup yukarı veya aşağı sürükleyebilirsin.</p>
       </div>
 
       <div id="self-entry-note" class="self-entry-note"></div>
-      <div id="ballot-list" class="ballot-list ranking-list"></div>
-      <p class="ranking-note">Masaüstünde kartı tutup sürükleyebilirsin. Telefonda karta basılı tutup yukarı veya aşağı taşı.</p>
 
-      <div class="ballot-submit-zone">
-        <div>
+      <div class="ranking-board" aria-label="ISC 154 puan sıralaması">
+        <div class="point-rail" aria-hidden="true">
+          <div class="point-slot point-slot-top"><strong>12</strong><span>POINTS</span></div>
+          <div class="point-slot"><strong>10</strong><span>POINTS</span></div>
+          <div class="point-slot"><strong>8</strong><span>POINTS</span></div>
+          <div class="point-slot"><strong>6</strong><span>POINTS</span></div>
+          <div class="point-slot"><strong>4</strong><span>POINTS</span></div>
+          <div class="point-slot"><strong>2</strong><span>POINTS</span></div>
+          <div class="point-slot"><strong>1</strong><span>POINT</span></div>
+        </div>
+        <div id="ballot-list" class="ballot-list ranking-list"></div>
+      </div>
+
+      <p class="ranking-note">İpucu: Masaüstünde tutamacı sürükle. Mobilde tutamaca basılı tutup hareket ettir. Yukarı/aşağı düğmeleri alternatif olarak her zaman kullanılabilir.</p>
+
+      <div class="ballot-submit-zone sticky-submit-zone">
+        <div class="submit-state-copy">
           <span class="eyebrow">FINAL CHECK</span>
           <h3>Sıralaman hazır mı?</h3>
-          <p id="ballot-message" class="status-line" aria-live="polite">Sıralama değiştikçe puanlar otomatik güncellenir.</p>
+          <p id="ballot-message" class="status-line" aria-live="polite">7/7 entry sıralandı · değişiklikler otomatik kaydedilir.</p>
         </div>
-        <button id="submit-ballot" class="submit-ballot">OYUMU GÖNDER <span>→</span></button>
+        <div class="submit-state-action">
+          <span class="submit-rank-count"><b>7/7</b> RANKED</span>
+          <button id="submit-ballot" class="submit-ballot">OYUMU GÖNDER <span>→</span></button>
+        </div>
       </div>
     </section>
 
