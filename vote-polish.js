@@ -3,8 +3,6 @@
   const message = document.getElementById('ballot-message');
   if (!list) return;
 
-  const pointSlots = [12,10,8,6,4,2,1];
-
   function focusGripAt(index) {
     requestAnimationFrame(() => {
       const grip = list.querySelectorAll('.drag-grip')[index];
@@ -32,12 +30,10 @@
     event.preventDefault();
     if (target === index) return;
 
-    const button = target < index ? card.querySelector('.move-up') : card.querySelector('.move-down');
-    const steps = Math.abs(target - index);
-    if (!button) return;
-
-    let current = index;
     const direction = target < index ? -1 : 1;
+    const steps = Math.abs(target - index);
+    let current = index;
+
     for (let i = 0; i < steps; i++) {
       const currentCard = list.querySelectorAll('.ranking-card')[current];
       const moveButton = currentCard?.querySelector(direction < 0 ? '.move-up' : '.move-down');
@@ -47,8 +43,13 @@
     }
 
     const artist = card.querySelector('.rank-entry-copy strong')?.textContent?.trim() || 'Entry';
+    const pointSlots = Array.isArray(window.ISC_VOTING_POINTS) ? window.ISC_VOTING_POINTS : [];
     const slot = pointSlots[target];
-    if (message && slot) message.textContent = `${artist}, ${slot} puan slotuna taşındı.`;
+    if (message) {
+      message.textContent = slot === undefined
+        ? `${artist}, puan çizgisinin altına taşındı.`
+        : `${artist}, ${slot} puan slotuna taşındı.`;
+    }
     focusGripAt(target);
   });
 
@@ -58,5 +59,5 @@
       grip.setAttribute('aria-keyshortcuts', 'ArrowUp ArrowDown Home End');
     });
   });
-  observer.observe(list, { childList:true });
+  observer.observe(list, { childList: true });
 })();
