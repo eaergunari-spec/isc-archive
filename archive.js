@@ -24,15 +24,16 @@
       : winner
         ? `Kazanan: ${escapeHtml(winner.country)} · ${escapeHtml(winner.artist)} — “${escapeHtml(winner.song)}” · ${escapeHtml(winner.points)} puan`
         : `${edition.entry_count || 0} ülke · ${edition.entry_count || 0} şarkı · arşiv kaydı`;
+    const href = current ? 'index.html' : `editions/${escapeHtml(edition.edition_number)}/`;
 
     return `
-      <a class="edition-card ${current ? 'current' : 'archived'}" href="editions/${escapeHtml(edition.edition_number)}/">
+      <a class="edition-card ${current ? 'current' : 'archived'}" href="${href}">
         <div class="edition-card-no">${escapeHtml(edition.edition_number)}</div>
         <div class="edition-card-copy">
           <small>${escapeHtml(status)}</small>
           <strong>${escapeHtml(edition.title || `ISC ${edition.edition_number}`)}</strong>
           <p>${detail}</p>
-          <span class="card-arrow">${current ? 'Edition hub’ı aç' : 'Arşiv kaydını aç'} →</span>
+          <span class="card-arrow">${current ? 'Canlı edisyonu aç' : 'Arşiv kaydını aç'} →</span>
         </div>
       </a>`;
   }
