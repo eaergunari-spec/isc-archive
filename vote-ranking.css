@@ -1,4 +1,4 @@
-/* Fixed-point drag ranking experience */
+/* Edition-aware fixed-point drag ranking experience */
 .ballot-control{padding:24px 26px 22px}
 .ranking-status-card{border-color:rgba(216,255,62,.16)}
 .slot-explainer{margin:16px 0 0;color:rgba(255,255,255,.58);font-size:12px;line-height:1.55}
@@ -6,24 +6,29 @@
 .ballot-help{margin-bottom:18px}
 
 .self-entry-note{max-width:1400px;margin:0 auto 18px;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:16px 18px;border:1px dashed rgba(255,255,255,.14);border-radius:18px;background:rgba(255,255,255,.025);color:rgba(255,255,255,.68)}
+.self-entry-note[hidden]{display:none!important}
 .self-entry-note .self-entry-order{font-family:"Libre Caslon Display",serif;font-size:30px;color:var(--pink)}
 .self-entry-note strong{display:block;color:#fff;font-family:"Libre Caslon Display",serif;font-size:22px;font-weight:400}
 .self-entry-note small{display:block;margin-top:3px;color:rgba(255,255,255,.5)}
 .self-entry-note .self-entry-lock{font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--pink)}
 
-.ranking-board{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:94px minmax(0,1fr);gap:12px;align-items:start}
-.point-rail,.ballot-list.ranking-list{display:grid;grid-template-rows:repeat(7,98px);gap:10px;margin:0}
+.ranking-board{--ranking-count:7;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:94px minmax(0,1fr);gap:12px;align-items:start}
+.point-rail,.ballot-list.ranking-list{display:grid;grid-template-rows:repeat(var(--ranking-count),98px);gap:10px;margin:0}
 .point-slot{height:98px;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#111015;border:1px solid rgba(255,255,255,.1);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.01)}
 .point-slot strong{font-family:"Libre Caslon Display",serif;font-size:35px;font-weight:400;line-height:.9}
 .point-slot span{margin-top:8px;font-size:7px;font-weight:700;letter-spacing:.14em;color:rgba(255,255,255,.46)}
 .point-slot-top{background:var(--lime);border-color:var(--lime);color:#111;box-shadow:0 0 0 5px rgba(216,255,62,.06)}
 .point-slot-top span{color:rgba(17,17,17,.62)}
+.point-slot-unscored{background:rgba(255,255,255,.025);border-style:dashed;color:rgba(255,255,255,.3)}
+.point-slot-unscored span{color:rgba(255,255,255,.28)}
 
 .ballot-list.ranking-list{grid-template-columns:1fr}
 .ranking-card{position:relative;height:98px;padding:12px 15px;border-radius:18px;background:#151319;border:1px solid rgba(255,255,255,.09);display:grid;grid-template-columns:58px minmax(0,1fr) auto;gap:16px;align-items:center;user-select:none;touch-action:pan-y;transition:transform .16s ease,border-color .16s ease,background .16s ease,box-shadow .16s ease}
 .ranking-card:hover{border-color:rgba(216,255,62,.28);background:#19171e}
 .ranking-card.is-dragging{opacity:.72;background:#211f27;border-color:var(--lime);box-shadow:0 18px 50px rgba(0,0,0,.35);transform:scale(.99)}
 .ranking-card.is-ghost{opacity:.16}
+.ranking-card.is-unscored{background:#111015;border-style:dashed;opacity:.78}
+.ranking-card.is-unscored:hover{opacity:1}
 .rank-entry-order{font-family:"Libre Caslon Display",serif;font-size:34px;color:var(--pink);text-align:center}
 .rank-entry-copy{min-width:0}
 .rank-entry-copy .rank-country{display:block;margin-bottom:3px;color:var(--lime)!important;font-family:"DM Sans",sans-serif;font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -41,7 +46,6 @@
 .rank-move-buttons button:disabled{opacity:.16;cursor:default}
 
 .ranking-note{max-width:1400px;margin:14px auto 0;color:rgba(255,255,255,.43);font-size:10px;line-height:1.55}
-.progress-fill{width:100%!important}
 
 .sticky-submit-zone{position:sticky;bottom:12px;z-index:25;max-width:1400px!important;margin-top:28px!important;padding:18px 20px!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:20px;background:rgba(20,18,24,.94);backdrop-filter:blur(16px);box-shadow:0 18px 60px rgba(0,0,0,.28)}
 .sticky-submit-zone h3{font-size:31px;margin:4px 0 3px}
@@ -53,7 +57,7 @@
 @media(max-width:760px){
   .self-entry-note{grid-template-columns:auto 1fr;padding:14px 15px}.self-entry-note .self-entry-lock{grid-column:1/-1}
   .ranking-board{grid-template-columns:58px minmax(0,1fr);gap:8px}
-  .point-rail,.ballot-list.ranking-list{grid-template-rows:repeat(7,108px);gap:8px}
+  .point-rail,.ballot-list.ranking-list{grid-template-rows:repeat(var(--ranking-count),108px);gap:8px}
   .point-slot{height:108px;border-radius:15px}
   .point-slot strong{font-size:29px}.point-slot span{font-size:6px;letter-spacing:.1em}
   .ranking-card{height:108px;grid-template-columns:42px minmax(0,1fr) 54px;gap:9px;padding:10px 9px;border-radius:15px}
@@ -71,7 +75,7 @@
 
 @media(max-width:430px){
   .ranking-board{grid-template-columns:52px minmax(0,1fr);gap:6px}
-  .point-rail,.ballot-list.ranking-list{grid-template-rows:repeat(7,104px);gap:7px}
+  .point-rail,.ballot-list.ranking-list{grid-template-rows:repeat(var(--ranking-count),104px);gap:7px}
   .point-slot{height:104px}.point-slot strong{font-size:26px}
   .ranking-card{height:104px;grid-template-columns:34px minmax(0,1fr) 48px;gap:6px;padding:9px 7px}
   .rank-entry-order{font-size:23px}.rank-entry-copy strong{font-size:19px}.drag-grip{width:48px;height:68px}.rank-move-buttons{right:54px}
