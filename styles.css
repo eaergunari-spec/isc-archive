@@ -1,0 +1,123 @@
+:root {
+  --paper: #f4efe5;
+  --ink: #181512;
+  --muted: #6e675f;
+  --line: #d8cfc2;
+  --wine: #6f1320;
+  --wine-dark: #4f0d16;
+  --white: #fffdf8;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  background-image: radial-gradient(rgba(30,20,10,.045) .7px, transparent .7px);
+  background-size: 5px 5px;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px clamp(22px, 4vw, 64px);
+  border-bottom: 1px solid var(--line);
+  background: rgba(244,239,229,.92);
+  backdrop-filter: blur(12px);
+}
+
+.brand { display: flex; gap: 12px; align-items: center; text-transform: uppercase; letter-spacing: .16em; font-size: 11px; }
+.brand-mark { font-family: "Libre Caslon Display", serif; color: var(--wine); font-size: 24px; letter-spacing: 0; }
+nav { display: flex; gap: 28px; align-items: center; font-size: 12px; text-transform: uppercase; letter-spacing: .14em; }
+.nav-vote { color: var(--wine); font-weight: 600; }
+
+.hero { padding: 72px clamp(22px, 5vw, 80px) 56px; max-width: 1500px; margin: 0 auto; }
+.hero-kicker, .eyebrow { text-transform: uppercase; letter-spacing: .18em; font-size: 11px; color: var(--muted); }
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; margin-top: 20px; }
+.hero h1 { font-family: "Libre Caslon Display", serif; font-weight: 400; font-size: clamp(92px, 14vw, 210px); line-height: .82; margin: 0; letter-spacing: -.055em; }
+.hero h1 span { color: var(--wine); }
+.hero-deck { max-width: 560px; font-family: "Libre Caslon Display", serif; font-size: clamp(26px, 3vw, 42px); line-height: 1.06; margin: 34px 0 28px; color: #2a241f; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 18px; border: 1px solid var(--ink); text-transform: uppercase; letter-spacing: .13em; font-size: 11px; font-weight: 600; }
+.button-primary { background: var(--wine); border-color: var(--wine); color: white; }
+.button-primary:hover { background: var(--wine-dark); }
+.button-ghost:hover { background: var(--ink); color: white; }
+.button-disabled { opacity: .45; cursor: not-allowed; background: transparent; }
+
+.hero-art { position: relative; min-height: 560px; }
+.poster { position: absolute; border: 1px solid rgba(255,255,255,.22); box-shadow: 0 22px 55px rgba(0,0,0,.16); overflow: hidden; }
+.poster::after { content:""; position:absolute; inset:0; background: linear-gradient(145deg, transparent 0 45%, rgba(255,255,255,.12)); }
+.poster span { position: absolute; z-index: 2; font-family: "Libre Caslon Display", serif; }
+.poster-a { width: 52%; height: 76%; left: 0; bottom: 2%; background: linear-gradient(150deg,#351016,#8b2630 58%,#1d1312); transform: rotate(-4deg); }
+.poster-a span { color: rgba(255,255,255,.92); font-size: clamp(100px, 9vw, 170px); bottom: -12px; left: 14px; }
+.poster-b { width: 48%; height: 58%; right: 3%; top: 2%; background: linear-gradient(160deg,#e2d3bc,#927c67); transform: rotate(5deg); }
+.poster-b span { color: #261e19; font-size: clamp(54px, 6vw, 96px); right: 18px; top: 22px; line-height: .8; text-align:right; }
+.poster-c { width: 44%; height: 46%; right: 13%; bottom: 0; background: linear-gradient(155deg,#111,#3c3330); transform: rotate(-1deg); }
+.poster-c span { color: var(--paper); font-size: clamp(76px, 7vw, 120px); left: 18px; bottom: 2px; }
+.hero-caption { position:absolute; right:0; bottom:-26px; font-size:10px; letter-spacing:.18em; color:var(--muted); }
+
+.marquee { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 12px 0; white-space: nowrap; }
+.marquee div { display: inline-block; padding-left: 100%; animation: marquee 24s linear infinite; font-family: "Libre Caslon Display", serif; font-size: 20px; }
+@keyframes marquee { to { transform: translateX(-100%); } }
+
+.section { max-width: 1500px; margin: 0 auto; padding: 90px clamp(22px, 5vw, 80px); }
+.section-heading { display: flex; justify-content: space-between; gap: 40px; align-items: end; margin-bottom: 34px; }
+.section-heading h2, .vote-card h2 { font-family: "Libre Caslon Display", serif; font-weight: 400; font-size: clamp(44px, 5vw, 78px); line-height: .95; margin: 8px 0 0; }
+.section-heading > p { max-width: 430px; color: var(--muted); line-height: 1.6; margin:0; }
+
+.entry-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; }
+.entry-card { position: relative; min-height: 310px; padding: 18px; border: 1px solid var(--line); background: var(--white); display: flex; flex-direction: column; justify-content: space-between; transition: transform .25s ease, box-shadow .25s ease; overflow:hidden; }
+.entry-card:hover { transform: translateY(-4px); box-shadow: 0 18px 35px rgba(0,0,0,.08); }
+.entry-no { font-family: "Libre Caslon Display", serif; font-size: 54px; color: var(--wine); }
+.entry-meta { position: relative; z-index:2; }
+.entry-country { font-size: 10px; text-transform:uppercase; letter-spacing:.17em; color:var(--muted); min-height:14px; }
+.entry-artist { font-family: "Libre Caslon Display", serif; font-size: 28px; line-height:1; margin:8px 0 6px; }
+.entry-song { font-size:13px; color:var(--muted); }
+.entry-card::before { content:""; position:absolute; width:180px; height:180px; border-radius:50%; right:-70px; top:-60px; background: radial-gradient(circle, rgba(111,19,32,.13), transparent 68%); }
+
+.vote-section { padding-top: 28px; }
+.vote-card { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 52px 0; display:grid; grid-template-columns: 1.3fr 1fr auto; gap: 36px; align-items:end; }
+.vote-card p { color:var(--muted); max-width:500px; line-height:1.6; margin:0; }
+
+.archive-row { display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--line); }
+.archive-card { display:flex; gap:28px; padding:28px 0; border-bottom:1px solid var(--line); }
+.archive-card + .archive-card { padding-left:28px; border-left:1px solid var(--line); }
+.archive-card > span { font-family:"Libre Caslon Display", serif; font-size:76px; color:var(--wine); line-height:.8; }
+.archive-card strong { font-family:"Libre Caslon Display", serif; font-size:28px; font-weight:400; }
+.archive-card p { color:var(--muted); margin:6px 0 0; }
+.placeholder { opacity:.55; }
+
+footer { display:grid; grid-template-columns:auto 1fr auto; gap:28px; align-items:center; padding:34px clamp(22px,5vw,80px); border-top:1px solid var(--line); color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.1em; }
+.footer-brand { font-family:"Libre Caslon Display", serif; color:var(--wine); font-size:34px; }
+
+@media (max-width: 980px) {
+  nav a:not(.nav-vote) { display:none; }
+  .hero-grid { grid-template-columns:1fr; }
+  .hero-art { min-height:460px; }
+  .entry-grid { grid-template-columns:repeat(2,1fr); }
+  .vote-card { grid-template-columns:1fr; align-items:start; }
+  .section-heading { display:block; }
+  .section-heading > p { margin-top:18px; }
+  footer { grid-template-columns:1fr; }
+}
+
+@media (max-width: 620px) {
+  .site-header { padding:14px 18px; }
+  .brand span:last-child { display:none; }
+  .hero { padding:54px 18px 36px; }
+  .hero-art { min-height:380px; }
+  .section { padding:68px 18px; }
+  .entry-grid { grid-template-columns:1fr; }
+  .entry-card { min-height:230px; }
+  .archive-row { grid-template-columns:1fr; }
+  .archive-card + .archive-card { padding-left:0; border-left:none; }
+  .hero-deck { font-size:28px; }
+}
