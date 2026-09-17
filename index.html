@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="International Song Contest archive and voting platform" />
-  <title>ISC Archive</title>
+  <meta name="description" content="International Song Contest — ISC 154 live edition, entries, voting and archive." />
+  <title>ISC 154 — International Song Contest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="homepage-cards.css" />
   <link rel="stylesheet" href="homepage-entertainment.css" />
@@ -16,68 +16,99 @@
   <header class="site-header">
     <a class="brand" href="#top"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
     <nav>
-      <a href="#edition">ISC 154</a>
+      <a href="#listen">Dinle</a>
       <a href="#entries">Katılımcılar</a>
-      <a href="#archive">Edisyonlar</a>
+      <a href="#archive">Arşiv</a>
       <a class="nav-vote" href="vote.html">Oy Ver</a>
     </nav>
   </header>
 
   <main id="top">
-    <section class="hero hero-clean" id="edition">
-      <div class="hero-kicker">154th Edition · Current edition</div>
-      <div class="hero-copy hero-copy-wide">
-        <h1>ISC <span>154</span></h1>
-        <p class="hero-deck">Sekiz şarkı. Tek bir edisyon. Arşiv, dergi ve oylama aynı yerde.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#entries">Katılımcıları keşfet</a>
-          <a class="button button-ghost" href="vote.html">Oyunu gönder</a>
+    <section class="live-hero" id="edition">
+      <div class="live-hero-media" aria-hidden="true">
+        <img id="hero-feature-image" src="https://i.ytimg.com/vi/oFO8UkkCd8Q/maxresdefault.jpg" alt="" />
+        <div class="live-hero-wash"></div>
+        <div class="hero-frame-label">ISC 154 / CURRENT EDITION</div>
+        <div class="hero-frame-count"><span id="hero-feature-order">03</span><small>/08</small></div>
+      </div>
+
+      <div class="live-hero-content">
+        <div class="live-pill"><span></span> Voting open now</div>
+        <p class="hero-kicker">International Song Contest · Edition 154</p>
+        <h1>ISC <em>154</em></h1>
+        <p class="live-hero-deck">8 ülke. 8 şarkı. Gecenin kaderi oylarında.</p>
+        <div class="live-hero-actions">
+          <a class="cta cta-play" href="https://www.youtube.com/watch?v=20TDd19oA1Q&list=PLPbHH_7WOiG0" target="_blank" rel="noopener"><span class="play-icon">▶</span> 8 şarkıyı dinle</a>
+          <a class="cta cta-vote" href="vote.html">Oy ver</a>
+          <a class="cta cta-text" href="#entries">Katılımcıları keşfet ↓</a>
         </div>
-        <div class="hero-live">Voting is live now</div>
+        <div class="hero-feature-copy">
+          <span>Şimdi öne çıkan</span>
+          <strong id="hero-feature-artist">Meira Omar &amp; LIAMOO</strong>
+          <small><b id="hero-feature-country">GÜNEŞ DİYARI</b> · <span id="hero-feature-song">MAZAA</span></small>
+        </div>
       </div>
-      <div class="hero-stats" aria-label="ISC 154 edition facts">
-        <div class="hero-stat"><strong>8</strong><span>Countries</span></div>
-        <div class="hero-stat"><strong>8</strong><span>Songs</span></div>
-        <div class="hero-stat"><strong>58</strong><span>Points / ballot</span></div>
+
+      <div class="hero-side-note">RESULTS HIDDEN UNTIL REVEAL</div>
+    </section>
+
+    <section class="status-ribbon" aria-label="ISC 154 status">
+      <div><span class="status-dot"></span><strong>OYLAMA AÇIK</strong></div>
+      <div><strong>8</strong><span>ÜLKE</span></div>
+      <div><strong>8</strong><span>ŞARKI</span></div>
+      <div><strong>58</strong><span>PUAN / OY</span></div>
+      <div><strong>12</strong><span>MAKSİMUM PUAN</span></div>
+    </section>
+
+    <section class="listen-bar" id="listen">
+      <div class="listen-copy">
+        <span class="eyebrow">Listen now</span>
+        <h2>ISC 154 tek playlistte.</h2>
       </div>
+      <div class="listen-numbers" aria-hidden="true">
+        <span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span>
+      </div>
+      <a class="listen-button" href="https://www.youtube.com/watch?v=20TDd19oA1Q&list=PLPbHH_7WOiG0" target="_blank" rel="noopener">PLAY ALL 8 ↗</a>
     </section>
 
     <section class="marquee" aria-hidden="true">
-      <div>ROLIPEA · VERDE VERANO · GÜNEŞ DİYARI · SUPERLAND · KIRMIZI · CABURYA · STJOHN · UZANMIŞIM KUMSALA ·</div>
+      <div>ROLIPEA ✦ VERDE VERANO ✦ GÜNEŞ DİYARI ✦ SUPERLAND ✦ KIRMIZI ✦ CABURYA ✦ STJOHN ✦ UZANMIŞIM KUMSALA ✦</div>
     </section>
 
     <section class="section entries-section" id="entries">
-      <div class="section-heading">
+      <div class="section-heading entertainment-heading">
         <div>
-          <span class="eyebrow">Running order</span>
-          <h2>ISC 154 Katılımcıları</h2>
+          <span class="eyebrow">Meet the acts</span>
+          <h2>Sahnede kim var?</h2>
         </div>
-        <p>Bu yılın sekiz temsilcisi. Kartlara tıklayarak sanatçı dosyasına, resmî videoya ve entry detaylarına ulaşabilirsin.</p>
+        <p>ISC 154’ün sekiz temsilcisi. Bir karta tıkla; sanatçı dosyasını, şarkının hikâyesini ve resmî videoyu aç.</p>
       </div>
       <div id="entry-grid" class="entry-grid"></div>
     </section>
 
-    <section class="section vote-section" id="vote">
-      <div class="vote-card">
-        <span class="eyebrow">Voting room</span>
-        <h2>ISC 154 oylaması açık.</h2>
-        <p>Ülkeni seç, voter code’unla doğrulan ve kalan yedi entry’ye 12, 10, 8, 6, 4, 2 ve 1 puanlarını dağıt. Kendi ülkene oy veremezsin; sonuçlar reveal anına kadar gizli kalır.</p>
-        <a class="button button-primary" href="vote.html">Oy vermeye başla</a>
+    <section class="vote-splash" id="vote">
+      <div class="vote-splash-number">12</div>
+      <div class="vote-splash-copy">
+        <span class="eyebrow">Your points. Your country.</span>
+        <h2>Şimdi sıra sende.</h2>
+        <p>Ülkeni seç, voter code’unla doğrulan ve diğer yedi şarkıya 12, 10, 8, 6, 4, 2 ve 1 puanlarını dağıt. Kendi ülkene oy veremezsin.</p>
       </div>
+      <a class="vote-big-button" href="vote.html">VOTING ROOM <span>→</span></a>
     </section>
 
     <section class="section archive-section" id="archive">
-      <div class="section-heading">
+      <div class="section-heading entertainment-heading">
         <div>
           <span class="eyebrow">The archive</span>
-          <h2>Tüm Edisyonlar</h2>
+          <h2>Her edisyon bir dönem.</h2>
         </div>
-        <p>ISC 154 bu arşivin başlangıcı. Geçmiş edisyonlar eklendikçe bu alan kronolojik olarak büyüyecek.</p>
+        <p>ISC 154 canlı edisyon. Geçmiş yarışmalar eklendikçe sanatçılar, sonuçlar, oylar ve dergi dosyaları burada kalıcı olacak.</p>
       </div>
       <div class="archive-row">
         <article class="archive-card current">
           <span>154</span>
           <div>
+            <small>NOW PLAYING</small>
             <strong>ISC 154</strong>
             <p>8 katılımcı · Oylama açık</p>
           </div>
@@ -85,7 +116,8 @@
         <article class="archive-card placeholder">
           <span>∞</span>
           <div>
-            <strong>Arşiv genişliyor</strong>
+            <small>THE STORY CONTINUES</small>
+            <strong>ISC Archive</strong>
             <p>Geçmiş edisyonlar yakında eklenecek.</p>
           </div>
         </article>
@@ -96,7 +128,7 @@
   <footer>
     <div class="footer-brand">ISC</div>
     <p>International Song Contest</p>
-    <p>Archive · Editions · Entries · Voting · Results</p>
+    <p>Music · Entries · Voting · Results · Archive</p>
   </footer>
 
   <script src="app.js"></script>
