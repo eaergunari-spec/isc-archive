@@ -1,26 +1,26 @@
 const entries = [
-  { no: 1, country: "Rolipea", artist: "Lambrini Girls", song: "Cuntology 101" },
-  { no: 2, country: "Verde Verano", artist: "Élise de Lune", song: "Bonne Nuit" },
-  { no: 3, country: "", artist: "Meira Omar & LIAMOO", song: "MAZAA" },
-  { no: 4, country: "", artist: "Saint Levant", song: "Nails" },
-  { no: 5, country: "", artist: "HAYQ", song: "Mi Patmutyun / Մի պատմություն" },
-  { no: 6, country: "", artist: "Laura Pausini", song: "¿PORQUÉ TE VAS?" },
-  { no: 7, country: "", artist: "Audrey Hobert", song: "Bowling alley" },
-  { no: 8, country: "", artist: "GALENA", song: "CHATGPT" }
+  { order: "01", country: "ROLIPEA", artist: "Lambrini Girls", song: "Cuntology 101", slug: "01-lambrini-girls" },
+  { order: "02", country: "VERDE VERANO", artist: "Élise de Lune", song: "Bonne Nuit", slug: "02-elise-de-lune" },
+  { order: "03", country: "ÜLKE DAHA AÇIKLANMADI", artist: "Meira Omar & LIAMOO", song: "MAZAA", slug: "03-meira-omar-liamoo" },
+  { order: "04", country: "ÜLKE DAHA AÇIKLANMADI", artist: "Saint Levant", song: "Nails", slug: "04-saint-levant" },
+  { order: "05", country: "ÜLKE DAHA AÇIKLANMADI", artist: "HAYQ", song: "Mi Patmutyun / Մի պատմություն", slug: "05-hayq" },
+  { order: "06", country: "ÜLKE DAHA AÇIKLANMADI", artist: "Laura Pausini", song: "¿PORQUÉ TE VAS?", slug: "06-laura-pausini" },
+  { order: "07", country: "ÜLKE DAHA AÇIKLANMADI", artist: "Audrey Hobert", song: "Bowling alley", slug: "07-audrey-hobert" },
+  { order: "08", country: "ÜLKE DAHA AÇIKLANMADI", artist: "GALENA", song: "CHATGPT", slug: "08-galena" }
 ];
 
-const grid = document.getElementById("entry-grid");
+const entryGrid = document.getElementById("entry-grid");
 
-entries.forEach((entry) => {
-  const card = document.createElement("article");
-  card.className = "entry-card";
-  card.innerHTML = `
-    <div class="entry-no">${String(entry.no).padStart(2, "0")}</div>
-    <div class="entry-meta">
-      <div class="entry-country">${entry.country || "Ülke bilgisi eklenecek"}</div>
-      <div class="entry-artist">${entry.artist}</div>
-      <div class="entry-song">${entry.song}</div>
-    </div>
-  `;
-  grid.appendChild(card);
-});
+if (entryGrid) {
+  entryGrid.innerHTML = entries.map((entry) => `
+    <a class="entry-card" href="entries/${entry.slug}.html" aria-label="Entry ${entry.order}: ${entry.artist} — ${entry.song}">
+      <div class="entry-no">${entry.order}</div>
+      <div class="entry-meta">
+        <div class="entry-country">${entry.country}</div>
+        <div class="entry-artist">${entry.artist}</div>
+        <div class="entry-song">${entry.song}</div>
+        <span class="entry-link">ENTRY ${entry.order} →</span>
+      </div>
+    </a>
+  `).join("");
+}
