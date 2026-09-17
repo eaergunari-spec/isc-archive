@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex,nofollow" />
-  <title>ISC 154 · Control Room</title>
+  <title>ISC · Control Room</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
@@ -21,10 +21,10 @@
     <section id="admin-login" class="control-login">
       <span class="eyebrow">Private access</span>
       <h1>Control Room</h1>
-      <p>ISC 154 oylamasını, gelen pusulaları ve gizli puan toplamlarını buradan yönet.</p>
+      <p>Güncel ISC edisyonunun oylamasını, gelen pusulaları ve gizli puan toplamlarını buradan yönet.</p>
       <label for="admin-code">Admin code</label>
       <div class="login-row">
-        <input id="admin-code" type="password" autocomplete="off" spellcheck="false" placeholder="ISC154-ADMIN-…" />
+        <input id="admin-code" type="password" autocomplete="current-password" spellcheck="false" placeholder="Admin code" />
         <button id="admin-enter" class="button button-primary">Giriş yap</button>
       </div>
       <p id="admin-message" class="control-message" aria-live="polite"></p>
@@ -32,19 +32,24 @@
 
     <section id="dashboard" hidden>
       <div class="control-titlebar">
-        <div><span class="eyebrow">ISC 154 · private dashboard</span><h1>Control Room</h1></div>
+        <div><span class="eyebrow" id="dashboard-edition-label">Current edition · private dashboard</span><h1>Control Room</h1></div>
         <button id="refresh-dashboard" class="button button-ghost">Yenile</button>
       </div>
 
       <div class="status-grid">
         <article class="status-card"><span>Voting</span><strong id="voting-state">—</strong></article>
-        <article class="status-card"><span>Submitted</span><strong id="submitted-count">0 / 8</strong></article>
+        <article class="status-card"><span>Submitted</span><strong id="submitted-count">— / —</strong></article>
         <article class="status-card"><span>Draft</span><strong id="draft-count">0</strong></article>
         <article class="status-card"><span>Results</span><strong id="results-state">Gizli</strong></article>
       </div>
 
       <section class="control-actions">
-        <div><span class="eyebrow">Edition controls</span><h2>Oylama durumu</h2><p>Sonuçları yayınlamadan önce oylamayı kapatmalısın.</p></div>
+        <div>
+          <span class="eyebrow">Edition controls</span>
+          <h2>Oylama durumu</h2>
+          <p>Sonuçları yayınlamadan önce oylamayı kapatmalısın.</p>
+          <p id="scheme-summary" class="secret-note">Voting scheme yükleniyor…</p>
+        </div>
         <div class="action-buttons">
           <button id="toggle-voting" class="button button-primary">—</button>
           <button id="toggle-results" class="button button-ghost">—</button>
