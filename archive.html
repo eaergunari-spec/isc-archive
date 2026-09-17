@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="International Song Contest archive." />
+  <meta name="description" content="International Song Contest archive — permanent edition, entry, results and voting history." />
   <meta name="theme-color" content="#0b0a0e" />
   <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/archive.html" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="International Song Contest" />
   <meta property="og:title" content="ISC Archive" />
-  <meta property="og:description" content="International Song Contest’ın kalıcı edisyon, katılımcı ve voting history arşivi." />
+  <meta property="og:description" content="International Song Contest’ın kalıcı edisyon, katılımcı, sonuç ve voting history arşivi." />
   <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/archive.html" />
-  <meta property="og:image" content="https://eaergunari-spec.github.io/isc-archive/03-meira-omar-liamoo.webp" />
+  <meta property="og:image" content="https://eaergunari-spec.github.io/isc-archive/assets/artists/03-meira-omar-liamoo.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <title>ISC Archive</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,6 +27,7 @@
     <a class="brand" href="index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
     <nav>
       <a href="index.html">ISC 154</a>
+      <a href="editions/153/">ISC 153</a>
       <a href="results.html">Results</a>
       <a class="nav-vote" href="vote.html">Oy Ver</a>
     </nav>
@@ -36,7 +37,7 @@
     <section class="archive-hero">
       <span class="archive-kicker">The permanent record</span>
       <h1>ISC<br>Archive</h1>
-      <p>Her edisyon tek gecelik bir yarışma değil; kendi line-up’ı, hikâyeleri, puanları ve oy hafızasıyla kalıcı bir kayıt. Arşiv büyüdükçe edisyonlar, ülkeler, sanatçılar ve voting history burada birbirine bağlanacak.</p>
+      <p>Her edisyon kendi line-up’ı, sanatçıları, şarkıları, resmî sonucu ve voting history’siyle kalıcı bir kayıt. Arşiv artık canlı ISC 154 ile tamamlanmış ISC 153’ü aynı veri mimarisi altında birleştiriyor.</p>
     </section>
 
     <section class="archive-shell">
@@ -45,10 +46,10 @@
           <span class="archive-kicker">Editions</span>
           <h2>Her edisyon bir dönem.</h2>
         </div>
-        <p>Şimdilik canlı edisyon ISC 154 yayında. Geçmiş edisyonlar eklendikçe aynı sistem üzerinden line-up, sonuçlar, delegasyon oyları ve editorial dosyalar birlikte tutulacak.</p>
+        <p>Edisyon kartları Supabase’deki ilişkisel arşiv verisinden beslenir. Yeni yarışmalar eklendikçe aynı yapı running order, sonuçlar ve delegasyon oylarını kronolojik olarak genişletir.</p>
       </div>
 
-      <div class="archive-grid">
+      <div class="archive-grid" id="archive-grid">
         <a class="edition-card current" href="editions/154/">
           <div class="edition-card-no">154</div>
           <div class="edition-card-copy">
@@ -59,20 +60,22 @@
           </div>
         </a>
 
-        <article class="edition-card archive-placeholder">
-          <div class="edition-card-no">∞</div>
+        <a class="edition-card archived" href="editions/153/">
+          <div class="edition-card-no">153</div>
           <div class="edition-card-copy">
-            <small>Archive expansion</small>
-            <strong>Geçmiş edisyonlar</strong>
-            <p>Eski ISC edisyonları veri seti eklendikçe burada kronolojik olarak açılacak.</p>
+            <small>Archived edition · final complete</small>
+            <strong>ISC 153</strong>
+            <p>Kazanan: SUPERLAND · LA NIÑA — “Figlia d' 'a Tempesta” · 51 puan</p>
+            <span class="card-arrow">Arşiv kaydını aç →</span>
           </div>
-        </article>
+        </a>
       </div>
 
-      <div class="archive-note">Arşiv mimarisi hazır: her edisyon kendi kalıcı URL’sine, entry listesine, Results Hub’ına ve ileride ülke profilleriyle bağlanacak voting history katmanına sahip olacak.</div>
+      <div class="archive-note">ISC 153 ile arşiv artık gerçek tarihsel veri içeriyor: entry metadata’sı, YouTube media kimlikleri, edisyona özel 12–10–8–6–4–3–2 puan şeması, 8 delegasyon ballot’u, 56 score kaydı ve yayımlanmış resmî final sıralaması ayrı ilişkisel katmanlarda tutuluyor.</div>
     </section>
   </main>
 
   <footer><div class="footer-brand">ISC</div><p>International Song Contest · Archive</p></footer>
+  <script src="archive.js"></script>
 </body>
 </html>
