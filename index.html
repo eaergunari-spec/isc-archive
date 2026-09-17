@@ -3,8 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="International Song Contest — ISC 154 live edition, entries, voting and archive." />
+  <meta name="description" content="International Song Contest — ISC 154 live edition, entries, voting, results and archive." />
+  <meta name="theme-color" content="#0b0a0e" />
+  <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="International Song Contest" />
+  <meta property="og:title" content="ISC 154 — International Song Contest" />
+  <meta property="og:description" content="8 ülke. 8 şarkı. ISC 154’ü dinle, katılımcıları keşfet ve resmi oylamaya katıl." />
+  <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/" />
+  <meta property="og:image" content="https://eaergunari-spec.github.io/isc-archive/03-meira-omar-liamoo.webp" />
+  <meta property="og:image:type" content="image/webp" />
+  <meta property="og:image:alt" content="ISC 154 — International Song Contest" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ISC 154 — International Song Contest" />
+  <meta name="twitter:description" content="8 ülke. 8 şarkı. ISC 154 şimdi yayında." />
+  <meta name="twitter:image" content="https://eaergunari-spec.github.io/isc-archive/03-meira-omar-liamoo.webp" />
   <title>ISC 154 — International Song Contest</title>
+  <link rel="preload" as="image" href="03-meira-omar-liamoo.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
@@ -15,6 +31,7 @@
   <link rel="stylesheet" href="homepage-ticker.css" />
   <link rel="stylesheet" href="homepage-listen.css" />
   <link rel="stylesheet" href="homepage-hierarchy.css" />
+  <link rel="stylesheet" href="technical-polish.css" />
 </head>
 <body class="home-page">
   <header class="site-header">
@@ -31,7 +48,7 @@
   <main id="top">
     <section class="live-hero" id="edition">
       <div class="live-hero-media" aria-hidden="true">
-        <img id="hero-feature-image" src="https://i.ytimg.com/vi/oFO8UkkCd8Q/maxresdefault.jpg" alt="" />
+        <img id="hero-feature-image" src="03-meira-omar-liamoo.webp" alt="" decoding="async" />
         <div class="live-hero-wash"></div>
         <div class="hero-frame-label">ISC 154 / CURRENT EDITION</div>
         <div class="hero-frame-count"><span id="hero-feature-order">03</span><small>/08</small></div>
@@ -249,5 +266,6 @@
   </footer>
 
   <script src="app.js"></script>
+  <script src="homepage-polish.js"></script>
 </body>
 </html>
