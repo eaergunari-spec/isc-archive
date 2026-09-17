@@ -4,70 +4,173 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex,nofollow" />
-  <title>ISC · Control Room</title>
+  <meta name="theme-color" content="#0b0a0e" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <title>ISC · Contest Admin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="kontrol.css" />
+  <link rel="stylesheet" href="technical-polish.css" />
 </head>
-<body>
-  <header class="site-header">
+<body class="control-body">
+  <header class="site-header control-header">
     <a class="brand" href="index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
-    <nav><a href="index.html">Siteye dön</a><a href="vote.html">Voting room</a></nav>
+    <div class="control-header-private">PRIVATE ADMIN</div>
+    <nav>
+      <a href="index.html">Siteye dön</a>
+      <a href="vote.html">Voting Room</a>
+      <a href="results.html">Results</a>
+    </nav>
   </header>
 
   <main class="control-shell">
-    <section id="admin-login" class="control-login">
-      <span class="eyebrow">Private access</span>
-      <h1>Control Room</h1>
-      <p>Güncel ISC edisyonunun oylamasını, gelen pusulaları ve gizli puan toplamlarını buradan yönet.</p>
+    <section id="admin-login" class="control-login" aria-labelledby="login-title">
+      <div class="login-orbit" aria-hidden="true"></div>
+      <span class="control-kicker">Private operations console</span>
+      <h1 id="login-title">Contest<br><em>Admin.</em></h1>
+      <p>ISC edisyonlarını tek panelden izle; voting durumunu yönet, pusula tamamlanma oranlarını kontrol et, kalıcı voter-code yapılandırmasını doğrula ve sonuç reveal sürecini güvenli biçimde yönet.</p>
       <label for="admin-code">Admin code</label>
       <div class="login-row">
         <input id="admin-code" type="password" autocomplete="current-password" spellcheck="false" placeholder="Admin code" />
-        <button id="admin-enter" class="button button-primary">Giriş yap</button>
+        <button id="admin-enter" class="admin-primary">Console’u aç <span>→</span></button>
       </div>
       <p id="admin-message" class="control-message" aria-live="polite"></p>
+      <p class="login-security-note">Admin code yalnızca bu sekmenin session storage alanında tutulur; voter code’lar ve hash değerleri bu arayüzde hiçbir zaman gösterilmez.</p>
     </section>
 
     <section id="dashboard" hidden>
       <div class="control-titlebar">
-        <div><span class="eyebrow" id="dashboard-edition-label">Current edition · private dashboard</span><h1>Control Room</h1></div>
-        <button id="refresh-dashboard" class="button button-ghost">Yenile</button>
-      </div>
-
-      <div class="status-grid">
-        <article class="status-card"><span>Voting</span><strong id="voting-state">—</strong></article>
-        <article class="status-card"><span>Submitted</span><strong id="submitted-count">— / —</strong></article>
-        <article class="status-card"><span>Draft</span><strong id="draft-count">0</strong></article>
-        <article class="status-card"><span>Results</span><strong id="results-state">Gizli</strong></article>
-      </div>
-
-      <section class="control-actions">
         <div>
-          <span class="eyebrow">Edition controls</span>
-          <h2>Oylama durumu</h2>
-          <p>Sonuçları yayınlamadan önce oylamayı kapatmalısın.</p>
-          <p id="scheme-summary" class="secret-note">Voting scheme yükleniyor…</p>
+          <span class="control-kicker" id="dashboard-edition-label">Private contest operations</span>
+          <h1>Contest <em>Admin.</em></h1>
         </div>
-        <div class="action-buttons">
-          <button id="toggle-voting" class="button button-primary">—</button>
-          <button id="toggle-results" class="button button-ghost">—</button>
+        <div class="titlebar-tools">
+          <label class="edition-switcher" for="edition-select">
+            <span>Edition</span>
+            <select id="edition-select" aria-label="Yönetilecek edisyon"></select>
+          </label>
+          <button id="refresh-dashboard" class="admin-secondary">Yenile</button>
+          <button id="admin-logout" class="admin-text">Çıkış</button>
+        </div>
+      </div>
+
+      <div id="readonly-banner" class="readonly-banner" hidden>
+        <strong>Read-only archive mode.</strong>
+        <span>Arşivlenmiş edisyonlarda operasyon butonları kapalıdır; kayıtlar yalnızca denetim amacıyla görüntülenir.</span>
+      </div>
+
+      <section class="status-grid" aria-label="Edition operational status">
+        <article class="status-card" id="voting-card"><span>Voting</span><strong id="voting-state">—</strong><small id="voting-detail">—</small></article>
+        <article class="status-card"><span>Complete ballots</span><strong id="submitted-count">— / —</strong><small id="submitted-detail">submitted + structurally complete</small></article>
+        <article class="status-card"><span>Draft ballots</span><strong id="draft-count">—</strong><small>not included in live totals</small></article>
+        <article class="status-card"><span>Voter codes</span><strong id="code-count">— / —</strong><small id="code-detail">permanent delegation access</small></article>
+        <article class="status-card" id="results-card"><span>Results</span><strong id="results-state">—</strong><small id="results-detail">—</small></article>
+      </section>
+
+      <section class="operations-overview">
+        <article class="readiness-card" id="readiness-card">
+          <div class="readiness-copy">
+            <span class="control-kicker">Reveal readiness</span>
+            <h2 id="readiness-title">Kontrol ediliyor…</h2>
+            <p id="readiness-copy">Voting, ballot completeness ve result-lock durumu birlikte değerlendiriliyor.</p>
+          </div>
+          <div class="readiness-meter" aria-label="Tamamlanan delegasyon pusulaları">
+            <div class="readiness-meter-head"><span id="readiness-ratio">0 / 0</span><b id="readiness-percent">0%</b></div>
+            <div class="readiness-track"><div id="readiness-fill"></div></div>
+          </div>
+        </article>
+
+        <article class="scheme-card">
+          <div>
+            <span class="control-kicker">Voting scheme</span>
+            <h2 id="scheme-name">—</h2>
+            <p id="scheme-meta">Puan şeması yükleniyor…</p>
+          </div>
+          <div id="scheme-points" class="scheme-points" aria-label="Voting points"></div>
+        </article>
+      </section>
+
+      <section class="control-actions" aria-labelledby="operations-title">
+        <div class="control-actions-head">
+          <div>
+            <span class="control-kicker">Critical operations</span>
+            <h2 id="operations-title">Contest state.</h2>
+          </div>
+          <p>State-changing işlemler iki aşamalıdır. İlk butondan sonra ilgili ISC edisyonuna ait confirmation phrase’i elle yazarak işlemi ikinci kez onaylaman gerekir.</p>
+        </div>
+        <div class="operation-grid">
+          <article class="operation-card">
+            <span class="operation-index">01</span>
+            <div>
+              <small>Voting gate</small>
+              <h3 id="voting-action-title">Voting</h3>
+              <p id="voting-action-copy">Voting durumu yükleniyor…</p>
+            </div>
+            <button id="toggle-voting" class="operation-button">—</button>
+          </article>
+
+          <article class="operation-card reveal-card">
+            <span class="operation-index">02</span>
+            <div>
+              <small>Public reveal</small>
+              <h3 id="reveal-action-title">Results lock</h3>
+              <p id="reveal-action-copy">Reveal koşulları yükleniyor…</p>
+            </div>
+            <button id="reveal-results" class="operation-button reveal-button">—</button>
+          </article>
         </div>
       </section>
 
-      <section class="control-section">
-        <div class="control-heading"><div><span class="eyebrow">Ballot monitor</span><h2>Ülkelerin durumu</h2></div><span id="last-refresh" class="last-refresh"></span></div>
-        <div id="country-status-list" class="country-status-list"></div>
+      <section class="control-section" aria-labelledby="ballot-monitor-title">
+        <div class="control-heading">
+          <div><span class="control-kicker">Ballot monitor</span><h2 id="ballot-monitor-title">Delegasyon durumu.</h2></div>
+          <span id="last-refresh" class="last-refresh"></span>
+        </div>
+        <div class="country-status-head" aria-hidden="true"><span>RO</span><span>Delegation</span><span>Ballot</span><span>Scores</span><span>Voter code</span><span>Updated</span></div>
+        <div id="country-status-list" class="country-status-list" aria-live="polite"></div>
       </section>
 
-      <section class="control-section secret-section">
-        <div class="control-heading"><div><span class="eyebrow">Secret totals</span><h2>Canlı toplam puanlar</h2></div><span class="secret-pill">SADECE CONTROL ROOM</span></div>
-        <p class="secret-note">Bu tablo yalnızca <strong>gönderilmiş</strong> pusulaları toplar. Draft oylar toplam puana dahil edilmez. Sonuçlar yayınlanana kadar halka açık sitede gösterilmez.</p>
-        <div id="totals-table" class="totals-table"></div>
+      <section class="control-section secret-section" aria-labelledby="secret-totals-title">
+        <div class="control-heading">
+          <div><span class="control-kicker">Secret totals</span><h2 id="secret-totals-title">Live scoreboard.</h2></div>
+          <div class="secret-actions"><span class="secret-pill">CONTROL ROOM ONLY</span><button id="toggle-secret-totals" class="admin-secondary">Göster</button></div>
+        </div>
+        <p class="secret-note">Yalnızca <strong>submitted</strong> pusulalar toplanır; draft kayıtlar dahil edilmez. Reveal öncesinde bu tablo public siteye aktarılmaz.</p>
+        <div id="secret-cover" class="secret-cover"><strong>Backstage totals hidden</strong><span>Omuz üstü görünürlüğü azaltmak için toplamlar varsayılan olarak maskelenir.</span></div>
+        <div id="totals-table" class="totals-table" hidden></div>
+      </section>
+
+      <section class="control-section audit-section" aria-labelledby="audit-title">
+        <div class="control-heading">
+          <div><span class="control-kicker">Audit trail</span><h2 id="audit-title">State change history.</h2></div>
+          <span class="audit-note">No codes · no secrets · state changes only</span>
+        </div>
+        <div id="audit-log" class="audit-log" aria-live="polite"></div>
       </section>
     </section>
   </main>
+
+  <dialog id="confirm-dialog" class="admin-confirm-dialog">
+    <form method="dialog" class="admin-confirm-inner" id="confirm-form">
+      <button class="confirm-close" id="confirm-close" value="cancel" aria-label="Pencereyi kapat">×</button>
+      <span class="control-kicker" id="confirm-kicker">Critical operation</span>
+      <h2 id="confirm-title">İşlemi onayla.</h2>
+      <p id="confirm-copy"></p>
+      <div id="confirm-impact" class="confirm-impact"></div>
+      <label for="confirm-input">Devam etmek için aşağıdaki ifadeyi aynen yaz:</label>
+      <code id="confirm-phrase"></code>
+      <input id="confirm-input" type="text" autocomplete="off" spellcheck="false" />
+      <p id="confirm-error" class="confirm-error" aria-live="polite"></p>
+      <div class="confirm-buttons">
+        <button id="confirm-cancel" class="admin-secondary" value="cancel">Vazgeç</button>
+        <button id="confirm-submit" class="admin-danger" type="button" disabled>Onayla</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="admin-toast" class="admin-toast" role="status" aria-live="polite" hidden></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="kontrol.js"></script>
