@@ -1,4 +1,5 @@
 (() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const localArtwork = {
     '01':'01-lambrini-girls.webp',
     '02':'02-elise-de-lune.webp',
@@ -34,7 +35,24 @@
 
   const hero = document.getElementById('hero-feature-image');
   if (hero) {
+    const artist = document.getElementById('hero-feature-artist');
+    const country = document.getElementById('hero-feature-country');
+    const song = document.getElementById('hero-feature-song');
+    const order = document.getElementById('hero-feature-order');
+
+    const freezeHero = () => {
+      if (!reduceMotion) return false;
+      hero.onerror = null;
+      if (hero.getAttribute('src') !== localArtwork['03']) hero.setAttribute('src', localArtwork['03']);
+      if (artist) artist.textContent = 'Meira Omar & LIAMOO';
+      if (country) country.textContent = 'GÜNEŞ DİYARI';
+      if (song) song.textContent = 'MAZAA';
+      if (order) order.textContent = '03';
+      return true;
+    };
+
     const localizeHero = () => {
+      if (freezeHero()) return;
       const src = hero.getAttribute('src') || '';
       const videoId = Object.keys(videoToArtwork).find(id => src.includes(id));
       if (!videoId) return;
@@ -46,6 +64,9 @@
     };
     localizeHero();
     new MutationObserver(localizeHero).observe(hero, { attributes:true, attributeFilter:['src'] });
+    if (reduceMotion && artist) {
+      new MutationObserver(freezeHero).observe(artist, { childList:true, characterData:true, subtree:true });
+    }
   }
 
   function makeGate(iframe, provider) {
