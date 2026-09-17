@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="International Song Contest archive and voting platform" />
+  <title>ISC Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
+    <nav>
+      <a href="#edition">ISC 154</a>
+      <a href="#entries">Katılımcılar</a>
+      <a href="#archive">Edisyonlar</a>
+      <a class="nav-vote" href="#vote">Oy Ver</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" id="edition">
+      <div class="hero-kicker">154th Edition · Current edition</div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>ISC <span>154</span></h1>
+          <p class="hero-deck">Sekiz şarkı. Tek bir edisyon. Arşiv, dergi ve oylama aynı yerde.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#entries">Edisyonu keşfet</a>
+            <a class="button button-ghost" href="#vote">Oylama yakında</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="ISC 154 editorial artwork">
+          <div class="poster poster-a"><span>154</span></div>
+          <div class="poster poster-b"><span>8<br>ENTRY</span></div>
+          <div class="poster poster-c"><span>ISC</span></div>
+          <div class="hero-caption">CURRENT EDITION / 2026</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="marquee" aria-hidden="true">
+      <div>ROLipea · VERDE VERANO · MAZAA · NAILS · MI PATMUTYUN · ¿PORQUÉ TE VAS? · BOWLING ALLEY · CHATGPT ·</div>
+    </section>
+
+    <section class="section entries-section" id="entries">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Running order</span>
+          <h2>ISC 154 Katılımcıları</h2>
+        </div>
+        <p>Entry sayfaları, sanatçı dosyaları ve dergi içerikleri daha sonra burada açılacak.</p>
+      </div>
+      <div id="entry-grid" class="entry-grid"></div>
+    </section>
+
+    <section class="section vote-section" id="vote">
+      <div class="vote-card">
+        <span class="eyebrow">Voting room</span>
+        <h2>Oylama henüz açılmadı.</h2>
+        <p>Oy sistemi Supabase ile bağlandığında her seçmen kendi koduyla giriş yapacak; sonuçlar reveal anına kadar gizli kalacak.</p>
+        <button class="button button-disabled" disabled>Oy verme kapalı</button>
+      </div>
+    </section>
+
+    <section class="section archive-section" id="archive">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">The archive</span>
+          <h2>Tüm Edisyonlar</h2>
+        </div>
+        <p>ISC 154 bu arşivin başlangıcı. Eski edisyonlar eklendikçe bu alan kronolojik olarak büyüyecek.</p>
+      </div>
+      <div class="archive-row">
+        <article class="archive-card current">
+          <span>154</span>
+          <div>
+            <strong>ISC 154</strong>
+            <p>8 katılımcı · Oylama hazırlanıyor</p>
+          </div>
+        </article>
+        <article class="archive-card placeholder">
+          <span>153</span>
+          <div>
+            <strong>Arşiv kaydı bekleniyor</strong>
+            <p>İçerik daha sonra eklenecek.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">ISC</div>
+    <p>International Song Contest · Independent fictional contest archive</p>
+    <p>Built on GitHub Pages · Voting backend planned with Supabase</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
