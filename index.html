@@ -14,13 +14,15 @@
   <link rel="stylesheet" href="homepage-live.css" />
   <link rel="stylesheet" href="homepage-ticker.css" />
   <link rel="stylesheet" href="homepage-listen.css" />
+  <link rel="stylesheet" href="homepage-hierarchy.css" />
 </head>
 <body class="home-page">
   <header class="site-header">
     <a class="brand" href="#top"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
     <nav>
-      <a href="#listen">Dinle</a>
       <a href="#entries">Katılımcılar</a>
+      <a href="#listen">Dinle</a>
+      <a href="#stories">Stories</a>
       <a href="#archive">Arşiv</a>
       <a class="nav-vote" href="vote.html">Oy Ver</a>
     </nav>
@@ -63,13 +65,24 @@
       <div><strong>12</strong><span>MAKSİMUM PUAN</span></div>
     </section>
 
-    <section class="listen-stage" id="listen">
+    <section class="section entries-section" id="entries">
+      <div class="section-heading entertainment-heading">
+        <div>
+          <span class="eyebrow">Meet the acts</span>
+          <h2>Sahnede kim var?</h2>
+        </div>
+        <p>ISC 154’ün sekiz temsilcisi. Bir karta tıkla; sanatçı dosyasını, şarkının hikâyesini ve resmî videoyu aç.</p>
+      </div>
+      <div id="entry-grid" class="entry-grid"></div>
+    </section>
+
+    <section class="listen-stage compact-listen" id="listen">
       <div class="listen-stage-head">
         <div>
           <span class="eyebrow">Listen everywhere</span>
-          <h2>ISC 154’ü aç. Baştan sona dinle.</h2>
+          <h2>Şarkıları burada aç.</h2>
         </div>
-        <p class="listen-stage-intro">Sekiz entry tek yerde. YouTube’da videolarıyla izle ya da Spotify playlistini doğrudan buradan aç. İstersen aşağıdaki numaralardan doğrudan bir entry dosyasına geç.</p>
+        <p class="listen-stage-intro">Önce kadroyu gördün; şimdi sekiz entry’yi tek yerde dinle. YouTube’da videolarıyla izle ya da Spotify playlistini doğrudan buradan aç.</p>
       </div>
 
       <div class="listen-platforms">
@@ -156,25 +169,56 @@
       </div>
     </section>
 
-    <section class="section entries-section" id="entries">
-      <div class="section-heading entertainment-heading">
-        <div>
-          <span class="eyebrow">Meet the acts</span>
-          <h2>Sahnede kim var?</h2>
-        </div>
-        <p>ISC 154’ün sekiz temsilcisi. Bir karta tıkla; sanatçı dosyasını, şarkının hikâyesini ve resmî videoyu aç.</p>
-      </div>
-      <div id="entry-grid" class="entry-grid"></div>
-    </section>
-
     <section class="vote-splash" id="vote">
       <div class="vote-splash-number">12</div>
       <div class="vote-splash-copy">
         <span class="eyebrow">Your points. Your country.</span>
         <h2>Şimdi sıra sende.</h2>
-        <p>Ülkeni seç, voter code’unla doğrulan ve diğer yedi şarkıya 12, 10, 8, 6, 4, 2 ve 1 puanlarını dağıt. Kendi ülkene oy veremezsin.</p>
+        <p>Ülkeni seç, voter code’unla doğrulan ve diğer yedi şarkıyı sürükleyerek sırala. Listenin en üstündeki entry 12 puanı alır; ardından 10, 8, 6, 4, 2 ve 1 gelir.</p>
       </div>
       <a class="vote-big-button" href="vote.html">VOTING ROOM <span>→</span></a>
+    </section>
+
+    <section class="stories-section" id="stories">
+      <div class="stories-heading">
+        <div>
+          <span class="eyebrow">From the magazine</span>
+          <h2>Sahnenin arkasındaki hikâyeler.</h2>
+        </div>
+        <p>ISC yalnızca scoreboard değil. Entry dosyaları, sanatçı hikâyeleri ve bu edisyonun görsel dünyası burada kalıcı bir editorial arşive dönüşüyor.</p>
+      </div>
+
+      <div class="story-grid">
+        <a class="story-card" href="entries/03-meira-omar-liamoo.html">
+          <img src="03-meira-omar-liamoo.webp" alt="Meira Omar &amp; LIAMOO magazine artwork" loading="lazy" />
+          <div class="story-copy">
+            <span class="story-tag">Cover story</span>
+            <h3>MAZAA’nın dünyasına gir.</h3>
+            <p>GÜNEŞ DİYARI’nın Entry 03 dosyası: sanatçı, şarkı ve video tek yerde.</p>
+            <span class="story-arrow">Dosyayı aç →</span>
+          </div>
+        </a>
+
+        <a class="story-card" href="entries/05-hayq.html">
+          <img src="05-hayq.webp" alt="HAYQ magazine artwork" loading="lazy" />
+          <div class="story-copy">
+            <span class="story-tag">Entry file</span>
+            <h3>KIRMIZI: HAYQ</h3>
+            <p>“Mi Patmutyun”un ISC 154 içindeki yeri ve tam entry dosyası.</p>
+            <span class="story-arrow">Oku →</span>
+          </div>
+        </a>
+
+        <a class="story-card" href="entries/08-galena.html">
+          <img src="08-galena.webp" alt="GALENA magazine artwork" loading="lazy" />
+          <div class="story-copy">
+            <span class="story-tag">Spotlight</span>
+            <h3>GALENA · CHATGPT</h3>
+            <p>UZANMIŞIM KUMSALA’nın Entry 08 spotlight dosyası.</p>
+            <span class="story-arrow">Keşfet →</span>
+          </div>
+        </a>
+      </div>
     </section>
 
     <section class="section archive-section" id="archive">
@@ -209,7 +253,7 @@
   <footer>
     <div class="footer-brand">ISC</div>
     <p>International Song Contest</p>
-    <p>Music · Entries · Voting · Results · Archive</p>
+    <p>Music · Entries · Voting · Stories · Results · Archive</p>
   </footer>
 
   <script src="app.js"></script>
