@@ -8,9 +8,10 @@ let countries = [];
 let entries = [];
 let activeCountry = null;
 let activeCode = '';
+let ranking = [];
 let scores = {};
-let selectedPoint = null;
 let saveTimer = null;
+let sortable = null;
 
 const countrySelect = document.getElementById('country-select');
 const codeWrap = document.getElementById('code-wrap');
@@ -20,10 +21,10 @@ const loginMessage = document.getElementById('login-message');
 const ballotStep = document.getElementById('ballot-step');
 const ballotCountry = document.getElementById('ballot-country');
 const ballotList = document.getElementById('ballot-list');
+const selfEntryNote = document.getElementById('self-entry-note');
 const saveStatus = document.getElementById('save-status');
 const ballotMessage = document.getElementById('ballot-message');
 const submitBallot = document.getElementById('submit-ballot');
-const pointsBank = document.getElementById('points-bank');
 const progressCount = document.getElementById('progress-count');
 const progressFill = document.getElementById('progress-fill');
 const confirmDialog = document.getElementById('confirm-dialog');
@@ -51,8 +52,6 @@ async function init() {
     option.textContent = c.name;
     countrySelect.appendChild(option);
   });
-
-  renderPointsBank();
 }
 
 countrySelect.addEventListener('change', () => {
@@ -83,135 +82,148 @@ enterVoting.addEventListener('click', async () => {
 
   activeCountry = countries.find(c => c.slug === slug);
   activeCode = code;
-  scores = {};
-  selectedPoint = null;
-  (data.scores || []).forEach(s => scores[String(s.entry_id)] = Number(s.points));
+
+  const ownEntry = entries.find(e => e.country_id === activeCountry.id);
+  const rivals = entries.filter(e => !ownEntry || e.id !== ownEntry.id);
+  const savedScores = new Map((data.scores || []).map(s => [Number(s.entry_id), Number(s.points)]));
+
+  const rankedSaved = rivals
+    .filter(e => savedScores.has(e.id))
+    .sort((a,b) => savedScores.get(b.id) - savedScores.get(a.id));
+
+  const unranked = rivals
+    .filter(e => !savedScores.has(e.id))
+    .sort((a,b) => a.running_order - b.running_order);
+
+  ranking = [...rankedSaved, ...unranked];
+  scores = deriveScores();
 
   ballotCountry.textContent = activeCountry.name;
-  renderPointsBank();
+  renderSelfEntry(ownEntry);
   renderBallot();
   updateProgress();
   updateSubmitState();
   ballotStep.hidden = false;
+
   loginMessage.textContent = data.status === 'submitted'
-    ? 'Daha önce gönderilmiş pusulan yüklendi.'
-    : 'Doğrulandı. Pusulan hazır.';
+    ? 'Daha önce gönderilmiş sıralaman yüklendi.'
+    : (data.scores || []).length
+      ? 'Kaydedilmiş sıralaman yüklendi.'
+      : 'Doğrulandı. Kartları sürükleyerek sıralamanı oluştur.';
 
   ballotStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
-function renderPointsBank() {
-  if (!pointsBank) return;
-  const used = Object.values(scores);
-  pointsBank.innerHTML = '';
+function renderSelfEntry(ownEntry) {
+  if (!ownEntry) {
+    selfEntryNote.innerHTML = '';
+    return;
+  }
+  selfEntryNote.innerHTML = `
+    <div class="self-entry-order">${String(ownEntry.running_order).padStart(2,'0')}</div>
+    <div>
+      <strong>${escapeHtml(ownEntry.artist_name)}</strong>
+      <small>${escapeHtml(ownEntry.song_title)}</small>
+    </div>
+    <div class="self-entry-lock">KENDİ ENTRY’N · SIRALAMAYA DAHİL DEĞİL</div>
+  `;
+}
 
-  POINTS.forEach(point => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'point-chip';
-    btn.textContent = point;
-    btn.dataset.point = point;
-
-    if (used.includes(point)) btn.classList.add('used');
-    if (selectedPoint === point) btn.classList.add('selected');
-
-    btn.addEventListener('click', () => {
-      selectedPoint = selectedPoint === point ? null : point;
-      renderPointsBank();
-      highlightSelectableRows();
-    });
-
-    pointsBank.appendChild(btn);
+function deriveScores() {
+  const next = {};
+  ranking.forEach((entry, index) => {
+    next[String(entry.id)] = POINTS[index];
   });
+  return next;
 }
 
 function renderBallot() {
-  ballotList.innerHTML = '';
-  const ownEntry = entries.find(e => e.country_id === activeCountry.id);
+  if (sortable) {
+    sortable.destroy();
+    sortable = null;
+  }
 
-  entries.forEach(entry => {
-    const row = document.createElement('button');
-    row.type = 'button';
-    row.className = 'ballot-row';
-    row.dataset.entryId = entry.id;
-
-    const isOwn = ownEntry && entry.id === ownEntry.id;
-    const assigned = scores[String(entry.id)] || null;
-
-    if (isOwn) row.classList.add('self-row');
-    if (assigned) row.classList.add('assigned');
-
-    row.innerHTML = `
-      <div class="ballot-order">${String(entry.running_order).padStart(2,'0')}</div>
-      <div class="ballot-entry">
+  ballotList.innerHTML = ranking.map((entry, index) => `
+    <div class="ranking-row" data-entry-id="${entry.id}">
+      <div class="rank-score">${POINTS[index]}</div>
+      <div class="rank-entry-order">${String(entry.running_order).padStart(2,'0')}</div>
+      <div class="rank-entry-copy">
         <strong>${escapeHtml(entry.artist_name)}</strong>
         <span>${escapeHtml(entry.song_title)}</span>
-        ${isOwn ? '<div class="self-label">KENDİ ENTRY’N · OY VERİLEMEZ</div>' : ''}
       </div>
-      <div class="score-badge">${assigned || '—'}</div>
-    `;
+      <div class="drag-grip" aria-label="Sürükle ve sırala">
+        <div class="rank-move-buttons">
+          <button type="button" class="move-up" aria-label="Yukarı taşı" ${index === 0 ? 'disabled' : ''}>↑</button>
+          <button type="button" class="move-down" aria-label="Aşağı taşı" ${index === ranking.length - 1 ? 'disabled' : ''}>↓</button>
+        </div>
+        <span aria-hidden="true">⋮⋮</span>
+      </div>
+    </div>
+  `).join('');
 
-    if (!isOwn) {
-      row.addEventListener('click', () => assignPoint(entry.id));
-    }
-
-    ballotList.appendChild(row);
+  ballotList.querySelectorAll('.move-up').forEach((button, index) => {
+    button.addEventListener('click', (event) => {
+      event.stopPropagation();
+      moveEntry(index, index - 1);
+    });
   });
 
-  highlightSelectableRows();
+  ballotList.querySelectorAll('.move-down').forEach((button, index) => {
+    button.addEventListener('click', (event) => {
+      event.stopPropagation();
+      moveEntry(index, index + 1);
+    });
+  });
+
+  if (window.Sortable) {
+    sortable = new Sortable(ballotList, {
+      animation: 190,
+      direction: 'vertical',
+      ghostClass: 'is-ghost',
+      chosenClass: 'is-dragging',
+      dragClass: 'is-dragging',
+      handle: '.ranking-row',
+      delay: 0,
+      delayOnTouchOnly: true,
+      touchStartThreshold: 4,
+      onEnd: syncRankingFromDom
+    });
+  }
 }
 
-function assignPoint(entryId) {
-  const key = String(entryId);
-  const current = scores[key] || null;
+function moveEntry(fromIndex, toIndex) {
+  if (toIndex < 0 || toIndex >= ranking.length) return;
+  const [moved] = ranking.splice(fromIndex, 1);
+  ranking.splice(toIndex, 0, moved);
+  afterRankingChange();
+}
 
-  if (!selectedPoint) {
-    if (current) {
-      delete scores[key];
-      scheduleAutosave();
-      renderPointsBank();
-      renderBallot();
-      updateProgress();
-      updateSubmitState();
-    }
-    return;
-  }
+function syncRankingFromDom() {
+  const ids = [...ballotList.querySelectorAll('.ranking-row')].map(row => Number(row.dataset.entryId));
+  ranking = ids.map(id => entries.find(entry => entry.id === id)).filter(Boolean);
+  afterRankingChange();
+}
 
-  for (const [otherEntryId, point] of Object.entries(scores)) {
-    if (point === selectedPoint && otherEntryId !== key) {
-      delete scores[otherEntryId];
-    }
-  }
-
-  scores[key] = selectedPoint;
-  selectedPoint = null;
-
-  renderPointsBank();
+function afterRankingChange() {
+  scores = deriveScores();
   renderBallot();
   updateProgress();
   updateSubmitState();
   scheduleAutosave();
 }
 
-function highlightSelectableRows() {
-  ballotList.querySelectorAll('.ballot-row:not(.self-row)').forEach(row => {
-    row.style.outline = selectedPoint ? '1px solid rgba(216,255,62,.22)' : 'none';
-  });
-}
-
 function updateProgress() {
-  const count = Object.keys(scores).length;
-  progressCount.textContent = count;
-  progressFill.style.width = `${(count / 7) * 100}%`;
+  progressCount.textContent = ranking.length;
+  progressFill.style.width = ranking.length === 7 ? '100%' : `${(ranking.length / 7) * 100}%`;
 }
 
 function updateSubmitState() {
   const vals = Object.values(scores);
-  const valid = vals.length === 7 && new Set(vals).size === 7 && POINTS.every(p => vals.includes(p));
+  const valid = ranking.length === 7 && vals.length === 7 && new Set(vals).size === 7 && POINTS.every(p => vals.includes(p));
   submitBallot.disabled = !valid;
   ballotMessage.textContent = valid
-    ? 'Pusulan tamamlandı. Son kontrol için gönderebilirsin.'
-    : `${7 - vals.length} puan daha dağıtmalısın.`;
+    ? 'Sıralaman hazır. Göndermeden önce son kontrolü açabilirsin.'
+    : 'Yedi rakip entry’nin tamamı sıralamada olmalı.';
 }
 
 function scheduleAutosave() {
@@ -221,9 +233,9 @@ function scheduleAutosave() {
 }
 
 async function saveBallot(finalize) {
-  const payload = Object.entries(scores).map(([entry_id, points]) => ({
-    entry_id: Number(entry_id),
-    points
+  const payload = ranking.map((entry, index) => ({
+    entry_id: Number(entry.id),
+    points: POINTS[index]
   }));
 
   const { error } = await db.rpc('isc154_save_ballot', {
@@ -271,17 +283,10 @@ confirmSubmit.addEventListener('click', async () => {
 });
 
 function buildConfirmSummary() {
-  const sorted = Object.entries(scores)
-    .map(([entryId, points]) => ({
-      entry: entries.find(e => e.id === Number(entryId)),
-      points
-    }))
-    .sort((a,b) => b.points - a.points);
-
-  confirmSummary.innerHTML = sorted.map(({entry, points}) => `
+  confirmSummary.innerHTML = ranking.map((entry, index) => `
     <div class="confirm-row">
       <span>${escapeHtml(entry.artist_name)} · ${escapeHtml(entry.song_title)}</span>
-      <strong>${points}</strong>
+      <strong>${POINTS[index]}</strong>
     </div>
   `).join('');
 }
