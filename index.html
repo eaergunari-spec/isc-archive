@@ -3,24 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="International Song Contest — ISC 154 live edition, entries, voting, results and archive." />
+  <meta name="description" content="International Song Contest — current edition, entries, voting, results and archive." />
   <meta name="theme-color" content="#0b0a0e" />
   <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="International Song Contest" />
-  <meta property="og:title" content="ISC 154 — International Song Contest" />
-  <meta property="og:description" content="8 ülke. 8 şarkı. ISC 154’ü dinle, katılımcıları keşfet ve resmi oylamaya katıl." />
+  <meta property="og:title" content="International Song Contest — Current Edition" />
+  <meta property="og:description" content="Güncel ISC edisyonunu dinle, katılımcıları keşfet ve resmi oylamaya katıl." />
   <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/" />
-  <meta property="og:image" content="https://eaergunari-spec.github.io/isc-archive/03-meira-omar-liamoo.webp" />
-  <meta property="og:image:type" content="image/webp" />
-  <meta property="og:image:alt" content="ISC 154 — International Song Contest" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ISC 154 — International Song Contest" />
-  <meta name="twitter:description" content="8 ülke. 8 şarkı. ISC 154 şimdi yayında." />
-  <meta name="twitter:image" content="https://eaergunari-spec.github.io/isc-archive/03-meira-omar-liamoo.webp" />
-  <title>ISC 154 — International Song Contest</title>
-  <link rel="preload" as="image" href="03-meira-omar-liamoo.webp" />
+  <meta property="og:image:alt" content="International Song Contest" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="International Song Contest — Current Edition" />
+  <meta name="twitter:description" content="Güncel ISC edisyonu şimdi yayında." />
+  <title>International Song Contest — Current Edition</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
@@ -40,7 +36,7 @@
       <a href="#entries">Katılımcılar</a>
       <a href="#listen">Dinle</a>
       <a href="#stories">Stories</a>
-      <a href="#archive">Arşiv</a>
+      <a href="archive.html">Arşiv</a>
       <a class="nav-vote" href="vote.html">Oy Ver</a>
     </nav>
   </header>
@@ -48,30 +44,30 @@
   <main id="top">
     <section class="live-hero" id="edition">
       <div class="live-hero-media" aria-hidden="true">
-        <img id="hero-feature-image" src="03-meira-omar-liamoo.webp" alt="" decoding="async" />
+        <img id="hero-feature-image" alt="" decoding="async" />
         <div class="live-hero-wash"></div>
-        <div class="hero-frame-label">ISC 154 / CURRENT EDITION</div>
-        <div class="hero-frame-count"><span id="hero-feature-order">03</span><small>/08</small></div>
+        <div class="hero-frame-label" id="hero-frame-label">CURRENT EDITION</div>
+        <div class="hero-frame-count"><span id="hero-feature-order">—</span><small id="hero-entry-count">/—</small></div>
       </div>
 
       <div class="live-hero-content">
-        <div class="live-pill"><span></span> Voting open now</div>
-        <p class="hero-kicker">International Song Contest · Edition 154</p>
-        <h1>ISC <em>154</em></h1>
-        <p class="live-hero-deck">8 ülke. 8 şarkı. Gecenin kaderi oylarında.</p>
+        <div class="live-pill" id="home-live-pill"><span></span> Loading current edition</div>
+        <p class="hero-kicker" id="home-hero-kicker">International Song Contest · Current Edition</p>
+        <h1>ISC <em id="home-edition-number">—</em></h1>
+        <p class="live-hero-deck" id="home-hero-deck">Güncel edisyon yükleniyor…</p>
         <div class="live-hero-actions">
-          <a class="cta cta-play" href="#listen"><span class="play-icon">▶</span> 8 şarkıyı dinle</a>
+          <a class="cta cta-play" href="#listen"><span class="play-icon">▶</span> <span id="listen-cta-label">Şarkıları dinle</span></a>
           <a class="cta cta-vote" href="vote.html">Oy ver</a>
           <a class="cta cta-text" href="#entries">Katılımcıları keşfet ↓</a>
         </div>
         <div class="hero-feature-copy">
           <span>Şimdi öne çıkan</span>
-          <strong id="hero-feature-artist">Meira Omar &amp; LIAMOO</strong>
-          <small><b id="hero-feature-country">GÜNEŞ DİYARI</b> · <span id="hero-feature-song">MAZAA</span></small>
+          <strong id="hero-feature-artist">—</strong>
+          <small><b id="hero-feature-country">—</b> · <span id="hero-feature-song">—</span></small>
         </div>
       </div>
 
-      <div class="hero-side-note">RESULTS HIDDEN UNTIL REVEAL</div>
+      <div class="hero-side-note">RESULTS STATUS LOADING</div>
     </section>
 
     <section class="section entries-section" id="entries">
@@ -80,9 +76,9 @@
           <span class="eyebrow">Meet the acts</span>
           <h2>Sahnede kim var?</h2>
         </div>
-        <p>ISC 154’ün sekiz temsilcisi. Bir karta tıkla; sanatçı dosyasını, şarkının hikâyesini ve resmî videoyu aç.</p>
+        <p id="entries-intro">Güncel edisyonun katılımcıları yükleniyor…</p>
       </div>
-      <div id="entry-grid" class="entry-grid"></div>
+      <div id="entry-grid" class="entry-grid" aria-live="polite"></div>
     </section>
 
     <section class="listen-stage compact-listen" id="listen">
@@ -91,112 +87,76 @@
           <span class="eyebrow">Listen everywhere</span>
           <h2>Şarkıları burada aç.</h2>
         </div>
-        <p class="listen-stage-intro">Önce kadroyu gördün; şimdi sekiz entry’yi tek yerde dinle. YouTube’da videolarıyla izle ya da Spotify playlistini doğrudan buradan aç.</p>
+        <p class="listen-stage-intro" id="listen-intro">Güncel edisyon playlistleri yükleniyor…</p>
       </div>
 
-      <div class="listen-platforms">
-        <article class="platform-card youtube-card">
+      <div class="listen-platforms" id="listen-platforms">
+        <article class="platform-card youtube-card" id="youtube-platform-card">
           <div class="platform-topline">
             <div class="platform-brand"><span class="platform-dot"></span> YouTube playlist</div>
-            <div class="platform-meta">8 videos · ISC 154</div>
+            <div class="platform-meta" id="youtube-platform-meta">Loading…</div>
           </div>
-          <div class="youtube-frame-wrap embed-gate" data-embed-provider="YouTube" data-embed-src="https://www.youtube.com/embed/videoseries?list=PLPbHH_7WOiG0" data-embed-title="ISC 154 YouTube playlist">
-            <button class="embed-gate-button" type="button" aria-label="YouTube playerını yükle">
-              <img src="03-meira-omar-liamoo.webp" alt="" aria-hidden="true">
+          <div class="youtube-frame-wrap embed-gate" id="youtube-embed-host">
+            <button class="embed-gate-button" type="button" id="youtube-embed-button" aria-label="YouTube playerını yükle">
               <span class="embed-gate-copy">
                 <i class="embed-gate-play" aria-hidden="true">▶</i>
-                <b>ISC 154 playlistini aç</b>
+                <b id="youtube-embed-title">YouTube playlistini aç</b>
                 <span>YouTube player yalnızca tıkladığında yüklenir.</span>
               </span>
             </button>
           </div>
           <div class="platform-footer">
             <div class="platform-footer-copy">
-              <strong>Watch all eight</strong>
-              <span>Official ISC 154 running order</span>
+              <strong>Watch the running order</strong>
+              <span id="youtube-footer-copy">Official current edition playlist</span>
             </div>
-            <a class="platform-open" href="https://www.youtube.com/watch?v=20TDd19oA1Q&list=PLPbHH_7WOiG0" target="_blank" rel="noopener">YouTube’da aç ↗</a>
+            <a class="platform-open" id="youtube-open-link" href="#" target="_blank" rel="noopener">YouTube’da aç ↗</a>
           </div>
         </article>
 
-        <article class="platform-card spotify-card">
+        <article class="platform-card spotify-card" id="spotify-platform-card">
           <div class="platform-topline">
             <div class="platform-brand"><span class="platform-dot"></span> Spotify playlist</div>
-            <div class="platform-meta">ISC 154 · Official playlist</div>
+            <div class="platform-meta" id="spotify-platform-meta">Loading…</div>
           </div>
-          <div class="spotify-embed-wrap embed-gate" data-embed-provider="Spotify" data-embed-src="https://open.spotify.com/embed/playlist/4hB3qRsl2LdarN78KrNtxM?utm_source=generator" data-embed-title="ISC 154 Spotify playlist">
-            <button class="embed-gate-button" type="button" aria-label="Spotify playerını yükle">
+          <div class="spotify-embed-wrap embed-gate" id="spotify-embed-host">
+            <button class="embed-gate-button" type="button" id="spotify-embed-button" aria-label="Spotify playerını yükle">
               <span class="embed-gate-copy">
                 <i class="embed-gate-play" aria-hidden="true">▶</i>
-                <b>Spotify playerını aç</b>
-                <span>Spotify embed yalnızca tıkladığında yüklenir.</span>
+                <b id="spotify-embed-title">Spotify playlistini aç</b>
+                <span>Spotify player yalnızca tıkladığında yüklenir.</span>
               </span>
             </button>
           </div>
           <div class="platform-footer">
             <div class="platform-footer-copy">
               <strong>Press play</strong>
-              <span>8 songs · one edition</span>
+              <span id="spotify-footer-copy">Official current edition playlist</span>
             </div>
-            <a class="platform-open" href="https://open.spotify.com/playlist/4hB3qRsl2LdarN78KrNtxM?si=B4vJLFFPQ1ei8DyaEHXOMg" target="_blank" rel="noopener">Spotify’da aç ↗</a>
+            <a class="platform-open" id="spotify-open-link" href="#" target="_blank" rel="noopener">Spotify’da aç ↗</a>
           </div>
         </article>
       </div>
 
-      <div class="listen-quickrow" aria-label="Entry quick links">
-        <a href="entries/01-lambrini-girls.html"><b>01</b><span>Lambrini Girls</span></a>
-        <a href="entries/02-elise-de-lune.html"><b>02</b><span>Élise de Lune</span></a>
-        <a href="entries/03-meira-omar-liamoo.html"><b>03</b><span>Meira &amp; LIAMOO</span></a>
-        <a href="entries/04-saint-levant.html"><b>04</b><span>Saint Levant</span></a>
-        <a href="entries/05-hayq.html"><b>05</b><span>HAYQ</span></a>
-        <a href="entries/06-laura-pausini.html"><b>06</b><span>Laura Pausini</span></a>
-        <a href="entries/07-audrey-hobert.html"><b>07</b><span>Audrey Hobert</span></a>
-        <a href="entries/08-galena.html"><b>08</b><span>GALENA</span></a>
-      </div>
+      <div class="listen-quickrow" id="listen-quickrow" aria-label="Entry quick links"></div>
     </section>
 
-    <section class="isc-ticker" aria-label="ISC 154 live music feed">
-      <div class="ticker-label">ISC 154 LIVE</div>
+    <section class="isc-ticker" id="live-ticker" aria-label="ISC current edition live music feed">
+      <div class="ticker-label" id="ticker-label">ISC LIVE</div>
       <div class="ticker-viewport">
         <div class="ticker-track">
-          <div class="ticker-group">
-            <div class="ticker-item"><span class="ticker-no">01</span><span class="ticker-country">ROLIPEA</span><span class="ticker-artist">Lambrini Girls</span><span class="ticker-song">“Cuntology 101”</span></div>
-            <div class="ticker-item"><span class="ticker-no">02</span><span class="ticker-country">VERDE VERANO</span><span class="ticker-artist">Élise de Lune</span><span class="ticker-song">“Bonne Nuit”</span></div>
-            <div class="ticker-item ticker-status lime"><span class="ticker-status-badge">VOTING OPEN</span><span class="ticker-status-text">7 puan seviyesi · 1 oy pusulası</span></div>
-            <div class="ticker-item"><span class="ticker-no">03</span><span class="ticker-country">GÜNEŞ DİYARI</span><span class="ticker-artist">Meira Omar &amp; LIAMOO</span><span class="ticker-song">“MAZAA”</span></div>
-            <div class="ticker-item"><span class="ticker-no">04</span><span class="ticker-country">SUPERLAND</span><span class="ticker-artist">Saint Levant</span><span class="ticker-song">“Nails”</span></div>
-            <div class="ticker-item ticker-status"><span class="ticker-status-badge">8 SONGS</span><span class="ticker-status-text">ISC 154 playlist şimdi yayında</span></div>
-            <div class="ticker-item"><span class="ticker-no">05</span><span class="ticker-country">KIRMIZI</span><span class="ticker-artist">HAYQ</span><span class="ticker-song">“Mi Patmutyun”</span></div>
-            <div class="ticker-item"><span class="ticker-no">06</span><span class="ticker-country">CABURYA</span><span class="ticker-artist">Laura Pausini</span><span class="ticker-song">“¿PORQUÉ TE VAS?”</span></div>
-            <div class="ticker-item ticker-status pink"><span class="ticker-status-badge">RESULTS LOCKED</span><span class="ticker-status-text">Reveal anına kadar toplam puanlar gizli</span></div>
-            <div class="ticker-item"><span class="ticker-no">07</span><span class="ticker-country">STJOHN</span><span class="ticker-artist">Audrey Hobert</span><span class="ticker-song">“Bowling alley”</span></div>
-            <div class="ticker-item"><span class="ticker-no">08</span><span class="ticker-country">UZANMIŞIM KUMSALA</span><span class="ticker-artist">GALENA</span><span class="ticker-song">“CHATGPT”</span></div>
-            <div class="ticker-item ticker-status lime"><span class="ticker-status-badge">12 POINTS</span><span class="ticker-status-text">Bir entry’nin alabileceği en yüksek tek oy</span></div>
-          </div>
-          <div class="ticker-group" aria-hidden="true">
-            <div class="ticker-item"><span class="ticker-no">01</span><span class="ticker-country">ROLIPEA</span><span class="ticker-artist">Lambrini Girls</span><span class="ticker-song">“Cuntology 101”</span></div>
-            <div class="ticker-item"><span class="ticker-no">02</span><span class="ticker-country">VERDE VERANO</span><span class="ticker-artist">Élise de Lune</span><span class="ticker-song">“Bonne Nuit”</span></div>
-            <div class="ticker-item ticker-status lime"><span class="ticker-status-badge">VOTING OPEN</span><span class="ticker-status-text">7 puan seviyesi · 1 oy pusulası</span></div>
-            <div class="ticker-item"><span class="ticker-no">03</span><span class="ticker-country">GÜNEŞ DİYARI</span><span class="ticker-artist">Meira Omar &amp; LIAMOO</span><span class="ticker-song">“MAZAA”</span></div>
-            <div class="ticker-item"><span class="ticker-no">04</span><span class="ticker-country">SUPERLAND</span><span class="ticker-artist">Saint Levant</span><span class="ticker-song">“Nails”</span></div>
-            <div class="ticker-item ticker-status"><span class="ticker-status-badge">8 SONGS</span><span class="ticker-status-text">ISC 154 playlist şimdi yayında</span></div>
-            <div class="ticker-item"><span class="ticker-no">05</span><span class="ticker-country">KIRMIZI</span><span class="ticker-artist">HAYQ</span><span class="ticker-song">“Mi Patmutyun”</span></div>
-            <div class="ticker-item"><span class="ticker-no">06</span><span class="ticker-country">CABURYA</span><span class="ticker-artist">Laura Pausini</span><span class="ticker-song">“¿PORQUÉ TE VAS?”</span></div>
-            <div class="ticker-item ticker-status pink"><span class="ticker-status-badge">RESULTS LOCKED</span><span class="ticker-status-text">Reveal anına kadar toplam puanlar gizli</span></div>
-            <div class="ticker-item"><span class="ticker-no">07</span><span class="ticker-country">STJOHN</span><span class="ticker-artist">Audrey Hobert</span><span class="ticker-song">“Bowling alley”</span></div>
-            <div class="ticker-item"><span class="ticker-no">08</span><span class="ticker-country">UZANMIŞIM KUMSALA</span><span class="ticker-artist">GALENA</span><span class="ticker-song">“CHATGPT”</span></div>
-            <div class="ticker-item ticker-status lime"><span class="ticker-status-badge">12 POINTS</span><span class="ticker-status-text">Bir entry’nin alabileceği en yüksek tek oy</span></div>
-          </div>
+          <div class="ticker-group"></div>
+          <div class="ticker-group" aria-hidden="true"></div>
         </div>
       </div>
     </section>
 
     <section class="vote-splash" id="vote">
-      <div class="vote-splash-number">12</div>
+      <div class="vote-splash-number" id="vote-splash-number">—</div>
       <div class="vote-splash-copy">
         <span class="eyebrow">Your points. Your country.</span>
         <h2>Şimdi sıra sende.</h2>
-        <p>Ülkeni seç, voter code’unla doğrulan ve diğer yedi şarkıyı sürükleyerek sırala. Listenin en üstündeki entry 12 puanı alır; ardından 10, 8, 6, 4, 2 ve 1 gelir.</p>
+        <p id="vote-splash-copy">Güncel edisyonun puanlama sistemi yükleniyor…</p>
       </div>
       <a class="vote-big-button" href="vote.html">VOTING ROOM <span>→</span></a>
     </section>
@@ -204,10 +164,10 @@
     <section class="stories-section" id="stories">
       <div class="stories-heading">
         <div>
-          <span class="eyebrow">From the magazine</span>
+          <span class="eyebrow">From the archive magazine</span>
           <h2>Sahnenin arkasındaki hikâyeler.</h2>
         </div>
-        <p>ISC yalnızca scoreboard değil. Entry dosyaları, sanatçı hikâyeleri ve bu edisyonun görsel dünyası burada kalıcı bir editorial arşive dönüşüyor.</p>
+        <p>ISC yalnızca scoreboard değil. Entry dosyaları, sanatçı hikâyeleri ve geçmiş edisyonların görsel dünyası kalıcı editorial arşivde yaşamaya devam ediyor.</p>
       </div>
 
       <div class="story-grid">
@@ -226,7 +186,7 @@
           <div class="story-copy">
             <span class="story-tag">Entry file</span>
             <h3>KIRMIZI: HAYQ</h3>
-            <p>“Mi Patmutyun”un ISC 154 içindeki yeri ve tam entry dosyası.</p>
+            <p>“Mi Patmutyun”un tam entry dosyası ve editorial kaydı.</p>
             <span class="story-arrow">Oku →</span>
           </div>
         </a>
@@ -249,25 +209,25 @@
           <span class="eyebrow">The archive</span>
           <h2>Her edisyon bir dönem.</h2>
         </div>
-        <p>ISC 154 canlı edisyon. Geçmiş yarışmalar eklendikçe sanatçılar, sonuçlar, oylar ve dergi dosyaları burada kalıcı olacak.</p>
+        <p id="archive-intro">Güncel edisyon ve geçmiş yarışmaların kalıcı kayıtları arşivde bir arada.</p>
       </div>
       <div class="archive-row">
-        <article class="archive-card current">
-          <span>154</span>
+        <a class="archive-card current" id="current-archive-card" href="archive.html">
+          <span id="archive-current-number">—</span>
           <div>
             <small>NOW PLAYING</small>
-            <strong>ISC 154</strong>
-            <p>8 katılımcı · Oylama açık</p>
+            <strong id="archive-current-title">Current edition</strong>
+            <p id="archive-current-meta">Loading…</p>
           </div>
-        </article>
-        <article class="archive-card placeholder">
+        </a>
+        <a class="archive-card placeholder" href="archive.html">
           <span>∞</span>
           <div>
-            <small>THE STORY CONTINUES</small>
+            <small>THE PERMANENT RECORD</small>
             <strong>ISC Archive</strong>
-            <p>Geçmiş edisyonlar yakında eklenecek.</p>
+            <p>Tüm arşivlenmiş edisyonları, sonuçları ve voting history’yi aç.</p>
           </div>
-        </article>
+        </a>
       </div>
     </section>
   </main>
@@ -279,6 +239,5 @@
   </footer>
 
   <script src="app.js"></script>
-  <script src="homepage-polish.js"></script>
 </body>
 </html>
