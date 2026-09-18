@@ -61,7 +61,7 @@
   }
 
   function editionHref(edition) {
-    return edition.status === 'current' ? 'index.html' : `editions/${encodeURIComponent(edition.edition_number)}/`;
+    return `editions/${encodeURIComponent(edition.edition_number)}/`;
   }
 
   function recordMarkup(edition) {
@@ -368,7 +368,10 @@
 
       editions = payload;
       const current = editions.find(edition => edition.status === 'current');
-      if (currentNav && current) currentNav.textContent = current.title || `ISC ${current.edition_number}`;
+      if (currentNav && current) {
+        currentNav.textContent = current.title || `ISC ${current.edition_number}`;
+        currentNav.href = `editions/${encodeURIComponent(current.edition_number)}/`;
+      }
 
       renderSummary();
       buildFilterOptions();
