@@ -248,6 +248,17 @@ body.edition-hub-body{margin:0;background:var(--hub-cream);color:var(--hub-ink);
 .hub-winner small{color:var(--hub-lime);font-size:7px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
 .hub-winner strong{display:block;margin-top:5px;font-family:"Libre Caslon Display",serif;font-size:34px;font-weight:400}
 .hub-winner span{display:block;margin-top:4px;color:rgba(255,255,255,.6);font-size:10px}
+.hub-final-scoreboard{display:grid;gap:6px}
+.hub-final-row{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 12px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.025);color:#fff;text-decoration:none}
+.hub-final-row:hover{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.05)}
+.hub-final-row.winner{border-color:rgba(216,255,62,.3);background:rgba(216,255,62,.07)}
+.hub-final-place{font-family:"Libre Caslon Display",serif;font-size:25px;color:rgba(255,255,255,.45)}
+.hub-final-row.winner .hub-final-place{color:var(--hub-lime)}
+.hub-final-act{min-width:0}
+.hub-final-act b{display:block;font-size:9px;letter-spacing:.08em;text-transform:uppercase}
+.hub-final-act small{display:block;margin-top:3px;color:rgba(255,255,255,.5);font-size:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hub-final-row>strong{display:flex;align-items:baseline;gap:3px;font-family:"Libre Caslon Display",serif;font-size:23px;font-weight:400}
+.hub-final-row>strong small{color:rgba(255,255,255,.42);font:700 6px/1 "DM Sans",sans-serif;text-transform:uppercase;letter-spacing:.1em}
 
 .hub-explore{padding-top:70px;padding-bottom:110px}
 .hub-explore-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
