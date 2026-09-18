@@ -1242,3 +1242,53 @@ body.story-sun{
   .story-sun .cappadocia-strip-grid{grid-template-columns:1fr 1fr}
   .story-sun .cappadocia-strip-grid img:first-child{grid-column:1/-1;aspect-ratio:16/10}
 }
+
+
+/* ------------------------------------------------------------
+   SAFE DESKTOP BLEED
+   Keep editorial marginalia inside common 1366–1600px laptop widths.
+   Full margin-note / bleed treatment is reserved for genuinely wide screens.
+   ------------------------------------------------------------ */
+@media(max-width:1650px){
+  .longread-layout{
+    grid-template-columns:210px minmax(0,820px);
+    gap:clamp(42px,4.5vw,72px);
+  }
+
+  .margin-note{
+    float:none;
+    clear:none;
+    width:auto;
+    margin:30px 0 34px;
+    padding:17px 20px 18px;
+    border-top-width:4px;
+    border-bottom:1px solid var(--story-line);
+    background:rgba(255,250,242,.54);
+  }
+  .longread-article .margin-note p{
+    max-width:680px;
+  }
+
+  .photo-feature-stage{
+    padding-right:76px;
+  }
+  .photo-feature-inset{
+    width:30%;
+  }
+
+  .pull-quote-wide{
+    width:100%;
+    margin-right:0;
+  }
+
+  .closing-line{
+    margin-left:0!important;
+    margin-right:0!important;
+  }
+
+  .editorial-contact-sheet,
+  .story-sun .cappadocia-strip{
+    margin-left:0;
+    margin-right:0;
+  }
+}
