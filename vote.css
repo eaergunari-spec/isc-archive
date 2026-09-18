@@ -185,11 +185,15 @@
 .vote-share-card{
   position:relative;
   overflow:hidden;
-  min-height:420px;
+  width:100%;
+  aspect-ratio:4 / 5;
+  min-height:0;
+  max-height:540px;
   border-radius:20px;
   padding:28px 28px 24px;
   background:
-    radial-gradient(circle at 80% 12%,rgba(255,61,129,.28),transparent 24%),
+    radial-gradient(circle at 82% 10%,rgba(255,61,129,.24),transparent 23%),
+    radial-gradient(circle at 16% 84%,rgba(255,61,129,.11),transparent 30%),
     linear-gradient(145deg,#08070b 0%,#151018 52%,#070a0d 100%);
   border:1px solid rgba(255,255,255,.2);
   display:flex;
@@ -197,24 +201,6 @@
   box-shadow:
     0 26px 64px rgba(0,0,0,.52),
     inset 0 1px 0 rgba(255,255,255,.1);
-}
-.vote-share-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:
-    linear-gradient(118deg,transparent 0 28%,rgba(255,255,255,.05) 34%,transparent 41% 100%),
-    repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0 1px,transparent 1px 32px);
-  mix-blend-mode:screen;
-}
-.vote-share-card::after{
-  content:"";
-  position:absolute;
-  inset:9px;
-  border:1px solid rgba(255,61,129,.34);
-  border-radius:14px;
-  pointer-events:none;
 }
 .share-card-topline{
   position:relative;
@@ -241,118 +227,120 @@
 .share-card-watermark{
   position:absolute;
   z-index:0;
-  right:-8px;
-  top:42px;
+  right:-10px;
+  top:64px;
   font-family:"Libre Caslon Display",serif;
-  font-size:clamp(190px,18vw,270px);
+  font-size:clamp(150px,15vw,225px);
   line-height:.72;
   letter-spacing:-.08em;
   color:rgba(255,255,255,.035);
   user-select:none;
+  pointer-events:none;
 }
 .share-card-seal{
   position:absolute;
   z-index:4;
   right:28px;
-  top:92px;
-  width:96px;
-  height:96px;
+  top:88px;
+  width:88px;
+  height:88px;
   border-radius:50%;
-  display:grid;
-  place-items:center;
-  align-content:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
   text-align:center;
   border:1px solid rgba(255,61,129,.55);
   box-shadow:
-    0 0 0 5px rgba(255,61,129,.06),
-    0 0 32px rgba(255,61,129,.16),
+    0 0 0 5px rgba(255,61,129,.055),
+    0 0 30px rgba(255,61,129,.14),
     inset 0 0 0 1px rgba(255,255,255,.06);
-  background:radial-gradient(circle,rgba(255,61,129,.17),rgba(255,61,129,.045) 66%,transparent 67%);
-  transform:rotate(8deg);
+  background:rgba(9,8,12,.78);
+  transform:rotate(7deg);
 }
 .share-card-seal span{
   display:block;
   color:var(--pink);
-  font-size:24px;
+  font-size:22px;
   font-weight:700;
   line-height:1;
 }
 .share-card-seal small{
+  display:block;
   margin-top:5px;
   color:#fff;
-  font-size:6px;
-  font-weight:700;
-  letter-spacing:.12em;
-  line-height:1.25;
+  font:700 6px/1.2 "DM Sans",sans-serif;
+  letter-spacing:.11em;
 }
 .share-card-core{
   position:relative;
   z-index:3;
   margin-top:auto;
-  padding-top:120px;
+  padding:0 0 22px;
 }
 .share-card-overline{
   display:block;
   margin-bottom:9px;
-  color:rgba(255,255,255,.62);
-  font-size:9px;
-  font-weight:700;
-  letter-spacing:.16em;
+  color:rgba(255,255,255,.55);
+  font:700 9px/1 "DM Sans",sans-serif;
+  letter-spacing:.17em;
 }
 .vote-share-card em{
   display:block;
   margin:0;
   color:var(--pink);
-  font:700 clamp(34px,4vw,54px)/.92 "DM Sans",sans-serif;
+  font:700 clamp(38px,4vw,56px)/.88 "DM Sans",sans-serif;
   font-style:normal;
-  letter-spacing:-.015em;
+  letter-spacing:-.025em;
 }
 .vote-share-card .share-card-core small{
   display:block;
-  margin-top:10px;
-  max-width:82%;
+  margin-top:12px;
+  max-width:78%;
   color:#fff;
-  font-size:17px;
-  font-weight:700;
-  letter-spacing:.08em;
-  line-height:1.15;
+  font:700 16px/1.12 "DM Sans",sans-serif;
+  letter-spacing:.085em;
   text-transform:uppercase;
 }
 .share-card-footer{
   position:relative;
   z-index:3;
   display:grid;
-  grid-template-columns:1.35fr .85fr 1fr;
-  gap:8px;
-  margin-top:30px;
-  padding-top:14px;
+  grid-template-columns:1.45fr .8fr 1fr;
+  gap:10px;
+  padding-top:13px;
   border-top:1px solid rgba(255,255,255,.14);
 }
 .share-card-footer>div{min-width:0}
 .share-card-footer span{
   display:block;
   margin-bottom:4px;
-  color:rgba(255,255,255,.34);
-  font-size:5.5px;
-  font-weight:700;
+  color:rgba(255,255,255,.32);
+  font:700 5.5px/1 "DM Sans",sans-serif;
   letter-spacing:.15em;
 }
-.share-card-footer strong{
+.vote-share-card .share-card-footer strong,
+.vote-share-card #share-card-date,
+.vote-share-card #share-card-record{
   display:block;
-  color:rgba(255,255,255,.84);
-  font:700 7px/1.25 "DM Sans",sans-serif;
-  letter-spacing:.05em;
+  margin:0;
+  padding:0;
+  color:rgba(255,255,255,.82);
+  font:700 7px/1.25 "DM Sans",sans-serif !important;
+  letter-spacing:.045em !important;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
-.share-card-footer>div:nth-child(2) strong{color:var(--lime)}
+.vote-share-card .share-card-footer>div:nth-child(2) strong{
+  color:var(--lime);
+}
 
 @media(max-width:1000px){
   .submission-receipt{grid-template-columns:1fr;gap:34px}
   .receipt-main{max-width:850px}
-  .share-preview-shell{max-width:620px;width:100%;justify-self:center}
-  .vote-share-card{min-height:400px}
+  .share-preview-shell{max-width:520px;width:100%;justify-self:center}
+  .vote-share-card{max-height:none}
 }
 @media(max-width:600px){
   .submission-receipt{margin-top:24px;padding:22px 16px 26px;border-radius:22px;gap:30px}
@@ -362,21 +350,22 @@
   .receipt-inline-meta{align-items:flex-start;gap:7px;font-size:8px;line-height:1.45}
   .receipt-actions{display:grid;grid-template-columns:1fr}
   .receipt-primary,.receipt-secondary,.receipt-link{width:100%}
-  .share-preview-shell{padding:12px;border-radius:22px;transform:rotate(-.4deg)}
+  .share-preview-shell{max-width:390px;padding:12px;border-radius:22px;transform:rotate(-.3deg)}
   .share-preview-shell::before{inset:8px -5px -8px 9px;border-radius:22px}
   .share-preview-label{right:22px;top:21px}
-  .vote-share-card{min-height:335px;padding:22px 20px 19px;border-radius:16px}
+  .vote-share-card{padding:21px 19px 18px;border-radius:16px}
   .vote-share-card::after{inset:7px;border-radius:11px}
-  .share-card-brand{font-size:23px}
+  .share-card-brand{font-size:22px}
   .share-card-series{font-size:5.5px}
-  .share-card-watermark{font-size:168px;right:-4px;top:50px}
-  .share-card-seal{width:78px;height:78px;right:22px;top:92px}
-  .share-card-core{padding-top:100px}
-  .vote-share-card em{font-size:39px}
-  .vote-share-card .share-card-core small{font-size:14px}
-  .share-card-footer{grid-template-columns:1.25fr .75fr 1fr;gap:6px}
-  .share-card-footer span{font-size:5px}
-  .share-card-footer strong{font-size:6.3px}
+  .share-card-watermark{font-size:145px;right:-3px;top:58px}
+  .share-card-seal{width:72px;height:72px;right:21px;top:80px}
+  .share-card-core{padding-bottom:18px}
+  .vote-share-card em{font-size:38px}
+  .vote-share-card .share-card-core small{font-size:13px}
+  .share-card-footer{grid-template-columns:1.3fr .75fr 1fr;gap:6px}
+  .vote-share-card .share-card-footer strong,
+  .vote-share-card #share-card-date,
+  .vote-share-card #share-card-record{font-size:6px!important}
 }
 
 /* Full-screen submission moment */
@@ -456,23 +445,6 @@
 @keyframes celebrationRing{0%{opacity:0;transform:translate(-50%,-50%) scale(.35)}25%{opacity:.75}100%{opacity:0;transform:translate(-50%,-50%) scale(1.15)}}
 @keyframes celebrationFlare{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}45%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(9)}}
 
-@media(max-width:920px){
-  .submission-receipt{grid-template-columns:1fr}
-  .vote-share-card{min-height:310px}
-  .receipt-meta{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media(max-width:600px){
-  .submission-receipt{margin-top:24px;padding:16px;border-radius:20px}
-  .receipt-main{padding:4px 2px}
-  .receipt-main h3{font-size:42px}
-  .receipt-meta{grid-template-columns:1fr 1fr}
-  .receipt-actions{display:grid;grid-template-columns:1fr}
-  .receipt-primary,.receipt-secondary,.receipt-link{width:100%}
-  .vote-share-card{min-height:270px;padding:20px}
-  .share-card-brand{left:20px;top:20px}.share-card-current{right:20px;top:20px}
-  .vote-share-card strong{font-size:78px}
-  .celebration-score{font-size:54vw}
-}
 @media(prefers-reduced-motion:reduce){
   .vote-celebration.is-running .celebration-country,
   .vote-celebration.is-running .celebration-score,
