@@ -65,6 +65,7 @@ const voteCelebration = document.getElementById('vote-celebration');
 const celebrationCountry = document.getElementById('celebration-country');
 const celebrationScore = document.getElementById('celebration-score');
 const celebrationEdition = document.getElementById('celebration-edition');
+const celebrationConfetti = document.getElementById('celebration-confetti');
 
 const escapeHtml = (value) => String(value ?? '')
   .replace(/&/g, '&amp;')
@@ -156,22 +157,69 @@ function renderSubmissionReceipt() {
   }
 }
 
+function buildCelebrationConfetti() {
+  if (!celebrationConfetti) return;
+  celebrationConfetti.innerHTML = '';
+
+  const palette = ['#ff3d81', '#d8ff3e', '#72d8ff', '#ffffff'];
+  const count = 46;
+
+  for (let i = 0; i < count; i += 1) {
+    const piece = document.createElement('i');
+    const shapeRoll = Math.random();
+    piece.className = 'confetti-piece' + (shapeRoll < .18 ? ' round' : shapeRoll > .84 ? ' ribbon' : '');
+
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 120 + Math.random() * 250;
+    const burstX = Math.cos(angle) * distance;
+    const burstY = Math.sin(angle) * distance * .56 - (60 + Math.random() * 90);
+
+    const landX = (Math.random() - .5) * Math.min(window.innerWidth * .9, 1040);
+    const floorJitter = Math.random() * 34;
+    const landY = Math.max(180, window.innerHeight * .54 - floorJitter);
+
+    const spinBase = (Math.random() - .5) * 900;
+    const duration = 2.25 + Math.random() * .55;
+    const delay = Math.random() * .16;
+    const width = 5 + Math.random() * 7;
+    const height = 8 + Math.random() * 12;
+
+    piece.style.setProperty('--confetti', palette[Math.floor(Math.random() * palette.length)]);
+    piece.style.setProperty('--burst-x', `${burstX.toFixed(1)}px`);
+    piece.style.setProperty('--burst-y', `${burstY.toFixed(1)}px`);
+    piece.style.setProperty('--land-x', `${landX.toFixed(1)}px`);
+    piece.style.setProperty('--land-y', `${landY.toFixed(1)}px`);
+    piece.style.setProperty('--spin1', `${(spinBase * .35).toFixed(0)}deg`);
+    piece.style.setProperty('--spin2', `${(spinBase * .8).toFixed(0)}deg`);
+    piece.style.setProperty('--spin3', `${(spinBase * .92).toFixed(0)}deg`);
+    piece.style.setProperty('--spin4', `${spinBase.toFixed(0)}deg`);
+    piece.style.setProperty('--duration', `${duration.toFixed(2)}s`);
+    piece.style.setProperty('--delay', `${delay.toFixed(2)}s`);
+    piece.style.setProperty('--w', `${width.toFixed(1)}px`);
+    piece.style.setProperty('--h', `${height.toFixed(1)}px`);
+
+    celebrationConfetti.appendChild(piece);
+  }
+}
+
 async function playSubmissionCelebration() {
   if (!voteCelebration || !activeCountry || !edition) return;
   const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   celebrationCountry.textContent = activeCountry.name.toUpperCase();
   celebrationScore.textContent = String(POINTS[0] ?? '12');
   celebrationEdition.textContent = `${edition.title || `ISC ${edition.edition_number}`} · OFFICIAL BALLOT`;
+  if (!reduced) buildCelebrationConfetti();
   voteCelebration.hidden = false;
   voteCelebration.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
   requestAnimationFrame(() => voteCelebration.classList.add('is-running'));
 
-  await new Promise(resolve => setTimeout(resolve, reduced ? 900 : 2500));
+  await new Promise(resolve => setTimeout(resolve, reduced ? 900 : 3300));
 
   voteCelebration.classList.remove('is-running');
   voteCelebration.hidden = true;
   voteCelebration.setAttribute('aria-hidden', 'true');
+  if (celebrationConfetti) celebrationConfetti.innerHTML = '';
   document.body.style.overflow = '';
 }
 
