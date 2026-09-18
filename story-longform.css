@@ -783,3 +783,124 @@ body.longread-body{
   html{scroll-behavior:auto}
   .reading-progress span,.rail-toc a{transition:none!important}
 }
+
+
+/* ------------------------------------------------------------
+   STORY-SPECIFIC THEME — Élise de Lune / Bonne Nuit
+   same ISC Magazine system, colder nocturnal palette
+   ------------------------------------------------------------ */
+body.story-night{
+  --story-paper:#f2f1ef;
+  --story-paper-2:#faf9f7;
+  --story-ink:#11131a;
+  --story-soft:#2f3340;
+  --story-muted:#6f7480;
+  --story-line:rgba(25,30,42,.14);
+  --story-wine:#415080;
+  --story-pink:#8798ff;
+  --story-lime:#c9ecff;
+  --story-black:#090b12;
+  --story-white:#fbfbfb;
+  background:
+    radial-gradient(circle at 82% 4%,rgba(135,152,255,.10),transparent 23%),
+    radial-gradient(rgba(18,22,33,.032) .65px,transparent .65px),
+    var(--story-paper);
+  background-size:auto,5px 5px;
+}
+.story-night .feature-artwork-frame.artwork-night{
+  display:grid;
+  place-items:center;
+  min-height:min(72vw,760px);
+  isolation:isolate;
+  background:#080a11;
+}
+.story-night .feature-artwork-frame.artwork-night .feature-artwork-blur{
+  position:absolute;
+  inset:-8%;
+  z-index:0;
+  width:116%;
+  height:116%;
+  max-width:none;
+  object-fit:cover;
+  filter:blur(44px) brightness(.42) saturate(.72);
+  transform:scale(1.04);
+}
+.story-night .feature-artwork-frame.artwork-night .feature-artwork-main{
+  position:relative;
+  z-index:1;
+  width:auto;
+  height:min(68vw,720px);
+  max-width:78%;
+  aspect-ratio:auto;
+  object-fit:contain;
+  box-shadow:0 30px 90px rgba(0,0,0,.44);
+}
+.story-night .feature-artwork-frame.artwork-night .feature-artwork-stamp{z-index:3}
+.story-night .story-data-strip{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  margin:34px 0 48px;
+  border-top:1px solid var(--story-ink);
+  border-bottom:1px solid var(--story-line);
+}
+.story-night .story-data-strip>div{
+  padding:15px 15px 16px 0;
+}
+.story-night .story-data-strip>div+div{
+  padding-left:15px;
+  border-left:1px solid var(--story-line);
+}
+.story-night .story-data-strip span{
+  display:block;
+  margin-bottom:5px;
+  color:var(--story-muted);
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.story-night .story-data-strip strong{
+  display:block;
+  font-family:"Libre Caslon Display",serif;
+  font-size:19px;
+  font-weight:400;
+  line-height:1.1;
+}
+.story-night .virtual-status{
+  margin:34px 0;
+  padding:20px 22px 21px;
+  border:1px solid rgba(65,80,128,.20);
+  background:linear-gradient(135deg,rgba(135,152,255,.09),rgba(201,236,255,.07));
+}
+.story-night .virtual-status>span{
+  display:block;
+  margin-bottom:7px;
+  color:var(--story-wine);
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+.story-night .virtual-status strong{
+  display:block;
+  font-family:"Libre Caslon Display",serif;
+  font-size:29px;
+  font-weight:400;
+  line-height:1.04;
+}
+.story-night .virtual-status p{
+  margin:9px 0 0;
+  color:var(--story-muted);
+  font-size:11px;
+  line-height:1.6;
+}
+@media(max-width:700px){
+  .story-night .feature-artwork-frame.artwork-night{min-height:118vw}
+  .story-night .feature-artwork-frame.artwork-night .feature-artwork-main{
+    height:110vw;
+    max-width:92%;
+  }
+  .story-night .story-data-strip{grid-template-columns:1fr 1fr}
+  .story-night .story-data-strip>div:nth-child(3){border-left:0;border-top:1px solid var(--story-line);padding-left:0}
+  .story-night .story-data-strip>div:nth-child(4){border-top:1px solid var(--story-line)}
+}
