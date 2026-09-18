@@ -34,6 +34,9 @@ async function rpcFetch(url) {
 }
 
 const homeNav = document.querySelector('.home-page .site-header nav');
+const homeCurrentEditionNav = document.getElementById('home-current-edition-nav');
+const homeEditionLink = document.getElementById('home-edition-link');
+const currentArchiveCard = document.getElementById('current-archive-card');
 const heroResultsNote = document.querySelector('.hero-side-note');
 let homeResultsLink = document.querySelector('[data-results-link]');
 if (homeNav && !homeResultsLink) {
@@ -145,8 +148,15 @@ function applyEditionChrome() {
 
   if (heroFrameLabel) heroFrameLabel.textContent = `${label.toUpperCase()} / CURRENT EDITION`;
   if (heroEntryCount) heroEntryCount.textContent = `/${String(count).padStart(2, '0')}`;
+  const editionHubHref = `editions/${edition.edition_number}/`;
   if (homeHeroKicker) homeHeroKicker.textContent = `International Song Contest · Edition ${edition.edition_number}`;
   if (homeEditionNumber) homeEditionNumber.textContent = edition.edition_number;
+  if (homeCurrentEditionNav) {
+    homeCurrentEditionNav.textContent = label;
+    homeCurrentEditionNav.href = editionHubHref;
+  }
+  if (homeEditionLink) homeEditionLink.href = editionHubHref;
+  if (currentArchiveCard) currentArchiveCard.href = editionHubHref;
   if (homeHeroDeck) homeHeroDeck.textContent = `${count} ülke. ${count} şarkı. Gecenin kaderi oylarında.`;
   if (listenCtaLabel) listenCtaLabel.textContent = `${count} şarkıyı dinle`;
   if (entriesIntro) entriesIntro.textContent = `${label}’ün ${count} temsilcisi. Kartlardan resmi videoyu aç veya mevcutsa entry dosyasına git.`;
@@ -279,6 +289,7 @@ function renderVoteSplash() {
 function renderArchiveCard() {
   if (!edition) return;
   const label = editionLabel();
+  if (currentArchiveCard) currentArchiveCard.href = `editions/${edition.edition_number}/`;
   if (archiveCurrentNumber) archiveCurrentNumber.textContent = edition.edition_number;
   if (archiveCurrentTitle) archiveCurrentTitle.textContent = label;
   if (archiveCurrentMeta) archiveCurrentMeta.textContent = `${entries.length} katılımcı · ${edition.voting_open ? 'Oylama açık' : 'Oylama kapalı'}`;
