@@ -52,10 +52,9 @@ const submissionReceipt = document.getElementById('submission-receipt');
 const receiptKickerText = document.getElementById('receipt-kicker-text');
 const receiptTitle = document.getElementById('receipt-title');
 const receiptCopy = document.getElementById('receipt-copy');
-const receiptCountry = document.getElementById('receipt-country');
-const receiptEdition = document.getElementById('receipt-edition');
 const receiptTime = document.getElementById('receipt-time');
 const receiptStatus = document.getElementById('receipt-status');
+const receiptEditability = document.getElementById('receipt-editability');
 const receiptNote = document.getElementById('receipt-note');
 const shareVote = document.getElementById('share-vote');
 const editSubmittedVote = document.getElementById('edit-submitted-vote');
@@ -136,8 +135,6 @@ function renderSubmissionReceipt() {
   submissionReceipt.hidden = false;
   submissionReceipt.classList.toggle('is-revising', editingSubmitted);
 
-  receiptCountry.textContent = activeCountry.name;
-  receiptEdition.textContent = label;
   receiptTime.textContent = formatSubmissionTime(submittedAt);
   shareCardEdition.textContent = label.toUpperCase();
   shareCardCountry.textContent = activeCountry.name.toUpperCase();
@@ -147,12 +144,14 @@ function renderSubmissionReceipt() {
     receiptTitle.textContent = `${activeCountry.name} delegasyonunun gönderilmiş oyu güvende.`;
     receiptCopy.textContent = 'Yeni sıralaman bu cihazda taslak olarak tutuluyor. Mevcut gönderilmiş oyun geçerliliğini koruyor; güncellemek için pusulayı yeniden göndermen gerekiyor.';
     receiptStatus.textContent = 'REVISION DRAFT';
+    if (receiptEditability) receiptEditability.textContent = 'Resmî oy korunuyor · yeniden gönderilmesi gerekiyor';
     receiptNote.textContent = 'Bu taslak henüz resmi oyunun yerini almadı. Paylaşım kartında verdiğin puanlar görünmez.';
   } else {
     receiptKickerText.textContent = 'BALLOT RECEIVED';
     receiptTitle.textContent = `${activeCountry.name} delegasyonunun ${label} oyu kaydedildi.`;
     receiptCopy.textContent = 'Oylama kapanana kadar sıralamanı değiştirebilir ve güncellenmiş oyunu yeniden gönderebilirsin.';
     receiptStatus.textContent = 'SUBMITTED';
+    if (receiptEditability) receiptEditability.textContent = edition.voting_open ? 'Oylama açıkken güncellenebilir' : 'Oylama kapandı · oy kilitlendi';
     receiptNote.textContent = 'Paylaşım kartında verdiğin puanlar görünmez.';
   }
 }
