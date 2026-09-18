@@ -11,6 +11,7 @@ let countries = [];
 let entries = [];
 let activeCountry = null;
 let activeCode = '';
+let activeSessionToken = '';
 let ranking = [];
 let scores = {};
 let saveTimer = null;
@@ -19,6 +20,7 @@ let ballotStatus = 'new';
 let submittedAt = null;
 let editingSubmitted = false;
 
+const loginStep = document.getElementById('login-step');
 const countrySelect = document.getElementById('country-select');
 const codeWrap = document.getElementById('code-wrap');
 const voterCode = document.getElementById('voter-code');
@@ -48,6 +50,7 @@ const voteIntro = document.getElementById('vote-intro');
 const heroTopPoints = document.getElementById('hero-top-points');
 const heroOtherPoints = document.getElementById('hero-other-points');
 const currentEditionNav = document.getElementById('current-edition-nav');
+const forgetDelegation = document.getElementById('forget-delegation');
 const submissionReceipt = document.getElementById('submission-receipt');
 const receiptKickerText = document.getElementById('receipt-kicker-text');
 const receiptTitle = document.getElementById('receipt-title');
@@ -75,6 +78,74 @@ const escapeHtml = (value) => String(value ?? '')
   .replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;')
   .replace(/'/g, '&#39;');
+
+
+const VOTER_SESSION_STORAGE_KEY = 'isc_voter_browser_session_v1';
+
+function readRememberedDelegation() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(VOTER_SESSION_STORAGE_KEY) || 'null');
+    if (!parsed?.token || typeof parsed.token !== 'string') return null;
+    return parsed;
+  } catch (_) {
+    return null;
+  }
+}
+
+function rememberDelegationSession(token, countrySlug) {
+  try {
+    localStorage.setItem(VOTER_SESSION_STORAGE_KEY, JSON.stringify({
+      token,
+      countrySlug,
+      rememberedAt: new Date().toISOString()
+    }));
+  } catch (_) {}
+}
+
+function clearRememberedDelegation() {
+  try { localStorage.removeItem(VOTER_SESSION_STORAGE_KEY); } catch (_) {}
+}
+
+async function issueRememberedDelegationSession(slug, code) {
+  const { data, error } = await db.rpc('isc_issue_voter_browser_session', {
+    p_country_slug: slug,
+    p_code: code
+  });
+
+  if (error || !data?.ok || !data?.token) return false;
+
+  activeSessionToken = data.token;
+  activeCode = '';
+  rememberDelegationSession(data.token, slug);
+  return true;
+}
+
+async function tryResumeRememberedDelegation() {
+  const remembered = readRememberedDelegation();
+  if (!remembered?.token) return false;
+
+  loginMessage.textContent = 'Delegasyonun bu tarayıcıdan hatırlanıyor…';
+
+  const { data, error } = await db.rpc('isc_resume_voter_browser_session', {
+    p_token: remembered.token
+  });
+
+  if (error || !data?.ok) {
+    if (!data || data.reason === 'invalid_session') {
+      clearRememberedDelegation();
+      activeSessionToken = '';
+    } else if (data.reason === 'country_not_participating') {
+      loginMessage.textContent = 'Bu tarayıcıda hatırlanan delegasyon güncel edisyonda yer almıyor.';
+      return 'blocked';
+    }
+    return false;
+  }
+
+  activeSessionToken = remembered.token;
+  activeCode = '';
+  openBallotFromData(data, data.country_slug, { scroll: false, remembered: true });
+  return true;
+}
 
 
 const submissionTimeFormatter = new Intl.DateTimeFormat('tr-TR', {
@@ -427,6 +498,10 @@ async function init() {
   applyRuntimeChrome();
   populateCountries();
   validateConfiguration();
+
+  const resumeState = await tryResumeRememberedDelegation();
+  if (resumeState === true || resumeState === 'blocked') return;
+
   loginMessage.textContent = edition.voting_open
     ? 'Delegasyonunu seç ve kalıcı voter code’un ile pusulanı aç.'
     : 'Oylama kapalı. Daha önceki pusulanı görüntülemek için giriş yapabilirsin.';
@@ -488,39 +563,14 @@ function validateConfiguration() {
   return valid;
 }
 
-countrySelect.addEventListener('change', () => {
-  codeWrap.hidden = !countrySelect.value;
-  loginMessage.textContent = '';
-  ballotStep.hidden = true;
-});
 
-voterCode.addEventListener('keydown', event => {
-  if (event.key === 'Enter') enterVoting.click();
-});
-
-enterVoting.addEventListener('click', async () => {
-  const slug = countrySelect.value;
-  const code = voterCode.value.trim();
-  if (!slug || !code || !context) return;
-
-  loginMessage.textContent = 'Kod doğrulanıyor…';
-  enterVoting.disabled = true;
-
-  const { data, error } = await db.rpc('isc_load_current_ballot', {
-    p_country_slug: slug,
-    p_code: code
-  });
-
-  enterVoting.disabled = false;
-
-  if (error) {
-    loginMessage.textContent = 'Voter code geçersiz veya bu delegasyon güncel edisyonda yer almıyor.';
-    return;
-  }
-
+function openBallotFromData(data, slug, options = {}) {
+  const { scroll = true, remembered = false } = options;
   activeCountry = countries.find(country => country.slug === slug);
-  activeCode = code;
+  if (!activeCountry) return false;
+
   edition.voting_open = Boolean(data.voting_open);
+  countrySelect.value = slug;
 
   const ownEntry = entries.find(entry => entry.country_id === activeCountry.id);
   const eligibleEntries = scheme.self_vote_allowed
@@ -551,19 +601,57 @@ enterVoting.addEventListener('click', async () => {
   updateProgress();
   updateSubmitState();
   renderSubmissionReceipt();
+
+  loginStep.hidden = true;
   ballotStep.hidden = false;
 
-  loginMessage.textContent = editingSubmitted
-    ? 'Gönderilmiş oyun yüklendi. Bu cihazdaki gönderilmemiş değişiklikler de geri getirildi.'
-    : data.status === 'submitted'
-    ? 'Daha önce gönderilmiş pusulan yüklendi.'
-    : (data.scores || []).length
-      ? 'Kaydedilmiş pusulan yüklendi.'
-      : edition.voting_open
-        ? 'Doğrulandı. Kartları puan slotlarına göre sırala.'
-        : 'Doğrulandı. Oylama kapalı olduğu için pusula salt okunur durumda.';
+  if (remembered) {
+    saveStatus.textContent = ballotStatus === 'submitted' ? 'Submitted' : 'Hatırlandı';
+  }
 
-  ballotStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (scroll) ballotStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  return true;
+}
+
+countrySelect.addEventListener('change', () => {
+  codeWrap.hidden = !countrySelect.value;
+  loginMessage.textContent = '';
+  ballotStep.hidden = true;
+});
+
+voterCode.addEventListener('keydown', event => {
+  if (event.key === 'Enter') enterVoting.click();
+});
+
+enterVoting.addEventListener('click', async () => {
+  const slug = countrySelect.value;
+  const code = voterCode.value.trim();
+  if (!slug || !code || !context) return;
+
+  loginMessage.textContent = 'Kod doğrulanıyor…';
+  enterVoting.disabled = true;
+
+  const { data, error } = await db.rpc('isc_load_current_ballot', {
+    p_country_slug: slug,
+    p_code: code
+  });
+
+  enterVoting.disabled = false;
+
+  if (error) {
+    loginMessage.textContent = 'Voter code geçersiz veya bu delegasyon güncel edisyonda yer almıyor.';
+    return;
+  }
+
+  activeCode = code;
+
+  try {
+    await issueRememberedDelegationSession(slug, code);
+  } catch (sessionError) {
+    console.warn('Delegation could not be remembered in this browser', sessionError);
+  }
+
+  openBallotFromData(data, slug, { scroll: true, remembered: Boolean(activeSessionToken) });
 });
 
 function renderSelfEntry(ownEntry) {
@@ -748,7 +836,7 @@ function updateSubmitState() {
 }
 
 function scheduleAutosave() {
-  if (!edition.voting_open || !activeCountry || !activeCode || editingSubmitted || ballotStatus === 'submitted') return;
+  if (!edition.voting_open || !activeCountry || (!activeCode && !activeSessionToken) || editingSubmitted || ballotStatus === 'submitted') return;
   saveStatus.textContent = 'Kaydediliyor…';
   clearTimeout(saveTimer);
   saveTimer = setTimeout(() => saveBallot(false), 450);
@@ -762,16 +850,39 @@ async function saveBallot(finalize) {
     points: POINTS[index]
   }));
 
-  const { data, error } = await db.rpc('isc_save_current_ballot', {
-    p_country_slug: activeCountry.slug,
-    p_code: activeCode,
-    p_scores: payload,
-    p_finalize: finalize
-  });
+  const useRememberedSession = Boolean(activeSessionToken);
+  const { data, error } = await db.rpc(
+    useRememberedSession ? 'isc_save_current_ballot_by_session' : 'isc_save_current_ballot',
+    useRememberedSession
+      ? {
+          p_token: activeSessionToken,
+          p_scores: payload,
+          p_finalize: finalize
+        }
+      : {
+          p_country_slug: activeCountry.slug,
+          p_code: activeCode,
+          p_scores: payload,
+          p_finalize: finalize
+        }
+  );
 
   if (error) {
     saveStatus.textContent = 'Kayıt hatası';
-    if (String(error.message || '').includes('Voting is closed')) {
+    const errorMessage = String(error.message || '');
+
+    if (errorMessage.includes('Invalid browser session')) {
+      clearRememberedDelegation();
+      activeSessionToken = '';
+      activeCode = '';
+      ballotStep.hidden = true;
+      loginStep.hidden = false;
+      loginMessage.textContent = 'Bu tarayıcıdaki delegasyon oturumu artık geçerli değil. Voter code ile yeniden giriş yap.';
+      loginStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return false;
+    }
+
+    if (errorMessage.includes('Voting is closed')) {
       edition.voting_open = false;
       renderBallot();
       updateSubmitState();
@@ -830,5 +941,40 @@ function buildConfirmSummary() {
     </div>
   `).join('');
 }
+
+forgetDelegation?.addEventListener('click', async () => {
+  const remembered = readRememberedDelegation();
+  const token = activeSessionToken || remembered?.token || '';
+
+  if (token) {
+    try {
+      await db.rpc('isc_forget_voter_browser_session', { p_token: token });
+    } catch (_) {}
+  }
+
+  clearRememberedDelegation();
+  activeSessionToken = '';
+  activeCode = '';
+  activeCountry = null;
+  ranking = [];
+  scores = {};
+  ballotStatus = 'new';
+  submittedAt = null;
+  editingSubmitted = false;
+
+  if (sortable) {
+    sortable.destroy();
+    sortable = null;
+  }
+
+  ballotStep.hidden = true;
+  submissionReceipt.hidden = true;
+  loginStep.hidden = false;
+  countrySelect.value = '';
+  codeWrap.hidden = true;
+  voterCode.value = '';
+  loginMessage.textContent = 'Delegasyon hafızası bu tarayıcıdan kaldırıldı. Yeni delegasyonunu seçip voter code ile giriş yapabilirsin.';
+  loginStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 
 init();
