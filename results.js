@@ -64,7 +64,10 @@ function applyRuntimeChrome(data) {
   document.querySelector('meta[property="og:title"]')?.setAttribute('content', `${label} — Results`);
   document.querySelector('meta[property="og:description"]')?.setAttribute('content', `${label} resmi scoreboard, delegasyon pusulaları ve voting history.`);
 
-  if (currentEditionNav) currentEditionNav.textContent = label;
+  if (currentEditionNav) {
+    currentEditionNav.textContent = label;
+    currentEditionNav.href = `editions/${data.edition_number}/`;
+  }
   resultsKicker.textContent = `International Song Contest · ${label}`;
   heroEdition.textContent = label;
   resultsFooterEdition.textContent = `International Song Contest · ${label}`;
