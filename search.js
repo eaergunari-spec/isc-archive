@@ -55,6 +55,16 @@
     edition: String(row.edition_number || 'ISC')
   }[row.match_kind] || 'ISC');
 
+  const resultHref = row => {
+    if (row?.match_kind === 'edition' && row.edition_number) {
+      return `editions/${encodeURIComponent(row.edition_number)}/`;
+    }
+    if (row?.url === 'index.html#entries' && row.edition_number) {
+      return `editions/${encodeURIComponent(row.edition_number)}/#participants`;
+    }
+    return row?.url || '#';
+  };
+
   function updateUrl(query) {
     const url = new URL(window.location.href);
     if (query) url.searchParams.set('q', query);
@@ -112,7 +122,7 @@
           : 'ISC archive';
 
       return `
-        <a class="search-result" role="listitem" href="${escapeHtml(row.url)}" data-result-index="${index}">
+        <a class="search-result" role="listitem" href="${escapeHtml(resultHref(row))}" data-result-index="${index}">
           <div class="search-result-media">${media}</div>
           <div class="search-result-copy">
             <div class="search-result-type"><b>${escapeHtml(typeLabel(row))}</b><span>${escapeHtml(meta)}</span></div>
