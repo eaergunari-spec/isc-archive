@@ -23,6 +23,8 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="ISC Magazine — Küfür, Özsaygı ve İki Synthesizer Arasında: Lambrini Girls’ün Cuntology 101 hikâyesi" />
   <meta property="article:published_time" content="2026-09-18T13:11:00+03:00" />
+  <meta property="article:author" content="ISC Editorial" />
+  <meta property="article:section" content="Music & Culture" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Küfür, Özsaygı ve İki Synthesizer Arasında" />
   <meta name="twitter:description" content="Lambrini Girls’ün “Cuntology 101” hikâyesi: Brighton barlarından Peaches’a, ballroom dilinden analog synth’lere." />
@@ -37,6 +39,7 @@
   <link rel="stylesheet" href="../technical-polish.css" />
 </head>
 <body class="longread-body">
+  <div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>
   <header class="site-header">
     <a class="brand" href="../index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
     <nav>
@@ -50,23 +53,65 @@
 
   <main class="longread-page">
     <header class="longread-hero">
-      <div class="longread-kicker">ISC MAGAZINE · LONG READ · ENTRY 01</div>
-      <h1>Küfür, Özsaygı ve İki Synthesizer Arasında</h1>
-      <p class="longread-subtitle">Lambrini Girls’ün “Cuntology 101” hikâyesi</p>
-      <p class="longread-deck">Brighton barlarında çalışan iki müzisyenden, iki haftada yazılmış bir albüme; FL Studio’yu bir günde öğrenme hevesinden Peaches’lı bir konser finaline… “Cuntology 101”, Lambrini Girls’ün diskografisindeki en hafif şaka gibi başlayıp grubun bütün meselesini açıklayan şarkıya dönüşüyor.</p>
+      <div class="magazine-masthead" aria-label="ISC Magazine">
+        <div class="masthead-lockup"><span>ISC</span><strong>MAGAZINE</strong></div>
+        <small>ISSUE 154 · MUSIC / CULTURE / STORIES</small>
+      </div>
+
+      <div class="longread-hero-grid">
+        <div class="longread-hero-copy">
+          <div class="longread-kicker">COVER STORY · LONG READ · ENTRY 01</div>
+          <h1>Küfür, Özsaygı ve İki Synthesizer Arasında</h1>
+          <p class="longread-subtitle">Lambrini Girls’ün “Cuntology 101” hikâyesi</p>
+          <p class="longread-deck">Brighton barlarında çalışan iki müzisyenden, iki haftada yazılmış bir albüme; FL Studio’yu bir günde öğrenme hevesinden Peaches’lı bir konser finaline… “Cuntology 101”, Lambrini Girls’ün diskografisindeki en hafif şaka gibi başlayıp grubun bütün meselesini açıklayan şarkıya dönüşüyor.</p>
+        </div>
+
+        <aside class="hero-issue-block" aria-label="Issue information">
+          <span class="hero-issue-label">ISSUE</span>
+          <strong class="hero-issue-no">154</strong>
+          <i></i>
+          <small>ROLİPEA<br>ENTRY 01</small>
+        </aside>
+      </div>
+
       <div class="longread-meta">
-        <span>ISC 154</span>
-        <span>Rolipea · Entry 01</span>
-        <span>18 Eylül 2026</span>
+        <div class="byline"><span>Yazan</span><strong>ISC Editorial</strong></div>
+        <div><span>Yayın</span><strong>18 Eylül 2026</strong></div>
+        <div><span>Okuma</span><strong id="read-time">— dk</strong></div>
+        <div><span>Dosya</span><strong>ISC 154 · Rolipea</strong></div>
       </div>
     </header>
 
+    <figure class="feature-artwork">
+      <div class="feature-artwork-frame">
+        <img src="../lambrini-girls-cuntology-101-share.png" alt="ISC Magazine — Küfür, Özsaygı ve İki Synthesizer Arasında editorial artwork" />
+        <span class="feature-artwork-stamp">COVER STORY / 154</span>
+      </div>
+      <figcaption>
+        <span>ISC MAGAZINE / ISSUE 154</span>
+        <span>Lambrini Girls · “Cuntology 101”</span>
+      </figcaption>
+    </figure>
+
     <div class="longread-layout">
-      <aside class="longread-rail" aria-label="Yazı bilgileri">
-        <span>THE ENTRY</span>
-        <strong>Lambrini Girls</strong>
-        <p>“Cuntology 101”</p>
-        <a href="../entries/01-lambrini-girls.html">Entry dosyasına dön →</a>
+      <aside class="longread-rail" aria-label="Yazı bilgileri ve bölümler">
+        <div class="rail-entry">
+          <span>THE ENTRY</span>
+          <strong>Lambrini Girls</strong>
+          <p>“Cuntology 101”</p>
+          <a href="../entries/01-lambrini-girls.html">Entry dosyasına dön →</a>
+        </div>
+        <nav class="rail-toc" aria-label="Yazının bölümleri">
+          <span>IN THIS STORY</span>
+          <a href="#chapter-01" data-section="chapter-01"><b>01</b> Önce dört kişilerdi</a>
+          <a href="#chapter-02" data-section="chapter-02"><b>02</b> Kinder Surprise</a>
+          <a href="#chapter-03" data-section="chapter-03"><b>03</b> Cuntology nedir?</a>
+          <a href="#chapter-04" data-section="chapter-04"><b>04</b> Kayıt kredileri</a>
+          <a href="#chapter-05" data-section="chapter-05"><b>05</b> Konser ritüeli</a>
+          <a href="#chapter-06" data-section="chapter-06"><b>06</b> Peaches</a>
+          <a href="#chapter-07" data-section="chapter-07"><b>07</b> No Refunds</a>
+          <a href="#chapter-08" data-section="chapter-08"><b>08</b> Son söz</a>
+        </nav>
       </aside>
 
       <article class="longread-article">
@@ -74,7 +119,7 @@
 
         <p>Bu iki dakikalık elektro-punk şakasının nasıl ortaya çıktığını anlamak için Brighton’a, Lambrini Girls henüz iki kişilik bir grup bile değilkenki günlere dönmek gerekiyor.</p>
 
-        <h2>Önce dört kişilerdi</h2>
+        <h2 id="chapter-01" class="chapter-heading"><span class="chapter-no">01</span><span class="chapter-title"><small>ORIGINS</small>Önce dört kişilerdi</span></h2>
 
         <p>Lambrini Girls 2019’da Brighton’da kuruldu. İlk kadroda vokalde <strong>Flora Kimberly</strong>, gitarda ve geri vokalde <strong>Phoebe Lunny</strong>, basta <strong>Fox O’Reilly</strong>, davulda ise <strong>Catt Jack</strong> vardı. Zamanla kadro değişti; Lunny ana vokali üstlendi ve grup sonunda bugün bildiğimiz iki kişilik çekirdeğe, yani Lunny ile <strong>Selin Macieira-Boşgelmez</strong>’e dönüştü.</p>
 
@@ -84,9 +129,15 @@
 
         <p>Selin’in adına gelince, eski kayıtları kurcalayan birinin kafasının karışması çok kolay. Albüm ve platform kredilerinde onu <strong>Lilly</strong>, <strong>Lily</strong> hatta <strong>Lesline Macieira-Boşgelmez</strong> olarak görebilirsiniz. Bunların arkasında başka bir basçı yok. Selin, 2026’da SPIN’e çocukluğundan itibaren Almanya’da daha “palatable”, yani çevresine daha kolay uyum sağlayacak bir isim olduğunu düşündüğü için Lily adını kullandığını anlattı. Sonunda Türkçe doğum adı <strong>Selin</strong>’e dönmeye karar vermişti; kendi ifadesiyle Lily’yi seçmesinin kökeninde farklı görünmemeye çalışma arzusu olduğunu fark etmişti.</p>
 
+        <aside class="margin-note note-pink">
+          <span>NAME FILE</span>
+          <strong>Lily → Selin</strong>
+          <p>Macieira-Boşgelmez, yıllarca kullandığı Lily adını bırakıp Türkçe doğum adına dönmesini kökleriyle yeniden bağ kurmanın bir parçası olarak anlattı.</p>
+        </aside>
+
         <p>Grubun adı bile Lambrini Girls’ün bütün estetiğini tek hamlede anlatıyor. <strong>Lambrini</strong>, Birleşik Krallık’ta ucuzluğu ve kitsch itibarıyla bilinen armut bazlı bir perry. Phoebe’nin ürüne verdiği daha renkli tarif ise dört kelimeden oluşuyor: <q>toilet wine for sluts.</q> Yaklaşık iki poundluk, son derece ucuz bir içkinin adını punk grubuna çevirmek; yüksek ve alçak kültür, camp, kaba mizah ve sınıfsal imaları aynı anda masaya getiriyor.</p>
 
-        <h2>Bir punk albümüne gizlenmiş Kinder Surprise</h2>
+        <h2 id="chapter-02" class="chapter-heading"><span class="chapter-no">02</span><span class="chapter-title"><small>THE STUDIO</small>Bir punk albümüne gizlenmiş Kinder Surprise</span></h2>
 
         <p>2025 başında çıkan ilk uzunçalar <em>Who Let The Dogs Out</em>’ın büyük kısmı size “Cuntology 101”a hazırlık yapmaz. Phoebe’nin keskin gitarı, Selin’in muazzam düşük frekanslı bası, hız, distorsiyon, post-punk köşeleri, grunge ve gürültü… Albüm esasen tam gaz ilerleyen bir punk kaydıdır. Sonra son parçaya gelirsiniz ve bir anda synth’ler, four-on-the-floor disko ritmi ve birlikte bağırılmak üzere tasarlanmış bir nakarat belirir.</p>
 
@@ -94,17 +145,24 @@
 
         <p>Şanslarına stüdyoda iki tane Model D tipi synthesizer duruyordu.</p>
 
-        <blockquote>
-          <p>Selin şarkıyı daha sonra albümün “Kinder Egg surprise”ı diye tarif edecekti.</p>
+        <blockquote class="pull-quote">
+          <span>SELIN MACIEIRA-BOŞGELMEZ</span>
+          <p>Albümün “Kinder Egg surprise”ı.</p>
         </blockquote>
 
         <p>Yazılımın içine gömülmek yerine synth’lerin başına geçtiler ve parçayı daha organik biçimde kurmaya başladılar. Burada küçük ama şahane bir müzik nerd’ü bilmecesi var. The Line of Best Fit’in röportajında bu iki cihaz <strong>Behringer Model D</strong> olarak geçiyor. Phoebe ise Kerrang!’a aynı hikâyeyi anlatırken stüdyodaki enstrümanları <strong>Moog Model D</strong> diye tarif ediyor ve tanesinin birkaç bin sterlin değerinde olduğundan söz ediyor. Hangisinin kesin doğru olduğu kamuya açık kaynaklardan çözülemiyor. Kesin olan, “Cuntology 101”un stüdyoda karşılarına çıkan iki Model D tarzı analog synth sayesinde bugünkü biçimini aldığı.</p>
+
+        <aside class="margin-note note-lime">
+          <span>GEAR MYSTERY</span>
+          <strong>Moog mu, Behringer mı?</strong>
+          <p>İki ayrı röportaj aynı Model D hikâyesini farklı üretici isimleriyle aktarıyor. Kesin olan: şarkının pop kırılması iki analog synth ile başladı.</p>
+        </aside>
 
         <p>Kayıt yeri <strong>Echo Zoo</strong> idi. Phoebe’nin anlattığına göre albümde daha ağır konular arasında nefes aldıracak, kendini sevme, özgüven ve özsaygıyla ilgili ama aynı zamanda bilinçli olarak son derece aptalca bir şarkı istiyorlardı. Hedef kitlesini de kendi üslubuyla “girls, gays and theys” diye tarif ediyordu.</p>
 
         <p>Üretim hızları da Lambrini Girls mitolojisine yakışıyor. Grup “Cuntology 101”u <strong>tek günde</strong> yazdığını söylüyor. Dahası, albümün esas yazım sürecinin tamamı yaklaşık <strong>iki haftalık son derece yoğun bir dönem</strong>. Still Listening’e verdikleri röportajda ikinci hafta yaratıcı süreci hızlandırmak için bolca içki içip mümkün olduğunca çok yazdıklarını açık açık anlatıyorlar. Ortaya yarım saatten kısa süren, nefes almaya pek niyeti olmayan bir albüm çıkması biraz da bundan.</p>
 
-        <h2>“Cuntology” diye gerçekten bir şey var mı?</h2>
+        <h2 id="chapter-03" class="chapter-heading"><span class="chapter-no">03</span><span class="chapter-title"><small>THE LANGUAGE</small>“Cuntology” diye gerçekten bir şey var mı?</span></h2>
 
         <p>Başlığı yalnızca İngilizcedeki en ağır küfürlerden birinin üzerine yapılmış çocukça bir kelime oyunu sanmak kolay. Aslında arkasında belirli bir queer dil tarihi var.</p>
 
@@ -116,7 +174,7 @@
 
         <p>İşte parça bu nedenle düz bir “self-love anthem” olmaktan kurtuluyor. Bir yandan özsaygı ve sınır koyma üzerine gerçek bir mesaj taşıyor, diğer yandan kendini kutsal bir manifestoya çevirmeyi sürekli sabote ediyor. Phoebe bunu kusurlu, messy, hatta zaman zaman rezil taraflarını da sahiplenebilme üzerinden anlatıyor; Selin ise özgüvenle kendini sevmenin birbirine bağlılığına dikkat çekiyor. Şarkının “cunty” kavramını yalnızca seksi görünmekten çıkarıp kendine psikolojik alan açmaya kadar genişletmesi, iki dakikalık şakanın asıl numarası.</p>
 
-        <h2>İki dakika on sekiz saniyenin mutfağı</h2>
+        <h2 id="chapter-04" class="chapter-heading"><span class="chapter-no">04</span><span class="chapter-title"><small>THE CREDITS</small>İki dakika on sekiz saniyenin mutfağı</span></h2>
 
         <p>“Cuntology 101”, <strong>10 Ocak 2025’te</strong> <em>Who Let The Dogs Out</em>’ın 11’inci ve son parçası olarak çıktı; süresi 2:18. Parça düzeyindeki krediler Phoebe Lunny’yi ana vokalde, Selin — o dönemki krediyle Lilly/Lesline — Macieira-Boşgelmez’i basta, <strong>Jack Looker</strong>’ı davulda gösteriyor. Üçü de besteci olarak kredilendirilmiş. Prodüksiyon Lambrini Girls ve <strong>Daniel Fox</strong> imzalı; Fox aynı zamanda kayıt/engineering tarafında yer alıyor. Miksaj <strong>Seth Manchester</strong>, mastering ise <strong>Joe LaPorta</strong> tarafından yapılmış.</p>
 
@@ -126,7 +184,7 @@
 
         <p>Bütün bunlar, albümün finalindeki müzikal kırılmayı daha da eğlenceli kılıyor. Yaklaşık yarım saat boyunca öfkesini polis şiddeti, toksik maskülenlik, işyeri kültürü, nepotizm, cinsiyetçilik ve benzeri dış yapılara yönelten albüm, kapanırken gözünü içeri çeviriyor: “Peki biz kendimize nasıl davranacağız?” Guardian synth’leri ve disko ritmini albümün geri kalanından belirgin biçimde ayırırken, Pitchfork yazarı Nina Corcoran “Cuntology 101”u kendi değerlendirmesinde albümün en güçlü şarkısı olarak seçiyor ve electro-pop ritmiyle Lambrini Girls’ün küfürbaz punk karakterinin birleştiği yere dikkat çekiyor. Bu, elbette eleştirmenin estetik hükmü; ama parçanın albüm içinde neden bu kadar sıyrıldığını iyi tarif ediyor.</p>
 
-        <h2>Şaka büyüyor, konser ritüeline dönüşüyor</h2>
+        <h2 id="chapter-05" class="chapter-heading"><span class="chapter-no">05</span><span class="chapter-title"><small>THE LIVE LIFE</small>Şaka büyüyor, konser ritüeline dönüşüyor</span></h2>
 
         <p><em>Who Let The Dogs Out</em> İngiltere’de küçümsenmeyecek bir çıkış yaptı. Albüm <strong>UK Official Albums Chart’a 16 numaradan</strong> girdi; <strong>Official Rock &amp; Metal Albums Chart’ta ise 1 numaraya</strong> çıktı. Böylece Lambrini Girls ilk UK Top 40 albümünü elde etmiş oldu.</p>
 
@@ -140,11 +198,22 @@
 
         <p>Setlist.fm’in kullanıcı katkılı kayıtlarına göre 2025’te incelenebilen setlerde “Cuntology 101” <strong>77 kez ana set kapanışı</strong>, <strong>67 kez de bütün konserin kapanış şarkısı</strong> olarak kaydedilmiş. Kullanıcı tarafından oluşturulan setlist verisinin resmî turne arşivi olmadığını not etmek gerekiyor; yine de sayıların çizdiği örüntü son derece belirgin.</p>
 
+        <aside class="margin-note note-black">
+          <span>LIVE FILE · 2025</span>
+          <strong>77 × ana set finali<br>67 × konser finali</strong>
+          <p>Setlist.fm kullanıcı katkılı bir arşiv; yine de rakamlar şarkının sahnedeki kapanış ritüeline dönüşümünü açık biçimde gösteriyor.</p>
+        </aside>
+
         <p>2026’da repertuvar biraz değişti. “Big Dick Energy” çoğu festival setinde Cuntology’den sonra gelirken “Cuntology 101” sondan bir önceki toplu patlama işlevini sürdürdü. Ağustos ayında <strong>Sziget, Øyafestivalen, Flow Festival, Lowlands ve Rock en Seine</strong> kayıtlarında parça yine setin son bölümünde. Sziget, Lowlands ve Rock en Seine’de örneğin “Cuntology 101”un hemen ardından “Big Dick Energy” geliyor. Albümde garip bir synth-pop epilogu olarak başlayan şarkı böylece konserlerde binlerce insanın dört harfi birlikte hecelediği bir ritüele dönüşmüş durumda.</p>
 
         <p>Bu da parçanın bir paradoksunu açıklıyor. Müzikal olarak Lambrini Girls kataloğunun en erişilebilir kayıtlarından biri; davranış olarak ise muhtemelen en Lambrini Girls olanı.</p>
 
-        <h2>Sonra kapıdan Peaches girdi</h2>
+        <blockquote class="pull-quote pull-quote-wide">
+          <span>THE LIVE TURN</span>
+          <p>Albümde garip bir synth-pop epilogu olarak başlayan şarkı, sahnede binlerce insanın dört harfi birlikte hecelediği bir ritüele dönüştü.</p>
+        </blockquote>
+
+        <h2 id="chapter-06" class="chapter-heading"><span class="chapter-no">06</span><span class="chapter-title"><small>THE REMIX</small>Sonra kapıdan Peaches girdi</span></h2>
 
         <p>Bu şarkının bir noktada <strong>Peaches</strong> ile buluşması neredeyse kaçınılmazmış gibi görünüyor.</p>
 
@@ -154,7 +223,7 @@
 
         <p>LOUD WOMEN ise Peaches remix’ini yalnızca sevmedi; kendi <strong>2025 yıl sonu şarkı seçkisinde 1 numaraya</strong> koydu. Bu elbette derginin editoryal tercihi, nesnel bir başarı ölçütü değil, fakat şarkının feminist/queer DIY punk çevresinde ne kadar güçlü yankı yarattığının bir göstergesi.</p>
 
-        <h2>“You’re Welcome”dan “No Refunds”a</h2>
+        <h2 id="chapter-07" class="chapter-heading"><span class="chapter-no">07</span><span class="chapter-title"><small>WHAT COMES NEXT</small>“You’re Welcome”dan “No Refunds”a</span></h2>
 
         <p>Bütün bunların öncesinde Lambrini Girls’ün ilk büyük çıkış kaydı 19 Mayıs 2023 tarihli <strong><em>You’re Welcome</em></strong> EP’siydi. Altı şarkılık kayıt “Boys In The Band”, “Terf Wars”, “Mr Lovebomb”, “Lads Lads Lads”, “Help Me I’m Gay” ve “White Van”dan oluşuyordu ve <strong>Big Scary Monsters</strong> üzerinden yayımlandı. Bir yıl sonra <em>God’s Country / Body of Mine</em>, Ocak 2025’te de <em>Who Let The Dogs Out</em> geldi.</p>
 
@@ -164,11 +233,17 @@
 
         <p>Üstelik bu hikâye bitmiş değil. Tam tersine, Lambrini Girls şu anda ikinci albüm döneminin başında.</p>
 
+        <aside class="margin-note note-pink">
+          <span>NEXT CHAPTER</span>
+          <strong>No Refunds</strong>
+          <p>15 Ocak 2027 · 11 parça. “Cult of Celebrity” ve “Bang Bang Bang” yeni dönemin ilk işaretleri.</p>
+        </aside>
+
         <p><strong><em>No Refunds</em></strong>, City Slang tarafından <strong>15 Ocak 2027’de</strong> yayımlanacak. 11 parçalık albümde Phoebe Lunny ve artık resmî materyallerde doğum adıyla yer alan Selin Macieira-Boşgelmez var. Mart 2026’da <strong>“Cult of Celebrity”</strong> gelmişti; 15 Eylül’de ise <strong>“Bang Bang Bang”</strong> ile birlikte albüm duyurusu yapıldı. Label’ın kendi tanımına göre <em>No Refunds</em>, ilk albümün punk temelini daha karanlık ve daha acil bir yöne taşıyor; industrial punk ile popa yaklaşan anları yan yana koyuyor. Konu başlıkları arasında yapay zekâ, üreme hakları, manosphere, faşizm ve savaş/soykırım gibi güncel siyasal ve toplumsal meseleler var. Bunlar albüm henüz yayımlanmadığı için bağımsız eleştirmen hükmü değil, City Slang’ın albüm için yaptığı ön tanımlama.</p>
 
         <p>Ve zamanlama neredeyse fazla kusursuz: <strong>18 Eylül 2026</strong>, yani bu yazının hazırlandığı gün, Guardian da ikiliyle <em>No Refunds</em> dönemine ilişkin uzun bir profil yayımladı. Lambrini Girls şu anda geçmiş başarılarını dolaşıma sokan bir katalog grubu değil; ikinci bölümüne birkaç gün önce resmen geçmiş bir grup.</p>
 
-        <h2>Bir küfürden daha fazlası</h2>
+        <h2 id="chapter-08" class="chapter-heading"><span class="chapter-no">08</span><span class="chapter-title"><small>THE LAST WORD</small>Bir küfürden daha fazlası</span></h2>
 
         <p>“Cuntology 101”a bu noktadan bakınca şarkının neden bu kadar kalıcı olduğu daha netleşiyor. İlk dinleyişte çok küfürlü, çok komik, biraz novelty-song havasında bir electro-punk numarası. Sonra altında üç katman açılıyor. Birincisi, queer ve ballroom kültüründen gelen bir kelimenin hakaretten öz-sahiplenmeye doğru çevrilmesi. İkincisi, hayır diyebilmek, terapi görmek, sınır koymak ve kendini öncelemek gibi gerçek meselelerin bilinçli biçimde absürt davranışlarla aynı listeye konması. Üçüncüsü ise bir gitar-bas punk grubunun albümün en sonunda kendi formülünü kırıp synth-pop yapması.</p>
 
@@ -178,10 +253,23 @@
 
         <p class="closing-line">Bir punk şarkısının özsaygı dersi verebilmesi için ille de terbiyeli olması gerekmiyormuş.</p>
 
+        <section class="story-endmatter" aria-label="Story metadata">
+          <span>FILED UNDER</span>
+          <div class="story-tags">
+            <a href="../search.html?q=Lambrini%20Girls">Lambrini Girls</a>
+            <span>Punk</span>
+            <span>Queer culture</span>
+            <span>Brighton</span>
+            <span>Electro-pop</span>
+            <span>ISC 154</span>
+          </div>
+          <p>Yazan <strong>ISC Editorial</strong> · Yayın: 18 Eylül 2026</p>
+        </section>
+
         <details class="longread-sources">
           <summary>
-            <span>Kaynakça</span>
-            <small>Tıklayarak aç / kapat</small>
+            <span>Kaynakça <i>&amp; Further Reading</i></span>
+            <small>28 kaynak · tıklayarak aç / kapat</small>
           </summary>
           <div class="source-list">
             <ol>
@@ -231,5 +319,43 @@
     <p>International Song Contest · Magazine</p>
     <p>Long Read · Entry 01 · ISC 154</p>
   </footer>
+  <script id="read-time-script">
+    (() => {
+      const article = document.querySelector('.longread-article');
+      const readTime = document.getElementById('read-time');
+      const progress = document.getElementById('reading-progress-bar');
+      const headings = [...document.querySelectorAll('.chapter-heading')];
+      const tocLinks = [...document.querySelectorAll('.rail-toc a[data-section]')];
+
+      if (article && readTime) {
+        const text = article.cloneNode(true);
+        text.querySelectorAll('.longread-sources,.source-list,.story-endmatter').forEach(el => el.remove());
+        const words = (text.textContent || '').trim().split(/\s+/).filter(Boolean).length;
+        readTime.textContent = Math.max(1, Math.round(words / 210)) + ' dk';
+      }
+
+      const updateProgress = () => {
+        if (!article || !progress) return;
+        const rect = article.getBoundingClientRect();
+        const articleTop = window.scrollY + rect.top;
+        const max = Math.max(1, article.offsetHeight - window.innerHeight * .45);
+        const current = Math.min(max, Math.max(0, window.scrollY - articleTop + window.innerHeight * .18));
+        progress.style.width = ((current / max) * 100).toFixed(2) + '%';
+      };
+      updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+
+      if ('IntersectionObserver' in window && headings.length) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            tocLinks.forEach(link => link.classList.toggle('active', link.dataset.section === entry.target.id));
+          });
+        }, { rootMargin: '-18% 0px -68% 0px', threshold: 0 });
+        headings.forEach(h => observer.observe(h));
+      }
+    })();
+  </script>
 </body>
 </html>
