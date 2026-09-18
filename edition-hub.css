@@ -347,3 +347,63 @@ body.hub-player-open{overflow:hidden}
 }
 
 #overview,#participants,#listen,#magazine,#results,#explore{scroll-margin-top:calc(var(--hub-header-height,61px) + 58px)}
+
+
+/* Text-only long read lead inside the magazine layer */
+.hub-longread{
+  display:grid;
+  grid-template-columns:180px minmax(0,1fr) auto;
+  gap:30px;
+  align-items:end;
+  margin:0 0 16px;
+  padding:28px 30px;
+  border:1px solid var(--hub-line);
+  border-radius:22px;
+  background:rgba(255,250,242,.72);
+  color:#171313;
+  text-decoration:none;
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.hub-longread:hover{
+  transform:translateY(-2px);
+  border-color:rgba(115,25,45,.34);
+  box-shadow:0 18px 44px rgba(50,34,27,.08);
+}
+.hub-longread>span{
+  align-self:start;
+  color:#73192d;
+  font-size:8px;
+  font-weight:800;
+  line-height:1.5;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+.hub-longread h3{
+  margin:0;
+  max-width:860px;
+  font-family:"Libre Caslon Display",serif;
+  font-size:clamp(36px,4vw,58px);
+  font-weight:400;
+  line-height:.94;
+  letter-spacing:-.035em;
+}
+.hub-longread p{
+  max-width:780px;
+  margin:10px 0 0;
+  color:var(--hub-muted);
+  font-size:11px;
+  line-height:1.65;
+}
+.hub-longread b{
+  align-self:center;
+  color:#73192d;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+@media(max-width:820px){
+  .hub-longread{grid-template-columns:1fr;gap:14px;padding:24px}
+  .hub-longread b{justify-self:start}
+}
