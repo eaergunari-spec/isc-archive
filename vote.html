@@ -12,7 +12,14 @@
   <meta property="og:title" content="ISC — Voting Room" />
   <meta property="og:description" content="Delegasyonunu doğrula ve güncel ISC edisyonunda resmi pusulanı gönder." />
   <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/vote.html" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://eaergunari-spec.github.io/isc-archive/isc-154-share.png" />
+  <meta property="og:image:secure_url" content="https://eaergunari-spec.github.io/isc-archive/isc-154-share.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="ISC 154 — Voting Open Now" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://eaergunari-spec.github.io/isc-archive/isc-154-share.png" />
   <title>ISC — Voting Room</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,6 +92,35 @@
         <div class="autosave-pill"><span class="autosave-dot"></span><span id="save-status">Hazır</span></div>
       </div>
 
+      <section class="submission-receipt" id="submission-receipt" hidden aria-live="polite">
+        <div class="receipt-main">
+          <div class="receipt-kicker"><span></span><b id="receipt-kicker-text">BALLOT RECEIVED</b></div>
+          <span class="eyebrow">OFFICIAL BALLOT RECEIPT</span>
+          <h3 id="receipt-title">Oyun kaydedildi.</h3>
+          <p id="receipt-copy">Oylama kapanana kadar sıralamanı değiştirebilir ve güncellenmiş oyunu yeniden gönderebilirsin.</p>
+          <div class="receipt-meta">
+            <div><span>Delegasyon</span><strong id="receipt-country">—</strong></div>
+            <div><span>Edisyon</span><strong id="receipt-edition">—</strong></div>
+            <div><span>Son gönderim</span><strong id="receipt-time">—</strong></div>
+            <div><span>Durum</span><strong id="receipt-status">SUBMITTED</strong></div>
+          </div>
+          <div class="receipt-actions">
+            <button type="button" id="share-vote" class="receipt-primary">I VOTED · PAYLAŞ <span>↗</span></button>
+            <button type="button" id="edit-submitted-vote" class="receipt-secondary">Sıralamayı değiştir</button>
+            <a href="index.html" class="receipt-link">ISC’ye dön →</a>
+          </div>
+          <p class="receipt-note" id="receipt-note">Paylaşım kartında verdiğin puanlar görünmez.</p>
+        </div>
+        <div class="vote-share-card" id="vote-share-card" aria-hidden="true">
+          <span class="share-card-brand">INTERNATIONAL SONG CONTEST</span>
+          <span class="share-card-current">CURRENT EDITION</span>
+          <strong id="share-card-edition">ISC —</strong>
+          <em>I VOTED</em>
+          <small id="share-card-country">—</small>
+          <i>OFFICIAL BALLOT RECEIVED</i>
+        </div>
+      </section>
+
       <div class="ballot-control ranking-status-card">
         <div class="progress-copy">
           <span>Pusula durumu</span>
@@ -126,6 +162,18 @@
       <div><strong>Results stay backstage.</strong><p>Toplam puanlar arka planda hesaplanır; sonuçlar reveal edilene kadar hiçbir ülkenin toplamı kamuya gösterilmez.</p></div>
     </section>
   </main>
+
+  <div id="vote-celebration" class="vote-celebration" hidden aria-hidden="true">
+    <div class="celebration-ring ring-one"></div>
+    <div class="celebration-ring ring-two"></div>
+    <div class="celebration-flare"></div>
+    <div class="celebration-content">
+      <span class="celebration-country" id="celebration-country">YOUR COUNTRY</span>
+      <strong class="celebration-score" id="celebration-score">12</strong>
+      <h2>POINTS <em>RECEIVED</em></h2>
+      <p id="celebration-edition">ISC — · OFFICIAL BALLOT</p>
+    </div>
+  </div>
 
   <dialog id="confirm-dialog" class="confirm-dialog">
     <div class="confirm-inner">
