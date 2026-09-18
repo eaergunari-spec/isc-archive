@@ -20,7 +20,7 @@ body.home-page{margin:0;background:var(--cream);color:#171313;overflow-x:hidden}
 .hero-frame-label{position:absolute;top:34px;right:38px;z-index:3;color:rgba(255,255,255,.78);font-size:10px;letter-spacing:.2em;font-weight:700}
 .hero-frame-count{position:absolute;right:34px;bottom:30px;z-index:3;display:flex;align-items:flex-end;gap:6px;font-family:"Libre Caslon Display",serif}.hero-frame-count span{font-size:76px;line-height:.8}.hero-frame-count small{margin-bottom:6px;font:600 11px/1 "DM Sans",sans-serif;letter-spacing:.15em;opacity:.62}
 .live-hero-content{min-height:780px;width:min(720px,54vw);padding:112px 0 72px clamp(24px,7vw,110px);display:flex;flex-direction:column;justify-content:center;position:relative;z-index:4}
-.live-pill{display:inline-flex;width:fit-content;align-items:center;gap:10px;padding:9px 13px;margin-bottom:26px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(255,255,255,.06);text-transform:uppercase;letter-spacing:.16em;font-size:10px;font-weight:700;backdrop-filter:blur(12px);animation:livePillBlink 1.35s ease-in-out infinite;will-change:opacity,box-shadow,border-color,background}
+.live-pill{display:inline-flex;width:fit-content;align-items:center;gap:10px;text-decoration:none;color:inherit;cursor:pointer;padding:9px 13px;margin-bottom:26px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(255,255,255,.06);text-transform:uppercase;letter-spacing:.16em;font-size:10px;font-weight:700;backdrop-filter:blur(12px);animation:livePillBlink 1.35s ease-in-out infinite;will-change:opacity,box-shadow,border-color,background}
 @keyframes livePillBlink{
   0%,100%{
     opacity:1;
