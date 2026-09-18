@@ -118,7 +118,7 @@ body.edition-hub-body{margin:0;background:var(--hub-cream);color:var(--hub-ink);
 
 .edition-subnav{
   position:sticky;
-  top:0;
+  top:var(--hub-header-height,61px);
   z-index:80;
   display:flex;
   align-items:center;
@@ -307,3 +307,5 @@ body.hub-player-open{overflow:hidden}
   html{scroll-behavior:auto}
   .hub-entry-media img,.hub-mag-card img,.hub-player{transition:none!important}
 }
+
+#overview,#participants,#listen,#magazine,#results,#explore{scroll-margin-top:calc(var(--hub-header-height,61px) + 58px)}
