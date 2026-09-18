@@ -55,19 +55,52 @@
 .ring-one{width:min(72vw,820px);aspect-ratio:1}.ring-two{width:min(92vw,1100px);aspect-ratio:1;border-color:rgba(216,255,62,.1)}
 .celebration-flare{position:absolute;left:50%;top:50%;width:10px;height:10px;border-radius:50%;transform:translate(-50%,-50%);background:#fff;box-shadow:0 0 50px 35px rgba(255,255,255,.14),0 0 150px 80px rgba(255,61,129,.11);opacity:0}
 .celebration-confetti{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none}
-.confetti-piece{position:absolute;left:50%;top:46%;width:var(--w,8px);height:var(--h,14px);border-radius:2px;background:var(--confetti,#ff3d81);opacity:0;transform:translate(-50%,-50%) rotate(0deg) scale(.2);transform-origin:center;will-change:transform,opacity}
+.confetti-piece{position:absolute;left:50%;top:43%;width:var(--w,8px);height:var(--h,14px);border-radius:2px;background:#ff3d81;opacity:0;transform:translate3d(-50%,-50%,0) rotate(0deg);transform-origin:center;will-change:transform,opacity}
 .confetti-piece.round{border-radius:50%}
 .confetti-piece.ribbon{width:4px;height:20px;border-radius:999px}
-.vote-celebration.is-running .confetti-piece{animation:confettiFlight var(--duration,2.45s) var(--delay,0s) cubic-bezier(.16,.67,.22,1) forwards}
-.celebration-floor-glow{position:absolute;z-index:1;left:50%;bottom:-54px;width:min(92vw,1100px);height:150px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse at center,rgba(255,61,129,.12),rgba(216,255,62,.04) 42%,transparent 72%);filter:blur(4px);opacity:0}
-.vote-celebration.is-running .celebration-floor-glow{animation:floorGlow 1s 1.55s ease forwards}
+.vote-celebration.is-running .confetti-piece{animation:confettiFlight var(--duration,3.25s) var(--delay,0s) linear forwards}
+.celebration-floor-glow{position:absolute;z-index:1;left:50%;bottom:-54px;width:min(92vw,1100px);height:150px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse at center,rgba(255,61,129,.15),rgba(255,61,129,.04) 44%,transparent 72%);filter:blur(4px);opacity:0}
+.vote-celebration.is-running .celebration-floor-glow{animation:floorGlow 1.1s 1.85s ease forwards}
 @keyframes confettiFlight{
-  0%{opacity:0;transform:translate(-50%,-50%) rotate(0deg) scale(.2)}
-  8%{opacity:1}
-  27%{opacity:1;transform:translate(calc(-50% + var(--burst-x)),calc(-50% + var(--burst-y))) rotate(var(--spin1)) scale(1)}
-  72%{opacity:1;transform:translate(calc(-50% + var(--land-x)),calc(-50% + var(--land-y) - 30px)) rotate(var(--spin2)) scale(1)}
-  88%{opacity:1;transform:translate(calc(-50% + var(--land-x)),calc(-50% + var(--land-y) + 4px)) rotate(var(--spin3)) scale(.98)}
-  100%{opacity:1;transform:translate(calc(-50% + var(--land-x)),calc(-50% + var(--land-y))) rotate(var(--spin4)) scale(.96)}
+  0%{
+    opacity:0;
+    transform:translate3d(-50%,-50%,0) rotate(0deg);
+  }
+  5%{opacity:1}
+  18%{
+    opacity:1;
+    transform:
+      translate3d(calc(-50% + var(--x1)),calc(-50% + var(--y1)),0)
+      rotate(var(--r1));
+  }
+  38%{
+    transform:
+      translate3d(calc(-50% + var(--x2)),calc(-50% + var(--y2)),0)
+      rotate(var(--r2));
+  }
+  60%{
+    transform:
+      translate3d(calc(-50% + var(--x3)),calc(-50% + var(--y3)),0)
+      rotate(var(--r3));
+  }
+  79%{
+    opacity:1;
+    transform:
+      translate3d(calc(-50% + var(--x4)),calc(-50% + var(--y4)),0)
+      rotate(var(--r4));
+  }
+  91%{
+    opacity:1;
+    transform:
+      translate3d(calc(-50% + var(--x5)),calc(-50% + var(--y5)),0)
+      rotate(var(--r5));
+  }
+  100%{
+    opacity:1;
+    transform:
+      translate3d(calc(-50% + var(--x6)),calc(-50% + var(--y6)),0)
+      rotate(var(--r6));
+  }
 }
 @keyframes floorGlow{to{opacity:1}}
 .vote-celebration.is-running .celebration-country{animation:celebrationFade .5s .15s ease forwards}
