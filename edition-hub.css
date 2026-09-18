@@ -195,7 +195,34 @@ body.edition-hub-body{margin:0;background:var(--hub-cream);color:var(--hub-ink);
 .hub-embed-button i{display:grid;place-items:center;width:62px;height:62px;border-radius:50%;background:var(--hub-pink);font-style:normal;font-size:18px}
 .hub-platform-card.spotify .hub-embed-button i{background:#1ed760;color:#07170c}
 .hub-embed-button b{font-family:"Libre Caslon Display",serif;font-size:31px;font-weight:400}
-.hub-embed-button small{color:rgba(255,255,255,.46);font-size:9px}
+.hub-embed-button small{color:rgba(255,255,255,.64);font-size:9px}
+.hub-platform-poster{position:absolute;inset:0;z-index:0;display:block;overflow:hidden}
+.hub-platform-poster::after{content:"";position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,rgba(6,6,9,.04),rgba(6,6,9,.10) 36%,rgba(6,6,9,.82) 100%),linear-gradient(105deg,rgba(255,61,129,.10),transparent 44%,rgba(216,255,62,.06));pointer-events:none}
+.hub-platform-poster img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92) contrast(1.06) brightness(.76);transition:transform .5s ease,filter .3s ease}
+.hub-embed-button:hover .hub-platform-poster img{filter:saturate(1) contrast(1.08) brightness(.82)}
+.hub-poster-copy{position:absolute;z-index:6;left:26px;right:26px;bottom:24px;display:grid!important;place-items:start!important;gap:8px!important;text-align:left}
+.hub-poster-copy::before{content:"";position:absolute;z-index:-1;inset:-20px -20px -16px;background:radial-gradient(ellipse at 22% 60%,rgba(7,7,10,.72),rgba(7,7,10,.36) 54%,transparent 80%);filter:blur(4px)}
+.hub-poster-copy i{box-shadow:0 0 0 7px rgba(255,61,129,.12),0 12px 32px rgba(0,0,0,.34)}
+.hub-platform-card.spotify .hub-poster-copy i{box-shadow:0 0 0 7px rgba(30,215,96,.12),0 12px 32px rgba(0,0,0,.34)}
+.hub-youtube-main{position:absolute;inset:0 31% 0 0;overflow:hidden}
+.hub-youtube-main::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 64%,rgba(7,7,10,.62) 100%)}
+.hub-youtube-main img{transform:scale(1.02)}
+.hub-embed-button:hover .hub-youtube-main img{transform:scale(1.055)}
+.hub-youtube-main small{position:absolute;left:14px;top:14px;z-index:4;padding:6px 9px;border-radius:999px;background:rgba(7,7,10,.68);border:1px solid rgba(255,255,255,.13);color:#fff;font:700 6px/1 "DM Sans",sans-serif;letter-spacing:.11em;text-transform:uppercase}
+.hub-youtube-strip{position:absolute;inset:0 0 0 69%;display:grid;grid-template-rows:repeat(3,1fr);gap:2px;background:#07070a}
+.hub-youtube-strip>span{position:relative;overflow:hidden;min-height:0}
+.hub-youtube-strip img{transform:scale(1.03)}
+.hub-embed-button:hover .hub-youtube-strip img{transform:scale(1.08)}
+.hub-youtube-strip small{position:absolute;right:7px;bottom:7px;z-index:2;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(7,7,10,.72);border:1px solid rgba(255,255,255,.14);color:#fff;font:700 7px/1 "DM Sans",sans-serif}
+.hub-poster-stamp{position:absolute;right:16px;bottom:16px;z-index:5;color:rgba(255,255,255,.58);font:700 6px/1 "DM Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.hub-spotify-grid{position:absolute;inset:-4%;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px;transform:rotate(-2deg) scale(1.04)}
+.hub-spotify-grid>span{overflow:hidden;min-width:0;min-height:0}
+.hub-spotify-grid img{transform:scale(1.05)}
+.hub-embed-button:hover .hub-spotify-grid img{transform:scale(1.1)}
+.hub-platform-poster-spotify::before{content:"";position:absolute;z-index:2;inset:0;background:radial-gradient(circle at 72% 22%,rgba(30,215,96,.22),transparent 25%),radial-gradient(circle at 18% 78%,rgba(255,61,129,.24),transparent 32%);mix-blend-mode:screen;pointer-events:none}
+.hub-spotify-title{position:absolute;z-index:4;right:18px;top:18px;display:grid;gap:2px;padding:10px 11px 9px;min-width:96px;border-radius:13px;background:rgba(8,8,11,.70);border:1px solid rgba(255,255,255,.13);backdrop-filter:blur(12px);text-align:right}
+.hub-spotify-title b{font-family:"Libre Caslon Display",serif;font-size:25px;font-weight:400;line-height:.9}
+.hub-spotify-title small{color:#1ed760;font-size:5.5px;font-weight:800;letter-spacing:.12em}
 .hub-platform-foot{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:17px 20px}
 .hub-platform-foot span{color:rgba(255,255,255,.5);font-size:9px}
 .hub-platform-foot a{color:#fff;font-size:8px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;text-decoration:none}
