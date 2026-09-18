@@ -15,6 +15,9 @@ let ranking = [];
 let scores = {};
 let saveTimer = null;
 let sortable = null;
+let ballotStatus = 'new';
+let submittedAt = null;
+let editingSubmitted = false;
 
 const countrySelect = document.getElementById('country-select');
 const codeWrap = document.getElementById('code-wrap');
@@ -45,6 +48,23 @@ const voteIntro = document.getElementById('vote-intro');
 const heroTopPoints = document.getElementById('hero-top-points');
 const heroOtherPoints = document.getElementById('hero-other-points');
 const currentEditionNav = document.getElementById('current-edition-nav');
+const submissionReceipt = document.getElementById('submission-receipt');
+const receiptKickerText = document.getElementById('receipt-kicker-text');
+const receiptTitle = document.getElementById('receipt-title');
+const receiptCopy = document.getElementById('receipt-copy');
+const receiptCountry = document.getElementById('receipt-country');
+const receiptEdition = document.getElementById('receipt-edition');
+const receiptTime = document.getElementById('receipt-time');
+const receiptStatus = document.getElementById('receipt-status');
+const receiptNote = document.getElementById('receipt-note');
+const shareVote = document.getElementById('share-vote');
+const editSubmittedVote = document.getElementById('edit-submitted-vote');
+const shareCardEdition = document.getElementById('share-card-edition');
+const shareCardCountry = document.getElementById('share-card-country');
+const voteCelebration = document.getElementById('vote-celebration');
+const celebrationCountry = document.getElementById('celebration-country');
+const celebrationScore = document.getElementById('celebration-score');
+const celebrationEdition = document.getElementById('celebration-edition');
 
 const escapeHtml = (value) => String(value ?? '')
   .replace(/&/g, '&amp;')
@@ -52,6 +72,240 @@ const escapeHtml = (value) => String(value ?? '')
   .replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;')
   .replace(/'/g, '&#39;');
+
+
+const submissionTimeFormatter = new Intl.DateTimeFormat('tr-TR', {
+  dateStyle: 'medium',
+  timeStyle: 'short'
+});
+
+function formatSubmissionTime(value) {
+  if (!value) return '—';
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? '—' : submissionTimeFormatter.format(date);
+}
+
+function localRevisionKey() {
+  if (!edition || !activeCountry) return '';
+  return `isc_vote_revision_${edition.edition_number}_${activeCountry.slug}`;
+}
+
+function persistLocalRevision() {
+  const key = localRevisionKey();
+  if (!key || !submittedAt) return;
+  try {
+    localStorage.setItem(key, JSON.stringify({
+      baseSubmittedAt: submittedAt,
+      entryIds: ranking.map(entry => Number(entry.id)),
+      savedAt: new Date().toISOString()
+    }));
+  } catch (_) {}
+}
+
+function clearLocalRevision() {
+  const key = localRevisionKey();
+  if (!key) return;
+  try { localStorage.removeItem(key); } catch (_) {}
+}
+
+function restoreLocalRevision(eligibleEntries) {
+  const key = localRevisionKey();
+  if (!key || ballotStatus !== 'submitted' || !submittedAt) return false;
+  try {
+    const parsed = JSON.parse(localStorage.getItem(key) || 'null');
+    if (!parsed || parsed.baseSubmittedAt !== submittedAt || !Array.isArray(parsed.entryIds)) return false;
+    const byId = new Map(eligibleEntries.map(entry => [Number(entry.id), entry]));
+    const restored = parsed.entryIds.map(id => byId.get(Number(id))).filter(Boolean);
+    if (restored.length !== eligibleEntries.length || new Set(restored.map(entry => entry.id)).size !== eligibleEntries.length) return false;
+    ranking = restored;
+    editingSubmitted = true;
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+function renderSubmissionReceipt() {
+  if (!submissionReceipt || !activeCountry || !edition || !submittedAt) {
+    if (submissionReceipt) submissionReceipt.hidden = true;
+    return;
+  }
+
+  const label = edition.title || `ISC ${edition.edition_number}`;
+  submissionReceipt.hidden = false;
+  submissionReceipt.classList.toggle('is-revising', editingSubmitted);
+
+  receiptCountry.textContent = activeCountry.name;
+  receiptEdition.textContent = label;
+  receiptTime.textContent = formatSubmissionTime(submittedAt);
+  shareCardEdition.textContent = label.toUpperCase();
+  shareCardCountry.textContent = activeCountry.name.toUpperCase();
+
+  if (editingSubmitted) {
+    receiptKickerText.textContent = 'SUBMITTED · LOCAL REVISION';
+    receiptTitle.textContent = `${activeCountry.name} delegasyonunun gönderilmiş oyu güvende.`;
+    receiptCopy.textContent = 'Yeni sıralaman bu cihazda taslak olarak tutuluyor. Mevcut gönderilmiş oyun geçerliliğini koruyor; güncellemek için pusulayı yeniden göndermen gerekiyor.';
+    receiptStatus.textContent = 'REVISION DRAFT';
+    receiptNote.textContent = 'Bu taslak henüz resmi oyunun yerini almadı. Paylaşım kartında verdiğin puanlar görünmez.';
+  } else {
+    receiptKickerText.textContent = 'BALLOT RECEIVED';
+    receiptTitle.textContent = `${activeCountry.name} delegasyonunun ${label} oyu kaydedildi.`;
+    receiptCopy.textContent = 'Oylama kapanana kadar sıralamanı değiştirebilir ve güncellenmiş oyunu yeniden gönderebilirsin.';
+    receiptStatus.textContent = 'SUBMITTED';
+    receiptNote.textContent = 'Paylaşım kartında verdiğin puanlar görünmez.';
+  }
+}
+
+async function playSubmissionCelebration() {
+  if (!voteCelebration || !activeCountry || !edition) return;
+  const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  celebrationCountry.textContent = activeCountry.name.toUpperCase();
+  celebrationScore.textContent = String(POINTS[0] ?? '12');
+  celebrationEdition.textContent = `${edition.title || `ISC ${edition.edition_number}`} · OFFICIAL BALLOT`;
+  voteCelebration.hidden = false;
+  voteCelebration.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => voteCelebration.classList.add('is-running'));
+
+  await new Promise(resolve => setTimeout(resolve, reduced ? 900 : 2500));
+
+  voteCelebration.classList.remove('is-running');
+  voteCelebration.hidden = true;
+  voteCelebration.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+function fitCanvasText(ctx, text, maxWidth, startSize, family, weight = '700') {
+  let size = startSize;
+  while (size > 28) {
+    ctx.font = `${weight} ${size}px ${family}`;
+    if (ctx.measureText(text).width <= maxWidth) break;
+    size -= 2;
+  }
+  return size;
+}
+
+async function buildVoteShareCardBlob() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 1200;
+  canvas.height = 630;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return null;
+  if (document.fonts?.ready) await document.fonts.ready;
+
+  ctx.fillStyle = '#07070a';
+  ctx.fillRect(0, 0, 1200, 630);
+
+  const glowPink = ctx.createRadialGradient(250, 500, 0, 250, 500, 420);
+  glowPink.addColorStop(0, 'rgba(255,61,129,.34)');
+  glowPink.addColorStop(1, 'rgba(255,61,129,0)');
+  ctx.fillStyle = glowPink;
+  ctx.fillRect(0, 0, 1200, 630);
+
+  const glowLime = ctx.createRadialGradient(980, 100, 0, 980, 100, 320);
+  glowLime.addColorStop(0, 'rgba(216,255,62,.20)');
+  glowLime.addColorStop(1, 'rgba(216,255,62,0)');
+  ctx.fillStyle = glowLime;
+  ctx.fillRect(0, 0, 1200, 630);
+
+  ctx.strokeStyle = 'rgba(255,255,255,.08)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(980, 330, 285, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(980, 330, 390, 0, Math.PI * 2);
+  ctx.stroke();
+
+  ctx.fillStyle = '#d8ff3e';
+  ctx.font = '700 20px "DM Sans", sans-serif';
+  ctx.letterSpacing = '3px';
+  ctx.fillText('INTERNATIONAL SONG CONTEST', 72, 74);
+
+  ctx.fillStyle = 'rgba(255,255,255,.55)';
+  ctx.textAlign = 'right';
+  ctx.fillText('OFFICIAL BALLOT RECEIVED', 1128, 74);
+  ctx.textAlign = 'left';
+
+  const label = edition?.title || `ISC ${edition?.edition_number || ''}`;
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '400 154px "Libre Caslon Display", serif';
+  ctx.fillText(label.toUpperCase(), 68, 260);
+
+  ctx.fillStyle = '#ff3d81';
+  ctx.font = '700 74px "DM Sans", sans-serif';
+  ctx.fillText('I VOTED', 72, 360);
+
+  const country = (activeCountry?.name || '').toUpperCase();
+  const countrySize = fitCanvasText(ctx, country, 900, 60, '"DM Sans", sans-serif');
+  ctx.fillStyle = '#ffffff';
+  ctx.font = `700 ${countrySize}px "DM Sans", sans-serif`;
+  ctx.fillText(country, 72, 438);
+
+  ctx.strokeStyle = 'rgba(255,255,255,.14)';
+  ctx.beginPath();
+  ctx.moveTo(72, 500);
+  ctx.lineTo(1128, 500);
+  ctx.stroke();
+
+  ctx.fillStyle = 'rgba(255,255,255,.58)';
+  ctx.font = '700 18px "DM Sans", sans-serif';
+  ctx.fillText('YOUR COUNTRY · YOUR RANKING · YOUR VOTE', 72, 550);
+
+  ctx.fillStyle = '#d8ff3e';
+  ctx.textAlign = 'right';
+  ctx.fillText('isc-archive', 1128, 550);
+  ctx.textAlign = 'left';
+
+  return await new Promise(resolve => canvas.toBlob(resolve, 'image/png', 0.95));
+}
+
+async function shareVoteReceipt() {
+  if (!shareVote || !activeCountry || !edition) return;
+  const original = shareVote.innerHTML;
+  shareVote.disabled = true;
+  shareVote.textContent = 'HAZIRLANIYOR…';
+
+  try {
+    const blob = await buildVoteShareCardBlob();
+    const label = edition.title || `ISC ${edition.edition_number}`;
+    const url = 'https://eaergunari-spec.github.io/isc-archive/';
+    const text = `${activeCountry.name} delegasyonu ${label} için oyunu kullandı. #ISC`;
+    const file = blob ? new File([blob], `ISC-${edition.edition_number}-I-Voted.png`, { type: 'image/png' }) : null;
+
+    if (file && navigator.share && navigator.canShare?.({ files: [file] })) {
+      await navigator.share({ title: `${label} · I Voted`, text, url, files: [file] });
+      receiptNote.textContent = 'Paylaşım kartı hazır. Puanların kartta yer almıyor.';
+    } else if (navigator.share) {
+      await navigator.share({ title: `${label} · I Voted`, text, url });
+      receiptNote.textContent = 'Paylaşım bağlantısı açıldı. Puanların paylaşılmıyor.';
+    } else {
+      if (navigator.clipboard) await navigator.clipboard.writeText(`${text} ${url}`);
+      if (blob) {
+        const objectUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = objectUrl;
+        link.download = `ISC-${edition.edition_number}-I-Voted.png`;
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+      }
+      receiptNote.textContent = 'Paylaşım metni kopyalandı ve kart hazırlandı. Puanların kartta yer almıyor.';
+    }
+  } catch (error) {
+    if (error?.name !== 'AbortError') {
+      console.error('ISC share card failed', error);
+      receiptNote.textContent = 'Paylaşım kartı hazırlanamadı. Lütfen tekrar dene.';
+    }
+  } finally {
+    shareVote.disabled = false;
+    shareVote.innerHTML = original;
+  }
+}
+
+shareVote?.addEventListener('click', shareVoteReceipt);
+editSubmittedVote?.addEventListener('click', () => {
+  rankingBoard?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 
 async function init() {
   loginMessage.textContent = 'Güncel edisyon yükleniyor…';
@@ -207,6 +461,10 @@ enterVoting.addEventListener('click', async () => {
     .sort((a, b) => a.running_order - b.running_order);
 
   ranking = [...rankedSaved, ...unranked];
+  ballotStatus = data.status || 'new';
+  submittedAt = data.submitted_at || null;
+  editingSubmitted = false;
+  restoreLocalRevision(eligibleEntries);
   scores = deriveScores();
 
   ballotCountry.textContent = activeCountry.name;
@@ -214,9 +472,12 @@ enterVoting.addEventListener('click', async () => {
   renderBallot();
   updateProgress();
   updateSubmitState();
+  renderSubmissionReceipt();
   ballotStep.hidden = false;
 
-  loginMessage.textContent = data.status === 'submitted'
+  loginMessage.textContent = editingSubmitted
+    ? 'Gönderilmiş oyun yüklendi. Bu cihazdaki gönderilmemiş değişiklikler de geri getirildi.'
+    : data.status === 'submitted'
     ? 'Daha önce gönderilmiş pusulan yüklendi.'
     : (data.scores || []).length
       ? 'Kaydedilmiş pusulan yüklendi.'
@@ -341,10 +602,19 @@ function syncRankingFromDom() {
 
 function afterRankingChange() {
   scores = deriveScores();
+
+  if (ballotStatus === 'submitted' || editingSubmitted) {
+    editingSubmitted = true;
+    persistLocalRevision();
+    saveStatus.textContent = 'Yerel taslak';
+  }
+
   renderBallot();
   updateProgress();
   updateSubmitState();
-  scheduleAutosave();
+  renderSubmissionReceipt();
+
+  if (!editingSubmitted) scheduleAutosave();
 }
 
 function updateProgress() {
@@ -365,11 +635,32 @@ function ballotIsValid() {
 
 function updateSubmitState() {
   const valid = ballotIsValid();
-  submitBallot.disabled = !valid || !edition.voting_open;
 
   if (!edition.voting_open) {
+    submitBallot.disabled = true;
+    submitBallot.textContent = ballotStatus === 'submitted' ? 'OYUN GÖNDERİLDİ ✓' : 'OYLAMA KAPALI';
     ballotMessage.textContent = 'Oylama kapalı · pusula görüntülenebilir ancak değiştirilemez.';
     saveStatus.textContent = 'Voting closed';
+    return;
+  }
+
+  if (ballotStatus === 'submitted' && !editingSubmitted) {
+    submitBallot.disabled = true;
+    submitBallot.textContent = 'OYUN GÖNDERİLDİ ✓';
+    ballotMessage.textContent = 'Pusulan resmi olarak gönderildi. Sıralamayı değiştirirsen güncellenmiş oyunu yeniden göndermen gerekir.';
+    saveStatus.textContent = 'Submitted';
+    return;
+  }
+
+  submitBallot.disabled = !valid;
+  submitBallot.innerHTML = editingSubmitted
+    ? 'GÜNCELLENMİŞ OYUMU GÖNDER <span>→</span>'
+    : 'OYUMU GÖNDER <span>→</span>';
+
+  if (editingSubmitted) {
+    ballotMessage.textContent = valid
+      ? 'Gönderilmemiş değişikliklerin bu cihazda taslak olarak tutuluyor. Mevcut resmi oyun hâlâ geçerli.'
+      : `Pusulada ${POINTS.length} farklı puan slotunun tamamı dolu olmalı.`;
     return;
   }
 
@@ -379,7 +670,7 @@ function updateSubmitState() {
 }
 
 function scheduleAutosave() {
-  if (!edition.voting_open || !activeCountry || !activeCode) return;
+  if (!edition.voting_open || !activeCountry || !activeCode || editingSubmitted || ballotStatus === 'submitted') return;
   saveStatus.textContent = 'Kaydediliyor…';
   clearTimeout(saveTimer);
   saveTimer = setTimeout(() => saveBallot(false), 450);
@@ -393,7 +684,7 @@ async function saveBallot(finalize) {
     points: POINTS[index]
   }));
 
-  const { error } = await db.rpc('isc_save_current_ballot', {
+  const { data, error } = await db.rpc('isc_save_current_ballot', {
     p_country_slug: activeCountry.slug,
     p_code: activeCode,
     p_scores: payload,
@@ -413,9 +704,21 @@ async function saveBallot(finalize) {
     return false;
   }
 
-  saveStatus.textContent = finalize ? 'Oylar gönderildi' : 'Otomatik kaydedildi';
-  if (finalize) ballotMessage.textContent = 'Pusulan başarıyla gönderildi.';
-  return true;
+  if (finalize) {
+    ballotStatus = 'submitted';
+    submittedAt = data?.submitted_at || new Date().toISOString();
+    editingSubmitted = false;
+    clearLocalRevision();
+    saveStatus.textContent = 'Oylar gönderildi';
+    ballotMessage.textContent = 'Pusulan başarıyla gönderildi.';
+    renderSubmissionReceipt();
+    updateSubmitState();
+  } else {
+    ballotStatus = 'draft';
+    saveStatus.textContent = 'Otomatik kaydedildi';
+  }
+
+  return data || { ok: true };
 }
 
 submitBallot.addEventListener('click', () => {
@@ -429,17 +732,15 @@ cancelSubmit.addEventListener('click', () => confirmDialog.close());
 confirmSubmit.addEventListener('click', async () => {
   confirmSubmit.disabled = true;
   confirmSubmit.textContent = 'Gönderiliyor…';
-  const ok = await saveBallot(true);
+  const result = await saveBallot(true);
   confirmSubmit.disabled = false;
   confirmSubmit.textContent = 'Oyları gönder →';
 
-  if (ok) {
+  if (result) {
     confirmDialog.close();
-    submitBallot.textContent = 'OYUN GÖNDERİLDİ ✓';
-    setTimeout(() => {
-      submitBallot.innerHTML = 'OYUMU GÖNDER <span>→</span>';
-      updateSubmitState();
-    }, 2600);
+    await playSubmissionCelebration();
+    renderSubmissionReceipt();
+    submissionReceipt?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 });
 
