@@ -5,6 +5,7 @@
   if (!editionNumber) return;
 
   const endpoint = `${SUPABASE_URL}/rest/v1/rpc/isc_public_edition_hub`;
+  const resultsEndpoint = `${SUPABASE_URL}/rest/v1/rpc/isc_public_edition_results_summary`;
   let payload = null;
   let lastFocused = null;
 
@@ -41,7 +42,27 @@
       body:JSON.stringify({p_edition_number:editionNumber})
     });
     if (!response.ok) throw new Error(`Edition hub RPC failed: ${response.status}`);
-    return response.json();
+    const data=await response.json();
+
+    if (data?.ok && data.edition?.results_revealed) {
+      try {
+        const resultsResponse=await fetch(resultsEndpoint,{
+          method:'POST',
+          headers:{
+            apikey:SUPABASE_KEY,
+            Authorization:`Bearer ${SUPABASE_KEY}`,
+            'Content-Type':'application/json'
+          },
+          body:JSON.stringify({p_edition_number:editionNumber})
+        });
+        if (resultsResponse.ok) {
+          const resultData=await resultsResponse.json();
+          if (resultData?.ok && resultData.revealed) data.scoreboard=resultData.scoreboard || [];
+        }
+      } catch (_) {}
+    }
+
+    return data;
   }
 
   function statusLabel(ed) {
@@ -193,12 +214,34 @@
     const title=el('hub-results-title');
     const copy=el('hub-results-copy');
     const side=el('hub-results-side');
+    const primary=el('hub-results-primary');
 
     if (ed.results_revealed) {
+      const scoreboard=data.scoreboard || [];
       title.textContent='The results are live.';
-      copy.textContent='Final scoreboard, delegasyon pusulaları ve voting matrix artık Results Hub’da yayında.';
-      el('hub-results-primary').textContent='RESULTS HUB →';
-      if (data.winner) {
+      copy.textContent=data.winner
+        ? `${data.winner.country} · ${data.winner.artist} · “${data.winner.song}” wins ${data.edition.title}. Final standings are now part of the permanent edition record.`
+        : 'Final standings are now part of the permanent edition record.';
+
+      if (ed.is_current) {
+        primary.hidden=false;
+        primary.href='../../results.html';
+        primary.textContent='FULL RESULTS HUB →';
+      } else {
+        primary.hidden=true;
+      }
+
+      if (scoreboard.length) {
+        side.innerHTML=`<div class="hub-final-scoreboard" aria-label="${escapeHtml(data.edition.title)} final scoreboard">
+          ${scoreboard.map(row=>`
+            <a class="hub-final-row ${Number(row.place)===1 ? 'winner' : ''}" href="${countryHref(row.country_slug)}">
+              <span class="hub-final-place">${String(row.place).padStart(2,'0')}</span>
+              <span class="hub-final-act"><b>${escapeHtml(row.country)}</b><small>${escapeHtml(row.artist)} · “${escapeHtml(row.song)}”</small></span>
+              <strong>${escapeHtml(row.points)}<small>pts</small></strong>
+            </a>
+          `).join('')}
+        </div>`;
+      } else if (data.winner) {
         const w=data.winner;
         side.innerHTML=`<div class="hub-winner">
           ${w.image_url ? `<img src="${escapeHtml(internalHref(w.image_url))}" alt="${escapeHtml(w.artist)}" />` : ''}
@@ -210,9 +253,17 @@
     } else {
       title.textContent=ed.voting_open ? 'Results stay backstage.' : 'Voting is closed. Results are next.';
       copy.textContent=ed.voting_open
-        ? 'Oylama sürerken toplam puanlar ve delegasyon pusulaları gizli kalır. Reveal açıldığında bu alan otomatik olarak sonuç durumuna geçer.'
-        : 'Yeni oy kabul edilmiyor. Results Hub reveal açılana kadar kilitli kalacak.';
-      el('hub-results-primary').textContent='RESULTS STATUS →';
+        ? 'Oylama sürerken toplam puanlar ve delegasyon pusulaları gizli kalır. Reveal açıldığında bu alan otomatik olarak final standings görünümüne geçer.'
+        : 'Yeni oy kabul edilmiyor. Reveal açılana kadar toplam puanlar ve delegasyon tercihleri gizli kalır.';
+
+      if (ed.is_current) {
+        primary.hidden=false;
+        primary.href='../../results.html';
+        primary.textContent='RESULTS STATUS →';
+      } else {
+        primary.hidden=true;
+      }
+
       side.innerHTML=`<div class="hub-results-progress">
         <div class="hub-results-progress-head"><div><span>Submitted ballots</span><strong>${submitted}/${total}</strong></div><span>${ed.voting_open ? 'VOTING OPEN' : 'VOTING CLOSED'}</span></div>
         <div class="hub-progress-track"><i style="width:${pct}%"></i></div>
