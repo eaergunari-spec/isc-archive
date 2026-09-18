@@ -3,84 +3,294 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="ISC 154 edition hub — entries, voting, results and magazine." />
+  <meta name="description" content="ISC 154 edition hub — line-up, playlists, voting, magazine and results in one place." />
   <meta name="theme-color" content="#0b0a0e" />
   <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/editions/154/" />
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="International Song Contest" />
   <meta property="og:title" content="ISC 154 — Edition Hub" />
-  <meta property="og:description" content="ISC 154’ün kalıcı edisyon kaydı: 8 entry, Voting Room, Results Hub ve magazine." />
+  <meta property="og:description" content="8 ülke, 8 şarkı. ISC 154 line-up, playlist, voting ve results tek merkezde." />
   <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/editions/154/" />
-  <meta property="og:image" content="https://eaergunari-spec.github.io/isc-archive/assets/artists/03-meira-omar-liamoo.png" />
+  <meta property="og:image" content="https://eaergunari-spec.github.io/isc-archive/isc-154-share.png" />
+  <meta property="og:image:secure_url" content="https://eaergunari-spec.github.io/isc-archive/isc-154-share.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="ISC 154 — International Song Contest" />
+
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ISC 154 — Edition Hub" />
+  <meta name="twitter:description" content="8 ülke, 8 şarkı. ISC 154’ün tüm dünyası tek sayfada." />
+  <meta name="twitter:image" content="https://eaergunari-spec.github.io/isc-archive/isc-154-share.png" />
+
   <title>ISC 154 — Edition Hub</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="../../styles.css" />
-  <link rel="stylesheet" href="../../archive-edition.css" />
+  <link rel="stylesheet" href="../../edition-hub.css" />
   <link rel="stylesheet" href="../../technical-polish.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"CollectionPage",
+    "name":"ISC 154 — Edition Hub",
+    "url":"https://eaergunari-spec.github.io/isc-archive/editions/154/",
+    "isPartOf":{
+      "@type":"WebSite",
+      "name":"International Song Contest",
+      "url":"https://eaergunari-spec.github.io/isc-archive/"
+    },
+    "about":{
+      "@type":"MusicEvent",
+      "name":"International Song Contest 154"
+    }
+  }
+  </script>
 </head>
-<body class="edition-body">
+
+<body class="edition-hub-body" data-edition="154">
   <header class="site-header">
-    <a class="brand" href="../../index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark">ISC</span>
+      <span>International Song Contest</span>
+    </a>
     <nav>
-      <a href="../../countries/">Countries</a>
+      <a class="hub-current" href="./" aria-current="page">ISC 154</a>
+      <a href="../../countries/">Ülkeler</a>
       <a href="../../archive.html">Arşiv</a>
       <a href="../../search.html">Ara</a>
-      <a href="../../results.html">Results</a>
+      <a id="hub-header-results" href="../../results.html">Results 🔒</a>
       <a class="nav-vote" href="../../vote.html">Oy Ver</a>
     </nav>
   </header>
 
-  <main class="edition-page">
-    <section class="edition-hero">
-      <span class="edition-kicker">Current edition · live</span>
-      <h1>ISC <span class="edition-number">154</span></h1>
-      <p>ISC 154’ün tek merkez sayfası. Katılımcılar, şarkılar, playlistler, country profiles, editorial dosyalar, oylama, Results Hub ve Global Search bu edisyon kaydının altında birleşiyor.</p>
-      <div class="edition-meta">
-        <span>8 countries</span><span>8 songs</span><span>43 points / ballot</span><span>results locked</span>
+  <main class="edition-hub-main">
+    <section class="edition-hub-hero" id="overview">
+      <div class="hub-hero-copy">
+        <div class="hub-live-pill" id="hub-live-pill"><i></i> LOADING EDITION</div>
+        <p class="hub-kicker" id="hub-kicker">International Song Contest · Current edition</p>
+        <h1>ISC <span id="hub-edition-number">154</span></h1>
+        <p class="hub-hero-deck" id="hub-hero-deck">ISC 154 yükleniyor…</p>
+
+        <div class="hub-hero-actions">
+          <a class="hub-action-primary" id="hub-vote-cta" href="../../vote.html">VOTING ROOM →</a>
+          <a class="hub-action-secondary" href="#listen">ŞARKILARI DİNLE</a>
+          <a class="hub-action-text" id="hub-results-cta" href="#results">RESULTS STATUS →</a>
+        </div>
+
+        <div class="hub-hero-meta" aria-label="Edition overview">
+          <div><span>Entries</span><strong id="hero-stat-entries">—</strong></div>
+          <div><span>Points / ballot</span><strong id="hero-stat-points">—</strong></div>
+          <div><span>Submitted</span><strong id="hero-stat-submitted">—</strong></div>
+          <div><span>Results</span><strong id="hero-stat-results">—</strong></div>
+        </div>
       </div>
-      <div class="edition-nav">
-        <a href="../../vote.html">Voting Room →</a>
-        <a class="secondary" href="../../results.html">Results Hub</a>
-        <a class="secondary" href="../../countries/">Country Profiles</a>
-        <a class="secondary" href="../../search.html">Global Search</a>
-        <a class="secondary" href="../../index.html#listen">Playlist</a>
+
+      <div class="hub-hero-gallery" id="hub-hero-gallery" aria-label="ISC 154 featured entries"></div>
+      <div class="hub-hero-mark" aria-hidden="true">154</div>
+    </section>
+
+    <nav class="edition-subnav" aria-label="ISC 154 sections">
+      <a class="active" href="#overview">Overview</a>
+      <a href="#participants">Line-up</a>
+      <a href="#listen">Listen</a>
+      <a href="#magazine">Magazine</a>
+      <a href="#results">Results</a>
+      <a href="#explore">Explore</a>
+    </nav>
+
+    <section class="hub-live-rail" aria-label="Live edition status">
+      <article>
+        <span>Voting</span>
+        <strong id="rail-voting-title">Loading…</strong>
+        <small id="rail-voting-copy">Voting status yükleniyor.</small>
+      </article>
+      <article>
+        <span>Official ballots</span>
+        <strong id="rail-ballots-title">— / —</strong>
+        <small id="rail-ballots-copy">Delegasyon gönderimleri yükleniyor.</small>
+      </article>
+      <article>
+        <span>Results</span>
+        <strong id="rail-results-title">Loading…</strong>
+        <small id="rail-results-copy">Results status yükleniyor.</small>
+      </article>
+    </section>
+
+    <section class="hub-section" id="participants">
+      <div class="hub-section-head">
+        <div>
+          <span class="eyebrow">Running order</span>
+          <h2>Eight songs.<br>One edition.</h2>
+        </div>
+        <div>
+          <p>ISC 154’ün tam line-up’ı. Entry dosyasına gir, resmi videoyu aç veya delegasyonun kalıcı country profile’ına geç.</p>
+          <a class="hub-text-link" id="participants-count" href="../../countries/">8 entry · running order</a>
+        </div>
+      </div>
+      <div class="hub-entry-grid" id="hub-entry-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="hub-listen-section" id="listen">
+      <div class="hub-listen-inner">
+        <div class="hub-section-head">
+          <div>
+            <span class="eyebrow">Official playlists</span>
+            <h2>Play the whole edition.</h2>
+          </div>
+          <p>Running order’ı YouTube’da izle veya Spotify’da dinle. Üçüncü taraf player yalnızca sen tıkladığında yüklenir.</p>
+        </div>
+
+        <div class="hub-platform-grid">
+          <article class="hub-platform-card" id="youtube-hub-card">
+            <div class="hub-platform-head">
+              <strong>YouTube playlist</strong>
+              <span id="youtube-hub-meta">Loading…</span>
+            </div>
+            <div class="hub-embed-host" id="youtube-hub-host">
+              <button class="hub-embed-button" id="youtube-hub-button" type="button">
+                <span><i>▶</i><b>Running order’ı aç</b><small>YouTube playerı tıklayınca yüklenir.</small></span>
+              </button>
+            </div>
+            <div class="hub-platform-foot">
+              <span>Official ISC 154 video playlist</span>
+              <a id="youtube-hub-open" href="#" target="_blank" rel="noopener">YouTube’da aç ↗</a>
+            </div>
+          </article>
+
+          <article class="hub-platform-card spotify" id="spotify-hub-card">
+            <div class="hub-platform-head">
+              <strong>Spotify playlist</strong>
+              <span id="spotify-hub-meta">Loading…</span>
+            </div>
+            <div class="hub-embed-host" id="spotify-hub-host">
+              <button class="hub-embed-button" id="spotify-hub-button" type="button">
+                <span><i>▶</i><b>Press play</b><small>Spotify playerı tıklayınca yüklenir.</small></span>
+              </button>
+            </div>
+            <div class="hub-platform-foot">
+              <span>Official ISC 154 audio playlist</span>
+              <a id="spotify-hub-open" href="#" target="_blank" rel="noopener">Spotify’da aç ↗</a>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="edition-shell">
-      <div class="edition-section-head">
-        <div>
-          <span class="edition-kicker">Running order</span>
-          <h2>ISC 154 line-up.</h2>
+    <section class="hub-magazine" id="magazine">
+      <div class="hub-magazine-inner">
+        <div class="hub-section-head">
+          <div>
+            <span class="eyebrow">ISC Magazine · Issue 154</span>
+            <h2>Beyond the scoreboard.</h2>
+          </div>
+          <p>Şarkının arkasındaki hikâye, sanatçı dünyası ve ISC 154’ün editorial dosyaları. Line-up’taki her entry’nin kalıcı dosyası var; burada seçili üç hikâye öne çıkıyor.</p>
         </div>
-        <p>Sekiz entry’nin kalıcı edisyon kaydı. Entry dosyaları ile ülke profilleri ayrı kalıcı katmanlar olarak bu edisyon hub’ına bağlıdır.</p>
+
+        <div class="hub-mag-grid">
+          <a class="hub-mag-card lead" href="../../entries/03-meira-omar-liamoo.html">
+            <img src="../../03-meira-omar-liamoo.webp" alt="Meira Omar &amp; LIAMOO ISC Magazine cover" loading="lazy" />
+            <div class="hub-mag-copy">
+              <span>Cover story · Entry 03</span>
+              <h3>MAZAA’nın dünyasına gir.</h3>
+              <p>GÜNEŞ DİYARI · Meira Omar &amp; LIAMOO</p>
+            </div>
+          </a>
+
+          <a class="hub-mag-card" href="../../entries/05-hayq.html">
+            <img src="../../05-hayq.webp" alt="HAYQ ISC Magazine artwork" loading="lazy" />
+            <div class="hub-mag-copy">
+              <span>Entry file · 05</span>
+              <h3>KIRMIZI: HAYQ</h3>
+              <p>“Mi Patmutyun”un editorial kaydı.</p>
+            </div>
+          </a>
+
+          <a class="hub-mag-card" href="../../entries/08-galena.html">
+            <img src="../../08-galena.webp" alt="GALENA ISC Magazine artwork" loading="lazy" />
+            <div class="hub-mag-copy">
+              <span>Spotlight · Entry 08</span>
+              <h3>GALENA · CHATGPT</h3>
+              <p>UZANMIŞIM KUMSALA’nın spotlight dosyası.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="hub-results-section" id="results">
+      <div class="hub-results-inner">
+        <div class="hub-results-card">
+          <div class="hub-results-copy">
+            <span class="eyebrow">Official results</span>
+            <h2 id="hub-results-title">Results stay backstage.</h2>
+            <p id="hub-results-copy">Results status yükleniyor…</p>
+            <div class="hub-results-actions">
+              <a class="primary" id="hub-results-primary" href="../../results.html">RESULTS STATUS →</a>
+              <a class="ghost" id="hub-results-vote" href="../../vote.html">VOTING ROOM</a>
+            </div>
+          </div>
+          <div class="hub-results-side" id="hub-results-side"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hub-section hub-explore" id="explore">
+      <div class="hub-section-head">
+        <div>
+          <span class="eyebrow">Keep exploring</span>
+          <h2>The edition connects to the archive.</h2>
+        </div>
+        <p>ISC 154 tek başına bir landing page değil; country profiles, Global Search ve kalıcı edisyon arşivinin merkez düğümü.</p>
       </div>
 
-      <div class="edition-lineup">
-        <a class="edition-entry" href="../../entries/01-lambrini-girls.html"><img src="../../assets/artists/01-lambrini-girls.webp" style="object-position:50% 46%" alt="Lambrini Girls" loading="lazy"><div class="edition-entry-copy"><span class="edition-entry-no">01</span><span class="edition-entry-country">ROLIPEA</span><strong>Lambrini Girls</strong><span class="song">Cuntology 101</span></div></a>
-        <a class="edition-entry" href="../../entries/02-elise-de-lune.html"><img src="../../assets/artists/02-elise-de-lune.webp" style="object-position:50% 38%" alt="Élise de Lune" loading="lazy"><div class="edition-entry-copy"><span class="edition-entry-no">02</span><span class="edition-entry-country">VERDE VERANO</span><strong>Élise de Lune</strong><span class="song">Bonne Nuit</span></div></a>
-        <a class="edition-entry" href="../../entries/03-meira-omar-liamoo.html"><img src="../../assets/artists/03-meira-omar-liamoo.png" style="object-position:50% 44%" alt="Meira Omar &amp; LIAMOO" loading="lazy"><div class="edition-entry-copy"><span class="edition-entry-no">03</span><span class="edition-entry-country">GÜNEŞ DİYARI</span><strong>Meira Omar &amp; LIAMOO</strong><span class="song">MAZAA</span></div></a>
-        <a class="edition-entry" href="../../entries/04-saint-levant.html"><img src="../../assets/artists/04-saint-levant.webp" style="object-position:50% 30%" alt="Saint Levant" loading="lazy"><div class="edition-entry-copy"><span class="edition-entry-no">04</span><span class="edition-entry-country">SUPERLAND</span><strong>Saint Levant</strong><span class="song">Nails</span></div></a>
-        <a class="edition-entry" href="../../entries/05-hayq.html"><img src="../../assets/artists/05-hayq.jpg" style="object-position:50% 18%" alt="HAYQ" loading="lazy"><div class="edition-entry-copy"><span class="edition-entry-no">05</span><span class="edition-entry-country">KIRMIZI</span><strong>HAYQ</strong><span class="song">Mi Patmutyun / Մի պատմություն</span></div></a>
-        <a class="edition-entry" href="../../entries/06-laura-pausini.html"><img src="../../assets/artists/06-laura-pausini.webp" style="object-position:50% 30%" alt="Laura Pausini" loading="lazy"><div class="edition-entry-copy"><span class="edition-entry-no">06</span><span class="edition-entry-country">CABURYA</span><strong>Laura Pausini</strong><span class="song">¿PORQUÉ TE VAS?</span></div></a>
-        <a class="edition-entry" href="../../entries/07-audrey-hobert.html"><img src="../../assets/artists/07-Audrey-Hobert.jpg" style="object-position:50% 42%" alt="Audrey Hobert" loading="lazy"><div class="edition-entry-copy"><span class="edition-entry-no">07</span><span class="edition-entry-country">STJOHN</span><strong>Audrey Hobert</strong><span class="song">Bowling alley</span></div></a>
-        <a class="edition-entry" href="../../entries/08-galena.html"><img src="../../assets/artists/08-galena.jpg" style="object-position:50% 30%" alt="GALENA" loading="lazy"><div class="edition-entry-copy"><span class="edition-entry-no">08</span><span class="edition-entry-country">UZANMIŞIM KUMSALA</span><strong>GALENA</strong><span class="song">CHATGPT</span></div></a>
-      </div>
-
-      <div class="edition-hub-grid">
-        <a class="hub-card dark" href="../../vote.html"><span>Official voting</span><strong>Voting Room</strong><p>Delegasyonunu doğrula, rakip yedi entry’yi sırala ve 12–10–8–6–4–2–1 puanlarını gönder.</p></a>
-        <a class="hub-card" href="../../results.html"><span>Scoreboard</span><strong>Results Hub</strong><p>Reveal öncesinde kilitli; reveal sonrasında tam scoreboard ve delegasyon pusulaları.</p></a>
-        <a class="hub-card" href="../../countries/"><span>Delegations</span><strong>Country Profiles</strong><p>Her ülkenin katılım geçmişi, başarıları, puan ilişkileri ve kalıcı ISC kaydı.</p></a>
-        <a class="hub-card" href="../../search.html"><span>Archive index</span><strong>Global Search</strong><p>Sanatçı, şarkı, ülke veya edisyon numarasıyla tüm kalıcı ISC arşivini tek alanda tara.</p></a>
-        <a class="hub-card" href="../../index.html#stories"><span>Editorial</span><strong>ISC Magazine</strong><p>Cover story, entry dosyaları ve ISC 154’ün editorial dünyası.</p></a>
+      <div class="hub-explore-grid">
+        <a class="hub-explore-card" href="../../countries/">
+          <span>Delegations</span>
+          <strong>Country Profiles</strong>
+          <p>Ülkelerin katılım geçmişi, entry’leri ve kalıcı ISC kayıtları.</p>
+        </a>
+        <a class="hub-explore-card" href="../../search.html">
+          <span>Find anything</span>
+          <strong>Global Search</strong>
+          <p>Sanatçı, şarkı, ülke veya edisyon numarasıyla tüm arşivde ara.</p>
+        </a>
+        <a class="hub-explore-card" href="../../archive.html">
+          <span>All editions</span>
+          <strong>ISC Archive</strong>
+          <p>ISC 153’ten güncel edisyona kadar kalıcı edisyon kayıtlarına geç.</p>
+        </a>
       </div>
     </section>
   </main>
 
-  <footer><div class="footer-brand">ISC</div><p>ISC 154 · Permanent edition record</p></footer>
+  <div class="hub-player" id="hub-player" hidden>
+    <div class="hub-player-backdrop" data-hub-player-close></div>
+    <section class="hub-player-shell" role="dialog" aria-modal="true" aria-labelledby="hub-player-title">
+      <div class="hub-player-head">
+        <div>
+          <span id="hub-player-kicker">ISC 154 · ENTRY</span>
+          <h2 id="hub-player-title"></h2>
+          <p id="hub-player-song"></p>
+        </div>
+        <button class="hub-player-close" type="button" data-hub-player-close aria-label="Videoyu kapat">×</button>
+      </div>
+      <div class="hub-player-frame" id="hub-player-frame"></div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="footer-brand">ISC</div>
+    <p>ISC 154 · Edition Hub</p>
+    <p>Line-up · Playlists · Voting · Magazine · Results · Archive</p>
+  </footer>
+
+  <script src="../../edition-hub.js"></script>
 </body>
 </html>
