@@ -34,9 +34,7 @@
 
   const rootPath = value => value ? `${ROOT}${String(value).replace(/^\/+/, '')}` : '';
   const profilePath = countrySlug => `../${encodeURIComponent(countrySlug)}/`;
-  const editionPath = appearance => appearance.edition_status === 'current'
-    ? `${ROOT}index.html`
-    : `${ROOT}editions/${encodeURIComponent(appearance.edition_number)}/`;
+  const editionPath = appearance => `${ROOT}editions/${encodeURIComponent(appearance.edition_number)}/`;
 
   const formatNumber = value => new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 2 }).format(Number(value || 0));
   const formatPlace = value => Number(value) > 0 ? `#${Number(value)}` : '—';
