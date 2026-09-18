@@ -161,38 +161,63 @@ function buildCelebrationConfetti() {
   if (!celebrationConfetti) return;
   celebrationConfetti.innerHTML = '';
 
-  const palette = ['#ff3d81', '#d8ff3e', '#72d8ff', '#ffffff'];
-  const count = 46;
+  const count = 42;
+  const viewportW = Math.min(window.innerWidth * .92, 1100);
+  const floorY = Math.max(210, window.innerHeight * .57);
 
   for (let i = 0; i < count; i += 1) {
     const piece = document.createElement('i');
     const shapeRoll = Math.random();
-    piece.className = 'confetti-piece' + (shapeRoll < .18 ? ' round' : shapeRoll > .84 ? ' ribbon' : '');
+    piece.className = 'confetti-piece' + (shapeRoll < .16 ? ' round' : shapeRoll > .86 ? ' ribbon' : '');
 
-    const angle = Math.random() * Math.PI * 2;
-    const distance = 120 + Math.random() * 250;
-    const burstX = Math.cos(angle) * distance;
-    const burstY = Math.sin(angle) * distance * .56 - (60 + Math.random() * 90);
+    const side = Math.random() < .5 ? -1 : 1;
+    const launch = (70 + Math.random() * 210) * side;
+    const rise = -(110 + Math.random() * 190);
+    const drift = (Math.random() - .5) * 150;
+    const swayA = (Math.random() - .5) * 85;
+    const swayB = (Math.random() - .5) * 95;
+    const swayC = (Math.random() - .5) * 75;
+    const landingX = Math.max(-viewportW / 2, Math.min(viewportW / 2, launch + drift));
+    const settle = Math.random() * 24;
 
-    const landX = (Math.random() - .5) * Math.min(window.innerWidth * .9, 1040);
-    const floorJitter = Math.random() * 34;
-    const landY = Math.max(180, window.innerHeight * .54 - floorJitter);
+    const x1 = launch * .55;
+    const y1 = rise * .62;
+    const x2 = launch + swayA;
+    const y2 = rise;
+    const x3 = launch + drift * .35 + swayB;
+    const y3 = rise * .35 + floorY * .28;
+    const x4 = landingX + swayC;
+    const y4 = floorY * .68;
+    const x5 = landingX - swayC * .18;
+    const y5 = floorY - 12 + settle;
+    const x6 = landingX;
+    const y6 = floorY + settle;
 
-    const spinBase = (Math.random() - .5) * 900;
-    const duration = 2.25 + Math.random() * .55;
-    const delay = Math.random() * .16;
+    const spinDirection = Math.random() < .5 ? -1 : 1;
+    const turns = (1.3 + Math.random() * 2.8) * 360 * spinDirection;
+    const duration = 2.9 + Math.random() * .85;
+    const delay = Math.random() * .24;
     const width = 5 + Math.random() * 7;
-    const height = 8 + Math.random() * 12;
+    const height = 8 + Math.random() * 13;
 
-    piece.style.setProperty('--confetti', palette[Math.floor(Math.random() * palette.length)]);
-    piece.style.setProperty('--burst-x', `${burstX.toFixed(1)}px`);
-    piece.style.setProperty('--burst-y', `${burstY.toFixed(1)}px`);
-    piece.style.setProperty('--land-x', `${landX.toFixed(1)}px`);
-    piece.style.setProperty('--land-y', `${landY.toFixed(1)}px`);
-    piece.style.setProperty('--spin1', `${(spinBase * .35).toFixed(0)}deg`);
-    piece.style.setProperty('--spin2', `${(spinBase * .8).toFixed(0)}deg`);
-    piece.style.setProperty('--spin3', `${(spinBase * .92).toFixed(0)}deg`);
-    piece.style.setProperty('--spin4', `${spinBase.toFixed(0)}deg`);
+    piece.style.setProperty('--x1', `${x1.toFixed(1)}px`);
+    piece.style.setProperty('--y1', `${y1.toFixed(1)}px`);
+    piece.style.setProperty('--x2', `${x2.toFixed(1)}px`);
+    piece.style.setProperty('--y2', `${y2.toFixed(1)}px`);
+    piece.style.setProperty('--x3', `${x3.toFixed(1)}px`);
+    piece.style.setProperty('--y3', `${y3.toFixed(1)}px`);
+    piece.style.setProperty('--x4', `${x4.toFixed(1)}px`);
+    piece.style.setProperty('--y4', `${y4.toFixed(1)}px`);
+    piece.style.setProperty('--x5', `${x5.toFixed(1)}px`);
+    piece.style.setProperty('--y5', `${y5.toFixed(1)}px`);
+    piece.style.setProperty('--x6', `${x6.toFixed(1)}px`);
+    piece.style.setProperty('--y6', `${y6.toFixed(1)}px`);
+    piece.style.setProperty('--r1', `${(turns * .18).toFixed(0)}deg`);
+    piece.style.setProperty('--r2', `${(turns * .37).toFixed(0)}deg`);
+    piece.style.setProperty('--r3', `${(turns * .58).toFixed(0)}deg`);
+    piece.style.setProperty('--r4', `${(turns * .78).toFixed(0)}deg`);
+    piece.style.setProperty('--r5', `${(turns * .92).toFixed(0)}deg`);
+    piece.style.setProperty('--r6', `${turns.toFixed(0)}deg`);
     piece.style.setProperty('--duration', `${duration.toFixed(2)}s`);
     piece.style.setProperty('--delay', `${delay.toFixed(2)}s`);
     piece.style.setProperty('--w', `${width.toFixed(1)}px`);
@@ -214,7 +239,7 @@ async function playSubmissionCelebration() {
   document.body.style.overflow = 'hidden';
   requestAnimationFrame(() => voteCelebration.classList.add('is-running'));
 
-  await new Promise(resolve => setTimeout(resolve, reduced ? 900 : 3300));
+  await new Promise(resolve => setTimeout(resolve, reduced ? 900 : 3900));
 
   voteCelebration.classList.remove('is-running');
   voteCelebration.hidden = true;
