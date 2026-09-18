@@ -223,6 +223,63 @@ function renderListen() {
   }
 }
 
+function platformPosterEntries(provider) {
+  const visualEntries = entries.filter(entry => entry.image);
+  if (!visualEntries.length) return [];
+
+  const preferredOrders = provider === 'youtube'
+    ? [3, 6, 8, 1]
+    : [2, 4, 5, 7];
+
+  const preferred = preferredOrders
+    .map(order => visualEntries.find(entry => Number(entry.runningOrder) === order))
+    .filter(Boolean);
+
+  const combined = [...preferred, ...visualEntries.filter(entry => !preferred.includes(entry))];
+  return combined.slice(0, provider === 'youtube' ? 4 : 4);
+}
+
+function renderPlatformPoster(provider, label) {
+  const poster = document.getElementById(`${provider}-platform-poster`);
+  if (!poster) return;
+
+  const picks = platformPosterEntries(provider);
+  if (!picks.length) {
+    poster.innerHTML = `<span class="platform-poster-fallback"><b>${escapeAttr(label)}</b><small>OFFICIAL PLAYLIST</small></span>`;
+    return;
+  }
+
+  if (provider === 'youtube') {
+    const [lead, ...side] = picks;
+    poster.innerHTML = `
+      <span class="youtube-poster-main">
+        <img src="${escapeAttr(lead.image)}" style="object-position:${escapeAttr(lead.focus)}" alt="" loading="lazy" decoding="async">
+        <span class="poster-entry-chip">${lead.order} · ${escapeAttr(lead.country)}</span>
+      </span>
+      <span class="youtube-poster-strip">
+        ${side.map(entry => `
+          <span>
+            <img src="${escapeAttr(entry.image)}" style="object-position:${escapeAttr(entry.focus)}" alt="" loading="lazy" decoding="async">
+            <small>${entry.order}</small>
+          </span>
+        `).join('')}
+      </span>
+      <span class="platform-poster-stamp">OFFICIAL VIDEO PLAYLIST</span>`;
+    return;
+  }
+
+  poster.innerHTML = `
+    <span class="spotify-cover-grid">
+      ${picks.map(entry => `
+        <span>
+          <img src="${escapeAttr(entry.image)}" style="object-position:${escapeAttr(entry.focus)}" alt="" loading="lazy" decoding="async">
+        </span>
+      `).join('')}
+    </span>
+    <span class="spotify-cover-title"><b>${escapeAttr(label)}</b><small>OFFICIAL PLAYLIST</small></span>
+    <span class="platform-poster-stamp">8 SONGS · ONE EDITION</span>`;
+}
+
 function configurePlatform(provider, media, label) {
   const card = document.getElementById(`${provider}-platform-card`);
   const meta = document.getElementById(`${provider}-platform-meta`);
@@ -243,6 +300,7 @@ function configurePlatform(provider, media, label) {
   if (title) title.textContent = `${label} ${provider === 'youtube' ? 'YouTube' : 'Spotify'} playlistini aç`;
   if (footer) footer.textContent = `Official ${label} playlist`;
   if (open) open.href = media.canonical_url;
+  renderPlatformPoster(provider, label);
 
   if (button && host && media.embed_url) {
     button.onclick = () => loadEmbed(host, provider, media.embed_url, media.title || `${label} playlist`);
