@@ -294,3 +294,63 @@
   .story-grid{grid-template-columns:1fr}
   .story-card,.story-card:first-child{grid-column:auto;min-height:430px}
 }
+
+
+/* Magazine long-read lead — text-only by design */
+.story-longread-teaser{
+  display:grid;
+  grid-template-columns:180px minmax(0,1fr) auto;
+  gap:30px;
+  align-items:end;
+  margin:0 0 18px;
+  padding:30px 32px;
+  border:1px solid rgba(23,19,19,.13);
+  border-radius:22px;
+  background:var(--isc-cream-soft);
+  color:#171313;
+  text-decoration:none;
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.story-longread-teaser:hover{
+  transform:translateY(-2px);
+  border-color:rgba(115,25,45,.34);
+  box-shadow:0 18px 44px rgba(50,34,27,.09);
+}
+.story-longread-label{
+  align-self:start;
+  color:var(--isc-wine);
+  font-size:8px;
+  font-weight:800;
+  line-height:1.5;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+.story-longread-copy h3{
+  margin:0;
+  max-width:850px;
+  font-family:"Libre Caslon Display",serif;
+  font-size:clamp(37px,4vw,62px);
+  font-weight:400;
+  line-height:.94;
+  letter-spacing:-.035em;
+}
+.story-longread-copy p{
+  max-width:760px;
+  margin:12px 0 0;
+  color:#706761;
+  font-size:12px;
+  line-height:1.65;
+}
+.story-longread-arrow{
+  align-self:center;
+  color:var(--isc-wine);
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+@media(max-width:820px){
+  .story-longread-teaser{grid-template-columns:1fr;gap:14px;padding:25px 24px}
+  .story-longread-arrow{justify-self:start}
+}
