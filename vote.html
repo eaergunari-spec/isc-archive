@@ -98,12 +98,15 @@
           <span class="eyebrow">OFFICIAL BALLOT RECEIPT</span>
           <h3 id="receipt-title">Oyun kaydedildi.</h3>
           <p id="receipt-copy">Oylama kapanana kadar sıralamanı değiştirebilir ve güncellenmiş oyunu yeniden gönderebilirsin.</p>
-          <div class="receipt-meta">
-            <div><span>Delegasyon</span><strong id="receipt-country">—</strong></div>
-            <div><span>Edisyon</span><strong id="receipt-edition">—</strong></div>
-            <div><span>Son gönderim</span><strong id="receipt-time">—</strong></div>
-            <div><span>Durum</span><strong id="receipt-status">SUBMITTED</strong></div>
+
+          <div class="receipt-inline-meta" aria-label="Oy gönderim bilgisi">
+            <strong id="receipt-status">SUBMITTED</strong>
+            <span aria-hidden="true">·</span>
+            <time id="receipt-time">—</time>
+            <span aria-hidden="true">·</span>
+            <span id="receipt-editability">Oylama açıkken güncellenebilir</span>
           </div>
+
           <div class="receipt-actions">
             <button type="button" id="share-vote" class="receipt-primary">I VOTED · PAYLAŞ <span>↗</span></button>
             <button type="button" id="edit-submitted-vote" class="receipt-secondary">Sıralamayı değiştir</button>
@@ -111,13 +114,17 @@
           </div>
           <p class="receipt-note" id="receipt-note">Paylaşım kartında verdiğin puanlar görünmez.</p>
         </div>
-        <div class="vote-share-card" id="vote-share-card" aria-hidden="true">
-          <span class="share-card-brand">INTERNATIONAL SONG CONTEST</span>
-          <span class="share-card-current">CURRENT EDITION</span>
-          <strong id="share-card-edition">ISC —</strong>
-          <em>I VOTED</em>
-          <small id="share-card-country">—</small>
-          <i>OFFICIAL BALLOT RECEIVED</i>
+
+        <div class="share-preview-shell">
+          <span class="share-preview-label">SHARE CARD</span>
+          <div class="vote-share-card" id="vote-share-card" aria-hidden="true">
+            <span class="share-card-brand">INTERNATIONAL SONG CONTEST</span>
+            <span class="share-card-current">CURRENT EDITION</span>
+            <strong id="share-card-edition">ISC —</strong>
+            <em>I VOTED</em>
+            <small id="share-card-country">—</small>
+            <i>OFFICIAL BALLOT RECEIVED</i>
+          </div>
         </div>
       </section>
 
