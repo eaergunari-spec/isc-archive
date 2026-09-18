@@ -9,6 +9,12 @@
   let lastFocused = null;
 
   const el = id => document.getElementById(id);
+  const siteHeader = document.querySelector('.site-header');
+
+  function syncHeaderOffset() {
+    const height = siteHeader?.offsetHeight || 61;
+    document.documentElement.style.setProperty('--hub-header-height', `${Math.ceil(height)}px`);
+  }
   const escapeHtml = value => String(value ?? '')
     .replace(/&/g,'&amp;')
     .replace(/</g,'&lt;')
@@ -77,6 +83,11 @@
 
     const vote=el('hub-vote-cta');
     const results=el('hub-results-cta');
+    const headerResults=el('hub-header-results');
+    if (headerResults) {
+      headerResults.textContent=ed.results_revealed ? 'Results' : 'Results 🔒';
+      headerResults.classList.toggle('results-live-link',Boolean(ed.results_revealed));
+    }
     if (ed.is_current && ed.voting_open) {
       vote.hidden=false;
       vote.textContent='VOTING ROOM →';
@@ -278,6 +289,11 @@
   }
 
   async function init() {
+    syncHeaderOffset();
+    window.addEventListener('resize',syncHeaderOffset,{passive:true});
+    if ('ResizeObserver' in window && siteHeader) {
+      new ResizeObserver(syncHeaderOffset).observe(siteHeader);
+    }
     try {
       const data=await fetchHub();
       if (!data?.ok) throw new Error(data?.reason || 'Edition unavailable');
