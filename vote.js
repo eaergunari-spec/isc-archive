@@ -519,7 +519,10 @@ function applyRuntimeChrome() {
   document.querySelector('meta[property="og:title"]')?.setAttribute('content', `${label} — Voting Room`);
   document.querySelector('meta[property="og:description"]')?.setAttribute('content', `Delegasyonunu doğrula ve ${label} resmi pusulanı gönder.`);
 
-  if (currentEditionNav) currentEditionNav.textContent = label;
+  if (currentEditionNav) {
+    currentEditionNav.textContent = label;
+    currentEditionNav.href = `editions/${number}/`;
+  }
 
   voteLivePill.innerHTML = `<span></span> ${escapeHtml(label)} · ${edition.voting_open ? 'VOTING OPEN' : 'VOTING CLOSED'}`;
   voteLivePill.classList.toggle('closed', !edition.voting_open);
