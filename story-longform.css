@@ -909,48 +909,88 @@ body.story-night{
 /* ------------------------------------------------------------
    ÉLISE DE LUNE — EDITORIAL PHOTO ESSAY
    ------------------------------------------------------------ */
-.editorial-photo-spread{
-  margin:72px -150px 82px -70px;
+.editorial-photo-feature{
+  margin:66px 0 78px;
 }
-.editorial-photo-spread--duo{
-  display:grid;
-  grid-template-columns:1.08fr .92fr;
-  gap:18px;
-  align-items:start;
+.photo-feature-stage{
+  position:relative;
+  min-height:600px;
+  padding:0 110px 54px 0;
 }
-.editorial-photo{
+.photo-feature-main{
+  position:relative;
   overflow:hidden;
+  width:100%;
+  aspect-ratio:16/9;
   background:#0a0b10;
 }
-.editorial-photo img{
+.photo-feature-main img{
   display:block;
   width:100%;
   height:100%;
   object-fit:cover;
-  filter:saturate(.92) contrast(1.03);
+  object-position:center 52%;
+  filter:saturate(.88) contrast(1.04);
 }
-.editorial-photo--portrait{aspect-ratio:4/5}
-.editorial-photo--offset{
-  margin-top:74px;
-  aspect-ratio:4/5.35;
+.photo-index{
+  position:absolute;
+  left:14px;
+  bottom:13px;
+  padding:7px 9px;
+  background:rgba(9,11,18,.88);
+  color:#fff;
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.15em;
 }
-.editorial-photo-spread figcaption{
-  grid-column:1/-1;
-  display:flex;
-  justify-content:space-between;
-  gap:24px;
+.photo-feature-inset{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:34%;
+  aspect-ratio:3/4;
+  overflow:hidden;
+  border:10px solid var(--story-paper);
+  background:#0a0b10;
+  box-shadow:0 22px 55px rgba(12,15,25,.18);
+}
+.photo-feature-inset img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 42%;
+  filter:saturate(.9) contrast(1.04);
+}
+.photo-feature-inset span{
+  position:absolute;
+  right:10px;
+  bottom:9px;
+  padding:6px 8px;
+  background:rgba(9,11,18,.84);
+  color:#fff;
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.14em;
+}
+.editorial-photo-feature figcaption{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:22px;
+  margin-top:12px;
   padding-top:10px;
   border-top:1px solid var(--story-line);
   color:var(--story-muted);
   font-size:8px;
-  line-height:1.5;
-  letter-spacing:.11em;
+  line-height:1.55;
+  letter-spacing:.09em;
   text-transform:uppercase;
 }
-.editorial-photo-spread figcaption span:first-child{
+.editorial-photo-feature figcaption span:first-child{
   color:var(--story-wine);
   font-weight:800;
   letter-spacing:.16em;
+  white-space:nowrap;
 }
 
 .editorial-contact-sheet{
@@ -1001,20 +1041,15 @@ body.story-night{
 }
 
 @media(max-width:1180px){
-  .editorial-photo-spread{margin:64px 0 74px}
-  .editorial-contact-sheet{margin:58px 0 70px}
+    .editorial-contact-sheet{margin:58px 0 70px}
 }
 @media(max-width:700px){
-  .editorial-photo-spread--duo{
-    grid-template-columns:1fr 1fr;
-    gap:7px;
-  }
-  .editorial-photo--offset{margin-top:38px}
-  .editorial-photo-spread figcaption{
-    display:block;
-    line-height:1.65;
-  }
-  .editorial-photo-spread figcaption span{display:block}
+  .editorial-photo-feature{margin:52px 0 64px}
+  .photo-feature-stage{min-height:0;padding:0 52px 34px 0}
+  .photo-feature-main{aspect-ratio:4/3}
+  .photo-feature-inset{width:40%;border-width:6px}
+  .editorial-photo-feature figcaption{display:block;line-height:1.65}
+  .editorial-photo-feature figcaption span{display:block}
   .editorial-contact-sheet{
     margin:52px -18px 64px;
     padding:12px;
