@@ -60,6 +60,9 @@ const shareVote = document.getElementById('share-vote');
 const editSubmittedVote = document.getElementById('edit-submitted-vote');
 const shareCardEdition = document.getElementById('share-card-edition');
 const shareCardCountry = document.getElementById('share-card-country');
+const shareCardWatermark = document.getElementById('share-card-watermark');
+const shareCardDate = document.getElementById('share-card-date');
+const shareCardRecord = document.getElementById('share-card-record');
 const voteCelebration = document.getElementById('vote-celebration');
 const celebrationCountry = document.getElementById('celebration-country');
 const celebrationScore = document.getElementById('celebration-score');
@@ -138,6 +141,9 @@ function renderSubmissionReceipt() {
   receiptTime.textContent = formatSubmissionTime(submittedAt);
   shareCardEdition.textContent = label.toUpperCase();
   shareCardCountry.textContent = activeCountry.name.toUpperCase();
+  if (shareCardWatermark) shareCardWatermark.textContent = String(edition.edition_number);
+  if (shareCardDate) shareCardDate.textContent = formatSubmissionTime(submittedAt).toUpperCase();
+  if (shareCardRecord) shareCardRecord.textContent = `ISC-${edition.edition_number}-${activeCountry.slug.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8)}`;
 
   if (editingSubmitted) {
     receiptKickerText.textContent = 'SUBMITTED · LOCAL REVISION';
