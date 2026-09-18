@@ -169,6 +169,52 @@
     `).join('');
   }
 
+  function hubPosterEntries(provider,data) {
+    const visualEntries=(data.entries || []).filter(entry=>entry.image_url);
+    if (!visualEntries.length) return [];
+
+    const preferredOrders=provider==='youtube' ? [3,6,8,1] : [2,4,5,7];
+    const preferred=preferredOrders
+      .map(order=>visualEntries.find(entry=>Number(entry.running_order)===order))
+      .filter(Boolean);
+    return [...preferred,...visualEntries.filter(entry=>!preferred.includes(entry))].slice(0,4);
+  }
+
+  function renderHubPlatformPoster(provider,button,data) {
+    if (!button) return;
+    const picks=hubPosterEntries(provider,data);
+    const label=data.edition.title || `ISC ${data.edition.edition_number}`;
+
+    if (!picks.length) return;
+
+    if (provider==='youtube') {
+      const [lead,...side]=picks;
+      button.innerHTML=`
+        <span class="hub-platform-poster hub-platform-poster-youtube" aria-hidden="true">
+          <span class="hub-youtube-main">
+            <img src="${escapeHtml(internalHref(lead.image_url))}" style="object-position:${escapeHtml(lead.image_focus || '50% 50%')}" alt="">
+            <small>${String(lead.running_order).padStart(2,'0')} · ${escapeHtml(lead.country)}</small>
+          </span>
+          <span class="hub-youtube-strip">
+            ${side.map(entry=>`<span><img src="${escapeHtml(internalHref(entry.image_url))}" style="object-position:${escapeHtml(entry.image_focus || '50% 50%')}" alt=""><small>${String(entry.running_order).padStart(2,'0')}</small></span>`).join('')}
+          </span>
+          <b class="hub-poster-stamp">OFFICIAL VIDEO PLAYLIST</b>
+        </span>
+        <span class="hub-poster-copy"><i>▶</i><b>Running order’ı aç</b><small>YouTube playerı tıklayınca yüklenir.</small></span>`;
+      return;
+    }
+
+    button.innerHTML=`
+      <span class="hub-platform-poster hub-platform-poster-spotify" aria-hidden="true">
+        <span class="hub-spotify-grid">
+          ${picks.map(entry=>`<span><img src="${escapeHtml(internalHref(entry.image_url))}" style="object-position:${escapeHtml(entry.image_focus || '50% 50%')}" alt=""></span>`).join('')}
+        </span>
+        <span class="hub-spotify-title"><b>${escapeHtml(label)}</b><small>OFFICIAL PLAYLIST</small></span>
+        <b class="hub-poster-stamp">8 SONGS · ONE EDITION</b>
+      </span>
+      <span class="hub-poster-copy"><i>▶</i><b>Press play</b><small>Spotify playerı tıklayınca yüklenir.</small></span>`;
+  }
+
   function setupPlatform(provider,item,data) {
     const card=el(`${provider}-hub-card`);
     if (!card) return;
@@ -181,6 +227,10 @@
     el(`${provider}-hub-open`).href=item.canonical_url;
     const button=el(`${provider}-hub-button`);
     const host=el(`${provider}-hub-host`);
+    if (button && !button.dataset.posterReady) {
+      renderHubPlatformPoster(provider,button,data);
+      button.dataset.posterReady='1';
+    }
     if (!button || button.dataset.bound) return;
     button.dataset.bound='1';
     button.addEventListener('click',()=>{
