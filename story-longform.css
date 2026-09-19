@@ -1937,3 +1937,90 @@ body.longread-body{
     font-size:17.5px;
   }
 }
+
+
+/* ------------------------------------------------------------
+   MOBILE SAFARI HOTFIX — force single-column article layout
+   The later desktop-bleed rule was reintroducing a 210px + 820px grid
+   on phones, which caused the article to render off-canvas.
+   ------------------------------------------------------------ */
+@media(max-width:700px){
+  html,
+  body.longread-body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden!important;
+  }
+
+  .longread-page{
+    width:100%;
+    max-width:100%;
+    box-sizing:border-box;
+    overflow:visible;
+  }
+
+  .longread-layout{
+    display:block!important;
+    grid-template-columns:none!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding-top:38px!important;
+  }
+
+  .longread-rail{
+    position:static!important;
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    margin:0 0 30px!important;
+    padding:0 0 20px!important;
+    box-sizing:border-box;
+  }
+
+  .longread-article{
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    box-sizing:border-box;
+  }
+
+  .longread-article > *,
+  .longread-article p,
+  .longread-article h2,
+  .chapter-heading,
+  .pull-quote,
+  .pull-quote-wide,
+  .margin-note,
+  .story-endmatter,
+  .longread-sources,
+  .longread-footer-nav{
+    max-width:100%;
+    box-sizing:border-box;
+  }
+
+  .longread-article>p{
+    width:auto!important;
+  }
+
+  .chapter-heading{
+    width:100%!important;
+  }
+
+  .rail-toc{
+    width:auto!important;
+    max-width:none!important;
+  }
+
+  .feature-artwork,
+  .feature-artwork-frame,
+  .editorial-photo-feature,
+  .editorial-contact-sheet,
+  .story-sun .cappadocia-strip,
+  .story-nails .nails-photo{
+    max-width:100%!important;
+  }
+}
