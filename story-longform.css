@@ -2024,3 +2024,271 @@ body.longread-body{
     max-width:100%!important;
   }
 }
+
+
+/* ------------------------------------------------------------
+   STORY-SPECIFIC THEME — HAYQ / Mi Patmutyun
+   archive red, newsprint cream, charcoal, faded olive
+   ------------------------------------------------------------ */
+body.story-hayq{
+  --story-paper:#f3eee3;
+  --story-paper-2:#fffaf0;
+  --story-ink:#181411;
+  --story-soft:#403831;
+  --story-muted:#7a7067;
+  --story-line:rgba(66,48,37,.15);
+  --story-wine:#8f171d;
+  --story-pink:#c22a2f;
+  --story-lime:#a8ad73;
+  --story-black:#11100e;
+  --story-white:#fffaf2;
+  background:
+    radial-gradient(circle at 88% 6%,rgba(143,23,29,.09),transparent 25%),
+    radial-gradient(circle at 10% 38%,rgba(168,173,115,.08),transparent 22%),
+    radial-gradient(rgba(50,38,29,.032) .65px,transparent .65px),
+    var(--story-paper);
+  background-size:auto,auto,5px 5px;
+}
+
+.story-hayq .archive-status{
+  margin:34px 0 42px;
+  padding:21px 23px 22px;
+  border-left:5px solid var(--story-wine);
+  background:linear-gradient(135deg,rgba(143,23,29,.075),rgba(168,173,115,.08));
+}
+.story-hayq .archive-status>span{
+  display:block;
+  margin-bottom:7px;
+  color:var(--story-wine);
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+.story-hayq .archive-status strong{
+  display:block;
+  font-family:"Libre Caslon Display",serif;
+  font-size:31px;
+  font-weight:400;
+  line-height:1.04;
+}
+.story-hayq .archive-status p{
+  margin:10px 0 0;
+  color:var(--story-muted);
+  font-size:11px;
+  line-height:1.6;
+}
+
+.story-hayq .story-data-strip{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  margin:34px 0 48px;
+  border-top:1px solid var(--story-ink);
+  border-bottom:1px solid var(--story-line);
+}
+.story-hayq .story-data-strip>div{padding:15px 15px 16px 0}
+.story-hayq .story-data-strip>div+div{
+  padding-left:15px;
+  border-left:1px solid var(--story-line);
+}
+.story-hayq .story-data-strip span{
+  display:block;
+  margin-bottom:5px;
+  color:var(--story-muted);
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.story-hayq .story-data-strip strong{
+  display:block;
+  font-family:"Libre Caslon Display",serif;
+  font-size:19px;
+  font-weight:400;
+  line-height:1.1;
+}
+
+.story-hayq .piracy-timeline{
+  margin:52px 0 58px;
+  padding:24px 24px 26px;
+  color:#fff;
+  background:var(--story-black);
+  border-top:6px solid var(--story-wine);
+}
+.story-hayq .piracy-timeline>span{
+  display:block;
+  margin-bottom:14px;
+  color:#d7d9ad;
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.story-hayq .piracy-timeline-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  border-top:1px solid rgba(255,255,255,.16);
+}
+.story-hayq .piracy-timeline-grid>div{
+  padding:16px 16px 2px 0;
+}
+.story-hayq .piracy-timeline-grid>div+div{
+  padding-left:16px;
+  border-left:1px solid rgba(255,255,255,.13);
+}
+.story-hayq .piracy-timeline-grid b{
+  display:block;
+  margin-bottom:6px;
+  color:#fff;
+  font-family:"Libre Caslon Display",serif;
+  font-size:22px;
+  font-weight:400;
+  line-height:1;
+}
+.story-hayq .piracy-timeline-grid p{
+  margin:0;
+  color:rgba(255,255,255,.67);
+  font-size:10px;
+  line-height:1.55;
+}
+
+.story-hayq .format-card{
+  margin:48px 0 56px;
+  display:grid;
+  grid-template-columns:.82fr 1.18fr;
+  border:1px solid var(--story-line);
+  background:var(--story-paper-2);
+}
+.story-hayq .format-card-side{
+  padding:24px 22px;
+  background:var(--story-wine);
+  color:#fff;
+}
+.story-hayq .format-card-side span{
+  display:block;
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.story-hayq .format-card-side strong{
+  display:block;
+  margin-top:9px;
+  font-family:"Libre Caslon Display",serif;
+  font-size:44px;
+  font-weight:400;
+  line-height:.95;
+}
+.story-hayq .format-card-body{
+  padding:23px 25px;
+}
+.story-hayq .format-card-body h3{
+  margin:0 0 9px;
+  font-family:"Libre Caslon Display",serif;
+  font-size:29px;
+  font-weight:400;
+}
+.story-hayq .format-card-body p{
+  margin:0;
+  color:var(--story-muted);
+  font-size:12px;
+  line-height:1.65;
+}
+
+.story-hayq .eurovision-bridge{
+  margin:56px 0 64px;
+  padding:26px 27px 28px;
+  border-top:1px solid var(--story-ink);
+  border-bottom:1px solid var(--story-ink);
+}
+.story-hayq .eurovision-bridge>span{
+  color:var(--story-wine);
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+.story-hayq .eurovision-bridge h3{
+  margin:10px 0 18px;
+  font-family:"Libre Caslon Display",serif;
+  font-size:39px;
+  line-height:1;
+  font-weight:400;
+}
+.story-hayq .eurovision-bridge-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--story-line);
+}
+.story-hayq .eurovision-bridge-grid>div{
+  padding:18px;
+  background:var(--story-paper);
+}
+.story-hayq .eurovision-bridge-grid b{
+  display:block;
+  color:var(--story-wine);
+  font-size:10px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.story-hayq .eurovision-bridge-grid strong{
+  display:block;
+  margin-top:5px;
+  font-family:"Libre Caslon Display",serif;
+  font-size:23px;
+  line-height:1.05;
+  font-weight:400;
+}
+.story-hayq .eurovision-bridge-grid p{
+  margin:7px 0 0;
+  color:var(--story-muted);
+  font-size:10px;
+  line-height:1.5;
+}
+
+.story-hayq .metadata-card{
+  margin:52px 0 60px;
+  padding:23px 24px;
+  border:1px dashed rgba(143,23,29,.38);
+  background:rgba(255,250,240,.62);
+}
+.story-hayq .metadata-card span{
+  display:block;
+  color:var(--story-wine);
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+.story-hayq .metadata-card strong{
+  display:block;
+  margin-top:9px;
+  font-family:"Libre Caslon Display",serif;
+  font-size:30px;
+  font-weight:400;
+  line-height:1.06;
+}
+.story-hayq .metadata-card p{
+  margin:10px 0 0;
+  color:var(--story-muted);
+  font-size:12px;
+  line-height:1.65;
+}
+
+@media(max-width:700px){
+  .story-hayq .story-data-strip{grid-template-columns:1fr 1fr}
+  .story-hayq .story-data-strip>div:nth-child(3){border-left:0;border-top:1px solid var(--story-line);padding-left:0}
+  .story-hayq .story-data-strip>div:nth-child(4){border-top:1px solid var(--story-line)}
+  .story-hayq .archive-status strong{font-size:27px}
+  .story-hayq .piracy-timeline{margin:42px 0;padding:20px 18px 22px}
+  .story-hayq .piracy-timeline-grid{grid-template-columns:1fr 1fr}
+  .story-hayq .piracy-timeline-grid>div:nth-child(3){border-left:0;border-top:1px solid rgba(255,255,255,.13);padding-left:0}
+  .story-hayq .piracy-timeline-grid>div:nth-child(4){border-top:1px solid rgba(255,255,255,.13)}
+  .story-hayq .format-card{grid-template-columns:1fr}
+  .story-hayq .format-card-side strong{font-size:38px}
+  .story-hayq .eurovision-bridge{padding:23px 0 25px}
+  .story-hayq .eurovision-bridge h3{font-size:33px}
+  .story-hayq .eurovision-bridge-grid{grid-template-columns:1fr}
+}
