@@ -1474,3 +1474,73 @@ body.story-nails{
     border-width:6px;
   }
 }
+
+
+/* Saint Levant / Nails — visual file additions */
+.story-nails .visa-card strong{
+  color:#fff!important;
+  text-shadow:0 1px 0 rgba(0,0,0,.15);
+}
+.story-nails .visa-card p{
+  color:rgba(255,255,255,.86);
+}
+.story-nails .visa-card>span{
+  color:#a9ded8;
+}
+
+.story-nails .nails-photo{
+  margin:58px 0 68px;
+}
+.story-nails .nails-photo img{
+  display:block;
+  width:100%;
+  height:auto;
+  background:#151116;
+}
+.story-nails .nails-photo figcaption{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:20px;
+  align-items:start;
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid var(--story-line);
+  color:var(--story-muted);
+  font-size:8px;
+  line-height:1.55;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+.story-nails .nails-photo figcaption span:first-child{
+  color:var(--story-wine);
+  font-weight:800;
+  letter-spacing:.16em;
+  white-space:nowrap;
+}
+.story-nails .nails-photo--portrait-break{
+  max-width:620px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.story-nails .nails-photo--cinema{
+  margin-left:-34px;
+  margin-right:-34px;
+}
+@media(max-width:1180px){
+  .story-nails .nails-photo--cinema{
+    margin-left:0;
+    margin-right:0;
+  }
+}
+@media(max-width:700px){
+  .story-nails .nails-photo{
+    margin:44px 0 52px;
+  }
+  .story-nails .nails-photo figcaption{
+    display:block;
+    line-height:1.65;
+  }
+  .story-nails .nails-photo figcaption span{
+    display:block;
+  }
+}
