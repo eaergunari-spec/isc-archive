@@ -1292,3 +1292,185 @@ body.story-sun{
     margin-right:0;
   }
 }
+
+
+/* ------------------------------------------------------------
+   STORY-SPECIFIC THEME — Saint Levant / Nails
+   velvet cinema, lacquer red, petrol blue, cream
+   ------------------------------------------------------------ */
+body.story-nails{
+  --story-paper:#f2ece3;
+  --story-paper-2:#fff8ee;
+  --story-ink:#171314;
+  --story-soft:#3b3032;
+  --story-muted:#76696c;
+  --story-line:rgba(58,36,42,.15);
+  --story-wine:#7d2034;
+  --story-pink:#e83c63;
+  --story-lime:#85c8c0;
+  --story-black:#100d11;
+  --story-white:#fffaf4;
+  background:
+    radial-gradient(circle at 86% 5%,rgba(125,32,52,.10),transparent 24%),
+    radial-gradient(circle at 10% 35%,rgba(49,112,119,.07),transparent 21%),
+    radial-gradient(rgba(39,26,30,.03) .65px,transparent .65px),
+    var(--story-paper);
+  background-size:auto,auto,5px 5px;
+}
+.story-nails .story-data-strip{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  margin:34px 0 48px;
+  border-top:1px solid var(--story-ink);
+  border-bottom:1px solid var(--story-line);
+}
+.story-nails .story-data-strip>div{padding:15px 15px 16px 0}
+.story-nails .story-data-strip>div+div{
+  padding-left:15px;
+  border-left:1px solid var(--story-line);
+}
+.story-nails .story-data-strip span{
+  display:block;
+  margin-bottom:5px;
+  color:var(--story-muted);
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.story-nails .story-data-strip strong{
+  display:block;
+  font-family:"Libre Caslon Display",serif;
+  font-size:19px;
+  font-weight:400;
+  line-height:1.1;
+}
+.story-nails .identity-status{
+  margin:34px 0;
+  padding:20px 22px 21px;
+  border:1px solid rgba(125,32,52,.20);
+  background:linear-gradient(135deg,rgba(125,32,52,.08),rgba(133,200,192,.09));
+}
+.story-nails .identity-status>span{
+  display:block;
+  margin-bottom:7px;
+  color:var(--story-wine);
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+.story-nails .identity-status strong{
+  display:block;
+  font-family:"Libre Caslon Display",serif;
+  font-size:29px;
+  font-weight:400;
+  line-height:1.04;
+}
+.story-nails .identity-status p{
+  margin:9px 0 0;
+  color:var(--story-muted);
+  font-size:11px;
+  line-height:1.6;
+}
+.story-nails .production-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1px;
+  margin:34px 0 46px;
+  border:1px solid var(--story-line);
+  background:var(--story-line);
+}
+.story-nails .production-grid>div{
+  padding:18px 20px;
+  background:var(--story-paper-2);
+}
+.story-nails .production-grid span{
+  display:block;
+  margin-bottom:5px;
+  color:var(--story-wine);
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.story-nails .production-grid strong{
+  display:block;
+  font-family:"Libre Caslon Display",serif;
+  font-size:23px;
+  font-weight:400;
+  line-height:1.08;
+}
+.story-nails .production-grid p{
+  margin:7px 0 0;
+  color:var(--story-muted);
+  font-size:10px;
+  line-height:1.55;
+}
+.story-nails .visa-card{
+  margin:60px 0;
+  padding:28px 30px 30px;
+  background:var(--story-black);
+  color:#fff;
+  border-top:6px solid var(--story-pink);
+}
+.story-nails .visa-card>span{
+  display:block;
+  color:var(--story-lime);
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+.story-nails .visa-card strong{
+  display:block;
+  margin-top:9px;
+  font-family:"Libre Caslon Display",serif;
+  font-size:clamp(32px,3.2vw,48px);
+  font-weight:400;
+  line-height:1.02;
+}
+.story-nails .visa-card p{
+  margin:14px 0 0;
+  color:rgba(255,255,255,.70);
+  font-size:12px;
+  line-height:1.65;
+}
+@media(max-width:700px){
+  .story-nails .story-data-strip{grid-template-columns:1fr 1fr}
+  .story-nails .story-data-strip>div:nth-child(3){border-left:0;border-top:1px solid var(--story-line);padding-left:0}
+  .story-nails .story-data-strip>div:nth-child(4){border-top:1px solid var(--story-line)}
+  .story-nails .production-grid{grid-template-columns:1fr}
+  .story-nails .visa-card{margin:50px -18px;padding:24px 18px 26px}
+}
+
+/* MAZAA portrait correction: keep Meira's face in frame. */
+.story-sun .photo-feature-stage{
+  min-height:0;
+  padding:0 72px 38px 0;
+}
+.story-sun .photo-feature-main{
+  aspect-ratio:4/5;
+  max-width:680px;
+}
+.story-sun .photo-feature-main img{
+  object-position:center top;
+}
+.story-sun .photo-feature-inset{
+  width:27%;
+}
+.story-sun .photo-feature-inset img{
+  object-position:center 18%;
+}
+@media(max-width:700px){
+  .story-sun .photo-feature-stage{padding:0 0 18px}
+  .story-sun .photo-feature-main{max-width:none;aspect-ratio:4/5}
+  .story-sun .photo-feature-inset{
+    position:relative;
+    right:auto;
+    bottom:auto;
+    width:56%;
+    margin:-54px 0 0 auto;
+    border-width:6px;
+  }
+}
