@@ -2357,3 +2357,93 @@ body.story-hayq{
   .story-hayq .apricota-card strong{font-size:30px}
   .story-hayq .member-dossier h3{font-size:29px}
 }
+
+
+/* ------------------------------------------------------------
+   LAURA PAUSINI / ENTRY 06 VISUAL FILE
+   ------------------------------------------------------------ */
+.story-laura .laura-visual-spread{
+  display:grid;
+  grid-template-columns:minmax(0,.88fr) minmax(0,1fr);
+  gap:10px;
+  align-items:end;
+  margin:60px -34px 72px;
+}
+.story-laura .laura-visual-spread img{
+  display:block;
+  width:100%;
+  height:auto;
+  background:#171311;
+}
+.story-laura .laura-visual-full{
+  margin:60px -34px 72px;
+}
+.story-laura .laura-visual-full img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:860px;
+  object-fit:contain;
+  background:#171311;
+}
+.story-laura .laura-visual-square{
+  max-width:760px;
+  margin:58px auto 70px;
+}
+.story-laura .laura-visual-square img{
+  display:block;
+  width:100%;
+  height:auto;
+  background:#171311;
+}
+.story-laura .laura-visual-spread figcaption,
+.story-laura .laura-visual-full figcaption,
+.story-laura .laura-visual-square figcaption{
+  grid-column:1/-1;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding-top:10px;
+  border-top:1px solid var(--story-line);
+  color:var(--story-muted);
+  font-size:8px;
+  line-height:1.5;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+.story-laura .laura-visual-spread figcaption span:first-child,
+.story-laura .laura-visual-full figcaption span:first-child,
+.story-laura .laura-visual-square figcaption span:first-child{
+  color:var(--story-wine);
+  font-weight:800;
+  letter-spacing:.16em;
+}
+@media(max-width:1180px){
+  .story-laura .laura-visual-spread,
+  .story-laura .laura-visual-full{
+    margin-left:0;
+    margin-right:0;
+  }
+}
+@media(max-width:700px){
+  .story-laura .laura-visual-spread{
+    grid-template-columns:1fr;
+    gap:10px;
+    margin:44px 0 54px;
+  }
+  .story-laura .laura-visual-full,
+  .story-laura .laura-visual-square{
+    margin:44px 0 54px;
+  }
+  .story-laura .laura-visual-spread figcaption,
+  .story-laura .laura-visual-full figcaption,
+  .story-laura .laura-visual-square figcaption{
+    display:block;
+    line-height:1.65;
+  }
+  .story-laura .laura-visual-spread figcaption span,
+  .story-laura .laura-visual-full figcaption span,
+  .story-laura .laura-visual-square figcaption span{
+    display:block;
+  }
+}
