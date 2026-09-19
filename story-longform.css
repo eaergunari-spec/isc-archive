@@ -1544,3 +1544,396 @@ body.story-nails{
     display:block;
   }
 }
+
+
+/* ------------------------------------------------------------
+   MOBILE READING PASS — iPhone / Mobile Safari
+   calmer type scale, no iOS font inflation, no fragile drop caps
+   ------------------------------------------------------------ */
+html{
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+body.longread-body{
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+
+@media(max-width:700px){
+  body.longread-body{
+    overflow-x:hidden;
+  }
+
+  .longread-page{
+    width:auto;
+    max-width:none;
+    padding-left:max(18px,env(safe-area-inset-left));
+    padding-right:max(18px,env(safe-area-inset-right));
+    padding-bottom:72px;
+  }
+
+  /* Opener: dramatic, but not poster-sized on a phone */
+  .longread-hero{
+    padding:32px 0 30px;
+  }
+  .magazine-masthead{
+    margin-bottom:28px;
+    padding-bottom:12px;
+    border-bottom-width:3px;
+  }
+  .masthead-lockup{
+    align-items:baseline;
+    gap:7px;
+  }
+  .masthead-lockup span{
+    font-size:40px;
+    line-height:.9;
+  }
+  .masthead-lockup strong{
+    font-size:26px;
+    line-height:.95;
+    letter-spacing:-.045em;
+  }
+  .magazine-masthead>small{
+    margin-top:9px;
+    font-size:7px;
+    line-height:1.45;
+    letter-spacing:.14em;
+    white-space:normal;
+  }
+  .longread-kicker{
+    font-size:8px;
+    line-height:1.4;
+    letter-spacing:.15em;
+  }
+  .longread-hero h1{
+    max-width:none;
+    margin-top:13px;
+    font-size:clamp(42px,12.2vw,56px);
+    line-height:.94;
+    letter-spacing:-.045em;
+    text-wrap:balance;
+  }
+  .longread-subtitle{
+    margin-top:18px;
+    font-size:clamp(25px,7.6vw,31px);
+    line-height:1.05;
+    letter-spacing:-.025em;
+    text-wrap:balance;
+  }
+  .longread-deck{
+    margin-top:19px;
+    font-size:16px;
+    line-height:1.62;
+    letter-spacing:0;
+    color:var(--story-soft);
+    text-wrap:pretty;
+  }
+
+  .hero-issue-block{
+    margin-top:26px;
+    padding-top:13px;
+    gap:8px;
+  }
+  .hero-issue-no{
+    font-size:54px;
+  }
+  .hero-issue-block small{
+    font-size:7px;
+    line-height:1.4;
+  }
+
+  .longread-meta{
+    margin-top:28px;
+  }
+  .longread-meta>div{
+    min-height:0;
+    padding:11px 10px 10px 0;
+  }
+  .longread-meta>div+div{
+    padding-left:10px;
+  }
+  .longread-meta span{
+    margin-bottom:4px;
+    font-size:7px;
+  }
+  .longread-meta strong{
+    font-size:15px;
+    line-height:1.15;
+  }
+
+  .feature-artwork{
+    margin-top:22px;
+  }
+  .feature-artwork-frame{
+    margin-left:calc(-1 * max(18px,env(safe-area-inset-left)));
+    margin-right:calc(-1 * max(18px,env(safe-area-inset-right)));
+  }
+  .feature-artwork figcaption{
+    padding-top:9px;
+    font-size:7px;
+    line-height:1.55;
+    letter-spacing:.11em;
+  }
+
+  /* Contents become a compact horizontal index instead of a second wall of text */
+  .longread-layout{
+    padding-top:38px;
+    gap:30px;
+  }
+  .longread-rail{
+    padding-bottom:20px;
+  }
+  .rail-entry{
+    padding-bottom:16px;
+  }
+  .rail-entry strong{
+    margin-top:8px;
+    font-size:27px;
+    line-height:1;
+  }
+  .rail-entry p{
+    margin:5px 0 12px;
+    font-size:10px;
+  }
+  .rail-toc{
+    display:flex!important;
+    gap:7px!important;
+    margin:16px -18px 0!important;
+    padding:0 18px 3px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    white-space:nowrap!important;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;
+  }
+  .rail-toc::-webkit-scrollbar{display:none}
+  .rail-toc>span{
+    display:none!important;
+  }
+  .longread-body nav.rail-toc a{
+    flex:0 0 auto;
+    display:flex!important;
+    align-items:center;
+    gap:6px;
+    min-height:36px;
+    padding:8px 10px!important;
+    border:1px solid var(--story-line);
+    border-radius:999px;
+    background:rgba(255,250,242,.48);
+    font-size:10px!important;
+    line-height:1.1!important;
+    scroll-snap-align:start;
+  }
+  .longread-body nav.rail-toc a b{
+    font-size:7px;
+  }
+  .longread-body nav.rail-toc a:hover,
+  .longread-body nav.rail-toc a.active{
+    transform:none;
+    border-color:var(--story-wine);
+  }
+
+  /* Main reading type */
+  .longread-article{
+    max-width:none;
+  }
+  .longread-article>p{
+    margin-bottom:22px;
+    font-size:17px;
+    line-height:1.68;
+    letter-spacing:0;
+    word-spacing:0;
+    hanging-punctuation:first last;
+    text-wrap:pretty;
+  }
+  .longread-article .standfirst{
+    margin-bottom:26px;
+    font-size:18px;
+    line-height:1.62;
+  }
+  .longread-article .standfirst::first-letter{
+    float:none;
+    margin:0;
+    font-family:inherit;
+    font-size:inherit;
+    line-height:inherit;
+    color:inherit;
+  }
+
+  .chapter-heading{
+    grid-template-columns:42px minmax(0,1fr);
+    gap:11px;
+    margin:58px 0 22px;
+    padding-top:14px;
+  }
+  .chapter-no{
+    font-size:42px;
+    line-height:.82;
+  }
+  .chapter-title{
+    font-size:clamp(30px,8.8vw,38px);
+    line-height:.99;
+    letter-spacing:-.032em;
+    overflow-wrap:normal;
+    text-wrap:balance;
+  }
+  .chapter-title small{
+    margin:1px 0 7px;
+    font-size:7px!important;
+    line-height:1.2;
+    letter-spacing:.15em;
+  }
+
+  .margin-note{
+    margin:28px 0 30px;
+    padding:15px 16px 16px;
+  }
+  .margin-note>strong{
+    font-size:23px;
+    line-height:1.05;
+  }
+  .longread-article .margin-note p{
+    font-size:12px;
+    line-height:1.55;
+  }
+
+  .pull-quote{
+    margin:34px 0;
+    padding-left:16px;
+    border-left-width:4px;
+  }
+  .longread-article .pull-quote p{
+    font-size:29px;
+    line-height:1.06;
+  }
+  .pull-quote-wide{
+    width:auto;
+    margin:46px 0;
+    padding:24px 20px;
+  }
+  .longread-article .pull-quote-wide p{
+    font-size:31px;
+    line-height:1.05;
+  }
+
+  .closing-line{
+    margin:48px 0 0!important;
+    padding:25px 20px 28px!important;
+    font-size:34px!important;
+    line-height:1.04!important;
+  }
+
+  /* Cards / data modules: compact and legible */
+  .story-night .story-data-strip,
+  .story-sun .story-data-strip,
+  .story-nails .story-data-strip{
+    margin:28px 0 36px;
+  }
+  .story-night .story-data-strip strong,
+  .story-sun .story-data-strip strong,
+  .story-nails .story-data-strip strong{
+    font-size:17px;
+  }
+  .story-night .virtual-status strong,
+  .story-sun .network-status strong,
+  .story-nails .identity-status strong{
+    font-size:26px;
+    line-height:1.08;
+  }
+  .story-night .virtual-status p,
+  .story-sun .network-status p,
+  .story-nails .identity-status p{
+    font-size:12px;
+    line-height:1.55;
+  }
+
+  .story-nails .visa-card{
+    margin:42px 0;
+    padding:22px 18px 24px;
+  }
+  .story-nails .visa-card strong{
+    font-size:31px;
+    line-height:1.04;
+  }
+  .story-nails .visa-card p{
+    font-size:13px;
+    line-height:1.58;
+  }
+
+  .source-list a{
+    font-size:13px;
+    line-height:1.45;
+    overflow-wrap:anywhere;
+  }
+  .source-list li span{
+    font-size:11px;
+    line-height:1.55;
+  }
+  .longread-sources summary span{
+    font-size:29px;
+    line-height:1.05;
+  }
+
+  .story-tags span,
+  .story-tags a{
+    font-size:9px;
+    line-height:1.2;
+  }
+
+  /* Safari-friendly image behavior */
+  .feature-artwork-frame img,
+  .editorial-photo-feature img,
+  .editorial-contact-sheet img,
+  .cappadocia-strip img,
+  .nails-photo img{
+    max-width:100%;
+    height:auto;
+  }
+}
+
+@media(max-width:430px){
+  .longread-page{
+    padding-left:max(16px,env(safe-area-inset-left));
+    padding-right:max(16px,env(safe-area-inset-right));
+  }
+  .masthead-lockup span{font-size:36px}
+  .masthead-lockup strong{font-size:23px}
+  .longread-hero h1{
+    font-size:clamp(39px,11.8vw,50px);
+  }
+  .longread-subtitle{
+    font-size:24px;
+  }
+  .longread-meta{
+    grid-template-columns:1fr 1fr;
+  }
+  .longread-meta>div:nth-child(3){
+    border-left:0;
+  }
+  .longread-meta>div:nth-child(4){
+    border-left:1px solid var(--story-line);
+  }
+  .longread-meta>div+div{
+    border-top:1px solid var(--story-line);
+  }
+  .chapter-heading{
+    grid-template-columns:36px minmax(0,1fr);
+    gap:9px;
+  }
+  .chapter-no{
+    font-size:36px;
+  }
+  .chapter-title{
+    font-size:clamp(28px,8.5vw,34px);
+  }
+  .longread-article>p{
+    font-size:16.5px;
+    line-height:1.66;
+  }
+  .longread-article .standfirst{
+    font-size:17.5px;
+  }
+}
