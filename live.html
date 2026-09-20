@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="live-screening.css?v=20260920-12">
+<link rel="stylesheet" href="live-screening.css?v=20260920-15">
 </head>
 <body class="screening-body">
 <header class="site-header screening-header">
@@ -119,20 +119,7 @@
           <strong id="sync-copy">Oynatıcı hazırlanıyor…</strong>
         </div>
       </div>
-    </section>
 
-    <aside class="screening-sidebar">
-      <div class="sidebar-head">
-        <span>DELEGASYONLAR</span>
-        <strong><b id="online-count">0</b> BAĞLI</strong>
-      </div>
-      <div class="delegation-list" id="delegation-list">
-        <div class="delegation-empty">Henüz kimse bağlanmadı.</div>
-      </div>
-      <div class="room-rule">
-        <span>◎</span>
-        <p><strong>Canlı yayın herkes için senkronize ilerler.</strong> Yayın Yönetmeni yayını başlattığında sıra değişiklikleri, oynatma, duraklatma ve ileri-geri sarma merkezi olarak kontrol edilir.</p>
-      </div>
 
       <section class="screening-chat">
         <div class="chat-head">
@@ -150,7 +137,22 @@
           <input id="chat-input" maxlength="500" autocomplete="off" placeholder="Odaya mesaj yazın…" disabled aria-label="Sohbet mesajı">
           <button type="submit" disabled>GÖNDER</button>
         </form>
-      </section>
+      </section>    </section>
+
+    <aside class="screening-sidebar">
+      <div class="sidebar-head">
+        <span>DELEGASYONLAR</span>
+        <strong><b id="online-count">0</b> BAĞLI</strong>
+      </div>
+      <div class="delegation-list" id="delegation-list">
+        <div class="delegation-empty">Henüz kimse bağlanmadı.</div>
+      </div>
+      <div class="room-rule">
+        <span>◎</span>
+        <p><strong>Canlı yayın herkes için senkronize ilerler.</strong> Yayın Yönetmeni yayını başlattığında sıra değişiklikleri, oynatma, duraklatma ve ileri-geri sarma merkezi olarak kontrol edilir.</p>
+      </div>
+
+
     </aside>
   </div>
 </section>
@@ -192,6 +194,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
 <script src="https://www.youtube.com/iframe_api"></script>
-<script src="live-screening.js?v=20260920-14"></script>
+<script src="live-screening.js?v=20260920-15"></script>
 </body>
 </html>
