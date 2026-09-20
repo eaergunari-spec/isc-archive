@@ -706,9 +706,9 @@ function appendChatMessage(m){
   var time='';
   try{time=new Date(m.created_at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}catch(_){}
   row.innerHTML='<b>'+esc(m.nickname)+'</b><span>'+esc(m.message)+'</span><small>'+esc(time)+'</small>';
-  box.appendChild(row);
-  while(box.children.length>120)box.removeChild(box.firstChild);
-  box.scrollTop=box.scrollHeight;
+  box.insertBefore(row,box.firstChild);
+  while(box.children.length>120)box.removeChild(box.lastChild);
+  box.scrollTop=0;
 }
 appendChatMessage.seen=new Set();
 
@@ -717,7 +717,7 @@ function paintChat(rows){
   box.innerHTML='';
   appendChatMessage.seen.clear();
   if(!rows||!rows.length){
-    box.innerHTML='<div class="chat-empty">Say hello to the room.</div>';
+    box.innerHTML='<div class="chat-empty">Odaya merhaba deyin.</div>';
     return;
   }
   rows.forEach(appendChatMessage);
@@ -744,7 +744,7 @@ async function initChat(){
       .order('created_at',{ascending:false})
       .limit(100);
     if(res.error)throw res.error;
-    paintChat((res.data||[]).reverse());
+    paintChat(res.data||[]);
   }catch(err){
     console.error('Chat history failed',err);
     $('chat-messages').innerHTML='<div class="chat-empty">Chat is reconnecting…</div>';
