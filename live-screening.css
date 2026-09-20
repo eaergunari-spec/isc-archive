@@ -71,3 +71,12 @@
   .director-actions #director-login-btn{grid-column:1/-1}
   .chat-head,.chat-nick,.chat-compose{padding-left:14px;padding-right:14px}
 }
+
+/* ISC 154 · Final Broadcast */
+.final-countdown{position:relative;overflow:hidden;margin:0 0 24px;padding:22px 24px 20px;border:1px solid rgba(255,255,255,.12);border-radius:22px;background:radial-gradient(circle at 15% 0,rgba(117,64,255,.20),transparent 42%),radial-gradient(circle at 92% 100%,rgba(255,41,145,.13),transparent 38%),rgba(8,10,23,.76);box-shadow:0 22px 70px rgba(0,0,0,.28);backdrop-filter:blur(18px)}
+.final-countdown:before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent)}
+.final-countdown__eyebrow{font-size:10px;font-weight:800;letter-spacing:.23em;color:rgba(255,255,255,.56)}
+.final-countdown__date{margin-top:7px;font-size:15px;font-weight:750;letter-spacing:.08em;color:#fff}.final-countdown__date span{font-size:10px;color:rgba(255,255,255,.5)}
+.final-countdown__clock{display:flex;align-items:flex-start;gap:12px;margin:18px 0 13px}.final-countdown__clock div{min-width:62px}.final-countdown__clock strong{display:block;font-variant-numeric:tabular-nums;font-size:clamp(30px,5vw,54px);font-weight:650;line-height:.9;letter-spacing:-.045em}.final-countdown__clock small{display:block;margin-top:8px;font-size:8px;font-weight:800;letter-spacing:.17em;color:rgba(255,255,255,.42)}.final-countdown__clock i{font-style:normal;font-size:28px;line-height:.8;color:rgba(255,255,255,.22)}
+.final-countdown__status{font-size:9px;font-weight:750;letter-spacing:.15em;color:rgba(255,255,255,.45)}.final-countdown.is-live{border-color:rgba(255,64,128,.42)}.final-countdown.is-live .final-countdown__status{color:#ff6b9d}
+@media(max-width:560px){.final-countdown{padding:18px 16px}.final-countdown__clock{gap:7px}.final-countdown__clock div{min-width:49px}.final-countdown__clock strong{font-size:32px}.final-countdown__clock i{font-size:21px}}
