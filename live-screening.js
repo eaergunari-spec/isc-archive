@@ -439,7 +439,7 @@ if(ytApiReady){
 function startPlayerForCurrentEntry(){
   var live=roomLocked();
   var start=live?expectedPosition():0;
-  var autoplay=live?roomState.is_playing:true;
+  var autoplay=live?roomState.is_playing:!isDirector;
   playerRetryUsed=false;
   playerErrorCode=null;
   hidePlayerMessage();
@@ -478,7 +478,7 @@ function onPlayerStateChange(event){
     playerErrorCode=null;
     hidePlayerMessage();
   }
-  if(isDirector&&!applyingRemoteState){
+  if(isDirector&&!applyingRemoteState&&(event.data===YT.PlayerState.PLAYING||event.data===YT.PlayerState.PAUSED||event.data===YT.PlayerState.ENDED)){
     setTimeout(function(){commitDirectorState('player-state');},120);
   }else if(roomLocked()&&!isDirector){
     setTimeout(function(){syncPlayerToRoom(false);},250);
