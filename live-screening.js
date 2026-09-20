@@ -720,7 +720,7 @@ function paintChat(rows){
     box.innerHTML='<div class="chat-empty">Odaya merhaba deyin.</div>';
     return;
   }
-  rows.forEach(appendChatMessage);
+  rows.slice().reverse().forEach(appendChatMessage);
 }
 function setChatReady(){
   var nick=String(localStorage.getItem(CHAT_NICK_STORAGE_KEY)||'').trim();
