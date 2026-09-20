@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="live-screening.css?v=20260920-15">
+<link rel="stylesheet" href="live-screening.css?v=20260920-16">
 </head>
 <body class="screening-body">
 <header class="site-header screening-header">
@@ -126,17 +126,17 @@
           <span>CANLI SOHBET</span>
           <strong><i></i> ODA SOHBETİ</strong>
         </div>
-        <div class="chat-nick">
-          <input id="chat-nickname" maxlength="32" autocomplete="nickname" placeholder="Bir rumuz seçin" aria-label="Sohbet rumuzu">
-          <button id="save-nickname" type="button">AYARLA</button>
-        </div>
-        <div id="chat-messages" class="chat-messages" aria-live="polite">
-          <div class="chat-empty">Odaya merhaba deyin.</div>
-        </div>
         <form id="chat-form" class="chat-compose">
           <input id="chat-input" maxlength="500" autocomplete="off" placeholder="Odaya mesaj yazın…" disabled aria-label="Sohbet mesajı">
           <button type="submit" disabled>GÖNDER</button>
         </form>
+        <div id="chat-messages" class="chat-messages" aria-live="polite">
+          <div class="chat-empty">Odaya merhaba deyin.</div>
+        </div>
+        <div class="chat-nick" id="chat-nick-panel">
+          <input id="chat-nickname" maxlength="32" autocomplete="nickname" placeholder="Bir rumuz seçin" aria-label="Sohbet rumuzu">
+          <button id="save-nickname" type="button">AYARLA</button>
+        </div>
       </section>    </section>
 
     <aside class="screening-sidebar">
@@ -194,6 +194,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
 <script src="https://www.youtube.com/iframe_api"></script>
-<script src="live-screening.js?v=20260920-15"></script>
+<script src="live-screening.js?v=20260920-16"></script>
 </body>
 </html>
