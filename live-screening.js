@@ -890,3 +890,12 @@ boot().catch(function(err){
 });
 
 })();
+(function initFinalBroadcastCountdown(){
+  var target=Date.parse('2026-09-23T22:00:00+03:00'),root=document.getElementById('final-countdown');
+  if(!root)return;
+  function pad(n){return String(n).padStart(2,'0')}
+  function tick(){var d=target-Date.now();
+    if(d<=0){['cd-days','cd-hours','cd-minutes','cd-seconds'].forEach(function(id){document.getElementById(id).textContent='00'});document.getElementById('cd-status').textContent='FINAL BROADCAST · LIVE NOW';root.classList.add('is-live');return}
+    document.getElementById('cd-days').textContent=pad(Math.floor(d/86400000));document.getElementById('cd-hours').textContent=pad(Math.floor(d%86400000/3600000));document.getElementById('cd-minutes').textContent=pad(Math.floor(d%3600000/60000));document.getElementById('cd-seconds').textContent=pad(Math.floor(d%60000/1000));
+  } tick();setInterval(tick,1000);
+})();
