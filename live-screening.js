@@ -110,8 +110,12 @@ function indexForRunningOrder(order){
   var i=entries.findIndex(function(e){return Number(e.n)===Number(order);});
   return i>=0?i:0;
 }
+function roomStateFresh(){
+  var at=Date.parse(roomState.updated_at);
+  return Number.isFinite(at)&&Date.now()-at<15000;
+}
 function roomLocked(){
-  return Boolean(directorOnline||isDirector) && roomState.updated_by==='director';
+  return roomState.updated_by==='director'&&Boolean(isDirector||directorOnline||roomStateFresh());
 }
 
 function updateNowPlaying(){
