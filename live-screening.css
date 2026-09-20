@@ -86,3 +86,12 @@
 .screening-stage>.screening-chat .chat-messages{height:260px}
 .screening-stage>.screening-chat .chat-msg{grid-template-columns:minmax(80px,auto) 1fr auto;align-items:start}
 @media(max-width:700px){.screening-stage>.screening-chat .chat-messages{height:220px}.screening-stage>.screening-chat .chat-msg{grid-template-columns:1fr auto}.screening-stage>.screening-chat .chat-msg span{grid-column:1/-1}}
+
+/* Composer first; nickname becomes a quiet footer once identity is set. */
+.screening-stage>.screening-chat .chat-compose{order:1;border-bottom:1px solid rgba(255,255,255,.1)}
+.screening-stage>.screening-chat .chat-messages{order:2}
+.screening-stage>.screening-chat .chat-nick{order:3;border-top:1px solid rgba(255,255,255,.08);border-bottom:0;background:rgba(255,255,255,.018)}
+.screening-stage>.screening-chat .chat-nick.is-set{padding-top:10px;padding-bottom:10px;opacity:.58}
+.screening-stage>.screening-chat .chat-nick.is-set input{padding:8px 10px;background:transparent;border-color:rgba(255,255,255,.09)}
+.screening-stage>.screening-chat .chat-nick.is-set button{padding:8px 11px;background:transparent;color:#aaa3af;border:1px solid rgba(255,255,255,.10)}
+.screening-stage>.screening-chat .chat-head{order:0}
