@@ -46,6 +46,7 @@ var pendingWrite=null;
 var lastStateVersion=-1;
 var ytApiReady=Boolean(window.YT&&window.YT.Player);
 var pendingPlayerBind=false;
+var pendingDirectorPlay=false;
 var roomState={
   ok:true,
   edition_number:EDITION,
@@ -408,6 +409,11 @@ function bindPlayer(frame){
           if(roomLocked())syncPlayerToRoom(true);
           updateRoomVisualState();
           $('sync-copy').textContent=roomLocked()?'Playback locked to Show Director.':'Local preview ready.';
+          if(pendingDirectorPlay&&isDirector){
+            pendingDirectorPlay=false;
+            try{player.playVideo();mediaUnlocked=true;}catch(_){}
+            setTimeout(function(){commitDirectorState('play',{playing:true});},180);
+          }
         },
         onStateChange:onPlayerStateChange,
         onError:onPlayerError,
@@ -792,8 +798,12 @@ $('prev-entry').addEventListener('click',function(){if(isDirector)directorSetEnt
 $('next-entry').addEventListener('click',function(){if(isDirector)directorSetEntry((currentIndex+1)%entries.length);});
 $('toggle-play').addEventListener('click',function(){
   if(!isDirector)return;
-  if(!userJoined)enterRoom();
-  if(!playerReady||!player)return;
+  if(!userJoined||!playerReady||!player){
+    pendingDirectorPlay=true;
+    if(!userJoined)enterRoom();
+    else $('sync-copy').textContent='Player is still loading…';
+    return;
+  }
   var state=player.getPlayerState();
   if(state===YT.PlayerState.PLAYING){
     player.pauseVideo();
