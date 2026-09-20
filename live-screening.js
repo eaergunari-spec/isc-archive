@@ -120,7 +120,7 @@ function roomLocked(){
 function updateNowPlaying(){
   var e=currentEntry();
   if(!e)return;
-  $('entry-label').textContent='ENTRY '+two(e.n)+' · '+e.c;
+  $('entry-label').textContent='SIRA '+two(e.n)+' · '+e.c;
   $('entry-title').textContent=e.artist;
   $('entry-song').textContent='“'+e.song+'”';
   $('youtube-fallback').href=watchUrl(e.video);
@@ -153,7 +153,7 @@ function renderEntries(){
       }else if(!roomLocked()){
         localPreviewEntry(i);
       }else{
-        $('sync-copy').textContent='Running order is locked to the Show Director.';
+        $('sync-copy').textContent='Sahne sırası Yayın Yönetmeni tarafından kilitlendi.';
       }
     });
   });
@@ -194,7 +194,7 @@ async function loadRoomState(){
     if(res.data&&res.data.ok)applyRoomState(res.data,'initial');
   }catch(err){
     console.error('Room state unavailable',err);
-    $('room-status-note').textContent='Local preview available · realtime state unavailable';
+    $('room-status-note').textContent='Yerel ön izleme kullanılabilir · canlı durum bağlantısı yok';
   }
 }
 
@@ -238,37 +238,37 @@ function applyRoomState(raw,source){
 function updateRoomVisualState(){
   var live=roomLocked();
   if(isDirector){
-    $('room-status').textContent='SHOW DIRECTOR';
-    $('room-status-note').textContent='Your controls are authoritative for the room.';
+    $('room-status').textContent='YAYIN YÖNETMENİ';
+    $('room-status-note').textContent='Bu odadaki yayın kontrolleri sizde.';
   }else if(live){
-    $('room-status').textContent='ROOM LIVE';
-    $('room-status-note').textContent='Playback is locked to the ISC Show Director.';
+    $('room-status').textContent='CANLI YAYIN';
+    $('room-status-note').textContent='Oynatma ISC Yayın Yönetmenine kilitlendi.';
   }else if(userJoined){
-    $('room-status').textContent='ROOM OPEN';
-    $('room-status-note').textContent='Preview mode · waiting for a Show Director.';
+    $('room-status').textContent='YAYIN BEKLENİYOR';
+    $('room-status-note').textContent='Final yayını henüz başlamadı · Yayın Yönetmeni bekleniyor.';
   }else{
-    $('room-status').textContent='PREVIEW MODE';
-    $('room-status-note').textContent='Enter the room to unlock playback and presence.';
+    $('room-status').textContent='YAYIN BEKLENİYOR';
+    $('room-status-note').textContent='Yayın odasına girerek bağlantınızı etkinleştirin.';
   }
 
   if(live){
     $('live-badge').classList.remove('preview');
-    $('live-badge').innerHTML='<i></i> LIVE';
-    $('running-order-note').textContent='The Show Director controls the running order for everyone in the room.';
+    $('live-badge').innerHTML='<i></i> CANLI';
+    $('running-order-note').textContent='Sahne sırası odadaki herkes için Yayın Yönetmeni tarafından kontrol edilir.';
   }else{
     $('live-badge').classList.add('preview');
-    $('live-badge').innerHTML='<i></i> PREVIEW';
-    $('running-order-note').textContent=isDirector?'Select any entry to take the room there.':'No Show Director is live. You can preview entries locally.';
+    $('live-badge').innerHTML='<i></i> BEKLEMEDE';
+    $('running-order-note').textContent=isDirector?'Odayı ilgili şarkıya taşımak için bir katılımcı seçin.':'Final yayını henüz başlamadı. Şarkıları yerel olarak ön izleyebilirsiniz.';
   }
 
   if(playerErrorCode){
-    setSyncState('PLAYER ERROR','E'+playerErrorCode,'error');
+    setSyncState('OYNATICI HATASI','E'+playerErrorCode,'error');
   }else if(live&&playerReady){
-    setSyncState('SYNCED','±0.0s','synced');
+    setSyncState('SENKRON','±0.0s','synced');
   }else if(userJoined&&playerReady){
-    setSyncState('LOCAL PREVIEW','—','preview');
+    setSyncState('YEREL ÖN İZLEME','—','preview');
   }else{
-    setSyncState('WAITING','—','waiting');
+    setSyncState('BEKLENİYOR','—','waiting');
   }
   updateDirectorUI();
 }
@@ -317,7 +317,7 @@ function renderPresence(){
     $('delegation-list').innerHTML=people.map(function(p){
       return '<div class="delegation '+(p.director?'is-director':'')+'">'+
         '<span class="flag">'+(p.director?'✦':'◆')+'</span>'+
-        '<div><b>'+esc(p.country||'Guest')+'</b><small>'+(p.director?'Show Director':(p.role==='delegation'?'Delegation':'Guest viewer'))+'</small></div>'+
+        '<div><b>'+esc(p.country||'Misafir')+'</b><small>'+(p.director?'Yayın Yönetmeni':(p.role==='delegation'?'Delegation':'Guest viewer'))+'</small></div>'+
         '<i class="presence"></i></div>';
     }).join('');
   }
@@ -327,7 +327,7 @@ async function trackPresence(){
   if(!presenceChannel||!presenceConnected)return;
   try{
     await presenceChannel.track({
-      country:identityName||'Guest',
+      country:identityName||'Misafir',
       role:identityRole,
       director:isDirector,
       joined_at:new Date().toISOString()
@@ -348,7 +348,7 @@ async function connectPresence(){
         await trackPresence();
       }else if(status==='CHANNEL_ERROR'||status==='TIMED_OUT'||status==='CLOSED'){
         presenceConnected=false;
-        $('sync-copy').textContent='Realtime presence reconnecting…';
+        $('sync-copy').textContent='Delegasyon bağlantısı yeniden kuruluyor…';
       }
     });
 }
@@ -366,7 +366,7 @@ function subscribeRoomState(){
     })
     .subscribe(function(status){
       if(status==='CHANNEL_ERROR'||status==='TIMED_OUT'){
-        $('room-status-note').textContent='Realtime state reconnecting…';
+        $('room-status-note').textContent='Canlı yayın durumuna yeniden bağlanılıyor…';
       }
     });
 }
@@ -418,7 +418,7 @@ function bindPlayer(frame){
           hidePlayerMessage();
           if(roomLocked())syncPlayerToRoom(true);
           updateRoomVisualState();
-          $('sync-copy').textContent=roomLocked()?'Playback locked to Show Director.':'Local preview ready.';
+          $('sync-copy').textContent=roomLocked()?'Oynatma Yayın Yönetmenine kilitlendi.':'Yerel ön izleme hazır.';
           if(pendingDirectorPlay&&isDirector){
             pendingDirectorPlay=false;
             try{player.playVideo();mediaUnlocked=true;}catch(_){}
@@ -428,8 +428,8 @@ function bindPlayer(frame){
         onStateChange:onPlayerStateChange,
         onError:onPlayerError,
         onAutoplayBlocked:function(){
-          $('sync-copy').textContent='Tap ▶ once inside the video to unlock playback on this device.';
-          setSyncState('TAP TO UNLOCK','—','waiting');
+          $('sync-copy').textContent='Bu cihazda oynatmayı etkinleştirmek için videodaki ▶ düğmesine bir kez dokunun.';
+          setSyncState('DOKUNARAK AÇ','—','waiting');
         }
       }
     });
@@ -460,15 +460,15 @@ function onPlayerError(event){
   var code=Number(event&&event.data)||0;
   playerErrorCode=code;
   console.error('YouTube player error',code);
-  var title='YouTube playback error';
-  var copy='The video could not be played inside this page.';
+  var title='YouTube oynatma hatası';
+  var copy='Video bu sayfa içinde oynatılamadı.';
   if(code===153)copy='YouTube could not verify the embed identity in this browser. Open this page in a full browser window and make sure YouTube cookies are allowed.';
   if(code===101||code===150)copy='The video owner does not permit embedded playback for this video.';
-  if(code===100)copy='This video is unavailable or private.';
+  if(code===100)copy='Bu video kullanılamıyor veya gizli.';
   if(code===5)copy='This browser could not play the YouTube HTML5 stream.';
   showPlayerMessage(title,copy);
-  setSyncState('PLAYER ERROR','E'+code,'error');
-  $('sync-copy').textContent='Embedded playback failed · YouTube fallback is available.';
+  setSyncState('OYNATICI HATASI','E'+code,'error');
+  $('sync-copy').textContent='Gömülü oynatma başarısız · YouTube üzerinden açabilirsiniz.';
 }
 
 function onPlayerStateChange(event){
@@ -510,7 +510,7 @@ function syncPlayerToRoom(force){
     }else{
       var actual=safeNumber(player.getCurrentTime(),0);
       var drift=expected-actual;
-      setSyncState('SYNCED',(drift>=0?'+':'')+drift.toFixed(1)+'s','synced');
+      setSyncState('SENKRON',(drift>=0?'+':'')+drift.toFixed(1)+'s','synced');
       if(force||Math.abs(drift)>1.15)player.seekTo(Math.max(0,expected),true);
       var state=player.getPlayerState();
       if(roomState.is_playing){
@@ -533,7 +533,7 @@ function localPreviewEntry(i){
     if(playerReady)loadEntryIntoPlayer(true,0);
     else startPlayerForCurrentEntry();
   }
-  $('sync-copy').textContent='Local preview · no Show Director is controlling the room.';
+  $('sync-copy').textContent='Yerel ön izleme · henüz Yayın Yönetmeni yayında değil.';
 }
 
 async function validateDirectorCode(code){
@@ -547,12 +547,12 @@ async function unlockDirector(){
   var input=$('director-code');
   var code=input.value.trim();
   if(!code)return;
-  $('director-auth-message').textContent='Checking…';
+  $('director-auth-message').textContent='Kontrol ediliyor…';
   $('director-unlock').disabled=true;
   var ok=await validateDirectorCode(code);
   $('director-unlock').disabled=false;
   if(!ok){
-    $('director-auth-message').textContent='Invalid admin code.';
+    $('director-auth-message').textContent='Yayın Yönetmeni kodu geçersiz.';
     input.select();
     return;
   }
@@ -570,7 +570,7 @@ async function unlockDirector(){
   if(!presenceChannel&&userJoined)await connectPresence();
   else if(presenceConnected)await trackPresence();
   updateRoomVisualState();
-  $('sync-copy').textContent='Show Director unlocked. Your controls now update the whole room.';
+  $('sync-copy').textContent='Yayın Yönetmeni modu açıldı. Kontrolleriniz artık tüm odayı yönetiyor.';
 }
 function lockDirector(){
   isDirector=false;
@@ -586,14 +586,14 @@ function updateDirectorUI(){
     card.classList.toggle('live-locked',roomLocked()&&!isDirector);
   });
   if(isDirector){
-    $('director-kicker').textContent='ISC SHOW DIRECTOR';
-    $('director-copy').textContent='You control entry changes and playback for every connected viewer.';
-    $('director-login-btn').textContent='LOCK DIRECTOR';
+    $('director-kicker').textContent='ISC YAYIN YÖNETMENİ';
+    $('director-copy').textContent='Tüm bağlı izleyicilerin sahne sırası ve oynatma kontrolleri sizde.';
+    $('director-login-btn').textContent='YÖNETMENİ KİLİTLE';
     $('director-login-btn').classList.add('active');
   }else{
-    $('director-kicker').textContent='ISC SHOW CONTROL';
-    $('director-copy').textContent='Viewer mode · live playback follows the Show Director.';
-    $('director-login-btn').textContent='DIRECTOR LOGIN';
+    $('director-kicker').textContent='ISC YAYIN KONTROLÜ';
+    $('director-copy').textContent='İzleyici modu · canlı yayın Yayın Yönetmenini takip eder.';
+    $('director-login-btn').textContent='YÖNETMEN GİRİŞİ';
     $('director-login-btn').classList.remove('active');
   }
 }
@@ -669,7 +669,7 @@ async function enterRoom(){
   if(userJoined)return;
   userJoined=true;
   $('start-screening').classList.add('hidden');
-  $('sync-copy').textContent='Joining the screening room…';
+  $('sync-copy').textContent='Yayın odasına katılınıyor…';
   updateRoomVisualState();
 
   /* Creating the iframe synchronously from the tap is intentional: iOS uses this
@@ -681,7 +681,7 @@ async function enterRoom(){
     await connectPresence();
   }catch(err){
     console.error('Room presence unavailable',err);
-    $('sync-copy').textContent='Video ready · presence is temporarily unavailable.';
+    $('sync-copy').textContent='Video hazır · delegasyon bağlantısı geçici olarak kullanılamıyor.';
   }
 }
 
@@ -721,7 +721,7 @@ function setChatReady(){
 }
 async function initChat(){
   if(!db){
-    $('chat-nickname').placeholder='Chat unavailable';
+    $('chat-nickname').placeholder='Sohbet kullanılamıyor';
     return;
   }
   var nick='';
@@ -777,11 +777,11 @@ $('chat-form').addEventListener('submit',async function(e){
   if(res.error){
     console.error('Chat send failed',res.error);
     input.value=message;
-    input.placeholder='Message failed — try again';
+    input.placeholder='Mesaj gönderilemedi — tekrar deneyin';
     return;
   }
   appendChatMessage(res.data);
-  input.placeholder='Message the room…';
+  input.placeholder='Odaya mesaj yazın…';
 });
 
 $('start-screening').addEventListener('click',enterRoom);
@@ -877,16 +877,16 @@ async function boot(){
   currentIndex=indexForRunningOrder(roomState.current_entry);
   updateNowPlaying();
   updateRoomVisualState();
-  $('sync-copy').textContent='Room ready · tap ENTER THE ROOM to unlock playback.';
+  $('sync-copy').textContent='Oda hazır · bağlanmak için YAYIN ODASINA GİR düğmesine dokunun.';
 }
 
 boot().catch(function(err){
   console.error('Live screening boot failed',err);
   entries=FALLBACK_ENTRIES.slice();
   renderEntries();
-  $('room-status').textContent='LOCAL PREVIEW';
-  $('room-status-note').textContent='Realtime services are temporarily unavailable.';
-  $('sync-copy').textContent='Local playback is still available.';
+  $('room-status').textContent='YEREL ÖN İZLEME';
+  $('room-status-note').textContent='Canlı bağlantı servisleri geçici olarak kullanılamıyor.';
+  $('sync-copy').textContent='Yerel oynatma kullanılabilir.';
 });
 
 })();
@@ -895,7 +895,7 @@ boot().catch(function(err){
   if(!root)return;
   function pad(n){return String(n).padStart(2,'0')}
   function tick(){var d=target-Date.now();
-    if(d<=0){['cd-days','cd-hours','cd-minutes','cd-seconds'].forEach(function(id){document.getElementById(id).textContent='00'});document.getElementById('cd-status').textContent='FINAL BROADCAST · LIVE NOW';root.classList.add('is-live');return}
+    if(d<=0){['cd-days','cd-hours','cd-minutes','cd-seconds'].forEach(function(id){document.getElementById(id).textContent='00'});document.getElementById('cd-status').textContent='FİNAL YAYINI · ŞİMDİ CANLI';root.classList.add('is-live');return}
     document.getElementById('cd-days').textContent=pad(Math.floor(d/86400000));document.getElementById('cd-hours').textContent=pad(Math.floor(d%86400000/3600000));document.getElementById('cd-minutes').textContent=pad(Math.floor(d%3600000/60000));document.getElementById('cd-seconds').textContent=pad(Math.floor(d%60000/1000));
   } tick();setInterval(tick,1000);
 })();
