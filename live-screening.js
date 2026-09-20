@@ -168,7 +168,7 @@ async function loadEntries(){
         countrySlug:e.country_slug||fallback.countrySlug||'',
         artist:e.artist||fallback.artist||'Unknown artist',
         song:e.song||fallback.song||'Unknown song',
-        img:assetPath(e.image_url)||fallback.img||'',
+        img:fallback.img||assetPath(e.image_url)||'',
         video:e.video_id||fallback.video||''
       };
     });
