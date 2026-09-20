@@ -544,8 +544,8 @@ function localPreviewEntry(i){
 async function validateDirectorCode(code){
   if(!db||!code)return false;
   try{
-    var res=await db.rpc('isc_admin_code_valid',{p_code:code});
-    return !res.error&&res.data===true;
+    var res=await db.rpc('isc_screening_director_auth',{p_code:code});
+    return !res.error&&res.data&&res.data.ok===true;
   }catch(_){return false;}
 }
 async function unlockDirector(){
