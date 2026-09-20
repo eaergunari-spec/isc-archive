@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#09070d">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="description" content="ISC 154 Live Screening — synchronized watch room, delegation presence and live chat.">
-<title>ISC 154 — Live Screening</title>
+<meta name="description" content="ISC 154 Final Broadcast — synchronized watch room, delegation presence and live chat.">
+<title>ISC 154 — Final Broadcast</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="live-screening.css?v=20260920-10">
+<link rel="stylesheet" href="live-screening.css?v=20260920-12">
 </head>
 <body class="screening-body">
 <header class="site-header screening-header">
@@ -21,7 +21,7 @@
     <a href="editions/154/">ISC 154</a>
     <a href="editions/154/#participants">Line-up</a>
     <a href="countries/">Countries</a>
-    <a class="screening-nav-live" href="live.html"><i></i> Live Screening</a>
+    <a class="screening-nav-live" href="live.html"><i></i> Final Broadcast</a>
     <a class="nav-vote" href="vote.html">Voting Room</a>
   </nav>
 </header>
@@ -31,7 +31,7 @@
   <div class="screening-atmosphere"></div>
   <div class="screening-titlebar">
     <div>
-      <span class="screening-kicker"><i></i> ISC 154 · DELEGATION SCREENING</span>
+      <span class="screening-kicker"><i></i> ISC 154 · FINAL BROADCAST</span>
       <h1>Watch it <em>together.</em></h1>
       <p>One room. One running order. Every delegation on the same frame.</p>
     </div>
@@ -41,6 +41,18 @@
       <small id="room-status-note">Connecting to the screening state…</small>
     </div>
   </div>
+
+  <section class="final-countdown" id="final-countdown" aria-label="Final broadcast countdown">
+    <div class="final-countdown__eyebrow">ISC 154 · FINAL BROADCAST</div>
+    <div class="final-countdown__date">23 SEPTEMBER · 22:00 <span>TRT · UTC+3</span></div>
+    <div class="final-countdown__clock" aria-live="polite">
+      <div><strong id="cd-days">00</strong><small>DAYS</small></div><i>:</i>
+      <div><strong id="cd-hours">00</strong><small>HOURS</small></div><i>:</i>
+      <div><strong id="cd-minutes">00</strong><small>MIN</small></div><i>:</i>
+      <div><strong id="cd-seconds">00</strong><small>SEC</small></div>
+    </div>
+    <div class="final-countdown__status" id="cd-status">UNTIL WE GO LIVE · ISTANBUL</div>
+  </section>
 
   <div class="screening-layout">
     <section class="screening-stage">
@@ -59,7 +71,7 @@
         <button class="video-cover" id="start-screening" type="button">
           <span class="cover-mark">ISC</span>
           <span class="cover-copy">
-            <small>DELEGATION SCREENING</small>
+            <small>FINAL BROADCAST</small>
             <b>ENTER THE ROOM</b>
             <em>Tap once to unlock playback and join the synchronized room</em>
           </span>
@@ -142,7 +154,7 @@
     <strong id="director-copy">Viewer mode · live playback follows the Show Director.</strong>
   </div>
   <div class="director-auth" id="director-auth" hidden>
-    <input id="director-code" type="password" autocomplete="current-password" placeholder="ISC admin code">
+    <input id="director-code" type="password" autocomplete="current-password" placeholder="Director code">
     <button id="director-unlock" type="button">UNLOCK</button>
     <button id="director-cancel" type="button" class="ghost">CANCEL</button>
     <small id="director-auth-message"></small>
@@ -159,12 +171,12 @@
 
 <footer>
   <div class="footer-brand">ISC</div>
-  <p>ISC 154 · Live Screening</p>
+  <p>ISC 154 · Final Broadcast</p>
   <p>One room · One running order · In sync</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
 <script src="https://www.youtube.com/iframe_api"></script>
-<script src="live-screening.js?v=20260920-11"></script>
+<script src="live-screening.js?v=20260920-12"></script>
 </body>
 </html>
