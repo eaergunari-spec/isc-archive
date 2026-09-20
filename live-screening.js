@@ -125,6 +125,13 @@ function updateNowPlaying(){
   $('entry-title').textContent=e.artist;
   $('entry-song').textContent='“'+e.song+'”';
   $('youtube-fallback').href=watchUrl(e.video);
+  var cover=$('start-screening');
+  if(cover&&e.img){
+    var safeImg=String(e.img).replace(/[\"'\\\\]/g,'');
+    cover.style.backgroundImage='linear-gradient(135deg,rgba(13,8,24,.85),rgba(7,6,10,.5)),url("'+safeImg+'")';
+    cover.style.backgroundPosition='center';
+    cover.style.backgroundSize='cover';
+  }
   document.querySelectorAll('.ro-card').forEach(function(card,i){
     card.classList.toggle('active',i===currentIndex);
   });
