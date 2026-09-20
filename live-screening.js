@@ -476,6 +476,15 @@ function onPlayerStateChange(event){
     mediaUnlocked=true;
     playerErrorCode=null;
     hidePlayerMessage();
+    if(roomLocked()){
+      var actual=0,drift=0;
+      try{actual=safeNumber(player.getCurrentTime(),0);drift=expectedPosition()-actual;}catch(_){}
+      setSyncState('SENKRON',(drift>=0?'+':'')+drift.toFixed(1)+'s','synced');
+      $('sync-copy').textContent=isDirector?'Yayın aktif · kontrol sizde.':'Canlı yayına senkronize.';
+    }else{
+      setSyncState('OYNATILIYOR','—','preview');
+      $('sync-copy').textContent='Video oynatılıyor.';
+    }
   }
   if(isDirector&&!applyingRemoteState&&(event.data===YT.PlayerState.PLAYING||event.data===YT.PlayerState.PAUSED||event.data===YT.PlayerState.ENDED)){
     setTimeout(function(){commitDirectorState('player-state');},120);
