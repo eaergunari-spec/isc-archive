@@ -80,3 +80,9 @@
 .final-countdown__clock{display:flex;align-items:flex-start;gap:12px;margin:18px 0 13px}.final-countdown__clock div{min-width:62px}.final-countdown__clock strong{display:block;font-variant-numeric:tabular-nums;font-size:clamp(30px,5vw,54px);font-weight:650;line-height:.9;letter-spacing:-.045em}.final-countdown__clock small{display:block;margin-top:8px;font-size:8px;font-weight:800;letter-spacing:.17em;color:rgba(255,255,255,.42)}.final-countdown__clock i{font-style:normal;font-size:28px;line-height:.8;color:rgba(255,255,255,.22)}
 .final-countdown__status{font-size:9px;font-weight:750;letter-spacing:.15em;color:rgba(255,255,255,.45)}.final-countdown.is-live{border-color:rgba(255,64,128,.42)}.final-countdown.is-live .final-countdown__status{color:#ff6b9d}
 @media(max-width:560px){.final-countdown{padding:18px 16px}.final-countdown__clock{gap:7px}.final-countdown__clock div{min-width:49px}.final-countdown__clock strong{font-size:32px}.final-countdown__clock i{font-size:21px}}
+
+/* Chat lives directly under the player so conversation and video stay together. */
+.screening-stage>.screening-chat{border-top:1px solid var(--ls-line);min-height:0;background:#0a080d}
+.screening-stage>.screening-chat .chat-messages{height:260px}
+.screening-stage>.screening-chat .chat-msg{grid-template-columns:minmax(80px,auto) 1fr auto;align-items:start}
+@media(max-width:700px){.screening-stage>.screening-chat .chat-messages{height:220px}.screening-stage>.screening-chat .chat-msg{grid-template-columns:1fr auto}.screening-stage>.screening-chat .chat-msg span{grid-column:1/-1}}
