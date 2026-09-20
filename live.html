@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#09070d">
+<title>ISC 154 — Live Screening</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="live-screening.css">
+</head>
+<body class="screening-body">
+<header class="site-header screening-header"><a class="brand" href="index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a><nav><a href="editions/154/">ISC 154</a><a href="editions/154/#participants">Line-up</a><a href="countries/">Countries</a><a class="screening-nav-live" href="live.html"><i></i> Live Screening</a><a class="nav-vote" href="vote.html">Voting Room</a></nav></header>
+<main>
+<section class="screening-hero">
+<div class="screening-atmosphere"></div>
+<div class="screening-titlebar"><div><span class="screening-kicker"><i></i> ISC 154 · DELEGATION SCREENING</span><h1>Watch it <em>together.</em></h1><p>One room. One running order. Every delegation on the same frame.</p></div><div class="screening-clock"><span>ROOM STATUS</span><strong id="room-status">PREVIEW MODE</strong><small>Realtime sync prototype</small></div></div>
+<div class="screening-layout">
+<section class="screening-stage">
+<div class="now-playing"><div><span id="entry-label">ENTRY 01 · ROLIPEA</span><strong id="entry-title">Lambrini Girls</strong><small id="entry-song">“Cuntology 101”</small></div><div class="live-badge"><i></i> LIVE</div></div>
+<div class="video-shell"><div id="yt-player"></div><button class="video-cover" id="start-screening"><span class="cover-mark">ISC</span><span class="cover-copy"><small>DELEGATION SCREENING</small><b>ENTER THE ROOM</b><em>Tap to load the synchronized player</em></span><span class="cover-play">▶</span></button><div class="sync-overlay"><span><i></i> SYNCED</span><b id="sync-drift">± 0.0s</b></div></div>
+<div class="timeline"><div class="timeline-top"><span id="elapsed">00:00</span><div class="timeline-track"><i id="timeline-fill"></i></div><span id="duration">--:--</span></div><div class="timeline-note"><span>Playback controlled by ISC Show Director</span><strong id="sync-copy">Waiting for screening to begin</strong></div></div>
+</section>
+<aside class="screening-sidebar">
+<div class="sidebar-head"><span>DELEGATIONS</span><strong><b id="online-count">8</b> CONNECTED</strong></div>
+<div class="delegation-list" id="delegation-list"></div>
+<div class="room-rule"><span>◎</span><p><strong>You’re in sync.</strong> During an official screening, play, pause and seeking are controlled by the Show Director.</p></div>
+</aside>
+</div>
+</section>
+<section class="running-order-section"><div class="ro-head"><div><span class="eyebrow">Tonight's programme</span><h2>Running order</h2></div><p>Eight entries move through one continuous screening. Select an entry below to preview the room experience.</p></div><div class="ro-grid" id="running-order"></div></section>
+<section class="director-strip"><div><span>ISC SHOW CONTROL</span><strong>Host controls become available in an official room.</strong></div><div class="director-actions"><button id="prev-entry">← PREVIOUS</button><button id="toggle-play">▶ PLAY / PAUSE</button><button id="resync">◎ RESYNC</button><button id="next-entry">NEXT →</button></div></section>
+</main>
+<footer><div class="footer-brand">ISC</div><p>ISC 154 · Live Screening</p><p>One room · One running order · In sync</p></footer>
+<script src="https://www.youtube.com/iframe_api"></script><script src="live-screening.js"></script>
+</body></html>
