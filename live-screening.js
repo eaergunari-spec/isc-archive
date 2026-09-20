@@ -567,6 +567,11 @@ async function unlockDirector(){
   $('director-auth').hidden=true;
   $('director-auth-message').textContent='';
   input.value='';
+  if(!roomStateFresh()){
+    currentIndex=0;
+    updateNowPlaying();
+    await commitDirectorState('director-login-reset',{position:0,playing:false});
+  }
   if(!presenceChannel&&userJoined)await connectPresence();
   else if(presenceConnected)await trackPresence();
   updateRoomVisualState();
