@@ -727,6 +727,8 @@ function setChatReady(){
   var ok=nick.length>0;
   $('chat-input').disabled=!ok;
   $('chat-form').querySelector('button').disabled=!ok;
+  var nickPanel=$('chat-nick-panel');
+  if(nickPanel)nickPanel.classList.toggle('is-set',ok);
 }
 async function initChat(){
   if(!db){
