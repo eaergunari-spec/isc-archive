@@ -443,7 +443,7 @@ if(ytApiReady){
 function startPlayerForCurrentEntry(){
   var live=roomLocked();
   var start=live?expectedPosition():0;
-  var autoplay=live?roomState.is_playing:!isDirector;
+  var autoplay=live?roomState.is_playing:(!isDirector||pendingDirectorPlay);
   playerRetryUsed=false;
   playerErrorCode=null;
   hidePlayerMessage();
