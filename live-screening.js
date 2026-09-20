@@ -27,7 +27,6 @@ var player=null;
 var playerReady=false;
 var playerIframe=null;
 var playerErrorCode=null;
-var playerRetryUsed=false;
 var userJoined=false;
 var mediaUnlocked=false;
 var applyingRemoteState=false;
@@ -451,7 +450,6 @@ function startPlayerForCurrentEntry(){
   var live=roomLocked();
   var start=live?expectedPosition():0;
   var autoplay=live?roomState.is_playing:(!isDirector||pendingDirectorPlay);
-  playerRetryUsed=false;
   playerErrorCode=null;
   hidePlayerMessage();
   destroyPlayer();
@@ -462,19 +460,9 @@ function onPlayerError(event){
   var code=Number(event&&event.data)||0;
   playerErrorCode=code;
   console.error('YouTube player error',code);
-  if(code===153&&!playerRetryUsed){
-    playerRetryUsed=true;
-    $('sync-copy').textContent='Retrying with the privacy-enhanced YouTube player…';
-    var start=roomLocked()?expectedPosition():(playerReady&&player?player.getCurrentTime():0);
-    destroyPlayer();
-    setTimeout(function(){
-      createPlayerIframe('https://www.youtube-nocookie.com',false,start);
-    },250);
-    return;
-  }
   var title='YouTube playback error';
   var copy='The video could not be played inside this page.';
-  if(code===153)copy='YouTube could not verify the embed identity in this browser. The player was retried automatically, but this browser still blocked it.';
+  if(code===153)copy='YouTube could not verify the embed identity in this browser. Open this page in a full browser window and make sure YouTube cookies are allowed.';
   if(code===101||code===150)copy='The video owner does not permit embedded playback for this video.';
   if(code===100)copy='This video is unavailable or private.';
   if(code===5)copy='This browser could not play the YouTube HTML5 stream.';
