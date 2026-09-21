@@ -2447,3 +2447,120 @@ body.story-hayq{
     display:block;
   }
 }
+
+
+/* ------------------------------------------------------------
+   AUDREY HOBERT / ENTRY 07
+   ------------------------------------------------------------ */
+.story-audrey .audrey-status{
+  margin:46px 0 54px;
+  padding:26px 28px 28px;
+  background:var(--story-black);
+  color:#fff;
+  border-top:6px solid var(--story-pink);
+}
+.story-audrey .audrey-status.compact{
+  margin:38px 0 46px;
+  background:rgba(255,250,242,.72);
+  color:var(--story-ink);
+  border:1px solid var(--story-line);
+  border-top:6px solid var(--story-wine);
+}
+.story-audrey .audrey-status>span{
+  display:block;
+  color:var(--story-lime);
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+.story-audrey .audrey-status.compact>span{color:var(--story-wine)}
+.story-audrey .audrey-status strong{
+  display:block;
+  margin-top:9px;
+  font-family:"Libre Caslon Display",serif;
+  font-size:clamp(31px,4vw,52px);
+  font-weight:400;
+  line-height:1.02;
+}
+.story-audrey .audrey-status p{
+  max-width:680px;
+  margin:14px 0 0;
+  color:rgba(255,255,255,.76);
+  font-size:12px;
+  line-height:1.7;
+}
+.story-audrey .audrey-status.compact p{color:var(--story-soft)}
+
+.story-audrey .audrey-data-strip{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  margin:42px 0 46px;
+  border-top:1px solid var(--story-ink);
+  border-bottom:1px solid var(--story-line);
+}
+.story-audrey .audrey-data-strip>div{padding:15px 15px 16px 0}
+.story-audrey .audrey-data-strip>div+div{
+  padding-left:15px;
+  border-left:1px solid var(--story-line);
+}
+.story-audrey .audrey-data-strip span{
+  display:block;
+  color:var(--story-muted);
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.story-audrey .audrey-data-strip strong{
+  display:block;
+  margin-top:7px;
+  font-family:"Libre Caslon Display",serif;
+  font-size:21px;
+  font-weight:400;
+  line-height:1.05;
+}
+
+.story-audrey .audrey-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1px;
+  margin:40px 0 48px;
+  background:var(--story-line);
+  border:1px solid var(--story-line);
+}
+.story-audrey .audrey-grid>div{
+  min-height:150px;
+  padding:20px 22px 22px;
+  background:rgba(255,250,242,.95);
+}
+.story-audrey .audrey-grid span{
+  display:block;
+  color:var(--story-wine);
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+.story-audrey .audrey-grid strong{
+  display:block;
+  margin-top:8px;
+  font-family:"Libre Caslon Display",serif;
+  font-size:24px;
+  font-weight:400;
+  line-height:1.04;
+}
+.story-audrey .audrey-grid p{
+  margin:9px 0 0;
+  color:var(--story-muted);
+  font-size:11px;
+  line-height:1.55;
+}
+
+@media(max-width:700px){
+  .story-audrey .audrey-status{margin:38px 0 46px;padding:22px 18px 24px}
+  .story-audrey .audrey-data-strip{grid-template-columns:1fr 1fr}
+  .story-audrey .audrey-data-strip>div:nth-child(3){border-left:0;border-top:1px solid var(--story-line);padding-left:0}
+  .story-audrey .audrey-data-strip>div:nth-child(4){border-top:1px solid var(--story-line)}
+  .story-audrey .audrey-grid{grid-template-columns:1fr}
+}
