@@ -365,6 +365,11 @@
 .final-broadcast-card:hover .final-broadcast-art img{transform:scale(1.025);filter:saturate(1) contrast(1.04)}
 .final-broadcast-live{position:absolute;z-index:2;left:22px;top:22px;display:inline-flex;align-items:center;gap:9px;padding:9px 12px;border-radius:999px;background:rgba(9,9,13,.78);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(10px);font-size:9px;font-weight:800;letter-spacing:.16em}
 .final-broadcast-live i{width:7px;height:7px;border-radius:50%;background:var(--isc-pink);box-shadow:0 0 0 5px rgba(255,61,129,.14)}
+.final-broadcast-date-stamp{position:absolute;z-index:3;left:22px;bottom:22px;display:flex;flex-direction:column;gap:5px;width:max-content;max-width:calc(100% - 44px);padding:12px 15px;border-radius:13px;background:#d8ff3e;color:#111;box-shadow:0 9px 28px rgba(0,0,0,.24)}
+.final-broadcast-date-stamp small{font:800 8px/1.2 "DM Sans",sans-serif;letter-spacing:.17em}
+.final-broadcast-date-stamp b{font:800 clamp(12px,1.5vw,17px)/1.2 "DM Sans",sans-serif;letter-spacing:.04em}
+@media(max-width:700px){.final-broadcast-date-stamp{left:14px;bottom:14px;padding:10px 12px}.final-broadcast-date-stamp b{font-size:12px}}
+
 .final-broadcast-copy{display:flex;flex-direction:column;justify-content:center;padding:50px clamp(30px,5vw,76px)}
 .final-broadcast-kicker{margin:0 0 12px;color:var(--isc-lime);font-size:9px;font-weight:800;letter-spacing:.2em}
 .final-broadcast-copy h2{margin:0;font-family:"Libre Caslon Display",serif;font-size:clamp(54px,6vw,92px);font-weight:400;line-height:.88;letter-spacing:-.045em}
