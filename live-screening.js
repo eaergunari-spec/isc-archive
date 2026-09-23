@@ -902,7 +902,7 @@ boot().catch(function(err){
 
 })();
 (function initFinalBroadcastCountdown(){
-  var target=Date.parse('2026-09-23T22:00:00+03:00'),root=document.getElementById('final-countdown');
+  var target=Date.parse('2026-09-25T22:00:00+03:00'),root=document.getElementById('final-countdown');
   if(!root)return;
   function pad(n){return String(n).padStart(2,'0')}
   function tick(){var d=target-Date.now();
