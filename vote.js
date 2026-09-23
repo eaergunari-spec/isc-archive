@@ -216,7 +216,14 @@ function renderSubmissionReceipt() {
   if (shareCardDate) shareCardDate.textContent = formatSubmissionTime(submittedAt).toUpperCase();
   if (shareCardRecord) shareCardRecord.textContent = `ISC-${edition.edition_number}-${activeCountry.slug.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8)}`;
 
-  if (editingSubmitted) {
+  if (editingSubmitted && !edition.voting_open) {
+    receiptKickerText.textContent = 'SUBMITTED · VOTING CLOSED';
+    receiptTitle.textContent = `${activeCountry.name} delegasyonunun resmî oyu korundu.`;
+    receiptCopy.textContent = 'Oylama sona erdi. Bu cihazdaki gönderilmemiş sıralama değişiklikleri resmî oyun yerini almadı.';
+    receiptStatus.textContent = 'SUBMITTED';
+    if (receiptEditability) receiptEditability.textContent = 'Oylama kapandı · yeni değişiklik kabul edilmiyor';
+    receiptNote.textContent = 'Paylaşım kartında verdiğin puanlar görünmez.';
+  } else if (editingSubmitted) {
     receiptKickerText.textContent = 'SUBMITTED · LOCAL REVISION';
     receiptTitle.textContent = `${activeCountry.name} delegasyonunun gönderilmiş oyu güvende.`;
     receiptCopy.textContent = 'Yeni sıralaman bu cihazda taslak olarak tutuluyor. Mevcut gönderilmiş oyun geçerliliğini koruyor; güncellemek için pusulayı yeniden göndermen gerekiyor.';
@@ -978,6 +985,21 @@ forgetDelegation?.addEventListener('click', async () => {
   voterCode.value = '';
   loginMessage.textContent = 'Delegasyon hafızası bu tarayıcıdan kaldırıldı. Yeni delegasyonunu seçip voter code ile giriş yapabilirsin.';
   loginStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+// Keep an already-open ballot in sync when the published voting deadline passes.
+window.addEventListener('isc:voting-deadline', () => {
+  if (!edition || !edition.voting_open) return;
+  edition.voting_open = false;
+  if (saveTimer) { clearTimeout(saveTimer); saveTimer = null; }
+  if (confirmDialog.open) confirmDialog.close();
+  applyRuntimeChrome();
+  loginMessage.textContent = 'Oylama süresi doldu. Daha önce gönderdiğin pusulayı görüntüleyebilirsin.';
+  if (!ballotStep.hidden) {
+    renderBallot();
+    updateSubmitState();
+    renderSubmissionReceipt();
+  }
 });
 
 init();
