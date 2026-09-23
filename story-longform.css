@@ -2570,3 +2570,96 @@ body.story-hayq{
   .story-audrey .audrey-data-strip>div:nth-child(4){border-top:1px solid var(--story-line)}
   .story-audrey .audrey-grid{grid-template-columns:1fr}
 }
+
+
+/* AUDREY HOBERT / ENTRY 07 · NEW EDITORIAL PHOTO SET (2026-09-23) */
+.story-audrey .feature-artwork-frame{
+  background:#231b20;
+}
+.story-audrey .feature-artwork-frame img{
+  width:100%;
+  aspect-ratio:3/2;
+  object-fit:cover;
+  object-position:center 40%;
+}
+.story-audrey .audrey-photo-single,
+.story-audrey .audrey-photo-duo{
+  box-sizing:border-box;
+  width:100%;
+  max-width:100%;
+  margin:58px 0 64px;
+}
+.story-audrey .audrey-photo-single img,
+.story-audrey .audrey-photo-duo img{
+  display:block;
+  width:100%;
+  height:auto;
+  background:#231d1d;
+}
+.story-audrey .audrey-photo-single--video{
+  max-width:700px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.story-audrey .audrey-photo-single--portrait{
+  max-width:580px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.story-audrey .audrey-photo-duo{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:12px;
+  align-items:start;
+}
+.story-audrey .audrey-photo-duo img{
+  aspect-ratio:3/2;
+  object-fit:cover;
+  object-position:center;
+}
+.story-audrey .audrey-photo-single figcaption,
+.story-audrey .audrey-photo-duo figcaption{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:4px 20px;
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid var(--story-line);
+  color:var(--story-muted);
+  font:700 9px/1.55 "DM Sans",sans-serif;
+  letter-spacing:.105em;
+  text-transform:uppercase;
+}
+.story-audrey .audrey-photo-single figcaption span:first-child,
+.story-audrey .audrey-photo-duo figcaption span:first-child{
+  color:var(--story-wine);
+}
+.story-audrey .audrey-photo-single--portrait img{
+  max-height:none;
+  object-fit:contain;
+}
+@media(max-width:700px){
+  .story-audrey .audrey-photo-single,
+  .story-audrey .audrey-photo-duo{
+    margin:40px 0 48px;
+  }
+  .story-audrey .audrey-photo-duo{
+    gap:8px;
+  }
+  .story-audrey .audrey-photo-single figcaption,
+  .story-audrey .audrey-photo-duo figcaption{
+    font-size:8px;
+    gap:2px 10px;
+  }
+}
+@media(max-width:480px){
+  .story-audrey .audrey-photo-duo{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+  .story-audrey .audrey-photo-duo figcaption{
+    grid-column:1;
+  }
+}
