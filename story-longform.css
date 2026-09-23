@@ -2577,10 +2577,12 @@ body.story-hayq{
   background:#231b20;
 }
 .story-audrey .feature-artwork-frame img{
+  display:block;
   width:100%;
-  aspect-ratio:3/2;
-  object-fit:cover;
-  object-position:center 40%;
+  height:auto;
+  aspect-ratio:auto;
+  object-fit:contain;
+  object-position:center;
 }
 .story-audrey .audrey-photo-single,
 .story-audrey .audrey-photo-duo{
