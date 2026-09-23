@@ -211,3 +211,13 @@ For ISC 155 (example):
 - Country appearance history opens the correct edition hub.
 - OG preview uses the intended edition image.
 - No permanent URL changes after the edition is archived.
+
+## ISC 154 event schedule · 25 September 2026
+
+Timezone: **Europe/Istanbul (TRT, UTC+03:00)**. Dates were rescheduled on 23 September 2026.
+
+- Official voting ends **25 September 2026, 18:00 TRT** (2026-09-25T15:00:00Z).
+- The gala broadcast is scheduled for **25 September 2026, 22:00 TRT** (2026-09-25T19:00:00Z).
+- Voting and gala countdown targets live in `isc-schedule.js`, with visible no-JS dates in `index.html`, `vote.html`, and `editions/154/index.html`. The live-room countdown target is in `live-screening.js`, and its visible date / social metadata is in `live.html`.
+- Supabase `pg_cron` job `isc154_close_voting_20260925_1500utc` (schedule `0 15 25 9 *`, cron timezone GMT) closes `editions.voting_open` for edition 154 at the deadline, only while the edition is current and results remain unrevealed. Its SQL is guarded to execute only on 25 September 2026. If the event is rescheduled again, update or unschedule this job **as well as** the website dates. Remove the spent job after execution.
+- The gala countdown **does not** start the stream or reveal results. The broadcast director controls the screening; results remain under their separate admin reveal gate. Do not publish ballots or results before the configured reveal.
