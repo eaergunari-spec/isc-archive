@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="homepage-listen.css" />
   <link rel="stylesheet" href="homepage-hierarchy.css" />
   <link rel="stylesheet" href="technical-polish.css?v=20260921-1" />
+  <link rel="stylesheet" href="isc-schedule.css?v=20260923-1" />
 </head>
 <body class="home-page">
   <header class="site-header">
@@ -80,18 +81,33 @@
       <div class="hero-side-note">RESULTS STATUS LOADING</div>
     </section>
 
+    <section class="isc-schedule-banner" aria-label="ISC 154 güncel etkinlik takvimi">
+      <div class="isc-schedule-banner__inner">
+        <div class="isc-schedule-banner__item">
+          <span class="isc-schedule-banner__label">OYLAMA · YENİ SON TARİH</span>
+          <strong><time datetime="2026-09-25T18:00:00+03:00">25 Eylül 2026 · 18.00 TSİ</time></strong>
+          <small data-isc-voting-countdown>Oylama 25 Eylül 18.00'e kadar açık</small>
+        </div>
+        <a class="isc-schedule-banner__item isc-schedule-banner__item--gala" href="live.html">
+          <span class="isc-schedule-banner__label">GALA YAYINI · YENİ SAAT</span>
+          <strong><time datetime="2026-09-25T22:00:00+03:00">25 Eylül 2026 · 22.00 TSİ</time></strong>
+          <small data-isc-gala-countdown>Canlı yayın odası ve senkronize izleme →</small>
+        </a>
+      </div>
+    </section>
+
     <section class="final-broadcast-home" aria-labelledby="final-broadcast-title">
       <a class="final-broadcast-card" href="live.html">
         <div class="final-broadcast-art">
-          <img src="editions/154/56C89178-858C-456D-9F1A-B92245E215FD.png" alt="ISC 154 Final Yayını — 23 Eylül 2026, 22:00 TSİ" loading="eager">
+          <img src="editions/154/56C89178-858C-456D-9F1A-B92245E215FD.png" alt="ISC 154 Final Yayını — 25 Eylül 2026, 22:00 TSİ" loading="eager">
           <span class="final-broadcast-live"><i></i> FİNAL YAYINI</span>
         </div>
         <div class="final-broadcast-copy">
           <p class="final-broadcast-kicker">ISC 154 · CANLI ETKİNLİK</p>
           <h2 id="final-broadcast-title">Birlikte izleyelim.</h2>
-          <p>23 Eylül gecesi sekiz şarkıyı aynı anda, aynı yayın odasında izliyoruz. Canlı sohbet ve senkronize oynatma tek ekranda.</p>
+          <p>25 Eylül gecesi sekiz şarkıyı aynı anda, aynı yayın odasında izliyoruz. Canlı sohbet ve senkronize oynatma tek ekranda.</p>
           <div class="final-broadcast-meta">
-            <strong>23 EYLÜL 2026</strong>
+            <strong>25 EYLÜL 2026</strong>
             <span>22:00 TSİ</span>
             <b>YAYIN ODASINA GİT <em>→</em></b>
           </div>
@@ -188,6 +204,7 @@
         <span class="eyebrow">Your points. Your country.</span>
         <h2>Şimdi sıra sende.</h2>
         <p id="vote-splash-copy">Güncel edisyonun puanlama sistemi yükleniyor…</p>
+        <p class="vote-splash-deadline">OYLAMA SONU · <strong>25 EYLÜL 18.00 TSİ</strong> <span data-isc-voting-countdown></span></p>
       </div>
       <a class="vote-big-button" href="vote.html">VOTING ROOM <span>→</span></a>
     </section>
@@ -333,5 +350,6 @@
   </footer>
 
   <script src="app.js"></script>
+  <script src="isc-schedule.js?v=20260923-1"></script>
 </body>
 </html>
