@@ -538,4 +538,20 @@ async function refreshLiveStatus() {
   }
 }
 
+// Refresh live voting labels on long-open homepage tabs when the deadline passes.
+window.addEventListener('isc:voting-deadline', () => {
+  if (!liveStatus) return;
+  liveStatus.voting_open = false;
+  if (edition) edition.voting_open = false;
+  updateResultsStateChrome();
+  renderLiveTicker();
+  renderArchiveCard();
+  document.querySelector('.vote-splash h2')?.replaceChildren(document.createTextNode('Oylama sona erdi.'));
+  const bigButton = document.querySelector('.vote-big-button');
+  if (bigButton) bigButton.innerHTML = 'PUSULANI GÖR <span>→</span>';
+  const heroVote = document.querySelector('.cta-vote');
+  if (heroVote) heroVote.textContent = 'Pusulanı gör';
+  window.setTimeout(refreshLiveStatus,15000);
+});
+
 initHomepage();
