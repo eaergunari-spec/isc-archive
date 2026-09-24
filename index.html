@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="homepage-cards.css" />
   <link rel="stylesheet" href="homepage-entertainment.css" />
-  <link rel="stylesheet" href="homepage-live.css" />
+  <link rel="stylesheet" href="homepage-live.css?v=20260924-carousel-1" />
   <link rel="stylesheet" href="homepage-ticker.css" />
   <link rel="stylesheet" href="homepage-listen.css" />
   <link rel="stylesheet" href="homepage-hierarchy.css?v=20260924-pulse-1" />
@@ -53,32 +53,53 @@
   </header>
 
   <main id="top">
-    <section class="live-hero" id="edition">
+    <section class="live-hero hero-scene-current" id="edition" data-hero-scene="current">
       <div class="live-hero-media" aria-hidden="true">
         <img id="hero-feature-image" alt="" decoding="async" />
         <div class="live-hero-wash"></div>
         <div class="hero-frame-label" id="hero-frame-label">CURRENT EDITION</div>
-        <div class="hero-frame-count"><span id="hero-feature-order">—</span><small id="hero-entry-count">/—</small></div>
+        <div class="hero-frame-count"><span id="hero-scene-number">01</span><small>/05</small></div>
       </div>
 
       <div class="live-hero-content">
         <a class="live-pill" id="home-live-pill" href="vote.html" aria-label="Oylama sayfasına git"><span></span> Loading current edition</a>
         <p class="hero-kicker" id="home-hero-kicker">International Song Contest · Current Edition</p>
-        <a class="hero-edition-link" id="home-edition-link" href="editions/154/" aria-label="Current edition hub"><h1>ISC <em id="home-edition-number">—</em></h1></a>
+
+        <h1 class="hero-scene-title" id="hero-scene-title">ISC <em id="home-edition-number">—</em></h1>
         <p class="live-hero-deck" id="home-hero-deck">Güncel edisyon yükleniyor…</p>
-        <div class="live-hero-actions">
-          <a class="cta cta-play" href="#listen"><span class="play-icon">▶</span> <span id="listen-cta-label">Şarkıları dinle</span></a>
-          <a class="cta cta-vote" href="vote.html">Oy ver</a>
-          <a class="cta cta-text" href="#entries">Katılımcıları keşfet ↓</a>
+
+        <div class="live-hero-actions" id="hero-scene-actions">
+          <a class="cta cta-play" id="hero-action-primary" href="#listen"><span class="play-icon" id="hero-action-primary-icon">▶</span> <span id="hero-action-primary-label">Şarkıları dinle</span></a>
+          <a class="cta cta-vote" id="hero-action-secondary" href="vote.html">Oy ver</a>
+          <a class="cta cta-text" id="hero-action-tertiary" href="#entries">Katılımcıları keşfet ↓</a>
         </div>
-        <div class="hero-feature-copy">
-          <span>Şimdi öne çıkan</span>
+
+        <div class="hero-feature-copy" id="hero-feature-copy">
+          <span id="hero-feature-label">Şimdi öne çıkan</span>
           <strong id="hero-feature-artist">—</strong>
-          <small><b id="hero-feature-country">—</b> · <span id="hero-feature-song">—</span></small>
+          <small id="hero-feature-meta"><b id="hero-feature-country">—</b> · <span id="hero-feature-song">—</span></small>
         </div>
       </div>
 
-      <div class="hero-side-note">RESULTS STATUS LOADING</div>
+      <div class="hero-side-note" id="hero-side-note">RESULTS STATUS LOADING</div>
+
+      <nav class="hero-carousel-nav" aria-label="Ana sayfa manşetleri">
+        <button type="button" class="hero-carousel-tab is-active" data-hero-target="current" aria-current="true">
+          <b>01</b><span>Current Edition</span>
+        </button>
+        <button type="button" class="hero-carousel-tab" data-hero-target="voting">
+          <b>02</b><span>Voting</span>
+        </button>
+        <button type="button" class="hero-carousel-tab" data-hero-target="story">
+          <b>03</b><span>Featured Story</span>
+        </button>
+        <button type="button" class="hero-carousel-tab" data-hero-target="screening">
+          <b>04</b><span>Live Screening</span>
+        </button>
+        <button type="button" class="hero-carousel-tab" data-hero-target="grand">
+          <b>05</b><span>Grand Final</span>
+        </button>
+      </nav>
     </section>
 
     <section class="isc-live-pulse" id="live-pulse" aria-label="ISC Live Pulse">
@@ -379,7 +400,7 @@
     <p>Music · Entries · Countries · Voting · Stories · Results · Search · Archive</p>
   </footer>
 
-  <script src="app.js?v=20260924-pulse-1"></script>
+  <script src="app.js?v=20260924-carousel-1"></script>
   <script src="isc-schedule.js?v=20260923-1"></script>
 </body>
 </html>
