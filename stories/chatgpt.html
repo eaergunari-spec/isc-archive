@@ -45,7 +45,15 @@
     .story-galena .galena-links{display:flex;flex-wrap:wrap;gap:12px;margin:42px 0}
     .story-galena .galena-links a{border:1px solid #211b1a;border-radius:999px;padding:12px 18px;font-size:12px;font-weight:800;letter-spacing:.025em;text-decoration:none}
     .story-galena .galena-links a:hover{background:#211b1a;color:#fff}
-    @media(max-width:700px){.story-galena .galena-inline-image figcaption{font-size:8px}.story-galena .feature-artwork-frame img{object-position:center}}
+
+    .story-galena .galena-photo-spread{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:46px 0 42px}
+    .story-galena .galena-photo-spread figure,.story-galena .galena-photo-single{margin:0}
+    .story-galena .galena-photo-spread img,.story-galena .galena-photo-single img{display:block;width:100%;height:100%;object-fit:cover;background:#151118}
+    .story-galena .galena-photo-spread img{aspect-ratio:4/5}
+    .story-galena .galena-photo-single{margin:46px 0 42px}
+    .story-galena .galena-photo-single img{aspect-ratio:16/10;max-height:720px}
+    .story-galena .galena-photo-spread figcaption,.story-galena .galena-photo-single figcaption{display:flex;justify-content:space-between;gap:16px;margin-top:9px;color:#655a56;font-size:8px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    @media(max-width:700px){.story-galena .galena-inline-image figcaption{font-size:8px}.story-galena .feature-artwork-frame img{object-position:center}.story-galena .galena-photo-spread{grid-template-columns:1fr;gap:28px}.story-galena .galena-photo-single img{aspect-ratio:4/5}.story-galena .galena-photo-spread figcaption,.story-galena .galena-photo-single figcaption{font-size:7px}}
   </style>
 </head>
 <body class="longread-body story-galena">
@@ -113,6 +121,17 @@
 <p>Her ikisinin kariyerinde de müzisyen Milko Kalaydzhiev’in desteği önemli yer tutuyor. Birlikte büyüyor, aynı müzik endüstrisinde yükseliyor, benzer dinleyici kitlelerine sesleniyorlar. Bir süre sonra isimleri yalnızca şarkılarıyla değil, birbirleriyle karşılaştırıldıkları magazin haberleriyle anılmaya başlıyor.</p>
 <p>Yıllar sonra yaşanacak kopuşun bu kadar konuşulmasının nedeni tam da bu: Ortada yalnızca iki rakip şarkıcı yok. Birbirlerinin şöhretten önceki hayatını bilen iki kadın var.</p>
 
+        <div class="galena-photo-spread" aria-label="Galena visual file 01–02">
+          <figure>
+            <img src="../editions/154/galena-1.webp" alt="Galena — ISC Magazine visual file 01" loading="lazy" decoding="async">
+            <figcaption><span>GALENA / VISUAL FILE 01</span><span>ISC 154 · Editorial archive</span></figcaption>
+          </figure>
+          <figure>
+            <img src="../editions/154/galena-2.jpg" alt="Galena — ISC Magazine visual file 02" loading="lazy" decoding="async">
+            <figcaption><span>GALENA / VISUAL FILE 02</span><span>ISC 154 · Editorial archive</span></figcaption>
+          </figure>
+        </div>
+
         <h2 id="chapter-04" class="chapter-heading"><span class="chapter-no">04</span><span class="chapter-title"><small>THE SCANDAL</small>2007: Bir mahremiyet ihlali ve bütün ülkenin izlediği kriz</span></h2>
 
 <p>Galena’nın kariyerindeki en zor dönemlerden biri, 2007’de özel hayatına ait mahrem bir videonun internette yayılmasıyla başlıyor. Olay Bulgaristan’da büyük bir magazin gündemine dönüşüyor. Bazı yayınlar görüntülerin ortaya çıkmasını bilinçli bir tanıtım hamlesi olarak yorumluyor; Galena ise videoyu kendisinin veya partnerinin yayımladığı iddiasını reddediyor.</p>
@@ -133,6 +152,11 @@
 <p>Şarkının müziğinde Pitar Raynov, Yoanna Byuylekova ve Daniel Ganev’in; sözlerinde Rosen Dimitrov ve Galena’nın imzası var. Düzenlemeyi Ganev yapıyor. Klibin yönetmeni ise <strong>Victor Antonov, yani Rikk.</strong> Bu ismi akılda tutun: Birkaç ay sonra “CHATGPT” klibinde de karşımıza çıkacak.</p>
 <blockquote class="pull-quote"><span>THE FULL CIRCLE</span><p>Bir zamanlar aynı yatağı paylaşan iki genç kadın, yıllar süren uzaklaşmadan sonra aynı sahnede yeniden şarkı söylüyor.</p></blockquote>
 <p><em>Za Nagrada</em>, Galena’nın büyük Euphoria konserinden yalnızca üç gün önce yayımlanıyor. Preslava da 8 Kasım’daki konserin konukları arasında. Küçük bir Dimitrovgrad dairesinden Sofya’nın büyük konser salonuna uzanan dostluk, nihayet kendisine yeni bir nakarat buluyor.</p>
+
+        <figure class="galena-photo-single">
+          <img src="../editions/154/galena-3.jpg" alt="Galena — ISC Magazine visual file 03" loading="lazy" decoding="async">
+          <figcaption><span>GALENA / VISUAL FILE 03</span><span>ISC 154 · Editorial archive</span></figcaption>
+        </figure>
 
         <h2 id="chapter-07" class="chapter-heading"><span class="chapter-no">07</span><span class="chapter-title"><small>THE PRIVATE LIFE</small>Galena’nın hayatındaki diğer Galin</span></h2>
 
@@ -158,6 +182,17 @@
 <p>Sofya’daki Arena 8888, Galena’nın kariyerinin en büyük prodüksiyonlarından birine ev sahipliği yapıyor. Euphoria; dansçıları, koreografileri, sahne tasarımı, özel efektleri, konuk sanatçıları ve büyük teknik ekibiyle başlı başına bir gösteri.</p>
 <p>Konserin resmî kaydında Azis, Preslava, Desislava, Fiki, Malina, Boris Dali ve başka isimler konuk sanatçılar arasında. Canlı müzik, dans ve yeni sirk sanatçıları için ayrı ekipler bulunuyor. bTV’nin kulis haberine göre prodüksiyonun arkasında <strong>300’den fazla kişi</strong> çalışıyor.</p>
 <p>Galena, 2026’da verdiği röportajda gösterinin yaklaşık <strong>üç saat kırk dakika</strong> sürdüğünü; hazırlık sürecindeki yoğunluk nedeniyle konserin bazı anlarını bile hatırlamadığını anlatıyor. Bir süre önce sesini kaybetme ihtimaliyle karşılaşmış birinin artık binlerce kişinin önünde saatlerce şarkı söylemesi, bu geceye başka bir anlam veriyor.</p>
+
+        <div class="galena-photo-spread" aria-label="Galena visual file 04–05">
+          <figure>
+            <img src="../editions/154/galena-4.jpg" alt="Galena — ISC Magazine visual file 04" loading="lazy" decoding="async">
+            <figcaption><span>GALENA / VISUAL FILE 04</span><span>ISC 154 · Editorial archive</span></figcaption>
+          </figure>
+          <figure>
+            <img src="../editions/154/galena-5.jpg" alt="Galena — ISC Magazine visual file 05" loading="lazy" decoding="async">
+            <figcaption><span>GALENA / VISUAL FILE 05</span><span>ISC 154 · Editorial archive</span></figcaption>
+          </figure>
+        </div>
 
         <h2 id="chapter-11" class="chapter-heading"><span class="chapter-no">11</span><span class="chapter-title"><small>GALENAXX</small>Yirmi yıllık kariyerin ardından kendi markasını kurmak</span></h2>
 
@@ -193,6 +228,11 @@
 <p>Klip yayımlandıktan sonra bazı izleyiciler robotların yapay zekâyla oluşturulduğunu düşünüyor. Galena ise Instagram paylaşımında buna özellikle açıklık getiriyor: Robotların <strong>gerçek olduğunu ve çekimler için Polonya’dan getirildiğini</strong> söylüyor. Onlarla çalışmanın başlangıçta tuhaf geldiğini ama farklı bir şey denemek istediğini anlatıyor.</p>
 <aside class="margin-note note-lime"><span>NOT ALL AI</span><strong>Gerçek robot ≠ efektsiz klip.</strong><p>Yapım künyesinde üç kişilik bir CGI ekibi de var. Fiziksel robotlarla dijital görsel efektler aynı prodüksiyonda kullanılmış. Robotların marka ve modeli ise güvenilir biçimde doğrulanmış değil.</p></aside>
 <p>CGI ekibinde Malik Kurt, Stoyan Georgiev ve Julia Nakova bulunuyor. Böylece “yapay zekâyla mı yapıldı?” sorusu, klibin kendi tanıtımının da bir parçasına dönüşüyor.</p>
+
+        <figure class="galena-photo-single">
+          <img src="../editions/154/galena-6.jpeg" alt="Galena — ISC Magazine visual file 06" loading="lazy" decoding="async">
+          <figcaption><span>GALENA / VISUAL FILE 06</span><span>ISC 154 · Editorial archive</span></figcaption>
+        </figure>
 
         <h2 id="chapter-16" class="chapter-heading"><span class="chapter-no">16</span><span class="chapter-title"><small>THE CAMPAIGN</small>Galena şarkıyı tanıtmak için de ChatGPT’ye danıştı</span></h2>
 
