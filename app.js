@@ -12,7 +12,6 @@ let currentFeaturedEntry = null;
 let nowPlayingEntry = null;
 let featureTimer = null;
 let liveStatus = null;
-let activeHeroScene = 'current';
 
 const escapeAttr = value => String(value ?? '')
   .replace(/&/g, '&amp;')
@@ -49,22 +48,13 @@ if (homeNav && !homeResultsLink) {
 }
 
 const entryGrid = document.getElementById('entry-grid');
-const heroRoot = document.getElementById('edition');
 const heroImage = document.getElementById('hero-feature-image');
-const heroSceneNumber = document.getElementById('hero-scene-number');
-const heroSceneTitle = document.getElementById('hero-scene-title');
+const heroOrder = document.getElementById('hero-feature-order');
+const heroEntryCount = document.getElementById('hero-entry-count');
 const heroArtist = document.getElementById('hero-feature-artist');
 const heroCountry = document.getElementById('hero-feature-country');
 const heroSong = document.getElementById('hero-feature-song');
-const heroFeatureLabel = document.getElementById('hero-feature-label');
-const heroFeatureMeta = document.getElementById('hero-feature-meta');
 const heroFrameLabel = document.getElementById('hero-frame-label');
-const heroActionPrimary = document.getElementById('hero-action-primary');
-const heroActionPrimaryIcon = document.getElementById('hero-action-primary-icon');
-const heroActionPrimaryLabel = document.getElementById('hero-action-primary-label');
-const heroActionSecondary = document.getElementById('hero-action-secondary');
-const heroActionTertiary = document.getElementById('hero-action-tertiary');
-const heroCarouselTabs = [...document.querySelectorAll('.hero-carousel-tab')];
 const homeLivePill = document.getElementById('home-live-pill');
 const homeHeroKicker = document.getElementById('home-hero-kicker');
 const homeEditionNumber = document.getElementById('home-edition-number');
@@ -168,7 +158,8 @@ function applyEditionChrome() {
   document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', `${label} — International Song Contest`);
   document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', `${count} entry · ${label} şimdi yayında.`);
 
-  if (heroFrameLabel && activeHeroScene === 'current') heroFrameLabel.textContent = `${label.toUpperCase()} / CURRENT EDITION`;
+  if (heroFrameLabel) heroFrameLabel.textContent = `${label.toUpperCase()} / CURRENT EDITION`;
+  if (heroEntryCount) heroEntryCount.textContent = `/${String(count).padStart(2, '0')}`;
   const editionHubHref = `editions/${edition.edition_number}/`;
   if (homeHeroKicker) homeHeroKicker.textContent = `International Song Contest · Edition ${edition.edition_number}`;
   if (homeEditionNumber) homeEditionNumber.textContent = edition.edition_number;
@@ -446,206 +437,45 @@ function setupEntryPlayer() {
 }
 
 function setupHero() {
-  if (!entries.length || !heroRoot || !heroImage) return;
-
-  const featureIndex = Math.min(Math.floor(entries.length / 2), entries.length - 1);
+  if (!entries.length || !heroImage) return;
+  let featureIndex = Math.min(Math.floor(entries.length / 2), entries.length - 1);
   setFeatured(entries[featureIndex], true);
 
-  heroCarouselTabs.forEach(tab => {
-    tab.addEventListener('click', () => setHeroScene(tab.dataset.heroTarget || 'current'));
-  });
-
-  heroRoot.addEventListener('keydown', event => {
-    if (!['ArrowLeft','ArrowRight'].includes(event.key)) return;
-    const scenes = ['current','voting','story','screening','grand'];
-    const currentIndex = Math.max(0, scenes.indexOf(activeHeroScene));
-    const delta = event.key === 'ArrowRight' ? 1 : -1;
-    const next = scenes[(currentIndex + delta + scenes.length) % scenes.length];
-    setHeroScene(next);
-    heroCarouselTabs.find(tab => tab.dataset.heroTarget === next)?.focus();
-  });
-
-  setHeroScene('current', true);
+  if (!prefersReducedMotion && entries.length > 1) {
+    clearInterval(featureTimer);
+    featureTimer = setInterval(() => {
+      featureIndex = (featureIndex + 1) % entries.length;
+      setFeatured(entries[featureIndex]);
+    }, 5200);
+  }
 }
 
 function setFeatured(entry, immediate = false) {
   if (!entry) return;
   currentFeaturedEntry = entry;
   if (!nowPlayingEntry) renderLiveTicker();
-  if (activeHeroScene === 'current') renderHeroScene(immediate);
-}
-
-function heroSceneData(scene) {
-  const label = editionLabel();
-  const count = entries.length;
-  const spotlight = currentFeaturedEntry || entries[0] || {};
-  const submitted = Number(liveStatus?.submitted_delegations || 0);
-  const delegations = Number(liveStatus?.delegations || count || 0);
-  const votingOpen = Boolean(liveStatus?.voting_open);
-  const resultsLive = Boolean(liveStatus?.results_revealed);
-
-  const scenes = {
-    current: {
-      number:'01',
-      className:'hero-scene-current',
-      image:spotlight.image || '',
-      focus:spotlight.focus || '50% 50%',
-      frame:`${label.toUpperCase()} / CURRENT EDITION`,
-      kicker:`International Song Contest · Edition ${edition?.edition_number || ''}`,
-      title:`ISC <em>${edition?.edition_number || '—'}</em>`,
-      deck:`${count} ülke. ${count} şarkı. Gecenin kaderi oylarında.`,
-      primary:{href:'#listen',icon:'▶',label:`${count} şarkıyı dinle`},
-      secondary:{href:'vote.html',label:votingOpen?'Oy ver':'Pusulanı gör'},
-      tertiary:{href:'#entries',label:'Katılımcıları keşfet ↓'},
-      featureLabel:'Şimdi öne çıkan',
-      featureTitle:spotlight.artist || '—',
-      featureMeta:`<b>${escapeAttr(spotlight.country || '—')}</b> · <span>${escapeAttr(spotlight.song || '—')}</span>`,
-      side:resultsLive?'RESULTS LIVE — OPEN SCOREBOARD':'RESULTS HIDDEN UNTIL REVEAL'
-    },
-    voting: {
-      number:'02',
-      className:'hero-scene-voting',
-      image:'isc-154-share.png',
-      focus:'50% 50%',
-      frame:`VOTING / ${label.toUpperCase()}`,
-      kicker:'Official voting · Your country, your ranking',
-      title:'Your country.<br><em>Your ranking.</em>',
-      deck:votingOpen
-        ? `${submitted} / ${delegations} delegasyon oyunu gönderdi. Sıralamanı oluştur ve ülkenin resmî pusulasını tamamla.`
-        : 'Oylama sona erdi. Gönderilmiş pusulalar kilitlendi; sıra final gecesinde.',
-      primary:{href:'vote.html',icon:'12',label:votingOpen?'Voting Room':'Pusulanı gör'},
-      secondary:{href:'#entries',label:'Entry’leri aç'},
-      tertiary:{href:'#live-pulse',label:'Canlı durumu gör ↓'},
-      featureLabel:'Ballot watch',
-      featureTitle:`${submitted}/${delegations} delegasyon`,
-      featureMeta:`<b>${votingOpen?'VOTING OPEN':'VOTING CLOSED'}</b> · <span>${escapeAttr(relativeActivityTime(liveStatus?.last_submitted_at))}</span>`,
-      side:votingOpen?'VOTING OPEN · 25 SEP · 18:00 TRT':'VOTING CLOSED · BALLOTS LOCKED'
-    },
-    story: {
-      number:'03',
-      className:'hero-scene-story',
-      image:'editions/154/ChatGPT%20Image%2024%20Eyl%202026%2009_42_22.png',
-      focus:'50% 50%',
-      frame:'ISC MAGAZINE / FEATURED STORY',
-      kicker:'ISC Magazine · Issue 154 · Entry 08',
-      title:'Aşkın Son Şahidi:<br><em>ChatGPT</em>',
-      deck:'Galena’nın skandallardan robotlara uzanan yirmi yıllık pop-folk hikâyesi.',
-      primary:{href:'stories/chatgpt.html',icon:'↗',label:'Long read’i aç'},
-      secondary:{href:'entries/08-galena.html',label:'Entry 08'},
-      tertiary:{href:'#stories',label:'8 hikâyeyi keşfet ↓'},
-      featureLabel:'Featured story',
-      featureTitle:'Galena',
-      featureMeta:'<b>UZANMIŞIM KUMSALA</b> · <span>“CHATGPT”</span>',
-      side:'8 LONG READS · ISC MAGAZINE · ISSUE 154'
-    },
-    screening: {
-      number:'04',
-      className:'hero-scene-screening',
-      image:'editions/154/56C89178-858C-456D-9F1A-B92245E215FD.png',
-      focus:'50% 50%',
-      frame:'LIVE SCREENING / ISC 154',
-      kicker:'Synchronized screening · Live chat',
-      title:'Birlikte<br><em>izleyelim.</em>',
-      deck:'25 Eylül gecesi sekiz şarkı aynı anda, aynı yayın odasında. Senkronize oynatma ve canlı sohbet tek ekranda.',
-      primary:{href:'live.html',icon:'▶',label:'Yayın odasına gir'},
-      secondary:{href:'#listen',label:'Şarkıları dinle'},
-      tertiary:{href:'#entries',label:'Running order ↓'},
-      featureLabel:'Live screening',
-      featureTitle:'25 Eylül · 22:00 TSİ',
-      featureMeta:'<b>SYNC VIDEO</b> · <span>LIVE CHAT · 8 ENTRIES</span>',
-      side:'LIVE SCREENING · 25 SEP · 22:00 TRT'
-    },
-    grand: {
-      number:'05',
-      className:'hero-scene-grand',
-      image:'',
-      focus:'50% 50%',
-      frame:'GRAND FINAL / ISC 154',
-      kicker:'Final night · International Song Contest',
-      title:'Grand Final.<br><em>22:00.</em>',
-      deck:resultsLive
-        ? 'Sonuçlar açık. ISC 154 scoreboard’u artık yayında.'
-        : 'Oylar kilitlenecek, sekiz entry yeniden sahneye çıkacak ve sonuçlar final gecesinde reveal edilecek.',
-      primary:{href:resultsLive?'results.html':'live.html',icon:resultsLive?'↗':'●',label:resultsLive?'Scoreboard’u aç':'Final odasına gir'},
-      secondary:{href:'live.html',label:'Live Screening'},
-      tertiary:{href:resultsLive?'results.html':'#live-pulse',label:resultsLive?'Results →':'Final durumunu gör ↓'},
-      featureLabel:'Next event',
-      featureTitle:'25 Eylül 2026',
-      featureMeta:`<b>22:00 TSİ</b> · <span>${resultsLive?'RESULTS LIVE':'GRAND FINAL'}</span>`,
-      side:resultsLive?'RESULTS LIVE · ISC 154':'FINAL NIGHT · RESULTS LOCKED'
-    }
-  };
-  return scenes[scene] || scenes.current;
-}
-
-function setHeroScene(scene, immediate = false) {
-  if (!heroRoot) return;
-  activeHeroScene = ['current','voting','story','screening','grand'].includes(scene) ? scene : 'current';
-
-  heroCarouselTabs.forEach(tab => {
-    const active = tab.dataset.heroTarget === activeHeroScene;
-    tab.classList.toggle('is-active', active);
-    if (active) tab.setAttribute('aria-current','true');
-    else tab.removeAttribute('aria-current');
-  });
-
-  renderHeroScene(immediate);
-}
-
-function renderHeroScene(immediate = false) {
-  if (!heroRoot || !heroImage) return;
-  const data = heroSceneData(activeHeroScene);
 
   const apply = () => {
-    heroRoot.classList.remove('hero-scene-current','hero-scene-voting','hero-scene-story','hero-scene-screening','hero-scene-grand');
-    heroRoot.classList.add(data.className);
-    heroRoot.dataset.heroScene = activeHeroScene;
-
-    if (data.image) {
+    if (entry.image) {
       heroImage.hidden = false;
-      heroImage.src = data.image;
-      heroImage.style.objectPosition = data.focus;
+      heroImage.src = entry.image;
+      heroImage.style.objectPosition = entry.focus;
     } else {
-      heroImage.hidden = false;
-      heroImage.removeAttribute('src');
-      heroImage.style.objectPosition = '50% 50%';
+      heroImage.hidden = true;
     }
-
-    if (heroSceneNumber) heroSceneNumber.textContent = data.number;
-    if (heroFrameLabel) heroFrameLabel.textContent = data.frame;
-    if (homeHeroKicker) homeHeroKicker.textContent = data.kicker;
-    if (heroSceneTitle) heroSceneTitle.innerHTML = data.title;
-    if (homeHeroDeck) homeHeroDeck.textContent = data.deck;
-
-    if (heroActionPrimary) heroActionPrimary.href = data.primary.href;
-    if (heroActionPrimaryIcon) heroActionPrimaryIcon.textContent = data.primary.icon;
-    if (heroActionPrimaryLabel) heroActionPrimaryLabel.textContent = data.primary.label;
-    if (heroActionSecondary) {
-      heroActionSecondary.href = data.secondary.href;
-      heroActionSecondary.textContent = data.secondary.label;
-    }
-    if (heroActionTertiary) {
-      heroActionTertiary.href = data.tertiary.href;
-      heroActionTertiary.textContent = data.tertiary.label;
-    }
-
-    if (heroFeatureLabel) heroFeatureLabel.textContent = data.featureLabel;
-    if (heroArtist) heroArtist.textContent = data.featureTitle;
-    if (heroFeatureMeta) heroFeatureMeta.innerHTML = data.featureMeta;
-    if (heroResultsNote) heroResultsNote.textContent = data.side;
-
-    heroRoot.classList.remove('is-scene-changing');
+    heroOrder.textContent = entry.order;
+    heroArtist.textContent = entry.artist;
+    heroCountry.textContent = entry.country;
+    heroSong.textContent = entry.song;
     heroImage.classList.remove('is-changing');
   };
 
   if (immediate || prefersReducedMotion) {
     apply();
-    return;
+  } else {
+    heroImage.classList.add('is-changing');
+    setTimeout(apply, 260);
   }
-
-  heroRoot.classList.add('is-scene-changing');
-  heroImage.classList.add('is-changing');
-  window.setTimeout(apply, 190);
 }
 
 function updateResultsStateChrome() {
@@ -655,7 +485,9 @@ function updateResultsStateChrome() {
     homeResultsLink.textContent = revealed ? 'Results' : 'Results 🔒';
     homeResultsLink.classList.toggle('results-live-link', revealed);
   }
-  renderHeroScene(true);
+  if (heroResultsNote) {
+    heroResultsNote.textContent = revealed ? 'RESULTS LIVE — OPEN SCOREBOARD' : 'RESULTS HIDDEN UNTIL REVEAL';
+  }
   updateLivePill();
   if (archiveCurrentMeta) archiveCurrentMeta.textContent = `${entries.length} katılımcı · ${liveStatus.voting_open ? 'Oylama açık' : 'Oylama kapalı'}`;
 }
@@ -766,7 +598,6 @@ async function refreshLiveStatus() {
     renderLiveTicker();
     renderLivePulse();
     updateResultsStateChrome();
-    renderHeroScene(true);
   } catch (_) {
     // Keep the last known public state if the network is temporarily unavailable.
   }
