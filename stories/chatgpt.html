@@ -36,7 +36,15 @@
   <style>
     .story-galena .longread-subtitle,.story-galena .longread-kicker{color:#742652}
     .story-galena .feature-artwork-frame{background:#0d0b15}
-    .story-galena .feature-artwork-frame img{object-position:center 30%}
+    .story-galena .feature-artwork-frame img{
+      display:block;
+      width:100%;
+      height:auto;
+      aspect-ratio:auto;
+      object-fit:contain;
+      object-position:center;
+    }
+    .story-galena .feature-artwork-stamp{display:none}
     .story-galena .galena-inline-image{margin:42px 0 36px;max-width:760px}
     .story-galena .galena-inline-image a{display:block;overflow:hidden;background:#0d0b15}
     .story-galena .galena-inline-image img{display:block;width:100%;height:auto;max-height:500px;object-fit:cover;aspect-ratio:16/9;transition:transform .4s ease}
@@ -46,6 +54,113 @@
     .story-galena .galena-links a{border:1px solid #211b1a;border-radius:999px;padding:12px 18px;font-size:12px;font-weight:800;letter-spacing:.025em;text-decoration:none}
     .story-galena .galena-links a:hover{background:#211b1a;color:#fff}
 
+
+    /* GALENA / ENTRY 08 — editorial modules */
+    .story-galena .identity-status{
+      margin:34px 0 48px;
+      padding:22px 24px 24px;
+      border:1px solid rgba(116,38,82,.22);
+      border-top:4px solid var(--story-pink);
+      background:
+        linear-gradient(135deg,rgba(116,38,82,.085),rgba(255,250,242,.72));
+    }
+    .story-galena .identity-status>span{
+      display:block;
+      margin-bottom:8px;
+      color:#742652;
+      font-size:7px;
+      font-weight:800;
+      letter-spacing:.17em;
+      text-transform:uppercase;
+    }
+    .story-galena .identity-status strong{
+      display:block;
+      font-family:"Libre Caslon Display",serif;
+      font-size:30px;
+      font-weight:400;
+      line-height:1.04;
+      letter-spacing:-.015em;
+    }
+    .story-galena .identity-status p{
+      margin:10px 0 0;
+      max-width:650px;
+      color:var(--story-muted);
+      font-size:12px;
+      line-height:1.62;
+    }
+
+    .story-galena .story-data-strip{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      margin:38px 0 50px;
+      border-top:1px solid var(--story-ink);
+      border-bottom:1px solid var(--story-line);
+    }
+    .story-galena .story-data-strip>div{
+      min-width:0;
+      padding:16px 15px 17px 0;
+    }
+    .story-galena .story-data-strip>div+div{
+      padding-left:15px;
+      border-left:1px solid var(--story-line);
+    }
+    .story-galena .story-data-strip span{
+      display:block;
+      margin-bottom:6px;
+      color:#742652;
+      font-size:8px;
+      font-weight:800;
+      line-height:1.25;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .story-galena .story-data-strip strong{
+      display:block;
+      font-family:"Libre Caslon Display",serif;
+      font-size:20px;
+      font-weight:400;
+      line-height:1.08;
+      overflow-wrap:anywhere;
+    }
+
+    .story-galena .production-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:1px;
+      margin:38px 0 48px;
+      border:1px solid var(--story-line);
+      background:var(--story-line);
+    }
+    .story-galena .production-grid>div{
+      min-width:0;
+      padding:21px 22px 22px;
+      background:var(--story-paper-2);
+    }
+    .story-galena .production-grid span{
+      display:block;
+      margin-bottom:7px;
+      color:#742652;
+      font-size:8px;
+      font-weight:800;
+      line-height:1.35;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .story-galena .production-grid strong{
+      display:block;
+      font-family:"Libre Caslon Display",serif;
+      font-size:22px;
+      font-weight:400;
+      line-height:1.08;
+      overflow-wrap:anywhere;
+    }
+    .story-galena .production-grid p{
+      margin:9px 0 0;
+      color:var(--story-muted);
+      font-size:11px;
+      line-height:1.6;
+    }
+
     .story-galena .galena-photo-spread{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:46px 0 42px}
     .story-galena .galena-photo-spread figure,.story-galena .galena-photo-single{margin:0}
     .story-galena .galena-photo-spread img,.story-galena .galena-photo-single img{display:block;width:100%;height:100%;object-fit:cover;background:#151118}
@@ -53,7 +168,22 @@
     .story-galena .galena-photo-single{margin:46px 0 42px}
     .story-galena .galena-photo-single img{aspect-ratio:16/10;max-height:720px}
     .story-galena .galena-photo-spread figcaption,.story-galena .galena-photo-single figcaption{display:flex;justify-content:space-between;gap:16px;margin-top:9px;color:#655a56;font-size:8px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
-    @media(max-width:700px){.story-galena .galena-inline-image figcaption{font-size:8px}.story-galena .feature-artwork-frame img{object-position:center}.story-galena .galena-photo-spread{grid-template-columns:1fr;gap:28px}.story-galena .galena-photo-single img{aspect-ratio:4/5}.story-galena .galena-photo-spread figcaption,.story-galena .galena-photo-single figcaption{font-size:7px}}
+    @media(max-width:700px){
+      .story-galena .galena-inline-image figcaption{font-size:8px}
+      .story-galena .feature-artwork-frame img{width:100%;height:auto;aspect-ratio:auto;object-fit:contain;object-position:center}
+      .story-galena .identity-status{margin:30px 0 40px;padding:20px 18px 22px}
+      .story-galena .identity-status strong{font-size:26px}
+      .story-galena .identity-status p{font-size:12px}
+      .story-galena .story-data-strip{grid-template-columns:1fr 1fr;margin:30px 0 42px}
+      .story-galena .story-data-strip>div:nth-child(3){border-left:0;border-top:1px solid var(--story-line);padding-left:0}
+      .story-galena .story-data-strip>div:nth-child(4){border-top:1px solid var(--story-line)}
+      .story-galena .production-grid{grid-template-columns:1fr;margin:30px 0 42px}
+      .story-galena .production-grid>div{padding:18px}
+      .story-galena .production-grid strong{font-size:21px}
+      .story-galena .galena-photo-spread{grid-template-columns:1fr;gap:28px}
+      .story-galena .galena-photo-single img{aspect-ratio:4/5}
+      .story-galena .galena-photo-spread figcaption,.story-galena .galena-photo-single figcaption{font-size:7px}
+    }
   </style>
 </head>
 <body class="longread-body story-galena">
