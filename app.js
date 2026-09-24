@@ -70,6 +70,17 @@ const archiveIntro = document.getElementById('archive-intro');
 const archiveCurrentNumber = document.getElementById('archive-current-number');
 const archiveCurrentTitle = document.getElementById('archive-current-title');
 const archiveCurrentMeta = document.getElementById('archive-current-meta');
+const livePulse = document.getElementById('live-pulse');
+const pulseEditionLabel = document.getElementById('pulse-edition-label');
+const pulseVotingStatus = document.getElementById('pulse-voting-status');
+const pulseBallotCount = document.getElementById('pulse-ballot-count');
+const pulseProgressFill = document.getElementById('pulse-progress-fill');
+const pulseLastBallot = document.getElementById('pulse-last-ballot');
+const pulseActivityText = document.getElementById('pulse-activity-text');
+const pulsePrimaryAction = document.getElementById('pulse-primary-action');
+const pulseActionKicker = document.getElementById('pulse-action-kicker');
+const pulseActionText = document.getElementById('pulse-action-text');
+let previousPulseSubmitted = null;
 
 async function initHomepage() {
   try {
@@ -113,6 +124,7 @@ async function initHomepage() {
     setupHero();
     updateResultsStateChrome();
     renderLiveTicker();
+    renderLivePulse();
 
     refreshLiveStatus();
     setInterval(refreshLiveStatus, 20000);
@@ -526,12 +538,65 @@ function renderLiveTicker() {
   });
 }
 
+function renderLivePulse() {
+  if (!livePulse || !liveStatus) return;
+
+  const submitted = Math.max(0, Number(liveStatus.submitted_delegations || 0));
+  const delegations = Math.max(1, Number(liveStatus.delegations || entries.length || 1));
+  const progress = Math.max(0, Math.min(100, (submitted / delegations) * 100));
+  const label = editionLabel();
+
+  if (pulseEditionLabel) pulseEditionLabel.textContent = label.toUpperCase();
+  if (pulseBallotCount) pulseBallotCount.textContent = `${submitted}/${delegations}`;
+  if (pulseProgressFill) pulseProgressFill.style.width = `${progress.toFixed(1)}%`;
+  if (pulseLastBallot) pulseLastBallot.textContent = relativeActivityTime(liveStatus.last_submitted_at);
+
+  const statusModule = pulseVotingStatus?.closest('.pulse-status');
+  if (statusModule) {
+    statusModule.classList.toggle('is-open', Boolean(liveStatus.voting_open));
+    statusModule.classList.toggle('is-closed', !liveStatus.voting_open);
+  }
+
+  if (liveStatus.results_revealed) {
+    if (pulseVotingStatus) pulseVotingStatus.textContent = 'RESULTS LIVE';
+    if (pulseActivityText) pulseActivityText.textContent = `${label}: sonuçlar açık · scoreboard yayında.`;
+    if (pulsePrimaryAction) pulsePrimaryAction.href = 'results.html';
+    if (pulseActionKicker) pulseActionKicker.textContent = 'SCOREBOARD';
+    if (pulseActionText) pulseActionText.textContent = 'SONUÇLARI AÇ';
+  } else if (liveStatus.voting_open) {
+    if (pulseVotingStatus) pulseVotingStatus.textContent = 'VOTING OPEN';
+    if (pulseActivityText) {
+      pulseActivityText.textContent = submitted
+        ? `${submitted} / ${delegations} delegasyon oyunu gönderdi · ${relativeActivityTime(liveStatus.last_submitted_at)}.`
+        : 'Oylama açık · ilk tamamlanmış delegasyon oyu bekleniyor.';
+    }
+    if (pulsePrimaryAction) pulsePrimaryAction.href = 'vote.html';
+    if (pulseActionKicker) pulseActionKicker.textContent = 'VOTING ROOM';
+    if (pulseActionText) pulseActionText.textContent = 'OY VER';
+  } else {
+    if (pulseVotingStatus) pulseVotingStatus.textContent = 'VOTING CLOSED';
+    if (pulseActivityText) pulseActivityText.textContent = `${submitted} / ${delegations} delegasyon oyunu gönderdi · sonuçlar reveal anına kadar kilitli.`;
+    if (pulsePrimaryAction) pulsePrimaryAction.href = 'live.html';
+    if (pulseActionKicker) pulseActionKicker.textContent = 'NEXT EVENT';
+    if (pulseActionText) pulseActionText.textContent = 'GALA ODASI';
+  }
+
+  if (previousPulseSubmitted !== null && submitted > previousPulseSubmitted) {
+    livePulse.classList.remove('is-new-ballot');
+    void livePulse.offsetWidth;
+    livePulse.classList.add('is-new-ballot');
+    window.setTimeout(() => livePulse?.classList.remove('is-new-ballot'), 2800);
+  }
+  previousPulseSubmitted = submitted;
+}
+
 async function refreshLiveStatus() {
   try {
     const data = await rpcFetch(LIVE_STATUS_URL);
     if (!data?.ok) return;
     liveStatus = { ...liveStatus, ...data };
     renderLiveTicker();
+    renderLivePulse();
     updateResultsStateChrome();
   } catch (_) {
     // Keep the last known public state if the network is temporarily unavailable.
@@ -545,6 +610,7 @@ window.addEventListener('isc:voting-deadline', () => {
   if (edition) edition.voting_open = false;
   updateResultsStateChrome();
   renderLiveTicker();
+  renderLivePulse();
   renderArchiveCard();
   document.querySelector('.vote-splash h2')?.replaceChildren(document.createTextNode('Oylama sona erdi.'));
   const bigButton = document.querySelector('.vote-big-button');
