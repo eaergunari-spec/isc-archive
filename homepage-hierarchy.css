@@ -955,3 +955,12 @@ a.pulse-module:hover{background:rgba(255,255,255,.035)}
   .pulse-progress i{transition:none}
   .isc-live-pulse.is-new-ballot::after{animation:none}
 }
+
+
+/* ISC 154 editorial masthead de-duplication — 2026-09-24
+   The issue label already lives in .stories-magazine-topline.
+   Hide the older eyebrow inside the section heading so the opening
+   reads as one masthead instead of repeating "ISC MAGAZINE / ISSUE 154". */
+.stories-magazine .stories-magazine-heading .eyebrow{
+  display:none;
+}
