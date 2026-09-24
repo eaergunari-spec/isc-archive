@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="homepage-live.css" />
   <link rel="stylesheet" href="homepage-ticker.css" />
   <link rel="stylesheet" href="homepage-listen.css" />
-  <link rel="stylesheet" href="homepage-hierarchy.css?v=20260924-magazine-1" />
+  <link rel="stylesheet" href="homepage-hierarchy.css?v=20260924-pulse-1" />
   <link rel="stylesheet" href="technical-polish.css?v=20260921-1" />
   <link rel="stylesheet" href="isc-schedule.css?v=20260923-1" />
 </head>
@@ -81,18 +81,45 @@
       <div class="hero-side-note">RESULTS STATUS LOADING</div>
     </section>
 
-    <section class="isc-schedule-banner" aria-label="ISC 154 güncel etkinlik takvimi">
-      <div class="isc-schedule-banner__inner">
-        <div class="isc-schedule-banner__item">
-          <span class="isc-schedule-banner__label">OYLAMA · YENİ SON TARİH</span>
-          <strong><time datetime="2026-09-25T18:00:00+03:00">25 Eylül 2026 · 18.00 TSİ</time></strong>
-          <small data-isc-voting-countdown>Oylama 25 Eylül 18.00'e kadar açık</small>
+    <section class="isc-live-pulse" id="live-pulse" aria-label="ISC Live Pulse">
+      <div class="isc-live-pulse__inner">
+        <div class="pulse-brand">
+          <div class="pulse-brand-line"><i aria-hidden="true"></i><strong>ISC LIVE PULSE</strong></div>
+          <span id="pulse-edition-label">CURRENT EDITION</span>
         </div>
-        <a class="isc-schedule-banner__item isc-schedule-banner__item--gala" href="live.html">
-          <span class="isc-schedule-banner__label">GALA YAYINI · YENİ SAAT</span>
-          <strong><time datetime="2026-09-25T22:00:00+03:00">25 Eylül 2026 · 22.00 TSİ</time></strong>
-          <small data-isc-gala-countdown>Canlı yayın odası ve senkronize izleme →</small>
+
+        <div class="pulse-module pulse-status">
+          <span class="pulse-label">VOTING STATUS</span>
+          <strong id="pulse-voting-status">Loading…</strong>
+          <small data-isc-voting-countdown>Oylama süresi hesaplanıyor…</small>
+        </div>
+
+        <div class="pulse-module pulse-ballots">
+          <span class="pulse-label">BALLOT WATCH</span>
+          <div class="pulse-ballot-row">
+            <strong id="pulse-ballot-count">0/8</strong>
+            <span>delegasyon</span>
+          </div>
+          <div class="pulse-progress" aria-hidden="true"><i id="pulse-progress-fill"></i></div>
+          <small id="pulse-last-ballot">Canlı durum yükleniyor…</small>
+        </div>
+
+        <a class="pulse-module pulse-next" href="live.html">
+          <span class="pulse-label">NEXT EVENT</span>
+          <strong>GRAND FINAL · 22:00</strong>
+          <small data-isc-gala-countdown>Yayına kalan süre hesaplanıyor…</small>
         </a>
+
+        <a class="pulse-action" id="pulse-primary-action" href="vote.html">
+          <span id="pulse-action-kicker">VOTING ROOM</span>
+          <strong id="pulse-action-text">OY VER</strong>
+          <b>→</b>
+        </a>
+      </div>
+      <div class="pulse-activity" aria-live="polite">
+        <span class="pulse-activity-label">LIVE ACTIVITY</span>
+        <strong id="pulse-activity-text">ISC 154 canlı durumu hazırlanıyor…</strong>
+        <a href="#stories">8 LONG READS <span>→</span></a>
       </div>
     </section>
 
@@ -352,7 +379,7 @@
     <p>Music · Entries · Countries · Voting · Stories · Results · Search · Archive</p>
   </footer>
 
-  <script src="app.js?v=20260923-1"></script>
+  <script src="app.js?v=20260924-pulse-1"></script>
   <script src="isc-schedule.js?v=20260923-1"></script>
 </body>
 </html>
