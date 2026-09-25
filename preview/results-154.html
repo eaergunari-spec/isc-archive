@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
-  <title>ISC 154 — Results Preview (Mock)</title>
+  <meta name="theme-color" content="#08070c">
+  <title>ISC 154 — Scoreboard Replay Preview</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
@@ -12,17 +13,170 @@
   <link rel="stylesheet" href="results-154.css">
 </head>
 <body>
-  <div class="preview-warning"><strong>DESIGN PREVIEW</strong><span>Mock data · resmi ISC 154 sonuçlarını içermez · site navigasyonundan erişilemez</span></div>
-  <header class="preview-header"><a class="brand" href="../index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a><nav><a href="../editions/154/">ISC 154</a><a class="active" href="#">Results Preview</a></nav></header>
+  <div class="preview-warning">
+    <strong>DESIGN PREVIEW</strong>
+    <span>Mock voting · gerçek ISC 154 sonuçlarını içermez · site navigasyonundan erişilemez</span>
+  </div>
+
+  <header class="preview-header">
+    <a class="brand" href="../index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
+    <nav><a href="../editions/154/">ISC 154</a><a class="active" href="#vote-replay">Scoreboard Replay</a></nav>
+  </header>
+
   <main>
-    <section class="winner-hero" id="winner-hero"><div class="winner-media"><img id="winner-image" src="" alt=""><div class="winner-media-shade"></div><div class="winner-stamp"><span>01</span><small>WINNER</small></div></div><div class="winner-copy"><span class="eyebrow">ISC 154 · Grand Final</span><p class="winner-country" id="winner-country"></p><h1 id="winner-artist"></h1><p class="winner-song" id="winner-song"></p><div class="winner-scoreline"><div><strong id="winner-points"></strong><span>PUAN</span></div><div><strong id="winner-twelves"></strong><span>12 PUAN</span></div><div><strong>8/8</strong><span>DELEGASYON</span></div></div><p class="winner-deck">Gecenin zirvesi burada açılıyor. Final scoreboard, podyum ve delegasyon oyları tek bir sonuç hikâyesinde birleşiyor.</p><a class="jump-link" href="#scoreboard">Final scoreboard ↓</a></div></section>
-    <section class="story-strip"><article><span>Gecenin sonucu</span><strong>8 şarkı. Tek kazanan.</strong></article><article><span>Oy sistemi</span><strong>12 · 10 · 8 · 6 · 4 · 2 · 1</strong></article><article><span>Toplam dağıtılan</span><strong>344 puan</strong></article><article><span>Tie-break</span><strong>12 → 10 → 8 → 6 → 4 → 2 → 1</strong></article></section>
-    <section class="section podium-section"><div class="section-head"><div><span class="eyebrow">İlk üç</span><h2>Podyum.</h2></div><p>Final gecesinin en üst üç sırası; sanatçı görselleri, puanlar ve en yüksek puan sayılarıyla.</p></div><div class="podium" id="podium"></div></section>
-    <section class="section scoreboard-section" id="scoreboard"><div class="section-head"><div><span class="eyebrow">Final Scoreboard</span><h2>8 şarkı. Tek final tablosu.</h2></div><p>Her satır yalnızca toplamı değil, sonuç profilini de gösteriyor: puan, 12 sayısı ve göreli performans.</p></div><div class="scoreboard" id="scoreboard-list"></div></section>
-    <section class="insights"><div class="section-head inverse"><div><span class="eyebrow">Gecenin hikâyesi</span><h2>Scoreboard’un ötesi.</h2></div><p>Sonuçları bir tablo olmaktan çıkarıp edisyonun hikâyesine dönüştüren kısa highlight kartları.</p></div><div class="insight-grid" id="insight-grid"></div></section>
-    <section class="section ballots-section"><div class="section-head"><div><span class="eyebrow">Kim, kime oy verdi?</span><h2>Delegasyon delegasyon.</h2></div><p>Bir delegasyon seçildiğinde tam oy dökümü sahneye gelir. Bu preview’daki oylar temsili mock veridir.</p></div><div class="ballot-shell"><div class="ballot-tabs" id="ballot-tabs"></div><div class="ballot-card" id="ballot-card"></div></div></section>
-    <section class="section matrix-teaser"><div class="matrix-copy"><span class="eyebrow">Voting Matrix</span><h2>Her puanın izi.</h2><p>Canlı sürümde burada sekiz delegasyonun tüm oyları tek matriste okunabilecek. Mobilde yatay kaydırma, 12 puan vurgusu ve final toplam satırı bulunacak.</p></div><div class="matrix-mock" aria-hidden="true" id="matrix-mock"></div></section>
+    <section class="replay-stage" id="vote-replay">
+      <div class="replay-topbar">
+        <div>
+          <span class="replay-kicker">ISC 154 · Grand Final</span>
+          <strong>Voting Replay</strong>
+        </div>
+        <div class="replay-progress-copy">
+          <span id="replay-progress-label">8 delegasyon · mock sequence</span>
+          <strong id="replay-progress-count">00 / 08</strong>
+        </div>
+      </div>
+
+      <div class="broadcast-grid">
+        <section class="live-scoreboard" aria-label="Canlı scoreboard">
+          <div class="live-scoreboard-head">
+            <div><span>LIVE SCOREBOARD</span><strong id="leader-caption">Oylama başlamadı</strong></div>
+            <div class="live-badge"><i></i><span id="live-badge-text">READY</span></div>
+          </div>
+          <div class="live-rows" id="live-scoreboard"></div>
+        </section>
+
+        <aside class="delegation-stage">
+          <div class="delegation-counter"><span>NOW VOTING</span><strong id="delegation-number">—</strong></div>
+          <div class="delegation-main">
+            <span class="delegation-label">Sıradaki delegasyon</span>
+            <h2 id="delegation-name">ISC 154</h2>
+            <p id="delegation-status">Sekiz delegasyonun oylarını yeniden izlemeye hazırsın.</p>
+          </div>
+
+          <div class="quick-votes" id="quick-votes">
+            <span class="quick-votes-title">1–10 PUAN</span>
+            <div class="quick-votes-grid" id="quick-votes-grid">
+              <span>1</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10</span>
+            </div>
+          </div>
+
+          <div class="twelve-stage" id="twelve-stage">
+            <span class="twelve-kicker">12 PUAN</span>
+            <div class="twelve-question" id="twelve-question">?</div>
+            <div class="twelve-recipient" id="twelve-recipient" aria-live="polite">
+              <strong>Henüz açıklanmadı</strong><span>Grand Final’ın en yüksek puanı</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="replay-controls" role="group" aria-label="Oylama replay kontrolleri">
+        <button class="control-primary" type="button" id="replay-start"><span>▶</span> Oylamayı Başlat</button>
+        <button type="button" id="replay-pause" disabled>Duraklat</button>
+        <button type="button" id="replay-next" disabled>Sonraki Delegasyon</button>
+        <button type="button" id="replay-skip">Finale Geç</button>
+        <button type="button" id="replay-restart">Başa Al</button>
+        <div class="speed-control">
+          <span>Tempo</span>
+          <button type="button" data-speed="1" class="active">Normal</button>
+          <button type="button" data-speed=".62">Hızlı</button>
+        </div>
+      </div>
+
+      <div class="replay-timeline" aria-hidden="true">
+        <i id="replay-progress-bar"></i>
+      </div>
+
+      <div class="replay-intro" id="replay-intro">
+        <div class="intro-orbit"><span>12</span></div>
+        <span class="eyebrow">Scoreboard Replay · Mock</span>
+        <h1>Eight delegations.<br><em>One scoreboard.</em></h1>
+        <p>Puanlar geldikçe tablo yeniden sıralanacak. 12 puanlar ayrı reveal edilecek; lider değiştiğinde yayın grafiği devreye girecek.</p>
+        <button type="button" id="intro-start">Reveal’i Başlat <span>→</span></button>
+      </div>
+
+      <div class="twelve-overlay" id="twelve-overlay" hidden>
+        <div class="twelve-overlay-glow"></div>
+        <div class="twelve-overlay-copy">
+          <span id="overlay-giver">DELEGASYON</span>
+          <strong>12</strong>
+          <small>PUAN</small>
+          <h3 id="overlay-recipient">—</h3>
+          <p id="overlay-song">—</p>
+        </div>
+      </div>
+
+      <div class="leader-flash" id="leader-flash" hidden>
+        <span>NEW LEADER</span>
+        <strong id="leader-flash-country">—</strong>
+      </div>
+
+      <div class="winner-takeover" id="winner-takeover" hidden>
+        <img id="takeover-image" src="" alt="">
+        <div class="winner-takeover-shade"></div>
+        <div class="winner-takeover-copy">
+          <span>ISC 154 · MOCK WINNER</span>
+          <h2 id="takeover-country">—</h2>
+          <strong id="takeover-artist">—</strong>
+          <p id="takeover-song">—</p>
+          <div><b id="takeover-points">0</b><small>PUAN</small></div>
+          <button type="button" id="open-final-results">Final Sonuçları Gör ↓</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="final-results" hidden>
+      <section class="winner-hero" id="winner-hero">
+        <div class="winner-media"><img id="winner-image" src="" alt=""><div class="winner-media-shade"></div><div class="winner-stamp"><span>01</span><small>WINNER</small></div></div>
+        <div class="winner-copy">
+          <span class="eyebrow">ISC 154 · Grand Final</span>
+          <p class="winner-country" id="winner-country"></p>
+          <h1 id="winner-artist"></h1>
+          <p class="winner-song" id="winner-song"></p>
+          <div class="winner-scoreline">
+            <div><strong id="winner-points"></strong><span>PUAN</span></div>
+            <div><strong id="winner-twelves"></strong><span>12 PUAN</span></div>
+            <div><strong>8/8</strong><span>DELEGASYON</span></div>
+          </div>
+          <p class="winner-deck">Replay tamamlandı. Final scoreboard, podyum ve delegasyon oyları artık tam sonuç görünümünde.</p>
+          <a class="jump-link" href="#scoreboard">Final scoreboard ↓</a>
+        </div>
+      </section>
+
+      <section class="story-strip">
+        <article><span>Gecenin sonucu</span><strong>8 şarkı. Tek kazanan.</strong></article>
+        <article><span>Oy sistemi</span><strong>12 · 10 · 8 · 6 · 4 · 2 · 1</strong></article>
+        <article><span>Toplam dağıtılan</span><strong>344 puan</strong></article>
+        <article><span>Tie-break</span><strong>12 → 10 → 8 → 6 → 4 → 2 → 1</strong></article>
+      </section>
+
+      <section class="section podium-section">
+        <div class="section-head"><div><span class="eyebrow">İlk üç</span><h2>Podyum.</h2></div><p>Final gecesinin en üst üç sırası; sanatçı görselleri, puanlar ve en yüksek puan sayılarıyla.</p></div>
+        <div class="podium" id="podium"></div>
+      </section>
+
+      <section class="section scoreboard-section" id="scoreboard">
+        <div class="section-head"><div><span class="eyebrow">Final Scoreboard</span><h2>8 şarkı. Tek final tablosu.</h2></div><p>Her satır yalnızca toplamı değil, sonuç profilini de gösteriyor: puan, 12 sayısı ve göreli performans.</p></div>
+        <div class="scoreboard" id="scoreboard-list"></div>
+      </section>
+
+      <section class="insights">
+        <div class="section-head inverse"><div><span class="eyebrow">Gecenin hikâyesi</span><h2>Scoreboard’un ötesi.</h2></div><p>Sonuçları bir tablo olmaktan çıkarıp edisyonun hikâyesine dönüştüren kısa highlight kartları.</p></div>
+        <div class="insight-grid" id="insight-grid"></div>
+      </section>
+
+      <section class="section ballots-section">
+        <div class="section-head"><div><span class="eyebrow">Kim, kime oy verdi?</span><h2>Delegasyon delegasyon.</h2></div><p>Bir delegasyon seçildiğinde tam oy dökümü sahneye gelir. Bu preview’daki oylar temsili mock veridir.</p></div>
+        <div class="ballot-shell"><div class="ballot-tabs" id="ballot-tabs"></div><div class="ballot-card" id="ballot-card"></div></div>
+      </section>
+
+      <section class="section matrix-teaser">
+        <div class="matrix-copy"><span class="eyebrow">Voting Matrix</span><h2>Her puanın izi.</h2><p>Canlı sürümde burada sekiz delegasyonun tüm oyları tek matriste okunabilecek. Mobilde yatay kaydırma, 12 puan vurgusu ve final toplam satırı bulunacak.</p></div>
+        <div class="matrix-mock" aria-hidden="true" id="matrix-mock"></div>
+      </section>
+    </div>
   </main>
+
   <footer><strong>ISC 154 · Results Design Preview</strong><span>Mock data only · hidden preview · not official results</span></footer>
   <script src="results-154.js"></script>
 </body>
