@@ -13,6 +13,8 @@ const resultsKicker = document.getElementById('results-kicker');
 const currentEditionNav = document.getElementById('current-edition-nav');
 const lockedVoting = document.getElementById('locked-voting');
 const lockedSubmitted = document.getElementById('locked-submitted');
+const lockedDelegations = document.getElementById('locked-delegations');
+const sealedEditionLabel = document.getElementById('sealed-edition-label');
 
 const winnerImage = document.getElementById('winner-image');
 const winnerCountry = document.getElementById('winner-country');
@@ -70,6 +72,7 @@ function applyRuntimeChrome(data) {
   }
   resultsKicker.textContent = `International Song Contest · ${label}`;
   heroEdition.textContent = label;
+  if (sealedEditionLabel) sealedEditionLabel.textContent = `${label} · Grand Final Results`;
   resultsFooterEdition.textContent = `International Song Contest · ${label}`;
   winnerEyebrow.textContent = `${label} Winner`;
   scoreboardHeading.textContent = `${data.delegations} songs. One table.`;
@@ -90,16 +93,19 @@ function renderPage(data) {
   const delegations = Number(data.delegations || 0);
   lockedSubmitted.textContent = `${submitted} / ${delegations}`;
   lockedVoting.textContent = data.voting_open ? 'OPEN' : 'CLOSED';
+  if (lockedDelegations) lockedDelegations.textContent = String(delegations);
 
   if (!data.revealed) {
     lockedState.hidden = false;
     revealedState.hidden = true;
     livePill.classList.remove('live');
-    livePill.innerHTML = '<i></i> RESULTS LOCKED';
-    heroSymbol.textContent = '🔒';
+    livePill.innerHTML = data.voting_open
+      ? '<i></i> VOTING OPEN · RESULTS SEALED'
+      : '<i></i> VOTING CLOSED · RESULTS SEALED';
+    heroSymbol.textContent = '✦';
     heroDeck.textContent = data.voting_open
-      ? `Oylama açık. ${submitted}/${delegations} delegasyon oyunu gönderdi; scoreboard ve delegasyon pusulaları reveal anına kadar gizli.`
-      : `Oylama kapalı. ${submitted}/${delegations} delegasyon oyunu gönderdi; sonuçlar henüz reveal edilmedi.`;
+      ? `Voting is still open. ${submitted}/${delegations} official ballots have been submitted; the scoreboard remains sealed.`
+      : 'Voting is closed. The results remain sealed.';
     return;
   }
 
