@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="International Song Contest official results, scoreboard and delegation ballots." />
+  <meta name="description" content="International Song Contest resmi sonuçları, final scoreboard ve delegasyon oy dökümleri." />
   <meta name="theme-color" content="#0b0a0e" />
   <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/results.html" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="International Song Contest" />
   <meta property="og:title" content="ISC — Results" />
-  <meta property="og:description" content="Güncel ISC edisyonunun resmi scoreboard, delegasyon pusulaları ve voting history merkezi." />
+  <meta property="og:description" content="Güncel ISC edisyonunun resmi sonuçları, scoreboard’u ve delegasyon oy dökümleri." />
   <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/results.html" />
   <meta name="twitter:card" content="summary" />
   <title>ISC — Results</title>
@@ -30,7 +30,7 @@
       <a href="editions/154/#participants">Katılımcılar</a>
       <a href="countries/">Ülkeler</a>
       <a href="search.html">Ara</a>
-      <a class="results-nav-current" href="results.html">Results</a>
+      <a class="results-nav-current" href="results.html">Sonuçlar</a>
       <a class="nav-vote" href="vote.html">Oy Ver</a>
     </nav>
   </header>
@@ -38,9 +38,9 @@
   <main>
     <section class="results-hero">
       <div class="results-hero-copy">
-        <span class="results-live-pill" id="results-live-pill"><i></i> RESULTS LOADING</span>
-        <p class="results-kicker" id="results-kicker">International Song Contest · Current edition</p>
-        <h1>The <em>results.</em></h1>
+        <span class="results-live-pill" id="results-live-pill"><i></i> RESULTS · YÜKLENİYOR</span>
+        <p class="results-kicker" id="results-kicker">International Song Contest · Güncel Edisyon</p>
+        <h1><em>Sonuçlar.</em></h1>
         <p id="results-hero-deck">Güncel edisyon durumu yükleniyor…</p>
       </div>
       <div class="results-hero-mark" aria-hidden="true">
@@ -49,10 +49,10 @@
       </div>
     </section>
 
-    <nav class="edition-tabs" id="edition-tabs" aria-label="Current edition sections">
-      <a href="editions/154/">Overview</a>
-      <a href="editions/154/#participants">Participants</a>
-      <a class="active" href="results.html">Results</a>
+    <nav class="edition-tabs" id="edition-tabs" aria-label="Güncel edisyon bölümleri">
+      <a href="editions/154/">Genel Bakış</a>
+      <a href="editions/154/#participants">Katılımcılar</a>
+      <a class="active" href="results.html">Sonuçlar</a>
     </nav>
 
     <section class="locked-panel sealed-results" id="locked-state">
@@ -67,39 +67,39 @@
       </div>
 
       <div class="locked-copy">
-        <span class="eyebrow" id="sealed-edition-label">ISC · Grand Final Results</span>
-        <h2>Voting is closed.<br><em>The results remain sealed.</em></h2>
-        <p>All official ballots are safely in. The scoreboard, final ranking and delegation-by-delegation votes remain hidden until the official reveal.</p>
+        <span class="eyebrow" id="sealed-edition-label">ISC · Grand Final Sonuçları</span>
+        <h2>Oylama kapandı.<br><em>Sonuçlar hâlâ mühürlü.</em></h2>
+        <p>Tüm resmi oylar teslim edildi. Scoreboard, final sıralama ve delegasyon bazındaki oy dökümü resmi reveal anına kadar gizli kalacak.</p>
         <div class="locked-actions">
           <button class="sealed-reveal-button" type="button" disabled aria-disabled="true">
             <span aria-hidden="true">◆</span>
-            Reveal Results
+            Sonuçları Aç
           </button>
-          <a class="ghost" href="editions/154/">Back to ISC 154</a>
+          <a class="ghost" href="editions/154/">ISC 154’e Dön</a>
         </div>
-        <p class="sealed-note"><span></span> Official reveal pending · no result data is public yet.</p>
+        <p class="sealed-note"><span></span> Official reveal bekleniyor · henüz hiçbir sonuç verisi kamuya açık değil.</p>
       </div>
 
-      <div class="locked-status" aria-label="Grand final status">
+      <div class="locked-status" aria-label="Grand Final durumu">
         <article>
-          <span>Delegations</span>
+          <span>Delegasyonlar</span>
           <strong id="locked-delegations">—</strong>
-          <small>qualified to vote</small>
+          <small>oy hakkı bulunan ülkeler</small>
         </article>
         <article>
-          <span>Submitted ballots</span>
+          <span>Gönderilen Oylar</span>
           <strong id="locked-submitted">— / —</strong>
-          <small>official ballots received</small>
+          <small>teslim alınan resmi oylar</small>
         </article>
         <article>
-          <span>Voting status</span>
+          <span>Oylama</span>
           <strong id="locked-voting">—</strong>
-          <small>ballot gate</small>
+          <small>oy verme durumu</small>
         </article>
         <article>
-          <span>Results</span>
-          <strong class="sealed-hidden-value">HIDDEN</strong>
-          <small>awaiting official reveal</small>
+          <span>Sonuçlar</span>
+          <strong class="sealed-hidden-value">MÜHÜRLÜ</strong>
+          <small>official reveal bekleniyor</small>
         </article>
       </div>
     </section>
@@ -111,20 +111,20 @@
           <span class="winner-rank">01</span>
         </div>
         <div class="winner-copy">
-          <span class="eyebrow" id="winner-eyebrow">ISC Winner</span>
+          <span class="eyebrow" id="winner-eyebrow">ISC Kazananı</span>
           <p class="winner-country" id="winner-country"></p>
           <h2 id="winner-artist"></h2>
           <p class="winner-song" id="winner-song"></p>
           <div class="winner-stats">
-            <div><strong id="winner-points">0</strong><span>POINTS</span></div>
-            <div><strong id="winner-top-count">0</strong><span id="winner-top-label">TOP SCORES</span></div>
+            <div><strong id="winner-points">0</strong><span>PUAN</span></div>
+            <div><strong id="winner-top-count">0</strong><span id="winner-top-label">EN YÜKSEK PUANLAR</span></div>
           </div>
         </div>
       </section>
 
       <section class="podium-section results-section">
         <div class="results-section-heading compact">
-          <div><span class="eyebrow">Top three</span><h2>The podium.</h2></div>
+          <div><span class="eyebrow">İlk üç</span><h2>Podyum.</h2></div>
           <p>Güncel edisyonun ilk üç sırası ve final toplam puanları.</p>
         </div>
         <div class="podium-grid" id="podium-grid"></div>
@@ -132,7 +132,7 @@
 
       <section class="scoreboard-section results-section">
         <div class="results-section-heading">
-          <div><span class="eyebrow">Final scoreboard</span><h2 id="scoreboard-heading">The final table.</h2></div>
+          <div><span class="eyebrow">Final Scoreboard</span><h2 id="scoreboard-heading">Final sıralama.</h2></div>
           <p>Tüm gönderilmiş delegasyon pusulalarından oluşan final toplamları.</p>
         </div>
         <div class="scoreboard" id="scoreboard"></div>
@@ -140,7 +140,7 @@
 
       <section class="ballots-section results-section dark-section">
         <div class="results-section-heading inverse">
-          <div><span class="eyebrow">Who voted for whom?</span><h2>Delegasyon delegasyon.</h2></div>
+          <div><span class="eyebrow">Kim, kime oy verdi?</span><h2>Delegasyon delegasyon.</h2></div>
           <p>Bir delegasyon seç; o edisyonda kullandığı resmi puan şemasına göre gönderdiği tam pusulayı gör.</p>
         </div>
         <div class="delegation-tabs" id="delegation-tabs"></div>
@@ -149,7 +149,7 @@
 
       <section class="twelves-section results-section">
         <div class="results-section-heading compact">
-          <div><span class="eyebrow" id="top-exchange-eyebrow">Top score exchange</span><h2 id="top-exchange-heading">Who got the top score?</h2></div>
+          <div><span class="eyebrow" id="top-exchange-eyebrow">En yüksek puanlar</span><h2 id="top-exchange-heading">12 puanlar kime gitti?</h2></div>
           <p id="top-exchange-copy">Her delegasyonun gecenin en yüksek puanını verdiği entry.</p>
         </div>
         <div class="twelves-grid" id="twelves-grid"></div>
@@ -157,7 +157,7 @@
 
       <section class="matrix-section results-section">
         <div class="results-section-heading compact">
-          <div><span class="eyebrow">Full ballot history</span><h2>The voting matrix.</h2></div>
+          <div><span class="eyebrow">Tüm oy dökümü</span><h2>Voting matrix.</h2></div>
           <p>Satırlar oy veren delegasyonları, sütunlar entry’leri gösterir. Mobilde tabloyu yatay kaydırabilirsin.</p>
         </div>
         <div class="matrix-scroll"><table class="voting-matrix" id="voting-matrix"></table></div>
@@ -168,7 +168,7 @@
   <footer class="results-footer">
     <div class="footer-brand">ISC</div>
     <p id="results-footer-edition">International Song Contest · Current edition</p>
-    <p>Official scoreboard · delegation ballots · voting history</p>
+    <p>Resmi scoreboard · delegasyon oyları · voting history</p>
   </footer>
 
   <script src="results.js"></script>
