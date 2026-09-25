@@ -1,7 +1,7 @@
 /* ISC 154 event dates are explicit Istanbul/TRT timestamps (UTC+03:00). */
 (function(){
   'use strict';
-  var votingEnd=Date.parse('2026-09-25T18:00:00+03:00');
+  var votingEnd=Date.parse('2026-09-25T22:00:00+03:00');
   var galaStart=Date.parse('2026-09-25T22:00:00+03:00');
   var votingWasFuture=Date.now()<votingEnd;
   var fired=false;
