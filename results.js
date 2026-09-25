@@ -51,7 +51,7 @@ const countryProfileHref = slug => slug ? `countries/${encodeURIComponent(slug)}
 async function loadResults() {
   const { data, error } = await db.rpc('isc_public_current_results_hub');
   if (error || !data?.ok) {
-    livePill.innerHTML = '<i></i> RESULTS UNAVAILABLE';
+    livePill.innerHTML = '<i></i> RESULTS · ERİŞİLEMİYOR';
     heroDeck.textContent = 'Güncel edisyonun sonuç verileri şu anda yüklenemiyor.';
     return;
   }
@@ -62,9 +62,9 @@ async function loadResults() {
 function applyRuntimeChrome(data) {
   const label = data.title || `ISC ${data.edition_number}`;
   document.title = `${label} — Results`;
-  document.querySelector('meta[name="description"]')?.setAttribute('content', `${label} official results, scoreboard and delegation ballots.`);
+  document.querySelector('meta[name="description"]')?.setAttribute('content', `${label} resmi sonuçları, final scoreboard ve delegasyon oy dökümleri.`);
   document.querySelector('meta[property="og:title"]')?.setAttribute('content', `${label} — Results`);
-  document.querySelector('meta[property="og:description"]')?.setAttribute('content', `${label} resmi scoreboard, delegasyon pusulaları ve voting history.`);
+  document.querySelector('meta[property="og:description"]')?.setAttribute('content', `${label} resmi sonuçları, scoreboard ve delegasyon oy dökümleri.`);
 
   if (currentEditionNav) {
     currentEditionNav.textContent = label;
@@ -72,15 +72,15 @@ function applyRuntimeChrome(data) {
   }
   resultsKicker.textContent = `International Song Contest · ${label}`;
   heroEdition.textContent = label;
-  if (sealedEditionLabel) sealedEditionLabel.textContent = `${label} · Grand Final Results`;
+  if (sealedEditionLabel) sealedEditionLabel.textContent = `${label} · Grand Final Sonuçları`;
   resultsFooterEdition.textContent = `International Song Contest · ${label}`;
-  winnerEyebrow.textContent = `${label} Winner`;
-  scoreboardHeading.textContent = `${data.delegations} songs. One table.`;
+  winnerEyebrow.textContent = `${label} Kazananı`;
+  scoreboardHeading.textContent = `${data.delegations} şarkı. Tek final sıralaması.`;
 
   const topPoints = Number(data.top_points || 0);
-  winnerTopLabel.textContent = topPoints ? `${topPoints} POINT SCORES` : 'TOP SCORES';
-  topExchangeEyebrow.textContent = topPoints ? `${topPoints} points exchange` : 'Top score exchange';
-  topExchangeHeading.textContent = topPoints ? `Who got the ${topPoints}?` : 'Who got the top score?';
+  winnerTopLabel.textContent = topPoints ? `${topPoints} PUANLAR` : 'EN YÜKSEK PUANLAR';
+  topExchangeEyebrow.textContent = topPoints ? `${topPoints} puanlar` : 'En yüksek puanlar';
+  topExchangeHeading.textContent = topPoints ? `${topPoints} puanlar kime gitti?` : 'En yüksek puanlar kime gitti?';
   topExchangeCopy.textContent = topPoints
     ? `Her delegasyonun ${topPoints} puan verdiği entry.`
     : 'Her delegasyonun gecenin en yüksek puanını verdiği entry.';
@@ -92,7 +92,7 @@ function renderPage(data) {
   const submitted = Number(data.submitted_delegations || 0);
   const delegations = Number(data.delegations || 0);
   lockedSubmitted.textContent = `${submitted} / ${delegations}`;
-  lockedVoting.textContent = data.voting_open ? 'OPEN' : 'CLOSED';
+  lockedVoting.textContent = data.voting_open ? 'AÇIK' : 'KAPALI';
   if (lockedDelegations) lockedDelegations.textContent = String(delegations);
 
   if (!data.revealed) {
@@ -104,8 +104,8 @@ function renderPage(data) {
       : '<i></i> VOTING CLOSED · RESULTS SEALED';
     heroSymbol.textContent = '✦';
     heroDeck.textContent = data.voting_open
-      ? `Voting is still open. ${submitted}/${delegations} official ballots have been submitted; the scoreboard remains sealed.`
-      : 'Voting is closed. The results remain sealed.';
+      ? `Oylama hâlâ açık. ${submitted}/${delegations} resmi oy teslim edildi; scoreboard reveal anına kadar mühürlü kalacak.`
+      : 'Oylama kapandı. Sonuçlar hâlâ mühürlü.';
     return;
   }
 
@@ -154,7 +154,7 @@ function renderPodium(rows) {
       <a class="podium-country" href="${countryProfileHref(row.country_slug)}">${escapeHtml(row.country)}</a>
       <h3>${escapeHtml(row.artist)}</h3>
       <p>${escapeHtml(row.song)}</p>
-      <div class="podium-points">${row.total_points}<small>pts</small></div>
+      <div class="podium-points">${row.total_points}<small>puan</small></div>
     </article>
   `).join('');
 }
@@ -167,7 +167,7 @@ function renderScoreboard(rows) {
       <div class="score-country"><a href="${countryProfileHref(row.country_slug)}">${escapeHtml(row.country)}</a></div>
       <div class="score-act"><strong>${escapeHtml(row.artist)}</strong><span>${escapeHtml(row.song)}</span></div>
       <div class="score-bar" aria-hidden="true"><i style="width:${Math.max(3, (Number(row.total_points || 0) / maxPoints) * 100)}%"></i></div>
-      <div class="score-points">${row.total_points}<small>points</small></div>
+      <div class="score-points">${row.total_points}<small>puan</small></div>
     </article>
   `).join('');
 }
@@ -175,7 +175,7 @@ function renderScoreboard(rows) {
 function renderBallotExplorer(ballots) {
   if (!ballots.length) {
     delegationTabs.innerHTML = '';
-    ballotFocus.innerHTML = '<div class="ballot-focus-head"><div><span>NO BALLOTS</span><h3>Gönderilmiş pusula bulunamadı.</h3></div></div>';
+    ballotFocus.innerHTML = '<div class="ballot-focus-head"><div><span>OY BULUNAMADI</span><h3>Gönderilmiş resmi oy bulunamadı.</h3></div></div>';
     return;
   }
 
@@ -198,7 +198,7 @@ function renderBallotExplorer(ballots) {
 
   ballotFocus.innerHTML = `
     <div class="ballot-focus-head">
-      <div><span>FULL BALLOT</span><h3><a href="${countryProfileHref(ballot.voter_slug)}">${escapeHtml(ballot.voter_country)}</a></h3></div>
+      <div><span>TAM OY DÖKÜMÜ</span><h3><a href="${countryProfileHref(ballot.voter_slug)}">${escapeHtml(ballot.voter_country)}</a></h3></div>
       <small>${escapeHtml(submittedAt)}</small>
     </div>
     <div class="ballot-votes">
@@ -220,7 +220,7 @@ function renderTopScores(ballots, topPoints) {
     return `
       <article class="twelve-card">
         <div>
-          <span><a href="${countryProfileHref(ballot.voter_slug)}">${escapeHtml(ballot.voter_country)}</a> gives ${target || 'top score'} to</span>
+          <span><a href="${countryProfileHref(ballot.voter_slug)}">${escapeHtml(ballot.voter_country)}</a> · ${target || 'en yüksek puan'} puan verdi</span>
           <strong>${topVote ? escapeHtml(topVote.artist) : '—'}</strong>
           <div class="recipient">${topVote ? `<a href="${countryProfileHref(topVote.country_slug)}">${escapeHtml(topVote.country)}</a>` : ''}</div>
         </div>
@@ -247,9 +247,9 @@ function renderMatrix(rows, ballots) {
 
   const totals = rows.map(row => `<td>${row.total_points}</td>`).join('');
   votingMatrix.innerHTML = `
-    <thead><tr><th>Delegation</th>${headCells}</tr></thead>
+    <thead><tr><th>Delegasyon</th>${headCells}</tr></thead>
     <tbody>${bodyRows}</tbody>
-    <tfoot><tr><td>TOTAL</td>${totals}</tr></tfoot>
+    <tfoot><tr><td>TOPLAM</td>${totals}</tr></tfoot>
   `;
 }
 
