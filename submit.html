@@ -37,7 +37,7 @@
         <span class="submit-live" id="submit-live"><i></i> ENTRY WINDOW</span>
         <p class="eyebrow">ISC 155 · Official entry desk</p>
         <h1>Bir şarkı.<br><em>Senin seçimin.</em></h1>
-        <p class="submit-hero-copy">Delegasyonunun ISC 155 için resmî entry’sini burada kaydet. Başvuru penceresi kapanana kadar gönderini güncelleyebilirsin.</p>
+        <p class="submit-hero-copy">Delegasyonunu doğrula, şarkının YouTube, YouTube Music veya Spotify bağlantısını gönder. Başvuru penceresi kapanana kadar linkini güncelleyebilirsin.</p>
       </div>
       <aside class="submit-hero-mark" aria-hidden="true"><span>155</span><small>SUBMIT<br>YOUR<br>ENTRY</small></aside>
     </section>
@@ -53,10 +53,6 @@
         <span class="eyebrow">Delegation access</span>
         <h2>Önce kim olduğunu doğrulayalım.</h2>
         <p>Mevcut ISC delegasyon kodun değişmedi. Bu cihaz daha önce delegasyonunu hatırladıysa form doğrudan açılır.</p>
-        <div class="privacy-note">
-          <strong>Nasıl çalışır?</strong>
-          <p>Kodun tarayıcıda saklanmaz. Başarılı doğrulamadan sonra cihazına rastgele bir oturum anahtarı kaydedilir; böylece sonraki ziyaretlerde kodu yeniden girmen gerekmez.</p>
-        </div>
       </div>
 
       <div class="desk-panel">
@@ -84,18 +80,7 @@
           </div>
 
           <form id="entry-form" novalidate>
-            <div class="panel-kicker"><span>02</span><b>ENTRY DETAILS</b></div>
-            <div class="field-grid">
-              <div>
-                <label for="artist-name">Sanatçı adı <em>*</em></label>
-                <input id="artist-name" name="artist" type="text" maxlength="160" required placeholder="Artist / group" />
-              </div>
-              <div>
-                <label for="song-title">Şarkı adı <em>*</em></label>
-                <input id="song-title" name="song" type="text" maxlength="200" required placeholder="Song title" />
-              </div>
-            </div>
-
+            <div class="panel-kicker"><span>02</span><b>ENTRY LINK</b></div>
             <label for="media-url">Şarkı bağlantısı <em>*</em></label>
             <input id="media-url" name="media" type="url" maxlength="1000" required inputmode="url" placeholder="https://www.youtube.com/watch?v=… veya https://open.spotify.com/track/…" />
             <div class="platform-hints" aria-label="Accepted platforms">
@@ -103,16 +88,12 @@
             </div>
             <div class="link-preview" id="link-preview" hidden><span id="link-provider">PLATFORM</span><a id="link-open" href="#" target="_blank" rel="noopener">Bağlantıyı aç ↗</a></div>
 
-            <label for="submission-notes">Not <small>opsiyonel</small></label>
-            <textarea id="submission-notes" name="notes" maxlength="1500" rows="4" placeholder="Organizasyon ekibinin bilmesi gereken kısa bir not varsa buraya yazabilirsin."></textarea>
-            <div class="char-count"><span id="notes-count">0</span> / 1500</div>
-
             <div class="submission-rule">
               <b>Tek resmî entry.</b>
-              <p>Her delegasyonun ISC 155 için tek aktif başvurusu bulunur. Yeniden gönderdiğinde yeni bir entry oluşturulmaz; mevcut resmî kaydın güncellenir ve önceki revizyon geçmişte korunur.</p>
+              <p>Her delegasyonun ISC 155 için tek aktif şarkı bağlantısı bulunur. Yeni bir link gönderdiğinde mevcut resmî kaydın güncellenir.</p>
             </div>
 
-            <button class="submit-entry-button" id="submit-entry-button" type="submit">RESMÎ ENTRY’Yİ GÖNDER <span>→</span></button>
+            <button class="submit-entry-button" id="submit-entry-button" type="submit">ŞARKI LİNKİNİ GÖNDER <span>→</span></button>
             <p class="form-message" id="submission-message" aria-live="polite"></p>
           </form>
 
@@ -150,6 +131,6 @@
     <p>Secure delegation submission</p>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="submit.js?v=20261001-2"></script>
+  <script src="submit.js?v=20261001-3"></script>
 </body>
 </html>
