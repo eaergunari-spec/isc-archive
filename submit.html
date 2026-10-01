@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="ISC 155 resmî delegasyon entry başvuru masası. YouTube, YouTube Music veya Spotify bağlantısıyla şarkını gönder." />
+  <meta name="theme-color" content="#0b0a0e" />
+  <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/submit.html" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="International Song Contest" />
+  <meta property="og:title" content="ISC 155 — Entry Submission" />
+  <meta property="og:description" content="Delegasyonunu doğrula ve ISC 155 entry’ni gönder." />
+  <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/submit.html" />
+  <title>ISC 155 — Entry Submission</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="submit.css?v=20261001-1" />
+</head>
+<body class="submit-page">
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
+    <nav>
+      <a href="editions/155/">ISC 155</a>
+      <a href="countries/">Ülkeler</a>
+      <a href="archive.html">Arşiv</a>
+      <a href="search.html">Ara</a>
+      <a class="nav-vote active" href="submit.html">Başvur</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="submit-hero">
+      <div>
+        <span class="submit-live" id="submit-live"><i></i> ENTRY WINDOW</span>
+        <p class="eyebrow">ISC 155 · Official entry desk</p>
+        <h1>Bir şarkı.<br><em>Senin seçimin.</em></h1>
+        <p class="submit-hero-copy">Delegasyonunun ISC 155 için resmî entry’sini burada kaydet. Başvuru penceresi kapanana kadar gönderini güncelleyebilirsin.</p>
+      </div>
+      <aside class="submit-hero-mark" aria-hidden="true"><span>155</span><small>SUBMIT<br>YOUR<br>ENTRY</small></aside>
+    </section>
+
+    <section class="submit-statusbar">
+      <div><span>STATUS</span><strong id="window-status">Kontrol ediliyor…</strong></div>
+      <div><span>DEADLINE</span><strong id="window-deadline">Yükleniyor…</strong></div>
+      <div><span>ACCEPTED</span><strong>YouTube · YT Music · Spotify</strong></div>
+    </section>
+
+    <section class="entry-desk">
+      <div class="entry-desk-intro">
+        <span class="eyebrow">Delegation access</span>
+        <h2>Önce kim olduğunu doğrulayalım.</h2>
+        <p>Mevcut ISC delegasyon kodun değişmedi. Bu cihaz daha önce delegasyonunu hatırladıysa form doğrudan açılır.</p>
+        <div class="privacy-note">
+          <strong>Nasıl çalışır?</strong>
+          <p>Kodun tarayıcıda saklanmaz. Başarılı doğrulamadan sonra cihazına rastgele bir oturum anahtarı kaydedilir; böylece sonraki ziyaretlerde kodu yeniden girmen gerekmez.</p>
+        </div>
+      </div>
+
+      <div class="desk-panel">
+        <section id="auth-panel">
+          <div class="panel-kicker"><span>01</span><b>DELEGATION CHECK</b></div>
+          <label for="country-select">Delegasyon</label>
+          <select id="country-select" autocomplete="off"><option value="">Delegasyonlar yükleniyor…</option></select>
+          <label for="delegation-code">Delegasyon kodu</label>
+          <div class="code-row">
+            <input id="delegation-code" type="password" autocomplete="current-password" placeholder="Kodunu gir" />
+            <button id="verify-button" type="button">DOĞRULA <span>→</span></button>
+          </div>
+          <p class="form-message" id="auth-message" aria-live="polite"></p>
+        </section>
+
+        <section id="submission-panel" hidden>
+          <div class="delegation-banner">
+            <div><small>AUTHENTICATED DELEGATION</small><strong id="active-country">—</strong></div>
+            <button id="forget-delegation" type="button">Bu cihazda unut</button>
+          </div>
+
+          <div class="existing-submission" id="existing-submission" hidden>
+            <div><small>CURRENT OFFICIAL ENTRY</small><strong id="existing-title">—</strong><span id="existing-meta">—</span></div>
+            <div class="revision-badge"><span>REVISION</span><b id="existing-revision">1</b></div>
+          </div>
+
+          <form id="entry-form" novalidate>
+            <div class="panel-kicker"><span>02</span><b>ENTRY DETAILS</b></div>
+            <div class="field-grid">
+              <div>
+                <label for="artist-name">Sanatçı adı <em>*</em></label>
+                <input id="artist-name" name="artist" type="text" maxlength="160" required placeholder="Artist / group" />
+              </div>
+              <div>
+                <label for="song-title">Şarkı adı <em>*</em></label>
+                <input id="song-title" name="song" type="text" maxlength="200" required placeholder="Song title" />
+              </div>
+            </div>
+
+            <label for="media-url">Şarkı bağlantısı <em>*</em></label>
+            <input id="media-url" name="media" type="url" maxlength="1000" required inputmode="url" placeholder="https://www.youtube.com/watch?v=… veya https://open.spotify.com/track/…" />
+            <div class="platform-hints" aria-label="Accepted platforms">
+              <span>▶ YouTube</span><span>♪ YouTube Music</span><span>● Spotify track</span>
+            </div>
+            <div class="link-preview" id="link-preview" hidden><span id="link-provider">PLATFORM</span><a id="link-open" href="#" target="_blank" rel="noopener">Bağlantıyı aç ↗</a></div>
+
+            <label for="submission-notes">Not <small>opsiyonel</small></label>
+            <textarea id="submission-notes" name="notes" maxlength="1500" rows="4" placeholder="Organizasyon ekibinin bilmesi gereken kısa bir not varsa buraya yazabilirsin."></textarea>
+            <div class="char-count"><span id="notes-count">0</span> / 1500</div>
+
+            <div class="submission-rule">
+              <b>Tek resmî entry.</b>
+              <p>Her delegasyonun ISC 155 için tek aktif başvurusu bulunur. Yeniden gönderdiğinde yeni bir entry oluşturulmaz; mevcut resmî kaydın güncellenir ve önceki revizyon geçmişte korunur.</p>
+            </div>
+
+            <button class="submit-entry-button" id="submit-entry-button" type="submit">RESMÎ ENTRY’Yİ GÖNDER <span>→</span></button>
+            <p class="form-message" id="submission-message" aria-live="polite"></p>
+          </form>
+
+          <section class="receipt" id="receipt" hidden>
+            <span class="receipt-kicker">ENTRY RECEIVED</span>
+            <div class="receipt-check">✓</div>
+            <h3 id="receipt-title">Başvurun kaydedildi.</h3>
+            <p id="receipt-copy">ISC 155 resmî entry kaydı güncellendi.</p>
+            <dl>
+              <div><dt>Delegasyon</dt><dd id="receipt-country">—</dd></div>
+              <div><dt>Kayıt</dt><dd id="receipt-code">—</dd></div>
+              <div><dt>Revizyon</dt><dd id="receipt-revision">—</dd></div>
+              <div><dt>Son güncelleme</dt><dd id="receipt-time">—</dd></div>
+            </dl>
+            <button id="edit-after-save" type="button">ENTRY’Yİ DÜZENLE</button>
+          </section>
+        </section>
+      </div>
+    </section>
+
+    <section class="submit-help">
+      <div><span class="eyebrow">Before you submit</span><h2>Doğru linki seç.</h2></div>
+      <div class="help-grid">
+        <article><b>✓</b><strong>YouTube video</strong><p>Standart <code>youtube.com/watch</code> veya <code>youtu.be</code> bağlantısı.</p></article>
+        <article><b>✓</b><strong>YouTube Music</strong><p>Doğrudan <code>music.youtube.com/watch</code> şarkı/video bağlantısı.</p></article>
+        <article><b>✓</b><strong>Spotify track</strong><p>Doğrudan <code>open.spotify.com/track</code> bağlantısı.</p></article>
+        <article class="not-accepted"><b>×</b><strong>Playlist / artist / album</strong><p>Playlist, sanatçı profili veya albüm linki resmî entry olarak kabul edilmez.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">ISC</div>
+    <p>International Song Contest · ISC 155 Entry Desk</p>
+    <p>Secure delegation submission</p>
+  </footer>
+  <script src="submit.js?v=20261001-1"></script>
+</body>
+</html>
