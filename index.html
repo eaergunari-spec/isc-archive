@@ -3,383 +3,157 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="International Song Contest — current edition, entries, voting, results and archive." />
+  <meta name="description" content="ISC 155 başladı. Delegasyon başvuruları YouTube, YouTube Music veya Spotify bağlantısıyla şimdi açık." />
   <meta name="theme-color" content="#0b0a0e" />
   <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="International Song Contest" />
-  <meta property="og:title" content="ISC 154 — Oylama ve Gala" />
-  <meta property="og:description" content="Oylama 25 Eylül 22.00 TSİ’ye kadar; gala 25 Eylül 22.00 TSİ’de." />
+  <meta property="og:title" content="ISC 155 — Yeni dönem başladı" />
+  <meta property="og:description" content="Yeni yarışma, yeni şarkılar. ISC 155 delegasyon başvuruları şimdi açık." />
   <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/" />
-  <meta property="og:image" content="https://eaergunari-spec.github.io/isc-archive/isc-154-share.png" />
-  <meta property="og:image:secure_url" content="https://eaergunari-spec.github.io/isc-archive/isc-154-share.png" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="ISC 154 — Oylama ve Gala" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ISC 154 — Oylama ve Gala" />
-  <meta name="twitter:description" content="Oylama 25 Eylül 22.00 TSİ’ye kadar; gala 25 Eylül 22.00 TSİ’de." />
-  <meta name="twitter:image" content="https://eaergunari-spec.github.io/isc-archive/isc-154-share.png" />
-  <meta name="twitter:image:alt" content="ISC 154 — Oylama ve Gala" />
-  <title>International Song Contest — Current Edition</title>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="ISC 155 — Yeni dönem başladı" />
+  <meta name="twitter:description" content="ISC 155 delegasyon başvuruları şimdi açık." />
+  <title>ISC 155 — New Edition</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="homepage-cards.css" />
-  <link rel="stylesheet" href="homepage-entertainment.css" />
-  <link rel="stylesheet" href="homepage-live.css?v=20260924-hero-fix-1" />
-  <link rel="stylesheet" href="homepage-ticker.css" />
-  <link rel="stylesheet" href="homepage-listen.css" />
-  <link rel="stylesheet" href="homepage-hierarchy.css?v=20260924-pulse-1" />
-  <link rel="stylesheet" href="technical-polish.css?v=20260921-1" />
-  <link rel="stylesheet" href="isc-schedule.css?v=20260923-1" />
+  <link rel="stylesheet" href="homepage-155.css?v=20261001-1" />
 </head>
-<body class="home-page">
+<body class="home-155">
   <header class="site-header">
     <a class="brand" href="#top"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
     <nav>
-      <a id="home-current-edition-nav" href="editions/154/">ISC 154</a>
-      <a href="#entries">Katılımcılar</a>
-      <a href="#listen">Dinle</a>
-      <a href="#stories">Stories</a>
+      <a href="editions/155/">ISC 155</a>
+      <a href="#how">Nasıl işler?</a>
       <a href="countries/">Ülkeler</a>
       <a href="archive.html">Arşiv</a>
       <a href="search.html">Ara</a>
-      <a class="nav-vote" href="vote.html">Oy Ver</a>
+      <a class="nav-vote" href="submit.html">Başvur</a>
     </nav>
   </header>
 
   <main id="top">
-    <section class="live-hero" id="edition">
-      <div class="live-hero-media" aria-hidden="true">
-        <img id="hero-feature-image" alt="" decoding="async" />
-        <div class="live-hero-wash"></div>
-        <div class="hero-frame-label" id="hero-frame-label">CURRENT EDITION</div>
-        <div class="hero-frame-count"><span id="hero-feature-order">—</span><small id="hero-entry-count">/—</small></div>
-      </div>
-
-      <div class="live-hero-content">
-        <a class="live-pill" id="home-live-pill" href="vote.html" aria-label="Oylama sayfasına git"><span></span> Loading current edition</a>
-        <p class="hero-kicker" id="home-hero-kicker">International Song Contest · Current Edition</p>
-        <a class="hero-edition-link" id="home-edition-link" href="editions/154/" aria-label="Current edition hub"><h1>ISC <em id="home-edition-number">—</em></h1></a>
-        <p class="live-hero-deck" id="home-hero-deck">Güncel edisyon yükleniyor…</p>
-        <div class="live-hero-actions">
-          <a class="cta cta-play" href="#listen"><span class="play-icon">▶</span> <span id="listen-cta-label">Şarkıları dinle</span></a>
-          <a class="cta cta-vote" href="vote.html">Oy ver</a>
-          <a class="cta cta-text" href="#entries">Katılımcıları keşfet ↓</a>
+    <section class="launch-hero">
+      <div class="launch-copy">
+        <a class="launch-pill" id="submission-status-pill" href="submit.html"><i></i><span>SUBMISSIONS OPEN</span></a>
+        <p class="launch-kicker">International Song Contest · New edition</p>
+        <h1><span>ISC</span><em>155</em></h1>
+        <p class="launch-deck">Yeni dönem başladı.<br><strong>Sıradaki şarkıyı sen getir.</strong></p>
+        <p class="launch-intro">Delegasyonlar resmi ISC 155 entry’lerini doğrudan siteden gönderebilir. Tek ihtiyacın delegasyon kodun ve YouTube, YouTube Music veya Spotify’daki şarkı bağlantın.</p>
+        <div class="launch-actions">
+          <a class="launch-primary" id="primary-submit-link" href="submit.html">ŞARKINI GÖNDER <span>→</span></a>
+          <a class="launch-secondary" href="editions/155/">ISC 155 MERKEZİ</a>
         </div>
-        <div class="hero-feature-copy">
-          <span>Şimdi öne çıkan</span>
-          <strong id="hero-feature-artist">—</strong>
-          <small><b id="hero-feature-country">—</b> · <span id="hero-feature-song">—</span></small>
+        <div class="launch-deadline">
+          <span>ENTRY WINDOW</span>
+          <strong id="submission-deadline">Kapanış tarihi yakında açıklanacak</strong>
         </div>
       </div>
 
-      <div class="hero-side-note">RESULTS STATUS LOADING</div>
-    </section>
-
-    <section class="isc-live-pulse" id="live-pulse" aria-label="ISC Live Pulse">
-      <div class="isc-live-pulse__inner">
-        <div class="pulse-brand">
-          <div class="pulse-brand-line"><i aria-hidden="true"></i><strong>ISC LIVE PULSE</strong></div>
-          <span id="pulse-edition-label">CURRENT EDITION</span>
+      <div class="launch-visual" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="edition-constellation">
+          <span class="constellation-kicker">THE NEXT CHAPTER</span>
+          <strong>155</strong>
+          <small>OPEN CALL · 2026</small>
         </div>
-
-        <div class="pulse-module pulse-status">
-          <span class="pulse-label">VOTING STATUS</span>
-          <strong id="pulse-voting-status">Loading…</strong>
-          <small data-isc-voting-countdown>Oylama süresi hesaplanıyor…</small>
-        </div>
-
-        <div class="pulse-module pulse-ballots">
-          <span class="pulse-label">BALLOT WATCH</span>
-          <div class="pulse-ballot-row">
-            <strong id="pulse-ballot-count">0/8</strong>
-            <span>delegasyon</span>
-          </div>
-          <div class="pulse-progress" aria-hidden="true"><i id="pulse-progress-fill"></i></div>
-          <small id="pulse-last-ballot">Canlı durum yükleniyor…</small>
-        </div>
-
-        <a class="pulse-module pulse-next" href="live.html">
-          <span class="pulse-label">NEXT EVENT</span>
-          <strong>GRAND FINAL · 22:00</strong>
-          <small data-isc-gala-countdown>Yayına kalan süre hesaplanıyor…</small>
-        </a>
-
-        <a class="pulse-action" id="pulse-primary-action" href="vote.html">
-          <span id="pulse-action-kicker">VOTING ROOM</span>
-          <strong id="pulse-action-text">OY VER</strong>
-          <b>→</b>
-        </a>
-      </div>
-      <div class="pulse-activity" aria-live="polite">
-        <span class="pulse-activity-label">LIVE ACTIVITY</span>
-        <strong id="pulse-activity-text">ISC 154 canlı durumu hazırlanıyor…</strong>
-        <a href="#stories">8 LONG READS <span>→</span></a>
+        <div class="platform-float platform-youtube"><b>▶</b><span>YOUTUBE</span></div>
+        <div class="platform-float platform-music"><b>♪</b><span>YOUTUBE MUSIC</span></div>
+        <div class="platform-float platform-spotify"><b>●</b><span>SPOTIFY</span></div>
+        <div class="visual-stamp">ENTRIES<br>NOW OPEN</div>
       </div>
     </section>
 
-    <section class="final-broadcast-home" aria-labelledby="final-broadcast-title">
-      <a class="final-broadcast-card" href="live.html">
-        <div class="final-broadcast-art">
-          <img src="editions/154/56C89178-858C-456D-9F1A-B92245E215FD.png" alt="ISC 154 Final Yayını — 25 Eylül 2026, 22:00 TSİ" loading="eager">
-          <span class="final-broadcast-live"><i></i> FİNAL YAYINI</span>
-          <span class="final-broadcast-date-stamp"><small>GÜNCEL TARİH</small><b>25 EYLÜL · 22.00 TSİ</b></span>
-        </div>
-        <div class="final-broadcast-copy">
-          <p class="final-broadcast-kicker">ISC 154 · CANLI ETKİNLİK</p>
-          <h2 id="final-broadcast-title">Birlikte izleyelim.</h2>
-          <p>25 Eylül gecesi sekiz şarkıyı aynı anda, aynı yayın odasında izliyoruz. Canlı sohbet ve senkronize oynatma tek ekranda.</p>
-          <div class="final-broadcast-meta">
-            <strong>25 EYLÜL 2026</strong>
-            <span>22:00 TSİ</span>
-            <b>YAYIN ODASINA GİT <em>→</em></b>
-          </div>
-        </div>
-      </a>
+    <section class="launch-ticker" aria-label="ISC 155 announcement">
+      <div>
+        <span>ISC 155</span><i>✦</i><span>SUBMISSIONS OPEN</span><i>✦</i><span>ONE OFFICIAL ENTRY PER DELEGATION</span><i>✦</i><span>YOUTUBE</span><i>✦</i><span>YOUTUBE MUSIC</span><i>✦</i><span>SPOTIFY</span><i>✦</i>
+        <span>ISC 155</span><i>✦</i><span>SUBMISSIONS OPEN</span><i>✦</i><span>ONE OFFICIAL ENTRY PER DELEGATION</span><i>✦</i><span>YOUTUBE</span><i>✦</i><span>YOUTUBE MUSIC</span><i>✦</i><span>SPOTIFY</span><i>✦</i>
+      </div>
     </section>
 
-    <section class="section entries-section" id="entries">
-      <div class="section-heading entertainment-heading">
+    <section class="phase-status">
+      <div class="phase-status-copy">
+        <span class="eyebrow">ISC 155 / Current phase</span>
+        <h2>Kapılar açıldı.</h2>
+        <p>Line-up henüz açıklanmadı. Önce delegasyonların seçimlerini topluyoruz; yayınlanan liste yalnızca başvuru dönemi tamamlandıktan sonra sahneye çıkacak.</p>
+      </div>
+      <div class="phase-stat">
+        <span>ENTRY STATUS</span>
+        <strong id="submission-received">—</strong>
+        <small>resmî başvuru alındı</small>
+      </div>
+      <div class="phase-stat">
+        <span>DELEGATIONS</span>
+        <strong id="submission-country-count">—</strong>
+        <small>başvuru yapabilir</small>
+      </div>
+      <a class="phase-action" href="submit.html"><small>ENTRY DESK</small><strong>BAŞVURUYA GİT</strong><b>→</b></a>
+    </section>
+
+    <section class="launch-section" id="how">
+      <div class="launch-section-head">
         <div>
-          <span class="eyebrow">Meet the acts</span>
-          <h2>Sahnede kim var?</h2>
+          <span class="eyebrow">Three moves. One entry.</span>
+          <h2>Başvurunu üç adımda tamamla.</h2>
         </div>
-        <p id="entries-intro">Güncel edisyonun katılımcıları yükleniyor…</p>
+        <p>Yeni bir hesap açmıyorsun. Mevcut delegasyon kodunla kimliğini doğruluyor, entry bilgilerini giriyor ve gönderiyorsun.</p>
       </div>
-      <div id="entry-grid" class="entry-grid" aria-live="polite"></div>
+      <div class="how-grid">
+        <article><span>01</span><small>VERIFY</small><h3>Delegasyonunu doğrula.</h3><p>Ülkeni seç, mevcut delegasyon kodunu gir. Bu tarayıcıda doğrulandıktan sonra tekrar kod istemeyiz.</p></article>
+        <article><span>02</span><small>SUBMIT</small><h3>Şarkını getir.</h3><p>Sanatçı adı, şarkı adı ve tek bir geçerli YouTube, YouTube Music veya Spotify track bağlantısı yeterli.</p></article>
+        <article><span>03</span><small>REFINE</small><h3>Gerekirse güncelle.</h3><p>Başvuru penceresi açık kaldığı sürece resmî entry’ni değiştirebilirsin. Her revizyon güvenli biçimde kaydedilir.</p></article>
+      </div>
     </section>
 
-    <section class="listen-stage compact-listen" id="listen">
-      <div class="listen-stage-head">
+    <section class="platform-stage">
+      <div class="platform-stage-copy">
+        <span class="eyebrow">Accepted links</span>
+        <h2>Şarkı nerede yaşıyorsa, bağlantısını getir.</h2>
+        <p>Başvurunun müzik kaynağını otomatik tanıyoruz. Playlist, profil ve albüm linkleri yerine doğrudan şarkı/video bağlantısı gönder.</p>
+      </div>
+      <div class="platform-stack">
+        <article><div class="platform-icon">▶</div><div><small>VIDEO</small><strong>YouTube</strong><span>youtube.com/watch · youtu.be</span></div></article>
+        <article><div class="platform-icon">♪</div><div><small>TRACK / VIDEO</small><strong>YouTube Music</strong><span>music.youtube.com/watch</span></div></article>
+        <article><div class="platform-icon">●</div><div><small>TRACK</small><strong>Spotify</strong><span>open.spotify.com/track</span></div></article>
+      </div>
+    </section>
+
+    <section class="roadmap launch-section">
+      <div class="launch-section-head">
         <div>
-          <span class="eyebrow">Listen everywhere</span>
-          <h2>Şarkıları burada aç.</h2>
+          <span class="eyebrow">The road to 155</span>
+          <h2>Şimdi seçim zamanı. Sonra sahne.</h2>
         </div>
-        <p class="listen-stage-intro" id="listen-intro">Güncel edisyon playlistleri yükleniyor…</p>
+        <p>ISC 155’in sayfası yarışmayla birlikte gelişecek. Başvuru aşaması tamamlandığında aynı site line-up, dinleme, oylama ve sonuç deneyimine dönüşecek.</p>
       </div>
-
-      <div class="listen-platforms" id="listen-platforms">
-        <article class="platform-card youtube-card" id="youtube-platform-card">
-          <div class="platform-topline">
-            <div class="platform-brand"><span class="platform-dot"></span> YouTube playlist</div>
-            <div class="platform-meta" id="youtube-platform-meta">Loading…</div>
-          </div>
-          <div class="youtube-frame-wrap embed-gate" id="youtube-embed-host">
-            <button class="embed-gate-button" type="button" id="youtube-embed-button" aria-label="YouTube playerını yükle">
-              <span class="platform-poster platform-poster-youtube" id="youtube-platform-poster" aria-hidden="true"></span>
-              <span class="embed-gate-copy">
-                <i class="embed-gate-play" aria-hidden="true">▶</i>
-                <b id="youtube-embed-title">YouTube playlistini aç</b>
-                <span>YouTube player yalnızca tıkladığında yüklenir.</span>
-              </span>
-            </button>
-          </div>
-          <div class="platform-footer">
-            <div class="platform-footer-copy">
-              <strong>Watch the running order</strong>
-              <span id="youtube-footer-copy">Official current edition playlist</span>
-            </div>
-            <a class="platform-open" id="youtube-open-link" href="#" target="_blank" rel="noopener">YouTube’da aç ↗</a>
-          </div>
-        </article>
-
-        <article class="platform-card spotify-card" id="spotify-platform-card">
-          <div class="platform-topline">
-            <div class="platform-brand"><span class="platform-dot"></span> Spotify playlist</div>
-            <div class="platform-meta" id="spotify-platform-meta">Loading…</div>
-          </div>
-          <div class="spotify-embed-wrap embed-gate" id="spotify-embed-host">
-            <button class="embed-gate-button" type="button" id="spotify-embed-button" aria-label="Spotify playerını yükle">
-              <span class="platform-poster platform-poster-spotify" id="spotify-platform-poster" aria-hidden="true"></span>
-              <span class="embed-gate-copy">
-                <i class="embed-gate-play" aria-hidden="true">▶</i>
-                <b id="spotify-embed-title">Spotify playlistini aç</b>
-                <span>Spotify player yalnızca tıkladığında yüklenir.</span>
-              </span>
-            </button>
-          </div>
-          <div class="platform-footer">
-            <div class="platform-footer-copy">
-              <strong>Press play</strong>
-              <span id="spotify-footer-copy">Official current edition playlist</span>
-            </div>
-            <a class="platform-open" id="spotify-open-link" href="#" target="_blank" rel="noopener">Spotify’da aç ↗</a>
-          </div>
-        </article>
-      </div>
-
-      <div class="listen-quickrow" id="listen-quickrow" aria-label="Entry quick links"></div>
-    </section>
-
-    <section class="isc-ticker" id="live-ticker" aria-label="ISC current edition live music feed">
-      <div class="ticker-label" id="ticker-label">ISC LIVE</div>
-      <div class="ticker-viewport">
-        <div class="ticker-track">
-          <div class="ticker-group"></div>
-          <div class="ticker-group" aria-hidden="true"></div>
-        </div>
+      <div class="roadmap-line">
+        <article class="active"><b>01</b><span>NOW</span><strong>Entry submissions</strong><p>Delegasyon seçimleri alınıyor.</p></article>
+        <article><b>02</b><span>NEXT</span><strong>Line-up reveal</strong><p>Katılımcılar ve şarkılar açıklanacak.</p></article>
+        <article><b>03</b><span>LATER</span><strong>Listening & voting</strong><p>Resmî playlistler ve voting room açılacak.</p></article>
+        <article><b>04</b><span>FINALE</span><strong>Grand Final</strong><p>Canlı final ve scoreboard dönemi.</p></article>
       </div>
     </section>
 
-    <section class="vote-splash" id="vote">
-      <div class="vote-splash-number" id="vote-splash-number">—</div>
-      <div class="vote-splash-copy">
-        <span class="eyebrow">Your points. Your country.</span>
-        <h2>Şimdi sıra sende.</h2>
-        <p id="vote-splash-copy">Güncel edisyonun puanlama sistemi yükleniyor…</p>
-        <p class="vote-splash-deadline">OYLAMA SONU · <strong>25 EYLÜL 22.00 TSİ</strong> <span data-isc-voting-countdown></span></p>
+    <section class="archive-gateway">
+      <div>
+        <span class="eyebrow">Permanent archive</span>
+        <h2>Geçmiş yarışmalar kaybolmaz.</h2>
+        <p>Tamamlanan edisyonlar, katılımcılar, sonuçlar ve hikâyeler kalıcı arşivde yaşamaya devam eder. Ana sayfa ise her zaman sıradaki yarışmaya bakar.</p>
       </div>
-      <a class="vote-big-button" href="vote.html">VOTING ROOM <span>→</span></a>
-    </section>
-
-    <section class="stories-section stories-magazine" id="stories">
-      <div class="stories-magazine-topline">
-        <span>ISC MAGAZINE / ISSUE 154</span>
-        <div class="stories-magazine-index" aria-label="Issue 154 editorial index">
-          <b>8</b>
-          <span>LONG READS</span>
-          <i></i>
-          <span>2026</span>
-        </div>
-      </div>
-
-      <div class="stories-heading stories-magazine-heading">
-        <div>
-          <span class="eyebrow">From the archive magazine</span>
-          <h2>Sahnenin arkasındaki hikâyeler.</h2>
-        </div>
-        <p>ISC yalnızca scoreboard değil. Bu edisyonun sekiz entry’si, sanatçıların hayatlarına ve şarkıların arkasındaki kültüre açılan sekiz ayrı dergi dosyasına dönüştü.</p>
-      </div>
-
-      <div class="stories-editorial-grid">
-        <a class="editorial-feature editorial-card" href="stories/chatgpt.html">
-          <div class="editorial-feature-copy">
-            <div class="editorial-meta">FEATURED STORY · ENTRY 08 · UZANMIŞIM KUMSALA</div>
-            <h3>Aşkın Son Şahidi: ChatGPT</h3>
-            <p>Galena’nın skandallardan robotlara uzanan yirmi yıllık pop-folk hikâyesi.</p>
-            <span class="editorial-read">LONG READ’I AÇ →</span>
-          </div>
-          <div class="editorial-feature-image">
-            <img src="editions/154/ChatGPT%20Image%2024%20Eyl%202026%2009_42_22.png" alt="Galena — Aşkın Son Şahidi: ChatGPT" loading="lazy">
-          </div>
-        </a>
-
-        <a class="editorial-card editorial-card-wide" href="stories/porque-te-vas.html">
-          <img src="editions/154/1E410F40-A985-4A64-99F1-6C6A023C4194.png" alt="Laura Pausini — Bir Şarkıyı Elli Yıl Sonra Duymak" loading="lazy">
-          <div class="editorial-overlay"></div>
-          <div class="editorial-card-copy">
-            <div class="editorial-meta">ENTRY 06 · CABURYA</div>
-            <h3>Bir Şarkıyı Elli Yıl Sonra Duymak</h3>
-            <p>Laura Pausini, Jeanette ve “¿PORQUÉ TE VAS?”ın bitmeyen hayatı.</p>
-          </div>
-        </a>
-
-        <a class="editorial-card editorial-card-wide" href="stories/bowling-alley.html">
-          <img src="editions/154/ChatGPT%20Image%2023%20Eyl%202026%2015_54_11.png" alt="Audrey Hobert — Başrolü Kimse Vermedi, Kendisi Yazdı" loading="lazy">
-          <div class="editorial-overlay"></div>
-          <div class="editorial-card-copy">
-            <div class="editorial-meta">ENTRY 07 · STJOHN</div>
-            <h3>Başrolü Kimse Vermedi, Kendisi Yazdı</h3>
-            <p>Writers’ room’dan kendi pop evreninin başrolüne.</p>
-          </div>
-        </a>
-
-        <a class="editorial-card editorial-card-small" href="stories/nails.html">
-          <img src="editions/154/saint-levant-1.png" alt="Saint Levant — Tırnaklar, Vize ve Bir Pop Yıldızının Kendini İcat Edişi" loading="lazy">
-          <div class="editorial-overlay"></div>
-          <div class="editorial-card-copy">
-            <div class="editorial-meta">ENTRY 04 · SUPERLAND</div>
-            <h3>Tırnaklar, Vize ve Bir Pop Yıldızının Kendini İcat Edişi</h3>
-          </div>
-        </a>
-
-        <a class="editorial-card editorial-card-small" href="stories/mi-patmutyun.html">
-          <img src="editions/154/hayq-7.png" alt="HAYQ — Bir Korsan CD’den Eurovision’a" loading="lazy">
-          <div class="editorial-overlay"></div>
-          <div class="editorial-card-copy">
-            <div class="editorial-meta">ENTRY 05 · KIRMIZI</div>
-            <h3>Bir Korsan CD’den Eurovision’a</h3>
-          </div>
-        </a>
-
-        <a class="editorial-card editorial-card-small" href="stories/bonne-nuit.html">
-          <img src="editions/154/elise7.png" alt="Élise de Lune — Bir Şarkıcı mı, Bir Persona mı?" loading="lazy">
-          <div class="editorial-overlay"></div>
-          <div class="editorial-card-copy">
-            <div class="editorial-meta">ENTRY 02 · VERDE VERANO</div>
-            <h3>Bir Şarkıcı mı, Bir Persona mı?</h3>
-          </div>
-        </a>
-
-        <a class="editorial-card editorial-card-medium" href="stories/cuntology-101.html">
-          <img src="lambrini-girls-cuntology-101-share.png" alt="Lambrini Girls — Küfür, Özsaygı ve İki Synthesizer Arasında" loading="lazy">
-          <div class="editorial-overlay"></div>
-          <div class="editorial-card-copy">
-            <div class="editorial-meta">ENTRY 01 · ROLIPEA</div>
-            <h3>Küfür, Özsaygı ve İki Synthesizer Arasında</h3>
-            <p>Brighton barlarından ballroom diline.</p>
-          </div>
-        </a>
-
-        <a class="editorial-card editorial-card-medium" href="stories/mazaa.html">
-          <img src="editions/154/meira-liamoo-1.png" alt="Meira Omar & LIAMOO — Kabil’den Bombay’a, Göteborg’dan Kapadokya’ya" loading="lazy">
-          <div class="editorial-overlay"></div>
-          <div class="editorial-card-copy">
-            <div class="editorial-meta">ENTRY 03 · GÜNEŞ DİYARI</div>
-            <h3>Kabil’den Bombay’a, Göteborg’dan Kapadokya’ya</h3>
-            <p>“MAZAA”nın içinde saklı İsveç pop ağı.</p>
-          </div>
-        </a>
-      </div>
-
-      <div class="stories-magazine-footer">
-        <span>ISC MAGAZINE</span>
-        <b>8 LONG READS · ISSUE 154</b>
-        <a href="#stories">THE COMPLETE EDITORIAL EDITION ↑</a>
-      </div>
-    </section>
-
-    <section class="section archive-section" id="archive">
-      <div class="section-heading entertainment-heading">
-        <div>
-          <span class="eyebrow">The archive</span>
-          <h2>Her edisyon bir dönem.</h2>
-        </div>
-        <p id="archive-intro">Güncel edisyon ve geçmiş yarışmaların kalıcı kayıtları arşivde bir arada.</p>
-      </div>
-      <div class="archive-row">
-        <a class="archive-card current" id="current-archive-card" href="editions/154/">
-          <span id="archive-current-number">—</span>
-          <div>
-            <small>NOW PLAYING</small>
-            <strong id="archive-current-title">Current edition</strong>
-            <p id="archive-current-meta">Loading…</p>
-          </div>
-        </a>
-        <a class="archive-card placeholder" href="search.html">
-          <span>⌕</span>
-          <div>
-            <small>GLOBAL SEARCH</small>
-            <strong>ISC’de ara</strong>
-            <p>Edisyon, ülke, sanatçı veya şarkı adıyla tüm kalıcı arşivi tara.</p>
-          </div>
-        </a>
-      </div>
+      <a href="archive.html">TÜM ARŞİVİ AÇ <span>→</span></a>
     </section>
   </main>
 
   <footer>
     <div class="footer-brand">ISC</div>
-    <p>International Song Contest</p>
-    <p>Music · Entries · Countries · Voting · Stories · Results · Search · Archive</p>
+    <p>International Song Contest · Current Edition 155</p>
+    <p>Entries · Countries · Archive · Search</p>
   </footer>
 
-  <script src="app.js?v=20260924-pulse-1"></script>
-  <script src="isc-schedule.js?v=20260923-1"></script>
+  <script src="homepage-155.js?v=20261001-1"></script>
 </body>
 </html>
