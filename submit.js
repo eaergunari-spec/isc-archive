@@ -104,10 +104,6 @@
     state.submission = null;
   }
 
-  function updateNotesCount() {
-    $('notes-count').textContent = String($('submission-notes').value.length);
-  }
-
   function updateLinkPreview() {
     const input = $('media-url');
     const provider = detectProvider(input.value);
@@ -122,11 +118,7 @@
   }
 
   function fillForm(submission) {
-    $('artist-name').value = submission?.artist_name || '';
-    $('song-title').value = submission?.song_title || '';
     $('media-url').value = submission?.media_url || '';
-    $('submission-notes').value = submission?.notes || '';
-    updateNotesCount();
     updateLinkPreview();
   }
 
@@ -139,8 +131,8 @@
     }
     const provider = detectProvider(item.media_url);
     box.hidden = false;
-    $('existing-title').textContent = item.artist_name + ' — “' + item.song_title + '”';
-    $('existing-meta').textContent = (provider?.label || item.media_provider) + ' · Son güncelleme ' + formatTime(item.updated_at);
+    $('existing-title').textContent = provider?.label || String(item.media_provider || 'ENTRY LINK').toUpperCase();
+    $('existing-meta').textContent = 'Son güncelleme ' + formatTime(item.updated_at);
     $('existing-revision').textContent = String(item.revision_count || 1);
   }
 
@@ -157,7 +149,7 @@
     $('entry-form').hidden = false;
     $('receipt').hidden = true;
 
-    $('entry-form').querySelectorAll('input, textarea, button').forEach(node => {
+    $('entry-form').querySelectorAll('input, button').forEach(node => {
       node.disabled = !state.open;
     });
 
@@ -247,7 +239,8 @@
     $('entry-form').hidden = true;
     $('receipt').hidden = false;
     $('receipt-title').textContent = data.created ? 'Başvurun kaydedildi.' : 'Resmî entry güncellendi.';
-    $('receipt-copy').textContent = item.artist_name + ' — “' + item.song_title + '” ISC 155 için ' + state.country.name + ' delegasyonunun aktif entry’si.';
+    const provider = detectProvider(item.media_url);
+    $('receipt-copy').textContent = (provider?.label || 'Şarkı bağlantısı') + ' ISC 155 için ' + state.country.name + ' delegasyonunun aktif entry’si olarak kaydedildi.';
     $('receipt-country').textContent = state.country.name;
     $('receipt-code').textContent = data.receipt || ('ISC155-' + item.id);
     $('receipt-revision').textContent = String(item.revision_count || 1);
@@ -261,14 +254,11 @@
       return;
     }
 
-    const artist = $('artist-name').value.trim();
-    const song = $('song-title').value.trim();
     const media = $('media-url').value.trim();
-    const notes = $('submission-notes').value.trim();
     const provider = detectProvider(media);
 
-    if (!artist || !song || !media) {
-      setMessage($('submission-message'), 'Sanatçı adı, şarkı adı ve bağlantı zorunlu.', 'error');
+    if (!media) {
+      setMessage($('submission-message'), 'Şarkı bağlantısını gir.', 'error');
       return;
     }
     if (!provider) {
@@ -283,10 +273,10 @@
     try {
       const data = await rpc('isc_save_entry_submission', {
         p_token: state.token,
-        p_artist_name: artist,
-        p_song_title: song,
+        p_artist_name: null,
+        p_song_title: null,
         p_media_url: media,
-        p_notes: notes || null,
+        p_notes: null,
         p_edition_number: EDITION
       });
 
@@ -356,13 +346,12 @@
     }
   });
   $('entry-form').addEventListener('submit', saveEntry);
-  $('submission-notes').addEventListener('input', updateNotesCount);
   $('media-url').addEventListener('input', updateLinkPreview);
   $('forget-delegation').addEventListener('click', forgetDelegation);
   $('edit-after-save').addEventListener('click', () => {
     $('receipt').hidden = true;
     $('entry-form').hidden = false;
-    $('artist-name').focus();
+    $('media-url').focus();
   });
 
   boot();
