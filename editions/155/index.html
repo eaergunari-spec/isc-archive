@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="ISC 155 kalıcı edisyon merkezi. Ev sahibi ROLIPEA. Delegasyon entry başvuruları 9 Ekim 2026, 20.00 TSİ’ye kadar açık." />
+  <meta name="description" content="ISC 155 resmî edisyon merkezi. Host Nation ROLIPEA. Sekiz delegasyon, sekiz şarkı ve resmî running order şimdi yayında." />
   <meta name="theme-color" content="#0b0a0e" />
   <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/editions/155/" />
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="International Song Contest" />
   <meta property="og:title" content="ISC 155 — Edition Hub" />
-  <meta property="og:description" content="ISC 155 başladı. Host Nation: ROLIPEA. Delegasyon entry başvuruları 9 Ekim 2026, 20.00 TSİ’ye kadar açık." />
+  <meta property="og:description" content="ISC 155 line-up açıklandı: sekiz delegasyon, sekiz şarkı ve resmî running order." />
   <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/editions/155/" />
+  <meta property="og:image" content="https://eaergunari-spec.github.io/isc-archive/editions/155/3D447018-DFC7-4626-93A8-4D54E9D93682.png" />
+  <meta property="og:image:alt" content="ISC 155 — Host Nation ROLIPEA" />
   <title>ISC 155 — Edition Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +31,29 @@
     .edition-155 .hub-note-list b{font-family:"Libre Caslon Display",serif;color:var(--wine);font-size:30px;font-weight:400}
     .edition-155 .hub-note-list strong{display:block;font-family:"Libre Caslon Display",serif;font-size:23px;font-weight:400}
     .edition-155 .hub-note-list span{display:block;color:var(--muted);font-size:11px;margin-top:5px}
-    @media(max-width:800px){.edition-155 .hub-note{grid-template-columns:1fr}}
+    .lineup-section{max-width:1500px;margin:0 auto;padding:86px clamp(22px,5vw,80px)}
+    .lineup-head{display:grid;grid-template-columns:1fr minmax(280px,520px);gap:70px;align-items:end;margin-bottom:42px}
+    .lineup-head h2{font-family:"Libre Caslon Display",serif;font-size:clamp(46px,6vw,86px);font-weight:400;line-height:.91;margin:10px 0 0}
+    .lineup-head p{color:var(--muted);line-height:1.7;margin:0}
+    .lineup-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--ink)}
+    .lineup-card{display:grid;grid-template-columns:minmax(150px,.72fr) 1fr;min-height:250px;border-bottom:1px solid var(--line);position:relative}
+    .lineup-card:nth-child(odd){border-right:1px solid var(--line)}
+    .lineup-media{position:relative;display:block;overflow:hidden;background:#171217;min-height:250px}
+    .lineup-media img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.9) contrast(1.02);transition:transform .45s ease}
+    .lineup-media:hover img{transform:scale(1.025)}
+    .lineup-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.48))}
+    .lineup-order{position:absolute;z-index:2;top:16px;left:16px;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--cream);color:var(--wine);font-family:"Libre Caslon Display",serif;font-size:22px}
+    .lineup-play{position:absolute;z-index:2;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--cream);color:#111;font-size:14px}
+    .lineup-copy{padding:28px 30px 26px;display:flex;flex-direction:column;align-items:flex-start}
+    .lineup-country{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--wine);text-decoration:none}
+    .lineup-copy h3{font-family:"Libre Caslon Display",serif;font-size:clamp(27px,2.5vw,40px);line-height:1;margin:18px 0 8px;font-weight:400}
+    .lineup-copy p{font-size:15px;line-height:1.45;margin:0;color:var(--muted)}
+    .lineup-video{margin-top:auto;padding-top:24px;font-size:11px;letter-spacing:.12em;font-weight:700;text-decoration:none;color:var(--ink)}
+    .lineup-video:hover{color:var(--wine)}
+    .lineup-loading{grid-column:1/-1;padding:50px 0;color:var(--muted)}
+    @media(max-width:980px){.lineup-grid{grid-template-columns:1fr}.lineup-card:nth-child(odd){border-right:0}.lineup-head{grid-template-columns:1fr;gap:22px}}
+    @media(max-width:800px){.edition-155 .hub-note{grid-template-columns:1fr}.lineup-card{grid-template-columns:130px 1fr;min-height:210px}.lineup-media{min-height:210px}.lineup-copy{padding:22px}.lineup-copy h3{font-size:29px}}
+    @media(max-width:560px){.lineup-card{grid-template-columns:1fr}.lineup-media{aspect-ratio:16/9;min-height:0}.lineup-copy{min-height:190px}.lineup-order{width:42px;height:42px}}
   </style>
 </head>
 <body class="home-155 edition-155">
@@ -40,7 +64,7 @@
       <a href="../../countries/">Ülkeler</a>
       <a href="../../archive.html">Arşiv</a>
       <a href="../../search.html">Ara</a>
-      <a class="nav-vote" href="../../submit.html">Başvur</a>
+      <a class="nav-vote" href="#participants">Line-up</a>
     </nav>
   </header>
 
@@ -48,20 +72,20 @@
     <section class="launch-hero">
       <div class="launch-copy">
         <div class="launch-pill-row">
-          <a class="launch-pill" id="submission-status-pill" href="../../submit.html"><i></i><span>SUBMISSIONS OPEN</span></a>
+          <a class="launch-pill" href="#participants"><i></i><span>LINE-UP REVEALED</span></a>
           <a class="symbolic-host-chip" href="../../countries/rolipea/"><span>✦</span> HOST NATION · ROLIPEA</a>
         </div>
         <p class="launch-kicker">International Song Contest · Current edition</p>
         <h1><span>ISC</span><em>155</em></h1>
-        <p class="launch-deck">Edisyon merkezi.<br><strong>İlk perde: başvurular.</strong></p>
-        <p class="launch-intro">Bu URL, ISC 155’in yarışma boyunca ve yarışma tamamlandıktan sonra kalacak resmî edisyon kaydıdır. Şimdilik delegasyon entry’lerini topluyoruz.</p>
+        <p class="launch-deck">Sekiz şarkı.<br><strong>Tek edisyon.</strong></p>
+        <p class="launch-intro">ISC 155’in resmî line-up’ı tamamlandı. Sekiz delegasyonun temsilcileri, şarkıları ve running order’ı artık bu kalıcı edisyon adresinde yayında.</p>
         <div class="launch-actions">
-          <a class="launch-primary" id="primary-submit-link" href="../../submit.html">ENTRY GÖNDER <span>→</span></a>
+          <a class="launch-primary" href="#participants">RUNNING ORDER <span>→</span></a>
           <a class="launch-secondary" href="../../index.html">ANA SAYFA</a>
         </div>
         <div class="launch-deadline">
-          <span>ENTRY WINDOW</span>
-          <strong id="submission-deadline">9 Ekim 2026 · 20.00 TSİ</strong>
+          <span>OFFICIAL LINE-UP</span>
+          <strong>8 ENTRIES · RUNNING ORDER 01–08</strong>
         </div>
       </div>
       <div class="launch-visual" aria-hidden="true">
@@ -74,17 +98,31 @@
     </section>
 
     <section class="phase-status">
-      <div class="phase-status-copy"><span class="eyebrow">Live edition state</span><h2>Entry window.</h2><p>Line-up reveal henüz başlamadı. Delegasyonların resmî seçimleri alınıyor ve entry’ler reveal aşamasına kadar burada yayımlanmıyor.</p></div>
-      <div class="phase-stat"><span>RECEIVED</span><strong id="submission-received">—</strong><small>resmî entry</small></div>
-      <div class="phase-stat"><span>ELIGIBLE</span><strong id="submission-country-count">—</strong><small>delegasyon</small></div>
-      <a class="phase-action" href="../../submit.html"><small>OFFICIAL ENTRY DESK</small><strong>BAŞVURU YAP</strong><b>→</b></a>
+      <div class="phase-status-copy"><span class="eyebrow">ISC 155 / Current phase</span><h2>Line-up is live.</h2><p>Başvuru dönemi tamamlandı. Sekiz delegasyonun resmî entry’si ve running order’ı açıklandı; sıradaki aşama dinleme ve oylama.</p></div>
+      <div class="phase-stat"><span>ENTRIES</span><strong>8</strong><small>resmî şarkı</small></div>
+      <div class="phase-stat"><span>DELEGATIONS</span><strong>8</strong><small>ülke</small></div>
+      <a class="phase-action" href="#participants"><small>OFFICIAL LINE-UP</small><strong>RUNNING ORDER</strong><b>↓</b></a>
+    </section>
+
+
+    <section class="lineup-section" id="participants">
+      <div class="lineup-head">
+        <div>
+          <span class="eyebrow">Official running order</span>
+          <h2>Eight songs.<br>One edition.</h2>
+        </div>
+        <p>ISC 155’in resmî katılımcıları running order sırasıyla. Her karttan delegasyon profiline veya gönderilen resmî YouTube videosuna geçebilirsin.</p>
+      </div>
+      <div class="lineup-grid" id="isc155-lineup" aria-live="polite">
+        <p class="lineup-loading">Line-up yükleniyor…</p>
+      </div>
     </section>
 
     <section class="hub-note">
-      <div><span class="eyebrow">Edition lifecycle</span><h2>Bu sayfa yarışmayla birlikte büyüyecek.</h2><p>Başvurular bittikten sonra katılımcılar, resmî medya, running order, voting durumu ve final sonuçları aynı kalıcı ISC 155 adresine eklenecek.</p></div>
+      <div><span class="eyebrow">Edition lifecycle</span><h2>İkinci perde açıldı.</h2><p>Başvurular tamamlandı ve line-up yayında. Bundan sonra aynı kalıcı ISC 155 adresi dinleme, oylama ve final sonuçlarıyla büyümeye devam edecek.</p></div>
       <div class="hub-note-list">
-        <div><b>01</b><p><strong>Submission phase</strong><span>Şu an aktif · delegasyon seçimleri alınıyor.</span></p></div>
-        <div><b>02</b><p><strong>Line-up reveal</strong><span>Entry’ler onaylandıktan sonra burada açılacak.</span></p></div>
+        <div><b>01</b><p><strong>Submission phase</strong><span>Tamamlandı · 8/8 delegasyon.</span></p></div>
+        <div><b>02</b><p><strong>Line-up reveal</strong><span>Şu an aktif · running order yayında.</span></p></div>
         <div><b>03</b><p><strong>Listening & voting</strong><span>Playlistler ve voting room yarışma takvimiyle devreye girecek.</span></p></div>
         <div><b>04</b><p><strong>Final record</strong><span>Yarışma bittiğinde bu adres kalıcı arşiv kaydına dönüşecek.</span></p></div>
       </div>
@@ -96,7 +134,7 @@
     </section>
   </main>
 
-  <footer><div class="footer-brand">ISC</div><p>International Song Contest · ISC 155</p><p>Host Nation · ROLIPEA · submission phase</p></footer>
-  <script src="../../homepage-155.js?v=20261001-1"></script>
+  <footer><div class="footer-brand">ISC</div><p>International Song Contest · ISC 155</p><p>Host Nation · ROLIPEA · line-up revealed</p></footer>
+  <script src="../../edition-155.js?v=20261011-1"></script>
 </body>
 </html>
