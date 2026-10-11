@@ -94,3 +94,105 @@
 @media (prefers-reduced-motion:reduce){.launch-pill i,.orbit,.launch-ticker div{animation:none}}
 @media (max-width:1050px){.launch-hero{grid-template-columns:1fr}.reigning-stage{grid-template-columns:1fr}.reigning-champion{min-height:620px}.host-nation-card{min-height:520px}.launch-visual{min-height:560px}.phase-status{grid-template-columns:1fr 1fr}.phase-status-copy,.phase-action{grid-column:1/-1}.launch-section-head{display:block}.launch-section-head>p{margin-top:18px}.platform-stage{grid-template-columns:1fr;gap:50px}.roadmap-line{grid-template-columns:1fr 1fr}.archive-gateway{grid-template-columns:1fr}}
 @media (max-width:680px){.launch-copy{padding:58px 18px}.launch-pill-row{margin-bottom:30px}.symbolic-host-chip{font-size:8px}.reigning-champion{min-height:560px}.reigning-copy{left:18px;right:18px;bottom:34px}.reigning-copy h2{font-size:64px}.reigning-copy>p{font-size:25px}.reigning-number{font-size:230px}.reigning-medal{width:84px;height:84px;right:16px;top:18px}.reigning-medal strong{font-size:18px}.host-nation-card{padding:58px 18px;min-height:auto}.host-nation-card dl div{grid-template-columns:96px 1fr}.launch-copy h1{font-size:clamp(104px,38vw,180px)}.launch-visual{min-height:470px}.orbit-one{width:390px}.orbit-two{width:285px}.edition-constellation strong{font-size:190px}.platform-youtube{left:4%;top:18%}.platform-music{right:4%;top:28%}.platform-spotify{left:8%;bottom:12%}.visual-stamp{width:84px;height:84px;right:5%;bottom:7%}.phase-status{grid-template-columns:1fr 1fr}.phase-status>*{padding:28px 18px}.phase-stat strong{font-size:45px}.how-grid{grid-template-columns:1fr}.how-grid article,.how-grid article+article{padding:25px 0;border-left:0}.platform-stage{padding:70px 18px}.roadmap-line{grid-template-columns:1fr}.roadmap-line article,.roadmap-line article+article{padding:22px 0;border-left:0;border-bottom:1px solid rgba(24,21,18,.16)}.archive-gateway{padding:70px 18px}.launch-deadline{display:block}.launch-deadline strong{display:block;margin-top:7px}}
+
+
+/* ISC 155 official lineup reveal */
+.home-lineup-section{
+  max-width:1500px;
+  margin:0 auto;
+  padding:92px clamp(22px,5vw,80px);
+}
+.home-lineup-intro p{
+  margin:0 0 18px;
+  color:var(--muted);
+  line-height:1.7;
+}
+.home-lineup-intro a{
+  display:inline-flex;
+  align-items:center;
+  gap:18px;
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px solid var(--ink);
+  padding-bottom:8px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.14em;
+}
+.home-lineup-list{border-top:1px solid var(--ink)}
+.home-lineup-row{
+  display:grid;
+  grid-template-columns:72px minmax(150px,.55fr) 1.45fr 54px;
+  gap:22px;
+  align-items:center;
+  min-height:94px;
+  border-bottom:1px solid var(--line);
+  transition:background .2s ease;
+}
+.home-lineup-row:hover{background:rgba(90,15,44,.035)}
+.home-lineup-order{
+  font-family:"Libre Caslon Display",serif;
+  font-size:33px;
+  color:var(--isc-wine);
+}
+.home-lineup-country{
+  color:var(--ink);
+  text-decoration:none;
+  text-transform:uppercase;
+  letter-spacing:.13em;
+  font-size:10px;
+  font-weight:700;
+}
+.home-lineup-entry{
+  display:grid;
+  grid-template-columns:minmax(180px,.72fr) 1fr;
+  gap:28px;
+  align-items:baseline;
+}
+.home-lineup-entry strong{
+  font-family:"Libre Caslon Display",serif;
+  font-size:26px;
+  line-height:1.08;
+  font-weight:400;
+}
+.home-lineup-entry span{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.4;
+}
+.home-lineup-play{
+  width:40px;
+  height:40px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:var(--isc-wine);
+  text-decoration:none;
+  font-size:12px;
+  transition:background .2s ease,color .2s ease,border-color .2s ease;
+}
+.home-lineup-play:hover{
+  background:var(--isc-wine);
+  color:#fff;
+  border-color:var(--isc-wine);
+}
+.home-lineup-loading{
+  margin:0;
+  padding:42px 0;
+  color:var(--muted);
+}
+@media(max-width:850px){
+  .home-lineup-row{grid-template-columns:54px 1fr 44px;gap:16px;padding:18px 0}
+  .home-lineup-country{grid-column:2}
+  .home-lineup-entry{grid-column:2;grid-template-columns:1fr;gap:4px}
+  .home-lineup-play{grid-column:3;grid-row:1/3}
+  .home-lineup-order{grid-row:1/3}
+}
+@media(max-width:560px){
+  .home-lineup-section{padding:70px 18px}
+  .home-lineup-row{grid-template-columns:44px 1fr 40px}
+  .home-lineup-order{font-size:27px}
+  .home-lineup-entry strong{font-size:23px}
+  .home-lineup-entry span{font-size:13px}
+}
