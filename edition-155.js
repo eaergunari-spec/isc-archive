@@ -13,6 +13,11 @@
     .replace(/'/g, '&#39;');
 
   const countryHref = slug => '../../countries/' + encodeURIComponent(slug) + '/';
+  const internalHref = value => {
+    if (!value) return '';
+    if (/^https?:/i.test(value)) return value;
+    return '../../' + String(value).replace(/^\/+/, '');
+  };
 
   function youtubeThumb(videoId) {
     return 'https://i.ytimg.com/vi/' + encodeURIComponent(videoId) + '/hqdefault.jpg';
@@ -56,9 +61,12 @@
             </a>
             <div class="lineup-copy">
               <a class="lineup-country" href="${countryHref(entry.country_slug)}">${escapeHtml(entry.country)}</a>
-              <h3>${escapeHtml(entry.artist)}</h3>
+              <h3>${entry.detail_url ? `<a href="${escapeHtml(internalHref(entry.detail_url))}">${escapeHtml(entry.artist)}</a>` : escapeHtml(entry.artist)}</h3>
               <p>${escapeHtml(entry.song)}</p>
-              <a class="lineup-video" href="${escapeHtml(videoUrl)}" target="_blank" rel="noopener">OFFICIAL VIDEO ↗</a>
+              <div class="lineup-actions">
+                ${entry.detail_url ? `<a class="lineup-editorial" href="${escapeHtml(internalHref(entry.detail_url))}">EDITORIAL →</a>` : ''}
+                <a class="lineup-video" href="${escapeHtml(videoUrl)}" target="_blank" rel="noopener">OFFICIAL VIDEO ↗</a>
+              </div>
             </div>
           </article>
         `;
