@@ -155,6 +155,8 @@
   line-height:1.08;
   font-weight:400;
 }
+.home-lineup-entry strong a{color:inherit;text-decoration:none}
+.home-lineup-entry strong a:hover{color:var(--isc-wine)}
 .home-lineup-entry span{
   color:var(--muted);
   font-size:14px;
