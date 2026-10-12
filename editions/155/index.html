@@ -47,13 +47,29 @@
     .lineup-copy{padding:28px 30px 26px;display:flex;flex-direction:column;align-items:flex-start}
     .lineup-country{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--wine);text-decoration:none}
     .lineup-copy h3{font-family:"Libre Caslon Display",serif;font-size:clamp(27px,2.5vw,40px);line-height:1;margin:18px 0 8px;font-weight:400}
+    .lineup-copy h3 a{color:inherit;text-decoration:none}.lineup-copy h3 a:hover{color:var(--wine)}
     .lineup-copy p{font-size:15px;line-height:1.45;margin:0;color:var(--muted)}
-    .lineup-video{margin-top:auto;padding-top:24px;font-size:11px;letter-spacing:.12em;font-weight:700;text-decoration:none;color:var(--ink)}
-    .lineup-video:hover{color:var(--wine)}
+    .lineup-actions{margin-top:auto;padding-top:24px;display:flex;gap:18px;flex-wrap:wrap}
+    .lineup-video,.lineup-editorial{font-size:10px;letter-spacing:.12em;font-weight:700;text-decoration:none;color:var(--ink)}
+    .lineup-editorial{color:var(--wine)}
+    .lineup-video:hover,.lineup-editorial:hover{opacity:.65}
     .lineup-loading{grid-column:1/-1;padding:50px 0;color:var(--muted)}
-    @media(max-width:980px){.lineup-grid{grid-template-columns:1fr}.lineup-card:nth-child(odd){border-right:0}.lineup-head{grid-template-columns:1fr;gap:22px}}
+    .editorial-feature{max-width:1500px;margin:0 auto;padding:10px clamp(22px,5vw,80px) 92px}
+    .editorial-feature>a{display:grid;grid-template-columns:minmax(300px,.95fr) 1.05fr;min-height:470px;background:#11100e;color:#fff;text-decoration:none;overflow:hidden}
+    .editorial-feature-media{position:relative;overflow:hidden;min-height:470px}
+    .editorial-feature-media img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.8) contrast(1.07);transition:transform .6s ease}
+    .editorial-feature>a:hover .editorial-feature-media img{transform:scale(1.025)}
+    .editorial-feature-media:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 45%,rgba(17,16,14,.34))}
+    .editorial-feature-no{position:absolute;left:24px;top:20px;z-index:2;font-family:"Libre Caslon Display",serif;font-size:70px;line-height:1;color:#fff}
+    .editorial-feature-copy{padding:54px clamp(28px,5vw,72px);display:flex;flex-direction:column;justify-content:center}
+    .editorial-feature-copy .eyebrow{color:rgba(255,255,255,.55)}
+    .editorial-feature-copy h2{font-family:"Libre Caslon Display",serif;font-size:clamp(46px,5vw,78px);line-height:.94;font-weight:400;margin:14px 0 22px}
+    .editorial-feature-copy p{max-width:620px;color:rgba(255,255,255,.66);line-height:1.72;margin:0}
+    .editorial-feature-copy b{margin-top:38px;font-size:10px;letter-spacing:.16em;color:#fff}
+    .editorial-feature-copy b span{font-size:22px;margin-left:14px}
+    @media(max-width:980px){.lineup-grid{grid-template-columns:1fr}.lineup-card:nth-child(odd){border-right:0}.lineup-head{grid-template-columns:1fr;gap:22px}.editorial-feature>a{grid-template-columns:1fr}.editorial-feature-media{min-height:390px}.editorial-feature-copy{min-height:390px}}
     @media(max-width:800px){.edition-155 .hub-note{grid-template-columns:1fr}.lineup-card{grid-template-columns:130px 1fr;min-height:210px}.lineup-media{min-height:210px}.lineup-copy{padding:22px}.lineup-copy h3{font-size:29px}}
-    @media(max-width:560px){.lineup-card{grid-template-columns:1fr}.lineup-media{aspect-ratio:16/9;min-height:0}.lineup-copy{min-height:190px}.lineup-order{width:42px;height:42px}}
+    @media(max-width:560px){.lineup-card{grid-template-columns:1fr}.lineup-media{aspect-ratio:16/9;min-height:0}.lineup-copy{min-height:190px}.lineup-order{width:42px;height:42px}.editorial-feature{padding:0 18px 70px}.editorial-feature-media{min-height:270px}.editorial-feature-copy{padding:38px 24px;min-height:340px}.editorial-feature-copy h2{font-size:45px}}
   </style>
 </head>
 <body class="home-155 edition-155">
@@ -118,6 +134,22 @@
       </div>
     </section>
 
+
+    <section class="editorial-feature" aria-labelledby="entry-01-editorial-title">
+      <a href="../../stories/kryla-leleky.html">
+        <div class="editorial-feature-media">
+          <img src="https://i.ytimg.com/vi/tuO2601rwyE/maxresdefault.jpg" alt="Nikita Kiselov — Kryla Leleky" loading="lazy" decoding="async">
+          <span class="editorial-feature-no">01</span>
+        </div>
+        <div class="editorial-feature-copy">
+          <span class="eyebrow">ISC MAGAZINE · ENTRY 01 · VERDE VERANO</span>
+          <h2 id="entry-01-editorial-title">Leyleklerin Kanadında İkinci Hayat</h2>
+          <p>Çocuk yıldızlıktan Bucha’ya; SKYLERR söylentilerinden Tina Karol’a; KALUSH, yapay zekâ ve üç yıl boyunca doğru sahibini arayan bir nakarata. Nikita Kiselov’un “Kryla Leleky”ye uzanan tuhaf ve çok katmanlı hikâyesi.</p>
+          <b>LONG READ’İ AÇ <span>→</span></b>
+        </div>
+      </a>
+    </section>
+
     <section class="hub-note">
       <div><span class="eyebrow">Edition lifecycle</span><h2>İkinci perde açıldı.</h2><p>Başvurular tamamlandı ve line-up yayında. Bundan sonra aynı kalıcı ISC 155 adresi dinleme, oylama ve final sonuçlarıyla büyümeye devam edecek.</p></div>
       <div class="hub-note-list">
@@ -135,6 +167,6 @@
   </main>
 
   <footer><div class="footer-brand">ISC</div><p>International Song Contest · ISC 155</p><p>Host Nation · ROLIPEA · line-up revealed</p></footer>
-  <script src="../../edition-155.js?v=20261011-1"></script>
+  <script src="../../edition-155.js?v=20261012-1"></script>
 </body>
 </html>
