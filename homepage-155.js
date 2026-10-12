@@ -13,6 +13,11 @@
     .replace(/'/g, '&#39;');
 
   const countryHref = slug => 'countries/' + encodeURIComponent(slug) + '/';
+  const internalHref = value => {
+    if (!value) return '';
+    if (/^https?:/i.test(value)) return value;
+    return String(value).replace(/^\/+/, '');
+  };
 
   async function loadLineup() {
     const host = document.getElementById('home-lineup');
@@ -47,7 +52,7 @@
             <span class="home-lineup-order">${order}</span>
             <a class="home-lineup-country" href="${countryHref(entry.country_slug)}">${escapeHtml(entry.country)}</a>
             <div class="home-lineup-entry">
-              <strong>${escapeHtml(entry.artist)}</strong>
+              <strong>${entry.detail_url ? `<a href="${escapeHtml(internalHref(entry.detail_url))}">${escapeHtml(entry.artist)}</a>` : escapeHtml(entry.artist)}</strong>
               <span>${escapeHtml(entry.song)}</span>
             </div>
             <a class="home-lineup-play" href="${escapeHtml(videoUrl)}" target="_blank" rel="noopener" aria-label="${escapeHtml(entry.artist)} — ${escapeHtml(entry.song)} videosunu aç">▶</a>
