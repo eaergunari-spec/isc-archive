@@ -241,7 +241,18 @@
     }
   }
 
-  async function saveChanges(retry = true) {
+  async function postEdits(passcode, edits) {
+    return fetch(SAVE_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-editor-passcode': passcode
+      },
+      body: JSON.stringify({ story: storySlug, edits })
+    });
+  }
+
+  async function saveChanges() {
     if (saving || !dirty.size) return;
     let passcode = getPasscode(false);
     if (!passcode) {
@@ -258,24 +269,13 @@
     updateToolbar();
 
     try {
-      const response = await fetch(SAVE_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-editor-passcode': passcode
-        },
-        body: JSON.stringify({ story: storySlug, edits })
-      });
+      let response = await postEdits(passcode, edits);
 
-      if (response.status === 401 && retry) {
+      if (response.status === 401) {
         sessionStorage.removeItem('isc_editorial_passcode');
-        saving = false;
-        const fresh = getPasscode(true);
-        if (!fresh) {
-          updateToolbar('Erişim kodu doğrulanamadı');
-          return;
-        }
-        return saveChanges(false);
+        passcode = getPasscode(true);
+        if (!passcode) throw new Error('unauthorized');
+        response = await postEdits(passcode, edits);
       }
 
       const data = await response.json().catch(() => ({}));
@@ -283,14 +283,15 @@
 
       dirty.forEach(key => registry.get(key)?.classList.remove('editorial-dirty'));
       dirty.clear();
+      saving = false;
       updateToolbar('Kaydedildi · değişiklikler artık canlı');
       window.setTimeout(() => updateToolbar(), 2200);
     } catch (error) {
-      console.error(error);
-      updateToolbar('Kaydetme başarısız · tekrar dene');
-    } finally {
       saving = false;
-      updateToolbar();
+      console.error(error);
+      updateToolbar(error?.message === 'unauthorized'
+        ? 'Erişim kodu doğrulanamadı'
+        : 'Kaydetme başarısız · tekrar dene');
     }
   }
 
