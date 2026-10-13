@@ -2846,3 +2846,143 @@ body.story-galena{
   .story-galena .galena-artwork-inset figcaption{display:block}
   .story-galena .galena-artwork-inset figcaption span{display:block}
 }
+
+
+/* ------------------------------------------------------------
+   CSINSZKA / FELSÜTÖTT A NAPSUGÁRA — EDITORIAL COMPONENTS
+   ------------------------------------------------------------ */
+.story-csinszka .identity-status{
+  margin:36px 0 54px;
+  padding:24px 26px 25px;
+  border:1px solid rgba(125,32,52,.20);
+  border-left:5px solid var(--story-pink);
+  background:
+    linear-gradient(135deg,rgba(125,32,52,.075),rgba(255,255,255,.35) 58%,rgba(133,200,192,.08));
+}
+.story-csinszka .identity-status>span{
+  display:block;
+  margin-bottom:8px;
+  color:var(--story-wine);
+  font-size:8px;
+  font-weight:800;
+  line-height:1;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.story-csinszka .identity-status strong{
+  display:block;
+  max-width:680px;
+  font-family:"Libre Caslon Display",serif;
+  font-size:clamp(28px,3vw,39px);
+  font-weight:400;
+  line-height:1.02;
+  letter-spacing:-.025em;
+}
+.story-csinszka .identity-status p{
+  margin:12px 0 0;
+  max-width:700px;
+  color:var(--story-muted);
+  font-size:12px;
+  line-height:1.65;
+}
+
+.story-csinszka .story-data-strip{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  margin:34px 0 48px;
+  border-top:1px solid var(--story-ink);
+  border-bottom:1px solid var(--story-line);
+}
+.story-csinszka .story-data-strip>div{
+  min-width:0;
+  padding:17px 15px 18px 0;
+}
+.story-csinszka .story-data-strip>div+div{
+  padding-left:15px;
+  border-left:1px solid var(--story-line);
+}
+.story-csinszka .story-data-strip span{
+  display:block;
+  margin-bottom:6px;
+  color:var(--story-muted);
+  font-family:"DM Sans",sans-serif;
+  font-size:8px;
+  font-weight:800;
+  line-height:1;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.story-csinszka .story-data-strip strong{
+  display:block;
+  overflow-wrap:anywhere;
+  font-family:"Libre Caslon Display",serif;
+  font-size:clamp(18px,1.8vw,23px);
+  font-weight:400;
+  line-height:1.08;
+  letter-spacing:-.015em;
+}
+
+.story-csinszka .production-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1px;
+  margin:36px 0 50px;
+  border:1px solid var(--story-line);
+  background:var(--story-line);
+}
+.story-csinszka .production-grid>div{
+  min-width:0;
+  padding:20px 22px 21px;
+  background:var(--story-paper-2);
+}
+.story-csinszka .production-grid span{
+  display:block;
+  margin-bottom:7px;
+  color:var(--story-wine);
+  font-size:8px;
+  font-weight:800;
+  line-height:1;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.story-csinszka .production-grid strong{
+  display:block;
+  font-family:"Libre Caslon Display",serif;
+  font-size:clamp(23px,2.4vw,31px);
+  font-weight:400;
+  line-height:1.04;
+  letter-spacing:-.025em;
+}
+.story-csinszka .production-grid p{
+  margin:8px 0 0;
+  color:var(--story-muted);
+  font-size:11px;
+  line-height:1.55;
+}
+
+@media(max-width:700px){
+  .story-csinszka .identity-status{
+    margin:30px 0 44px;
+    padding:20px 19px 21px;
+  }
+  .story-csinszka .story-data-strip{
+    grid-template-columns:1fr 1fr;
+  }
+  .story-csinszka .story-data-strip>div{
+    padding:15px 12px 16px 0;
+  }
+  .story-csinszka .story-data-strip>div+div{
+    padding-left:12px;
+  }
+  .story-csinszka .story-data-strip>div:nth-child(3){
+    padding-left:0;
+    border-left:0;
+    border-top:1px solid var(--story-line);
+  }
+  .story-csinszka .story-data-strip>div:nth-child(4){
+    border-top:1px solid var(--story-line);
+  }
+  .story-csinszka .production-grid{
+    grid-template-columns:1fr;
+  }
+}
