@@ -9,6 +9,7 @@ on:
 permissions:
   contents: read
   actions: write
+  deployments: write
   pages: write
 
 jobs:
@@ -27,6 +28,42 @@ jobs:
             echo "force-cancel workflow $run_id -> HTTP $code"
             if [[ "$code" != "202" && "$code" != "409" ]]; then
               cat /tmp/force-cancel.json || true
+              exit 1
+            fi
+          done
+
+      - name: Remove stale github-pages environment deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          STALE_SHA: "9334e422e902181317d14970a31fa68172448e6a"
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -sS -o /tmp/deployments.json             -H "Accept: application/vnd.github+json"             -H "Authorization: Bearer $GH_TOKEN"             -H "X-GitHub-Api-Version: 2022-11-28"             "https://api.github.com/repos/$REPO/deployments?environment=github-pages&per_page=100"
+
+          python3 -c 'import json; d=json.load(open("/tmp/deployments.json")); print("github-pages deployments:", [(x.get("id"),x.get("sha"),x.get("environment")) for x in d])'
+
+          mapfile -t DEPLOYMENT_IDS < <(python3 -c 'import json,os; d=json.load(open("/tmp/deployments.json")); s=os.environ["STALE_SHA"]; [print(x["id"]) for x in d if x.get("sha")==s]')
+
+          if (( ${#DEPLOYMENT_IDS[@]} == 0 )); then
+            echo "No generic github-pages deployment found for stale SHA"
+          fi
+
+          for deployment_id in "${DEPLOYMENT_IDS[@]}"; do
+            code=$(curl -sS -o /tmp/inactive.json -w "%{http_code}"               -X POST               -H "Accept: application/vnd.github+json"               -H "Authorization: Bearer $GH_TOKEN"               -H "X-GitHub-Api-Version: 2022-11-28"               -H "Content-Type: application/json"               -d '{"state":"inactive","description":"Clear stale GitHub Pages deployment lock"}'               "https://api.github.com/repos/$REPO/deployments/$deployment_id/statuses")
+            echo "mark deployment $deployment_id inactive -> HTTP $code"
+            if [[ "$code" != "201" ]]; then
+              cat /tmp/inactive.json || true
+              exit 1
+            fi
+
+            sleep 1
+
+            code=$(curl -sS -o /tmp/delete-deployment.json -w "%{http_code}"               -X DELETE               -H "Accept: application/vnd.github+json"               -H "Authorization: Bearer $GH_TOKEN"               -H "X-GitHub-Api-Version: 2022-11-28"               "https://api.github.com/repos/$REPO/deployments/$deployment_id")
+            echo "delete deployment $deployment_id -> HTTP $code"
+            if [[ "$code" != "204" && "$code" != "404" ]]; then
+              cat /tmp/delete-deployment.json || true
               exit 1
             fi
           done
