@@ -55,7 +55,7 @@ jobs:
             echo "stale deployment status (attempt $attempt): $status"
 
             case "$status" in
-              canceled|cancelled|succeed|success|failed|error)
+              deployment_cancelled|canceled|cancelled|succeed|success|failed|error)
                 cleared="true"
                 break
                 ;;
