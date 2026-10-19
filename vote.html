@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="ISC 154 resmi oylama odası · Son tarih 25 Eylül 2026, 22.00 TSİ." />
+  <meta name="description" content="ISC 155 resmî oylama odası. Sekiz delegasyon, yedi puan slotu ve güvenli oy gönderimi." />
   <meta name="theme-color" content="#0b0a0e" />
   <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/vote.html" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="International Song Contest" />
-  <meta property="og:title" content="ISC — Voting Room" />
-  <meta property="og:description" content="Delegasyonunu doğrula ve ISC 154 pusulanı 25 Eylül 2026, 22.00 TSİ’ye kadar gönder." />
+  <meta property="og:title" content="ISC 155 — Official Voting Room" />
+  <meta property="og:description" content="Delegasyonunu kalıcı kodunla doğrula, ISC 155 pusulanı sırala ve oyunu güvenle gönder." />
   <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/vote.html" />
-  <meta property="og:image" content="https://eaergunari-spec.github.io/isc-archive/isc-154-share.png" />
-  <meta property="og:image:secure_url" content="https://eaergunari-spec.github.io/isc-archive/isc-154-share.png" />
+  <meta property="og:image" content="https://eaergunari-spec.github.io/isc-archive/editions/155/3D447018-DFC7-4626-93A8-4D54E9D93682.png" />
+  <meta property="og:image:secure_url" content="https://eaergunari-spec.github.io/isc-archive/editions/155/3D447018-DFC7-4626-93A8-4D54E9D93682.png" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="ISC 154 — Voting Open Now" />
+  <meta property="og:image:alt" content="ISC 155 — Official Delegation Voting" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://eaergunari-spec.github.io/isc-archive/isc-154-share.png" />
-  <title>ISC — Voting Room</title>
+  <meta name="twitter:image" content="https://eaergunari-spec.github.io/isc-archive/editions/155/3D447018-DFC7-4626-93A8-4D54E9D93682.png" />
+  <title>ISC 155 — Official Voting Room</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
@@ -29,15 +29,15 @@
   <link rel="stylesheet" href="vote-contrast.css" />
   <link rel="stylesheet" href="vote-ranking.css" />
   <link rel="stylesheet" href="technical-polish.css" />
-  <link rel="stylesheet" href="isc-schedule.css?v=20260923-1" />
+  <link rel="stylesheet" href="vote-155.css?v=20261019-1" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="vote-body">
   <header class="site-header vote-header">
     <a class="brand" href="index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
     <nav>
-      <a id="current-edition-nav" href="editions/154/">ISC 154</a>
-      <a href="editions/154/#participants">Katılımcılar</a>
+      <a id="current-edition-nav" href="editions/155/">ISC 155</a>
+      <a href="editions/155/#participants">Katılımcılar</a>
       <a href="countries/">Ülkeler</a>
       <a href="search.html">Ara</a>
       <a data-results-link href="results.html">Results 🔒</a>
@@ -48,20 +48,14 @@
   <main class="vote-page">
     <section class="vote-hero">
       <div class="vote-hero-copy">
-        <div class="vote-live" id="vote-live-pill"><span></span> CURRENT EDITION · LOADING</div>
-        <h1>Your country.<br><em>Your ranking.</em></h1>
+        <div class="vote-edition-brow"><span class="vote-edition-label">THE OFFICIAL BALLOT / EDITION 155</span><span class="vote-edition-date">2026 · HOST NATION ROLIPEA</span></div>
+        <div class="vote-live" id="vote-live-pill"><span></span> ISC 155 · LOADING</div>
+        <h1>Your country.<br><em>Your twelve.</em></h1>
         <p id="vote-intro">Güncel edisyon ve puanlama sistemi yükleniyor…</p>
-        <div class="isc-event-timeline" aria-label="ISC 154 oylama ve gala takvimi">
-          <div class="isc-event-timeline__item isc-event-timeline__item--vote">
-            <span>OYLAMA · YENİ SON TARİH</span>
-            <strong><time datetime="2026-09-25T22:00:00+03:00">25 Eylül 2026 · 22.00 TSİ</time></strong>
-            <small data-isc-voting-countdown>Oylama için kalan süre hesaplanıyor…</small>
-          </div>
-          <a class="isc-event-timeline__item isc-event-timeline__item--gala" href="live.html">
-            <span>GALA YAYINI</span>
-            <strong><time datetime="2026-09-25T22:00:00+03:00">25 Eylül 2026 · 22.00 TSİ</time></strong>
-            <small data-isc-gala-countdown>Canlı yayın odasına git →</small>
-          </a>
+        <div class="vote-current-status" role="status">
+          <div><span class="vote-status-orb" aria-hidden="true"></span><span><small>VOTING STATUS</small><strong id="vote-status-main">Oylama durumu yükleniyor</strong></span></div>
+          <div><span class="vote-status-orb vote-status-orb--safe" aria-hidden="true"></span><span><small>RESULTS</small><strong>Sealed until reveal</strong></span></div>
+          <div><span class="vote-status-orb vote-status-orb--code" aria-hidden="true"></span><span><small>ACCESS</small><strong>Same delegation code</strong></span></div>
         </div>
         <div class="vote-rule-strip" aria-label="Voting rules">
           <span>01 · Ülkeni doğrula</span>
@@ -70,17 +64,18 @@
         </div>
       </div>
       <div class="vote-hero-graphic" aria-hidden="true">
+        <span class="vote-hero-graphic-label">ISC 155 / YOUR MAXIMUM SCORE</span>
         <span class="hero-twelve" id="hero-top-points">—</span>
         <span class="hero-points" id="hero-other-points">Puanlama yükleniyor</span>
       </div>
     </section>
 
     <section class="identity-stage" id="login-step">
-      <div class="stage-kicker">STEP 01</div>
+      <div class="stage-kicker">01 <small>IDENTITY</small></div>
       <div class="identity-copy">
-        <span class="eyebrow">Who are you voting as?</span>
+        <span class="eyebrow">ISC 155 · VERIFIED DELEGATIONS</span>
         <h2>Önce delegasyonunu seç.</h2>
-        <p>Ülkeni seçtikten sonra kalıcı voter code’un ile giriş yap. Kod yalnızca o delegasyonun güncel edisyondaki pusulasını açar.</p>
+        <p>ISC 154’te kullandığın kalıcı voter code burada da geçerli. Aynı tarayıcıda daha önce giriş yaptıysan delegasyonun otomatik tanınır. Bu pusula yalnızca ISC 155 içindir.</p>
       </div>
       <div class="identity-form">
         <label for="country-select">Ülke</label>
@@ -93,6 +88,7 @@
           </div>
         </div>
         <p id="login-message" class="status-line" aria-live="polite"></p>
+        <div class="identity-footer"><span>✦</span> PRIVATE SESSION <span>·</span> EDITION-ISOLATED BALLOT</div>
       </div>
     </section>
 
@@ -139,7 +135,7 @@
               <span class="share-card-series">OFFICIAL VOTING CARD</span>
             </div>
 
-            <span class="share-card-watermark" id="share-card-watermark">154</span>
+            <span class="share-card-watermark" id="share-card-watermark">155</span>
 
             <div class="share-card-seal" aria-hidden="true">
               <span>✓</span>
@@ -232,8 +228,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
   <script src="results-nav.js"></script>
-  <script src="vote.js?v=20260923-1"></script>
+  <script src="vote.js?v=20261019-1"></script>
   <script src="vote-polish.js"></script>
-  <script src="isc-schedule.js?v=20260923-1"></script>
+
 </body>
 </html>
