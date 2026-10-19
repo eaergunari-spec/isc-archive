@@ -19,6 +19,7 @@ let sortable = null;
 let ballotStatus = 'new';
 let submittedAt = null;
 let editingSubmitted = false;
+let pendingDraftSave = Promise.resolve();
 
 const loginStep = document.getElementById('login-step');
 const countrySelect = document.getElementById('country-select');
@@ -475,6 +476,11 @@ async function init() {
 
   context = data;
   edition = data.edition;
+  if (Number(edition?.edition_number) !== 155) {
+    countrySelect.innerHTML = '<option>ISC 155 şu anda aktif edisyon değil</option>';
+    loginMessage.textContent = 'ISC 155 dışındaki edisyon için bu oylama odası kullanılamaz.';
+    return;
+  }
   scheme = data.voting_scheme;
   POINTS = [...(scheme.points || [])]
     .sort((a, b) => Number(a.rank) - Number(b.rank))
@@ -533,6 +539,8 @@ function applyRuntimeChrome() {
 
   voteLivePill.innerHTML = `<span></span> ${escapeHtml(label)} · ${edition.voting_open ? 'VOTING OPEN' : 'VOTING CLOSED'}`;
   voteLivePill.classList.toggle('closed', !edition.voting_open);
+  const status = document.getElementById('vote-status-main');
+  if (status) status.textContent = edition.voting_open ? 'Voting is now open' : 'Voting is currently closed';
 
   heroTopPoints.textContent = POINTS[0] ?? '—';
   heroOtherPoints.textContent = POINTS.length > 1 ? POINTS.slice(1).join(' · ') : 'TOP SCORE';
@@ -576,6 +584,10 @@ function validateConfiguration() {
 
 function openBallotFromData(data, slug, options = {}) {
   const { scroll = true, remembered = false } = options;
+  if (Number(data?.edition_number) !== 155) {
+    loginMessage.textContent = 'Güvenlik kontrolü: Başka bir edisyonun pusulası bu ekranda açılamaz.';
+    return false;
+  }
   activeCountry = countries.find(country => country.slug === slug);
   if (!activeCountry) return false;
 
@@ -713,9 +725,12 @@ function renderBallot() {
     <div class="ranking-card ${index >= POINTS.length ? 'is-unscored' : ''}" data-entry-id="${entry.id}">
       <div class="rank-entry-order">${String(entry.running_order).padStart(2, '0')}</div>
       <div class="rank-entry-copy">
-        <span class="rank-country">${escapeHtml(entry.country)}</span>
-        <strong>${escapeHtml(entry.artist)}</strong>
-        <span class="rank-song">${escapeHtml(entry.song)}</span>
+        <div class="rank-artwork" aria-hidden="true">${entry.image_url && (/^(https?:\/\/|\.?\.\/|editions\/)/i.test(entry.image_url)) ? `<img src="${escapeHtml(entry.image_url)}" alt="" loading="lazy" decoding="async">` : '<span>ISC</span>'}</div>
+        <div class="rank-entry-details">
+          <span class="rank-country">${escapeHtml(entry.country)}</span>
+          <strong>${escapeHtml(entry.artist)}</strong>
+          <span class="rank-song">${escapeHtml(entry.song)}</span>
+        </div>
       </div>
       <div class="drag-grip" role="button" tabindex="0" aria-label="${escapeHtml(entry.artist)} kartını sırala">
         <div class="rank-move-buttons">
@@ -849,7 +864,7 @@ function scheduleAutosave() {
   if (!edition.voting_open || !activeCountry || (!activeCode && !activeSessionToken) || editingSubmitted || ballotStatus === 'submitted') return;
   saveStatus.textContent = 'Kaydediliyor…';
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => saveBallot(false), 450);
+  saveTimer = setTimeout(() => { pendingDraftSave = saveBallot(false); }, 450);
 }
 
 async function saveBallot(finalize) {
@@ -931,6 +946,8 @@ cancelSubmit.addEventListener('click', () => confirmDialog.close());
 confirmSubmit.addEventListener('click', async () => {
   confirmSubmit.disabled = true;
   confirmSubmit.textContent = 'Gönderiliyor…';
+  clearTimeout(saveTimer);
+  await pendingDraftSave;
   const result = await saveBallot(true);
   confirmSubmit.disabled = false;
   confirmSubmit.textContent = 'Oyları gönder →';
