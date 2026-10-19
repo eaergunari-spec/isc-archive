@@ -713,6 +713,13 @@ function renderPointRail() {
   }).join('');
 }
 
+function voteEntryArtwork(entry) {
+  const image = entry.image_url && /^(https?:\/\/|\.?\.\/|editions\/)/i.test(entry.image_url)
+    ? entry.image_url
+    : (/^[a-zA-Z0-9_-]{11}$/.test(entry.video_id || '') ? `https://i.ytimg.com/vi/${encodeURIComponent(entry.video_id)}/hqdefault.jpg` : '');
+  return image ? `<img src="${escapeHtml(image)}" alt="" loading="lazy" decoding="async">` : '<span>ISC</span>';
+}
+
 function renderBallot() {
   if (sortable) {
     sortable.destroy();
@@ -725,7 +732,7 @@ function renderBallot() {
     <div class="ranking-card ${index >= POINTS.length ? 'is-unscored' : ''}" data-entry-id="${entry.id}">
       <div class="rank-entry-order">${String(entry.running_order).padStart(2, '0')}</div>
       <div class="rank-entry-copy">
-        <div class="rank-artwork" aria-hidden="true">${entry.image_url && (/^(https?:\/\/|\.?\.\/|editions\/)/i.test(entry.image_url)) ? `<img src="${escapeHtml(entry.image_url)}" alt="" loading="lazy" decoding="async">` : '<span>ISC</span>'}</div>
+        <div class="rank-artwork" aria-hidden="true">${voteEntryArtwork(entry)}</div>
         <div class="rank-entry-details">
           <span class="rank-country">${escapeHtml(entry.country)}</span>
           <strong>${escapeHtml(entry.artist)}</strong>
