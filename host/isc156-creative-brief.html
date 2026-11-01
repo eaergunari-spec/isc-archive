@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#0a0810" />
+  <title>ISC 156 — Host Nation Creative Brief</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#0a0810;
+      --paper:#f5f0e8;
+      --paper-2:#eee7dc;
+      --line:rgba(10,8,16,.13);
+      --muted:#6d6670;
+      --pink:#f4429d;
+      --lime:#d6ff46;
+      --gold:#d6ad5d;
+      --violet:#7651ff;
+      --serif:"Libre Caslon Display",serif;
+      --sans:"DM Sans",system-ui,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px}
+    a{color:inherit}
+    button,input,textarea{font:inherit}
+    .gate{min-height:100vh;display:grid;place-items:center;padding:30px;background:
+      radial-gradient(circle at 18% 20%,rgba(244,66,157,.2),transparent 27%),
+      radial-gradient(circle at 82% 75%,rgba(118,81,255,.18),transparent 31%),
+      #0a0810;color:#fff}
+    .gate-card{width:min(640px,100%);padding:46px;border:1px solid rgba(255,255,255,.15);border-radius:28px;background:rgba(255,255,255,.055);backdrop-filter:blur(18px);box-shadow:0 24px 80px rgba(0,0,0,.35)}
+    .gate-brand{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.18em;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,.64)}
+    .gate-brand b{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--lime);color:#111;font-size:13px;letter-spacing:.05em}
+    .gate h1{font:400 clamp(50px,8vw,86px)/.9 var(--serif);letter-spacing:-.04em;margin:38px 0 18px}
+    .gate p{max-width:520px;color:rgba(255,255,255,.62);line-height:1.7}
+    .gate small{display:block;margin-top:28px;color:rgba(255,255,255,.38);line-height:1.6}
+    .spinner{margin-top:26px;width:28px;height:28px;border:2px solid rgba(255,255,255,.2);border-top-color:var(--lime);border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    #portal[hidden],#gate[hidden]{display:none!important}
+    .portal{min-height:100vh;background:var(--paper)}
+    .topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px clamp(18px,4vw,56px);background:rgba(245,240,232,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+    .brand-mark{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;letter-spacing:.04em}
+    .private-pill{padding:9px 12px;border:1px solid var(--line);border-radius:999px;font-size:8px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+    .hero{padding:clamp(64px,9vw,118px) clamp(22px,7vw,110px) 70px;background:
+      radial-gradient(circle at 78% 38%,rgba(214,255,70,.13),transparent 20%),
+      radial-gradient(circle at 23% 26%,rgba(244,66,157,.17),transparent 28%),
+      var(--ink);color:#fff;overflow:hidden;position:relative}
+    .hero:after{content:"156";position:absolute;right:-.02em;bottom:-.24em;font:400 clamp(210px,34vw,520px)/.8 var(--serif);color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.055);letter-spacing:-.08em;pointer-events:none}
+    .hero-inner{position:relative;z-index:2;max-width:1250px;margin:auto}
+    .eyebrow{font-size:9px;font-weight:800;letter-spacing:.19em;text-transform:uppercase;color:var(--lime)}
+    .hero h1{max-width:950px;font:400 clamp(66px,10vw,138px)/.82 var(--serif);letter-spacing:-.055em;margin:22px 0 26px}
+    .hero h1 em{font-style:normal;color:var(--pink)}
+    .hero-deck{max-width:760px;font:400 clamp(22px,3vw,37px)/1.15 var(--serif);color:rgba(255,255,255,.82);margin:0}
+    .hero-note{display:flex;gap:18px;align-items:flex-start;max-width:760px;margin-top:34px;padding-top:22px;border-top:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);line-height:1.6}
+    .hero-note b{color:#fff;font-size:10px;letter-spacing:.12em;white-space:nowrap}
+    .progress-wrap{max-width:1250px;margin:0 auto;padding:26px clamp(22px,7vw,110px) 0}
+    .progress-head{display:flex;justify-content:space-between;gap:20px;font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+    .progress{height:5px;margin-top:11px;background:#ddd4c8;border-radius:999px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--violet));transition:width .25s ease}
+    .saved-banner{max-width:1250px;margin:26px auto 0;padding:16px 18px;border:1px solid rgba(57,110,31,.22);background:rgba(214,255,70,.24);border-radius:14px;display:none}
+    .saved-banner.show{display:block}
+    .saved-banner strong{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase}.saved-banner span{display:block;margin-top:4px;color:#506144;font-size:13px}
+    .form-shell{max-width:1250px;margin:0 auto;padding:48px clamp(22px,7vw,110px) 110px}
+    .intro-grid{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:54px;padding-bottom:56px;border-bottom:1px solid var(--line)}
+    .intro-grid h2{font:400 clamp(40px,5vw,65px)/.92 var(--serif);margin:8px 0 0}
+    .intro-grid p{margin:0;color:var(--muted);line-height:1.8;max-width:720px}
+    .questions{counter-reset:q;display:grid;gap:0}
+    .question{counter-increment:q;display:grid;grid-template-columns:110px minmax(0,1fr);gap:28px;padding:54px 0;border-bottom:1px solid var(--line)}
+    .q-no:before{content:counter(q,decimal-leading-zero);font:400 42px/1 var(--serif);color:var(--pink)}
+    .q-body{max-width:850px}
+    .q-body h3{font:400 clamp(30px,4vw,48px)/1 var(--serif);margin:0 0 12px}
+    .q-body>p{margin:0 0 24px;color:var(--muted);line-height:1.65}
+    .examples{font-size:12px;color:#8b828d!important}
+    label{display:block;margin:18px 0 8px;font-size:9px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#57505a}
+    input[type=text],textarea{width:100%;border:1px solid #cfc5b8;background:#fffdf9;border-radius:12px;padding:15px 16px;outline:none;color:var(--ink);transition:border .18s,box-shadow .18s}
+    textarea{min-height:126px;resize:vertical;line-height:1.55}
+    input:focus,textarea:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(244,66,157,.1)}
+    .triple{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .optional{font-weight:500;color:#9a929b;letter-spacing:.05em;text-transform:none}
+    .submit-zone{margin-top:64px;padding:42px;border-radius:24px;background:var(--ink);color:#fff;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:30px}
+    .submit-zone h3{font:400 clamp(34px,4vw,52px)/.95 var(--serif);margin:0 0 10px}.submit-zone p{margin:0;color:rgba(255,255,255,.55);line-height:1.65;max-width:680px}
+    .submit-btn{border:0;border-radius:999px;background:var(--lime);color:#111;padding:17px 24px;font-weight:800;font-size:9px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;min-width:190px}
+    .submit-btn:disabled{opacity:.55;cursor:wait}
+    .status{margin-top:18px;font-size:13px;min-height:20px}.status.error{color:#ff8cac}.status.success{color:#d6ff46}
+    .after{padding:60px 0 0}.after span{font-size:9px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:var(--pink)}.after h2{font:400 clamp(40px,5vw,62px)/.95 var(--serif);margin:10px 0 16px}.after p{max-width:820px;color:var(--muted);line-height:1.75}
+    footer{padding:30px clamp(22px,7vw,110px);border-top:1px solid var(--line);color:#8b838c;font-size:9px;letter-spacing:.11em;text-transform:uppercase}
+    @media(max-width:760px){
+      .topbar{padding:12px 16px}.private-pill{display:none}
+      .hero{padding:58px 20px 50px}.hero h1{font-size:20vw}.hero-note{display:block}.hero-note b{display:block;margin-bottom:8px}
+      .progress-wrap,.form-shell{padding-left:20px;padding-right:20px}
+      .intro-grid{grid-template-columns:1fr;gap:22px}
+      .question{grid-template-columns:1fr;gap:14px;padding:42px 0}.q-no:before{font-size:28px}
+      .triple,.two{grid-template-columns:1fr}
+      .submit-zone{grid-template-columns:1fr;padding:28px 22px}.submit-btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <section id="gate" class="gate" aria-live="polite">
+    <div class="gate-card">
+      <div class="gate-brand"><b>ISC</b><span>International Song Contest</span></div>
+      <h1 id="gate-title">Opening your private host brief.</h1>
+      <p id="gate-copy">This page is available only through the invitation link sent to the host nation.</p>
+      <div id="gate-spinner" class="spinner" aria-hidden="true"></div>
+      <small id="gate-foot">ISC 156 · Private host portal</small>
+    </div>
+  </section>
+
+  <div id="portal" class="portal" hidden>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">ISC</span><span>International Song Contest</span></div>
+      <span class="private-pill">Private host brief · ISC 156</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-inner">
+          <span class="eyebrow">Presented to STJOHN · Host Nation</span>
+          <h1>Shape the world of <em>ISC 156.</em></h1>
+          <p class="hero-deck">You won the previous edition. Now you get to help define how the next one feels.</p>
+          <div class="hero-note"><b>PRIVATE LINK</b><span>This page is intentionally unlisted and is not linked anywhere on the ISC website. Please keep this invitation link within the host delegation.</span></div>
+        </div>
+      </section>
+
+      <div class="progress-wrap">
+        <div class="progress-head"><span>Creative brief progress</span><span id="progress-label">0 / 12</span></div>
+        <div class="progress"><span id="progress-bar"></span></div>
+      </div>
+
+      <div id="saved-banner" class="saved-banner">
+        <strong>A brief is already saved for this invitation.</strong>
+        <span>You can review or update the answers below and submit again; the newest version will replace the previous one.</span>
+      </div>
+
+      <form id="brief-form" class="form-shell" novalidate>
+        <section class="intro-grid">
+          <div><span class="eyebrow">Host Nation Creative Brief</span><h2>Your edition, your imprint.</h2></div>
+          <p>Congratulations once again on winning ISC 155 with <strong>Csinszka — “Felsütött a napsugára.”</strong> Competition rules and administration remain with ISC, but STJOHN now has a visible creative role in shaping the atmosphere, visual identity and opening message of ISC 156. Short answers are perfectly fine.</p>
+        </section>
+
+        <div class="questions">
+          <section class="question" data-progress-field="host_message">
+            <div class="q-no"></div>
+            <div class="q-body">
+              <h3>Your host message</h3>
+              <p>What does hosting ISC 156 mean to STJOHN after winning ISC 155? Please write approximately 2–4 sentences. This may be quoted directly in the official launch announcement.</p>
+              <label for="host_message">Your message</label>
+              <textarea id="host_message" name="host_message" required></textarea>
+            </div>
+          </section>
+
+          <section class="question" data-progress-field="welcome_sentence">
+            <div class="q-no"></div>
+            <div class="q-body">
+              <h3>Welcome to ISC 156</h3>
+              <p>Complete this sentence in your own way: <strong>“STJOHN welcomes the delegations of ISC 156 to an edition that will be…”</strong></p>
+              <label for="welcome_sentence">Complete the sentence</label>
+              <textarea id="welcome_sentence" name="welcome_sentence" required></textarea>
+            </div>
+          </section>
+
+          <section class="question" data-progress-field="mood_words">
+            <div class="q-no"></div>
+            <div class="q-body">
+              <h3>The mood</h3>
+              <p>Choose 3–5 words that you would like ISC 156 to feel like.</p>
+              <p class="examples">Examples: elegant · warm · euphoric · nostalgic · nocturnal · futuristic · romantic · playful · cinematic · mysterious · colourful · intimate · glamorous · surreal</p>
+              <label for="mood_words">3–5 mood words</label>
+              <input id="mood_words" name="mood_words" type="text" required />
+            </div>
+          </section>
+
+          <section class="question" data-progress-field="color_world">
+            <div class="q-no"></div>
+            <div class="q-body">
+              <h3>Colour world</h3>
+              <p>What colours do you associate with your vision for ISC 156? Exact colour codes are not necessary.</p>
+              <p class="examples">Examples: midnight blue + gold · deep red + cream · silver + electric blue · sunset orange + violet</p>
+              <label for="color_world">Your preferred colour world</label>
+              <input id="color_world" name="color_world" type="text" required />
+            </div>
+          </section>
+
+          <section class="question" data-progress-field="host_symbol">
+            <div class="q-no"></div>
+            <div class="q-body">
+              <h3>A host symbol</h3>
+              <p>If STJOHN could leave one recurring visual symbol or motif throughout ISC 156, what would it be? It may be cultural, natural, architectural or completely abstract.</p>
+              <div class="two">
+                <div><label for="host_symbol">Your symbol / motif</label><input id="host_symbol" name="host_symbol" type="text" required /></div>
+                <div><label for="symbol_meaning">Why does it represent this edition?</label><input id="symbol_meaning" name="symbol_meaning" type="text" /></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="question" data-progress-field="motto_1">
+            <div class="q-no"></div>
+            <div class="q-body">
+              <h3>The motto</h3>
+              <p>What should be the central phrase or motto of ISC 156? One final motto is enough, or you may send up to three alternatives.</p>
+              <div class="triple">
+                <div><label for="motto_1">Option 1</label><input id="motto_1" name="motto_1" type="text" required /></div>
+                <div><label for="motto_2">Option 2 <span class="optional">optional</span></label><input id="motto_2" name="motto_2" type="text" /></div>
+                <div><label for="motto_3">Option 3 <span class="optional">optional</span></label><input id="motto_3" name="motto_3" type="text" /></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="question" data-progress-field="welcome_song">
+            <div class="q-no"></div>
+            <div class="q-body">
+              <h3>The host’s welcome song</h3>
+              <p>Choose one existing song that would be the perfect unofficial welcome song for ISC 156. It will not compete; it may inspire the launch atmosphere, host playlist or opening editorial.</p>
+              <label for="welcome_song">Artist — Song</label>
+              <input id="welcome_song" name="welcome_song" type="text" required />
+              <label for="welcome_song_reason">Why this song? <span class="optional">optional</span></label>
+              <textarea id="welcome_song_reason" name="welcome_song_reason"></textarea>
+            </div>
+          </section>
+
+          <section class="question" data-progress-field="wish_list">
+            <div class="q-no"></div>
+            <div class="q-body">
+              <h3>What do you want to hear?</h3>
+              <p>As host nation, what would you personally love to see more of in ISC 156? This is not a rule; delegations remain completely free in their selections.</p>
+              <p class="examples">Native languages · experimental entries · big pop songs · alternative music · strong storytelling · local cultural influences · unexpected artists · riskier selections</p>
+              <label for="wish_list">STJOHN would love to see…</label>
+              <textarea id="wish_list" name="wish_list" required></textarea>
+            </div>
+          </section>
+
+          <section class="question" data-progress-field="delegation_message">
+            <div class="q-no"></div>
+            <div class="q-body">
+              <h3>A message to the delegations</h3>
+              <p>Imagine all delegations are standing on stage on the first night of ISC 156. What would you like to say to them?</p>
+              <label for="delegation_message">Your message</label>
+              <textarea id="delegation_message" name="delegation_message" required></textarea>
+            </div>
+          </section>
+
+          <section class="question" data-progress-field="favorite_memory">
+            <div class="q-no"></div>
+            <div class="q-body">
+              <h3>Your ISC 155 memory</h3>
+              <p>Apart from your own winning entry, what was your favourite memory from ISC 155? It can be another song, an editorial, a voting moment, a surprise result, a delegation or simply something you enjoyed.</p>
+              <label for="favorite_memory">Your favourite moment</label>
+              <textarea id="favorite_memory" name="favorite_memory" required></textarea>
+              <label for="favorite_memory_reason">Why? <span class="optional">optional</span></label>
+              <textarea id="favorite_memory_reason" name="favorite_memory_reason"></textarea>
+            </div>
+          </section>
+
+          <section class="question" data-progress-field="victory_reaction">
+            <div class="q-no"></div>
+            <div class="q-body">
+              <h3>The night you won</h3>
+              <p>When you realised STJOHN had won ISC 155, what was your immediate reaction? A short, personal answer is encouraged.</p>
+              <label for="victory_reaction">Your reaction</label>
+              <textarea id="victory_reaction" name="victory_reaction" required></textarea>
+            </div>
+          </section>
+
+          <section class="question" data-progress-field="host_signature">
+            <div class="q-no"></div>
+            <div class="q-body">
+              <h3>The host signature</h3>
+              <p>Would you like ISC 156 to have a small recurring host signature? This might be a symbol, emoji, short phrase, tiny graphic idea or recurring sign-off.</p>
+              <p class="examples">Examples: ✦ · ☀ · “From STJOHN, with love.” · “Where the light begins.”</p>
+              <label for="host_signature">Your idea</label>
+              <input id="host_signature" name="host_signature" type="text" required />
+            </div>
+          </section>
+        </div>
+
+        <section class="submit-zone">
+          <div>
+            <h3>Send your creative brief.</h3>
+            <p>Your answers are saved privately for ISC administration. You may return through the same invitation link later and submit an updated version.</p>
+            <div id="form-status" class="status" aria-live="polite"></div>
+          </div>
+          <button id="submit-btn" class="submit-btn" type="submit">Submit host brief →</button>
+        </section>
+
+        <section class="after">
+          <span>What happens next?</span>
+          <h2>ISC turns your answers into the launch world.</h2>
+          <p>Your brief may shape the official launch headline, motto, colour system, visual motifs, homepage presentation, host-nation section, opening editorial, social artwork and launch playlist. Competition rules, voting and administration remain managed by ISC.</p>
+        </section>
+      </form>
+    </main>
+
+    <footer>ISC 156 · Host Nation Creative Brief · Unlisted private link</footer>
+  </div>
+
+  <script>
+  (() => {
+    'use strict';
+
+    const SUPABASE_URL = 'https://knwvnbfqnccjiezprrme.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_Zw8H9mMmUop7wkYNKtZB3Q_7dM1QHut';
+    const EDITION = 156;
+
+    const gate = document.getElementById('gate');
+    const portal = document.getElementById('portal');
+    const gateTitle = document.getElementById('gate-title');
+    const gateCopy = document.getElementById('gate-copy');
+    const gateSpinner = document.getElementById('gate-spinner');
+    const form = document.getElementById('brief-form');
+    const submitButton = document.getElementById('submit-btn');
+    const status = document.getElementById('form-status');
+    const savedBanner = document.getElementById('saved-banner');
+    const progressBar = document.getElementById('progress-bar');
+    const progressLabel = document.getElementById('progress-label');
+
+    const token = decodeURIComponent(location.hash.replace(/^#(?:token=)?/, '').trim());
+
+    const rpc = async (name, body) => {
+      const response = await fetch(SUPABASE_URL + '/rest/v1/rpc/' + name, {
+        method: 'POST',
+        headers: {
+          apikey: SUPABASE_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body),
+        cache: 'no-store',
+        referrerPolicy: 'no-referrer'
+      });
+      if (!response.ok) throw new Error('Request failed: ' + response.status);
+      return response.json();
+    };
+
+    const deny = () => {
+      gateTitle.textContent = 'This invitation link is not valid.';
+      gateCopy.textContent = 'The ISC 156 Host Nation Creative Brief can only be opened from the private link issued to the host delegation.';
+      gateSpinner.style.display = 'none';
+      document.title = 'ISC — Private Host Brief';
+    };
+
+    const fill = payload => {
+      if (!payload || typeof payload !== 'object') return;
+      Object.entries(payload).forEach(([key, value]) => {
+        const el = form.elements.namedItem(key);
+        if (el && typeof value === 'string') el.value = value;
+      });
+    };
+
+    const updateProgress = () => {
+      const blocks = [...document.querySelectorAll('[data-progress-field]')];
+      const completed = blocks.filter(block => {
+        const name = block.dataset.progressField;
+        const el = form.elements.namedItem(name);
+        return el && String(el.value || '').trim().length > 0;
+      }).length;
+      progressLabel.textContent = completed + ' / ' + blocks.length;
+      progressBar.style.width = ((completed / blocks.length) * 100).toFixed(1) + '%';
+    };
+
+    const collect = () => {
+      const data = new FormData(form);
+      const payload = {};
+      for (const [key, value] of data.entries()) payload[key] = String(value).trim();
+      return payload;
+    };
+
+    form.addEventListener('input', updateProgress);
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      status.textContent = '';
+      status.className = 'status';
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        status.textContent = 'Please complete the required questions before submitting.';
+        status.classList.add('error');
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Saving…';
+
+      try {
+        const result = await rpc('isc_host_brief_submit', {
+          p_token: token,
+          p_edition_number: EDITION,
+          p_payload: collect()
+        });
+
+        if (!result || result.ok !== true) throw new Error(result?.error || 'Unable to save');
+
+        status.textContent = 'Saved successfully. Thank you — STJOHN’s creative brief is now with ISC.';
+        status.classList.add('success');
+        savedBanner.classList.add('show');
+        submitButton.textContent = 'Update saved brief →';
+      } catch (error) {
+        console.error(error);
+        status.textContent = 'The brief could not be saved. Please use the original invitation link and try again.';
+        status.classList.add('error');
+        submitButton.textContent = 'Submit host brief →';
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+
+    (async () => {
+      if (!token || token.length < 20) {
+        deny();
+        return;
+      }
+      try {
+        const result = await rpc('isc_host_brief_access', {
+          p_token: token,
+          p_edition_number: EDITION
+        });
+
+        if (!result || result.ok !== true) {
+          deny();
+          return;
+        }
+
+        if (result.payload) fill(result.payload);
+        if (result.submitted) {
+          savedBanner.classList.add('show');
+          submitButton.textContent = 'Update saved brief →';
+        }
+        updateProgress();
+
+        gate.hidden = true;
+        portal.hidden = false;
+      } catch (error) {
+        console.error(error);
+        gateTitle.textContent = 'The private portal could not be opened.';
+        gateCopy.textContent = 'Please try the invitation link again in a moment.';
+        gateSpinner.style.display = 'none';
+      }
+    })();
+  })();
+  </script>
+</body>
+</html>
