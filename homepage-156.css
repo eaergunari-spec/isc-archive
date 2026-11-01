@@ -185,39 +185,6 @@
 }
 .host-facts-156 span{font-family:"Libre Caslon Display",serif;font-size:22px}
 
-.identity-156{padding:100px 80px;background:var(--156-night);color:#fff}
-.identity-156-inner{
-  max-width:1340px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:100px;
-  align-items:end;
-}
-.identity-156 h2{
-  margin:0;
-  font-family:"Libre Caslon Display",serif;
-  font-size:clamp(58px,6.5vw,86px);
-  line-height:.9;
-  font-weight:400;
-}
-.identity-156 h2 em{font-style:normal;color:var(--156-green)}
-.identity-156 p{max-width:540px;margin:0;color:rgba(255,255,255,.6);line-height:1.75}
-.identity-words-156{
-  max-width:1340px;
-  margin:70px auto 0;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  border-top:1px solid rgba(255,255,255,.18);
-}
-.identity-words-156 span{
-  padding:22px 20px 0 0;
-  font-family:"Libre Caslon Display",serif;
-  font-size:clamp(26px,2.7vw,34px);
-  color:rgba(255,255,255,.82);
-}
-.identity-words-156 span+span{padding-left:20px;border-left:1px solid rgba(255,255,255,.12)}
-
 .host-picks-156{
   max-width:1340px;
   margin:auto;
@@ -336,7 +303,6 @@
   .hero-156{grid-template-columns:1fr}
   .hero-host-image{min-height:520px}
   .host-welcome-156{grid-template-columns:1fr;gap:40px}
-  .identity-156-inner{grid-template-columns:1fr;gap:32px}
   .previous-edition-156{grid-template-columns:1fr}
   .previous-links-156{grid-column:auto;justify-content:flex-start}
 }
@@ -356,10 +322,6 @@
   .host-welcome-intro h2{font-size:54px}
   .host-welcome-quote blockquote{font-size:31px}
   .host-facts-156{display:grid;grid-template-columns:1fr 1fr}
-  .identity-156{padding:72px 18px}
-  .identity-156 h2{font-size:58px}
-  .identity-words-156{grid-template-columns:1fr 1fr;margin-top:45px}
-  .identity-words-156 span{font-size:25px;padding:18px 10px 18px 0;border-bottom:1px solid rgba(255,255,255,.12)}
   .host-picks-156{grid-template-columns:1fr;padding:64px 18px}
   .host-pick-block+.host-pick-block{padding-left:0;border-left:0}
   .road-156{padding:72px 18px}
