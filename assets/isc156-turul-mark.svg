@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" role="img" aria-labelledby="t d">
+<title id="t">ISC 156 Turul and rising sun mark</title>
+<desc id="d">A modern symmetrical Turul bird opening its wings in front of a rising sun.</desc>
+<defs>
+  <radialGradient id="sun" cx="50%" cy="48%" r="55%">
+    <stop offset="0" stop-color="#f4f0e7"/>
+    <stop offset=".54" stop-color="#d84d60"/>
+    <stop offset="1" stop-color="#d84d60" stop-opacity=".12"/>
+  </radialGradient>
+  <linearGradient id="wing" x1="0" x2="1">
+    <stop offset="0" stop-color="#718fd8"/>
+    <stop offset=".52" stop-color="#f4f0e7"/>
+    <stop offset="1" stop-color="#c9f24a"/>
+  </linearGradient>
+  <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur stdDeviation="8" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+
+<circle cx="450" cy="330" r="146" fill="url(#sun)" opacity=".9"/>
+<circle cx="450" cy="330" r="198" fill="none" stroke="#f4f0e7" stroke-opacity=".16" stroke-width="1"/>
+<circle cx="450" cy="330" r="238" fill="none" stroke="#c9f24a" stroke-opacity=".12" stroke-width="1"/>
+
+<g fill="none" stroke="url(#wing)" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+  <path d="M444 347 C372 324 303 274 232 202 C310 228 370 261 431 311" stroke-width="8"/>
+  <path d="M434 321 C351 284 272 239 154 174 C242 274 321 335 428 363" stroke-width="5"/>
+  <path d="M428 365 C322 347 241 349 118 392 C254 398 348 415 435 453" stroke-width="5"/>
+  <path d="M456 347 C528 324 597 274 668 202 C590 228 530 261 469 311" stroke-width="8"/>
+  <path d="M466 321 C549 284 628 239 746 174 C658 274 579 335 472 363" stroke-width="5"/>
+  <path d="M472 365 C578 347 659 349 782 392 C646 398 552 415 465 453" stroke-width="5"/>
+</g>
+
+<g fill="#10182f" stroke="#f4f0e7" stroke-width="5" stroke-linejoin="round">
+  <path d="M450 258 C432 273 424 296 427 327 C430 354 438 376 450 401 C462 376 470 354 473 327 C476 296 468 273 450 258 Z"/>
+  <path d="M450 257 C448 230 459 211 481 198 C475 220 478 236 493 249 C475 247 462 250 450 257 Z"/>
+  <path d="M480 198 L518 204 L488 220 Z" fill="#c9f24a" stroke="none"/>
+</g>
+
+<g fill="none" stroke="#f4f0e7" stroke-opacity=".78" stroke-width="4" stroke-linecap="round">
+  <path d="M450 401 L422 486"/>
+  <path d="M450 401 L450 500"/>
+  <path d="M450 401 L478 486"/>
+</g>
+
+<path d="M125 505 H775" stroke="#f4f0e7" stroke-opacity=".46" stroke-width="2"/>
+<path d="M220 514 H680" stroke="#c9f24a" stroke-opacity=".28" stroke-width="1"/>
+</svg>
