@@ -1,109 +1,52 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 760" role="img" aria-labelledby="title desc">
-  <title id="title">ISC 156 geometric Turul mark</title>
-  <desc id="desc">A symmetrical geometric line drawing of the Turul rising in front of a constructed sunrise.</desc>
-
-  <defs>
-    <linearGradient id="mainStroke" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#718FD8"/>
-      <stop offset=".34" stop-color="#F4F0E7"/>
-      <stop offset=".66" stop-color="#F4F0E7"/>
-      <stop offset="1" stop-color="#C9F24A"/>
-    </linearGradient>
-    <linearGradient id="accentStroke" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0" stop-color="#D84D60"/>
-      <stop offset=".55" stop-color="#F4F0E7"/>
-      <stop offset="1" stop-color="#C9F24A"/>
-    </linearGradient>
-    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="3.2" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  </defs>
-
-  <!-- construction geometry -->
-  <g fill="none" stroke="#F4F0E7" stroke-linecap="round">
-    <circle cx="500" cy="338" r="154" stroke-opacity=".19" stroke-width="1"/>
-    <circle cx="500" cy="338" r="205" stroke-opacity=".10" stroke-width="1"/>
-    <circle cx="500" cy="338" r="258" stroke-opacity=".06" stroke-width="1"/>
-    <path d="M500 78 V648" stroke-opacity=".12" stroke-width="1"/>
-    <path d="M140 508 H860" stroke-opacity=".17" stroke-width="1"/>
-    <path d="M185 338 H815" stroke-opacity=".055" stroke-width="1"/>
-  </g>
-
-  <!-- sunrise rays -->
-  <g fill="none" stroke="#D84D60" stroke-width="1.2" stroke-opacity=".36" stroke-linecap="round">
-    <path d="M500 183 V124"/>
-    <path d="M454 190 L438 134"/>
-    <path d="M546 190 L562 134"/>
-    <path d="M411 208 L380 158"/>
-    <path d="M589 208 L620 158"/>
-    <path d="M373 237 L331 197"/>
-    <path d="M627 237 L669 197"/>
-    <path d="M347 276 L296 250"/>
-    <path d="M653 276 L704 250"/>
-  </g>
-
-  <!-- sun core -->
-  <circle cx="500" cy="338" r="118" fill="none" stroke="#D84D60" stroke-width="2.2" stroke-opacity=".9"/>
-  <circle cx="500" cy="338" r="108" fill="none" stroke="#C9F24A" stroke-width="1" stroke-opacity=".24"/>
-
-  <!-- primary wing silhouettes -->
-  <g fill="none" stroke="url(#mainStroke)" stroke-linecap="round" stroke-linejoin="round" filter="url(#softGlow)">
-    <path d="M492 365 C424 338 365 292 310 234 C267 189 213 160 149 141 C210 213 260 266 321 311 C374 350 424 376 482 390" stroke-width="4.2"/>
-    <path d="M482 393 C396 373 318 375 225 404 C183 417 145 433 111 454 C221 448 318 456 402 486 C438 499 466 513 489 532" stroke-width="3"/>
-    <path d="M508 365 C576 338 635 292 690 234 C733 189 787 160 851 141 C790 213 740 266 679 311 C626 350 576 376 518 390" stroke-width="4.2"/>
-    <path d="M518 393 C604 373 682 375 775 404 C817 417 855 433 889 454 C779 448 682 456 598 486 C562 499 534 513 511 532" stroke-width="3"/>
-  </g>
-
-  <!-- feather construction -->
-  <g fill="none" stroke="#F4F0E7" stroke-opacity=".48" stroke-linecap="round">
-    <path d="M446 350 C389 320 342 282 299 236" stroke-width="1.8"/>
-    <path d="M413 363 C350 337 299 309 249 274" stroke-width="1.5"/>
-    <path d="M377 375 C312 357 258 345 198 342" stroke-width="1.4"/>
-    <path d="M340 392 C276 385 218 389 160 405" stroke-width="1.3"/>
-    <path d="M554 350 C611 320 658 282 701 236" stroke-width="1.8"/>
-    <path d="M587 363 C650 337 701 309 751 274" stroke-width="1.5"/>
-    <path d="M623 375 C688 357 742 345 802 342" stroke-width="1.4"/>
-    <path d="M660 392 C724 385 782 389 840 405" stroke-width="1.3"/>
-  </g>
-
-  <!-- secondary accent arcs -->
-  <g fill="none" stroke="url(#accentStroke)" stroke-linecap="round">
-    <path d="M474 420 C405 409 337 414 267 440" stroke-width="1.5" stroke-opacity=".7"/>
-    <path d="M526 420 C595 409 663 414 733 440" stroke-width="1.5" stroke-opacity=".7"/>
-    <path d="M456 335 C410 301 377 270 348 233" stroke-width="1.2" stroke-opacity=".55"/>
-    <path d="M544 335 C590 301 623 270 652 233" stroke-width="1.2" stroke-opacity=".55"/>
-  </g>
-
-  <!-- central body -->
-  <g fill="none" stroke="#F4F0E7" stroke-linejoin="round" stroke-linecap="round">
-    <path d="M500 274 C477 292 466 319 468 350 C470 388 482 423 500 459 C518 423 530 388 532 350 C534 319 523 292 500 274 Z" stroke-width="3"/>
-    <path d="M500 274 C499 247 510 225 534 208 C530 231 536 249 553 262 C531 257 514 261 500 274 Z" stroke-width="2.5"/>
-    <path d="M535 208 L574 216 L544 232" stroke="#C9F24A" stroke-width="2"/>
-    <path d="M486 319 C493 314 501 312 510 313" stroke-width="1.4" stroke-opacity=".55"/>
-    <circle cx="523" cy="239" r="2.6" fill="#C9F24A" stroke="none"/>
-  </g>
-
-  <!-- tail / vertical axis -->
-  <g fill="none" stroke="url(#mainStroke)" stroke-linecap="round">
-    <path d="M500 459 C485 501 470 544 454 598" stroke-width="2.5"/>
-    <path d="M500 459 V616" stroke-width="3"/>
-    <path d="M500 459 C515 501 530 544 546 598" stroke-width="2.5"/>
-    <path d="M500 500 C479 532 463 561 450 590" stroke-width="1.2" stroke-opacity=".5"/>
-    <path d="M500 500 C521 532 537 561 550 590" stroke-width="1.2" stroke-opacity=".5"/>
-  </g>
-
-  <!-- horizon -->
-  <path d="M130 508 H870" stroke="#F4F0E7" stroke-width="1.3" stroke-opacity=".55"/>
-  <path d="M250 519 H750" stroke="#C9F24A" stroke-width="1" stroke-opacity=".33"/>
-
-  <!-- tiny registration marks -->
-  <g stroke="#F4F0E7" stroke-width="1" stroke-opacity=".28">
-    <path d="M128 498 V518 M118 508 H138"/>
-    <path d="M872 498 V518 M862 508 H882"/>
-    <path d="M490 648 H510"/>
-  </g>
-</svg>
+<title id="title">ISC 156 — Geometric Turul</title>
+<desc id="desc">An original angular line-art Turul in flight, drawn from interlocking polygons, individually articulated wing feathers and a fanned tail.</desc>
+<defs><clipPath id="clearBody" clipPathUnits="userSpaceOnUse">
+<path fill-rule="evenodd" d="M0 0 H1000 V760 H0 Z M472 388 L535 357 L613 349 L664 323 L690 270 L735 233 L783 250 L842 270 L895 278 L838 292 L807 317 L801 348 L759 408 L711 462 L647 506 L577 532 L508 543 L470 525 L457 494 L464 449 Z"/>
+</clipPath></defs>
+<g fill="none" stroke="#F4F0E7" stroke-linejoin="miter" stroke-linecap="square">
+<g clip-path="url(#clearBody)">
+<g stroke-width="2.3" stroke-opacity=".94">
+<path d="M282.0,164.0 L110,103 L137,126 L295.7,177.7"/>
+<path d="M295.7,177.7 L137,126 L120,149 L309.4,191.3"/>
+<path d="M309.4,191.3 L120,149 L151,171 L323.1,204.9"/>
+<path d="M323.1,204.9 L151,171 L136,195 L336.8,218.6"/>
+<path d="M336.8,218.6 L136,195 L169,215 L350.5,232.3"/>
+<path d="M350.5,232.3 L169,215 L157,237 L364.2,245.9"/>
+<path d="M364.2,245.9 L157,237 L190,260 L377.9,259.6"/>
+<path d="M377.9,259.6 L190,260 L181,281 L391.6,273.2"/>
+<path d="M391.6,273.2 L181,281 L214,304 L405.3,286.9"/>
+<path d="M405.3,286.9 L214,304 L204,327 L419.0,300.5"/>
+<path d="M419.0,300.5 L204,327 L242,350 L432.7,314.1"/>
+<path d="M432.7,314.1 L242,350 L233,374 L446.4,327.8"/>
+<path d="M446.4,327.8 L233,374 L273,395 L460.1,341.5"/>
+<path d="M460.1,341.5 L273,395 L268,418 L473.8,355.1"/>
+<path d="M473.8,355.1 L268,418 L305,437 L487.5,368.8"/>
+<path d="M487.5,368.8 L305,437 L306,458 L501.2,382.4"/>
+<path d="M501.2,382.4 L306,458 L346,476 L514.9,396.1"/>
+<path d="M514.9,396.1 L346,476 L358,490 L528.6,409.7"/>
+</g>
+<path d="M110 103 L308 126 L514 365 L546 404 L528 450 L506 421" stroke-width="3.5"/>
+<path d="M308 126 L310 205 L382 292 L514 365 M310 205 L443 302 L506 421 M382 292 L403 354 L528 450" stroke-width="2.3"/>
+<path d="M282 164 L403 354 L506 421" stroke-width="2.1" stroke="#C9F24A" stroke-opacity=".8"/>
+<g stroke-width="2.6" stroke-opacity=".95">
+<path d="M487 485 L520 493 L545 513 L491 662 L468 649 L459 693 L439 678 L427 715 L402 696 L383 726 L363 704 L335 719 L327 687 L298 685 L337 635 Z"/>
+<path d="M520 493 L298 685 M520 493 L327 687 M520 493 L335 719 M520 493 L363 704 M520 493 L383 726 M520 493 L402 696 M520 493 L427 715 M520 493 L439 678 M520 493 L459 693 M520 493 L468 649 M520 493 L491 662" stroke-width="1.75"/>
+</g>
+<g stroke-width="2.15" stroke-opacity=".85">
+<path d="M565 447 L679 467 L797 516 L754 520 L767 539 L725 538 L730 553 L682 544 L667 563 L630 549 L610 558 L578 531"/>
+<path d="M616 473 L754 520 M606 488 L725 538 M597 501 L682 544 M585 511 L630 549"/>
+</g>
+</g>
+<g stroke-width="3.15">
+<path d="M472 388 L535 357 L613 349 L664 323 L690 270 L735 233 L783 250 L842 270 L895 278 L838 292 L807 317 L801 348 L759 408 L711 462 L647 506 L577 532 L508 543 L470 525 L457 494 L464 449 Z"/>
+<path d="M535 357 L568 428 L509 543 M568 428 L647 506 L711 462 M568 428 L664 323 M664 323 L759 408 L801 348 M690 270 L735 233 L747 299 L664 323 M747 299 L783 250 L838 292 L807 317 M747 299 L801 348 M759 408 L711 462 L647 506" stroke-width="2.05"/>
+</g>
+<g stroke-width="1.75" stroke-opacity=".83">
+<path d="M472 388 L568 428 L535 357 M464 449 L568 428 L457 494 M470 525 L508 543 L568 428 M577 532 L647 506 L568 428 M613 349 L664 323 L568 428 M690 270 L747 299 L735 233 M783 250 L807 317 L842 270 M801 348 L807 317 L838 292 M711 462 L759 408 L647 506"/>
+</g>
+<path d="M838 292 L895 278 L862 290" stroke="#C9F24A" stroke-width="2.4"/>
+<path d="M777 277 L784 278" stroke="#C9F24A" stroke-width="3.6"/>
+<path d="M613 349 L664 323 L690 270" stroke="#D84D60" stroke-width="1.65" stroke-opacity=".75"/>
+<path d="M711 462 L647 506" stroke="#C9F24A" stroke-width="1.65" stroke-opacity=".7"/>
+</g></svg>
