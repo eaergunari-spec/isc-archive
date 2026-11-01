@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -84,7 +84,7 @@
     input:focus,textarea:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(244,66,157,.1)}
     .triple{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
     .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .optional{font-weight:500;color:#9a929b;letter-spacing:.05em;text-transform:none}
+    .opsiyonel{font-weight:500;color:#9a929b;letter-spacing:.05em;text-transform:none}
     .submit-zone{margin-top:64px;padding:42px;border-radius:24px;background:var(--ink);color:#fff;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:30px}
     .submit-zone h3{font:400 clamp(34px,4vw,52px)/.95 var(--serif);margin:0 0 10px}.submit-zone p{margin:0;color:rgba(255,255,255,.55);line-height:1.65;max-width:680px}
     .submit-btn{border:0;border-radius:999px;background:var(--lime);color:#111;padding:17px 24px;font-weight:800;font-size:9px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;min-width:190px}
@@ -107,52 +107,52 @@
   <section id="gate" class="gate" aria-live="polite">
     <div class="gate-card">
       <div class="gate-brand"><b>ISC</b><span>International Song Contest</span></div>
-      <h1 id="gate-title">Opening your private host brief.</h1>
-      <p id="gate-copy">This page is available only through the invitation link sent to the host nation.</p>
+      <h1 id="gate-title">Özel Host Nation Creative Brief açılıyor.</h1>
+      <p id="gate-copy">Bu sayfaya yalnızca Host Nation için oluşturulan özel davet linki üzerinden erişilebilir.</p>
       <div id="gate-spinner" class="spinner" aria-hidden="true"></div>
-      <small id="gate-foot">ISC 156 · Private host portal</small>
+      <small id="gate-foot">ISC 156 · Private Host Portal</small>
     </div>
   </section>
 
   <div id="portal" class="portal" hidden>
     <header class="topbar">
       <div class="brand"><span class="brand-mark">ISC</span><span>International Song Contest</span></div>
-      <span class="private-pill">Private host brief · ISC 156</span>
+      <span class="private-pill">Private Host Brief · ISC 156</span>
     </header>
 
     <main>
       <section class="hero">
         <div class="hero-inner">
           <span class="eyebrow">Presented to STJOHN · Host Nation</span>
-          <h1>Shape the world of <em>ISC 156.</em></h1>
-          <p class="hero-deck">You won the previous edition. Now you get to help define how the next one feels.</p>
-          <div class="hero-note"><b>PRIVATE LINK</b><span>This page is intentionally unlisted and is not linked anywhere on the ISC website. Please keep this invitation link within the host delegation.</span></div>
+          <h1><em>ISC 156</em> dünyasını birlikte şekillendir.</h1>
+          <p class="hero-deck">Bir önceki edisyonu kazandınız. Şimdi yeni edisyonun nasıl bir his vereceğini şekillendirmede söz sizde.</p>
+          <div class="hero-note"><b>PRIVATE LINK</b><span>Bu sayfa özellikle unlisted olarak hazırlandı ve ISC sitesinin hiçbir yerinden bağlantı verilmedi. Lütfen bu davet linkini Host Nation delegasyonu içinde tutun.</span></div>
         </div>
       </section>
 
       <div class="progress-wrap">
-        <div class="progress-head"><span>Creative brief progress</span><span id="progress-label">0 / 12</span></div>
+        <div class="progress-head"><span>Creative Brief ilerlemesi</span><span id="progress-label">0 / 12</span></div>
         <div class="progress"><span id="progress-bar"></span></div>
       </div>
 
       <div id="saved-banner" class="saved-banner">
-        <strong>A brief is already saved for this invitation.</strong>
-        <span>You can review or update the answers below and submit again; the newest version will replace the previous one.</span>
+        <strong>Bu davet linki için daha önce bir Creative Brief kaydedildi.</strong>
+        <span>Aşağıdaki cevapları gözden geçirip güncelleyebilir ve yeniden Submit edebilirsiniz; en son gönderilen sürüm öncekinin yerini alır.</span>
       </div>
 
       <form id="brief-form" class="form-shell" novalidate>
         <section class="intro-grid">
-          <div><span class="eyebrow">Host Nation Creative Brief</span><h2>Your edition, your imprint.</h2></div>
-          <p>Congratulations once again on winning ISC 155 with <strong>Csinszka — “Felsütött a napsugára.”</strong> Competition rules and administration remain with ISC, but STJOHN now has a visible creative role in shaping the atmosphere, visual identity and opening message of ISC 156. Short answers are perfectly fine.</p>
+          <div><span class="eyebrow">Host Nation Creative Brief</span><h2>Yeni edisyonda sizin de imzanız olsun.</h2></div>
+          <p>ISC 155’i <strong>Csinszka — “Felsütött a napsugára”</strong> ile kazandığınız için bir kez daha tebrikler. Yarışmanın kuralları ve yönetimi ISC’de kalmaya devam edecek; ancak STJOHN, ISC 156’nın atmosferi, visual identity’si ve açılış mesajının şekillenmesinde görünür bir creative role üstlenecek. Cevapların kısa olması tamamen yeterli.</p>
         </section>
 
         <div class="questions">
           <section class="question" data-progress-field="host_message">
             <div class="q-no"></div>
             <div class="q-body">
-              <h3>Your host message</h3>
-              <p>What does hosting ISC 156 mean to STJOHN after winning ISC 155? Please write approximately 2–4 sentences. This may be quoted directly in the official launch announcement.</p>
-              <label for="host_message">Your message</label>
+              <h3>Host mesajınız</h3>
+              <p>ISC 155’i kazandıktan sonra ISC 156’ya Host Nation olmak STJOHN için ne ifade ediyor? Yaklaşık 2–4 cümle yazabilirsiniz. Bu metin official launch announcement içinde doğrudan alıntılanabilir.</p>
+              <label for="host_message">Mesajınız</label>
               <textarea id="host_message" name="host_message" required></textarea>
             </div>
           </section>
@@ -160,9 +160,9 @@
           <section class="question" data-progress-field="welcome_sentence">
             <div class="q-no"></div>
             <div class="q-body">
-              <h3>Welcome to ISC 156</h3>
-              <p>Complete this sentence in your own way: <strong>“STJOHN welcomes the delegations of ISC 156 to an edition that will be…”</strong></p>
-              <label for="welcome_sentence">Complete the sentence</label>
+              <h3>ISC 156’ya hoş geldiniz</h3>
+              <p>Şu cümleyi kendi üslubunuzla tamamlayın: <strong>“STJOHN, ISC 156 delegasyonlarını … bir edisyona davet ediyor.”</strong></p>
+              <label for="welcome_sentence">Cümleyi tamamlayın</label>
               <textarea id="welcome_sentence" name="welcome_sentence" required></textarea>
             </div>
           </section>
@@ -170,10 +170,10 @@
           <section class="question" data-progress-field="mood_words">
             <div class="q-no"></div>
             <div class="q-body">
-              <h3>The mood</h3>
-              <p>Choose 3–5 words that you would like ISC 156 to feel like.</p>
-              <p class="examples">Examples: elegant · warm · euphoric · nostalgic · nocturnal · futuristic · romantic · playful · cinematic · mysterious · colourful · intimate · glamorous · surreal</p>
-              <label for="mood_words">3–5 mood words</label>
+              <h3>Mood</h3>
+              <p>ISC 156’nın nasıl bir his vermesini istediğinizi anlatan 3–5 kelime seçin.</p>
+              <p class="examples">Örnekler: zarif · sıcak · coşkulu · nostaljik · gece hissi veren · fütüristik · romantik · oyuncu · sinematik · gizemli · renkli · samimi · gösterişli · sürreal</p>
+              <label for="mood_words">3–5 mood kelimesi</label>
               <input id="mood_words" name="mood_words" type="text" required />
             </div>
           </section>
@@ -182,9 +182,9 @@
             <div class="q-no"></div>
             <div class="q-body">
               <h3>Colour world</h3>
-              <p>What colours do you associate with your vision for ISC 156? Exact colour codes are not necessary.</p>
-              <p class="examples">Examples: midnight blue + gold · deep red + cream · silver + electric blue · sunset orange + violet</p>
-              <label for="color_world">Your preferred colour world</label>
+              <p>ISC 156 için hayal ettiğiniz dünyayı hangi renklerle ilişkilendiriyorsunuz? Kesin colour code vermeniz gerekmiyor.</p>
+              <p class="examples">Örnekler: midnight blue + gold · deep red + cream · silver + electric blue · sunset orange + violet</p>
+              <label for="color_world">Tercih ettiğiniz colour world</label>
               <input id="color_world" name="color_world" type="text" required />
             </div>
           </section>
@@ -192,11 +192,11 @@
           <section class="question" data-progress-field="host_symbol">
             <div class="q-no"></div>
             <div class="q-body">
-              <h3>A host symbol</h3>
-              <p>If STJOHN could leave one recurring visual symbol or motif throughout ISC 156, what would it be? It may be cultural, natural, architectural or completely abstract.</p>
+              <h3>Host symbol</h3>
+              <p>STJOHN, ISC 156 boyunca tekrar eden tek bir visual symbol ya da motif bırakacak olsa bu ne olurdu? Kültürel, doğal, mimari veya tamamen soyut bir şey olabilir.</p>
               <div class="two">
-                <div><label for="host_symbol">Your symbol / motif</label><input id="host_symbol" name="host_symbol" type="text" required /></div>
-                <div><label for="symbol_meaning">Why does it represent this edition?</label><input id="symbol_meaning" name="symbol_meaning" type="text" /></div>
+                <div><label for="host_symbol">Symbol / motif</label><input id="host_symbol" name="host_symbol" type="text" required /></div>
+                <div><label for="symbol_meaning">Bu edisyonu neden temsil ediyor?</label><input id="symbol_meaning" name="symbol_meaning" type="text" /></div>
               </div>
             </div>
           </section>
@@ -204,12 +204,12 @@
           <section class="question" data-progress-field="motto_1">
             <div class="q-no"></div>
             <div class="q-body">
-              <h3>The motto</h3>
-              <p>What should be the central phrase or motto of ISC 156? One final motto is enough, or you may send up to three alternatives.</p>
+              <h3>Motto</h3>
+              <p>ISC 156’nın ana ifadesi ya da motto’su ne olmalı? Tek bir final motto yeterli; isterseniz üç alternatif de gönderebilirsiniz.</p>
               <div class="triple">
                 <div><label for="motto_1">Option 1</label><input id="motto_1" name="motto_1" type="text" required /></div>
-                <div><label for="motto_2">Option 2 <span class="optional">optional</span></label><input id="motto_2" name="motto_2" type="text" /></div>
-                <div><label for="motto_3">Option 3 <span class="optional">optional</span></label><input id="motto_3" name="motto_3" type="text" /></div>
+                <div><label for="motto_2">Option 2 <span class="opsiyonel">opsiyonel</span></label><input id="motto_2" name="motto_2" type="text" /></div>
+                <div><label for="motto_3">Option 3 <span class="opsiyonel">opsiyonel</span></label><input id="motto_3" name="motto_3" type="text" /></div>
               </div>
             </div>
           </section>
@@ -217,11 +217,11 @@
           <section class="question" data-progress-field="welcome_song">
             <div class="q-no"></div>
             <div class="q-body">
-              <h3>The host’s welcome song</h3>
-              <p>Choose one existing song that would be the perfect unofficial welcome song for ISC 156. It will not compete; it may inspire the launch atmosphere, host playlist or opening editorial.</p>
+              <h3>Welcome song</h3>
+              <p>ISC 156 için en doğru unofficial welcome song olacağını düşündüğünüz mevcut bir şarkı seçin. Bu şarkı yarışmayacak; launch atmosferine, host playlist’e veya opening editorial’a ilham verebilir.</p>
               <label for="welcome_song">Artist — Song</label>
               <input id="welcome_song" name="welcome_song" type="text" required />
-              <label for="welcome_song_reason">Why this song? <span class="optional">optional</span></label>
+              <label for="welcome_song_reason">Neden bu şarkı? <span class="opsiyonel">opsiyonel</span></label>
               <textarea id="welcome_song_reason" name="welcome_song_reason"></textarea>
             </div>
           </section>
@@ -229,10 +229,10 @@
           <section class="question" data-progress-field="wish_list">
             <div class="q-no"></div>
             <div class="q-body">
-              <h3>What do you want to hear?</h3>
-              <p>As host nation, what would you personally love to see more of in ISC 156? This is not a rule; delegations remain completely free in their selections.</p>
-              <p class="examples">Native languages · experimental entries · big pop songs · alternative music · strong storytelling · local cultural influences · unexpected artists · riskier selections</p>
-              <label for="wish_list">STJOHN would love to see…</label>
+              <h3>Bu edisyonda ne duymak istersiniz?</h3>
+              <p>Host Nation olarak ISC 156’da hangi tür seçimleri daha fazla görmeyi isterdiniz? Bu bir kural değil; delegasyonlar seçimlerinde tamamen özgür olmaya devam edecek.</p>
+              <p class="examples">Yerel diller · deneysel entry’ler · büyük pop şarkıları · alternatif müzik · güçlü storytelling · yerel kültürel etkiler · beklenmedik artist seçimleri · daha riskli tercihler</p>
+              <label for="wish_list">STJOHN şunları görmek ister…</label>
               <textarea id="wish_list" name="wish_list" required></textarea>
             </div>
           </section>
@@ -240,9 +240,9 @@
           <section class="question" data-progress-field="delegation_message">
             <div class="q-no"></div>
             <div class="q-body">
-              <h3>A message to the delegations</h3>
-              <p>Imagine all delegations are standing on stage on the first night of ISC 156. What would you like to say to them?</p>
-              <label for="delegation_message">Your message</label>
+              <h3>Delegasyonlara mesaj</h3>
+              <p>ISC 156’nın ilk gecesinde bütün delegasyonların sahnede olduğunu düşünün. Onlara ne söylemek isterdiniz?</p>
+              <label for="delegation_message">Mesajınız</label>
               <textarea id="delegation_message" name="delegation_message" required></textarea>
             </div>
           </section>
@@ -250,11 +250,11 @@
           <section class="question" data-progress-field="favorite_memory">
             <div class="q-no"></div>
             <div class="q-body">
-              <h3>Your ISC 155 memory</h3>
-              <p>Apart from your own winning entry, what was your favourite memory from ISC 155? It can be another song, an editorial, a voting moment, a surprise result, a delegation or simply something you enjoyed.</p>
-              <label for="favorite_memory">Your favourite moment</label>
+              <h3>ISC 155’ten aklınızda kalan</h3>
+              <p>Kendi kazanan entry’niz dışında ISC 155’ten en sevdiğiniz an neydi? Başka bir şarkı, bir editorial, voting anı, sürpriz sonuç, bir delegasyon ya da yalnızca hoşunuza giden küçük bir ayrıntı olabilir.</p>
+              <label for="favorite_memory">En sevdiğiniz an</label>
               <textarea id="favorite_memory" name="favorite_memory" required></textarea>
-              <label for="favorite_memory_reason">Why? <span class="optional">optional</span></label>
+              <label for="favorite_memory_reason">Neden? <span class="opsiyonel">opsiyonel</span></label>
               <textarea id="favorite_memory_reason" name="favorite_memory_reason"></textarea>
             </div>
           </section>
@@ -262,9 +262,9 @@
           <section class="question" data-progress-field="victory_reaction">
             <div class="q-no"></div>
             <div class="q-body">
-              <h3>The night you won</h3>
-              <p>When you realised STJOHN had won ISC 155, what was your immediate reaction? A short, personal answer is encouraged.</p>
-              <label for="victory_reaction">Your reaction</label>
+              <h3>Kazandığınız gece</h3>
+              <p>STJOHN’un ISC 155’i kazandığını fark ettiğiniz anda ilk tepkiniz ne oldu? Kısa ve kişisel bir cevap yeterli.</p>
+              <label for="victory_reaction">İlk tepkiniz</label>
               <textarea id="victory_reaction" name="victory_reaction" required></textarea>
             </div>
           </section>
@@ -272,10 +272,10 @@
           <section class="question" data-progress-field="host_signature">
             <div class="q-no"></div>
             <div class="q-body">
-              <h3>The host signature</h3>
-              <p>Would you like ISC 156 to have a small recurring host signature? This might be a symbol, emoji, short phrase, tiny graphic idea or recurring sign-off.</p>
-              <p class="examples">Examples: ✦ · ☀ · “From STJOHN, with love.” · “Where the light begins.”</p>
-              <label for="host_signature">Your idea</label>
+              <h3>Host signature</h3>
+              <p>ISC 156 boyunca tekrar eden küçük bir host signature olsun ister misiniz? Bir symbol, emoji, kısa ifade, küçük graphic idea ya da tekrar eden bir sign-off olabilir.</p>
+              <p class="examples">Örnekler: ✦ · ☀ · “From STJOHN, with love.” · “Where the light begins.”</p>
+              <label for="host_signature">Fikriniz</label>
               <input id="host_signature" name="host_signature" type="text" required />
             </div>
           </section>
@@ -283,17 +283,17 @@
 
         <section class="submit-zone">
           <div>
-            <h3>Send your creative brief.</h3>
-            <p>Your answers are saved privately for ISC administration. You may return through the same invitation link later and submit an updated version.</p>
+            <h3>Creative Brief’inizi gönderin.</h3>
+            <p>Cevaplar yalnızca ISC yönetimi için private olarak kaydedilir. Aynı davet linkiyle daha sonra tekrar dönüp güncellenmiş bir sürümü Submit edebilirsiniz.</p>
             <div id="form-status" class="status" aria-live="polite"></div>
           </div>
-          <button id="submit-btn" class="submit-btn" type="submit">Submit host brief →</button>
+          <button id="submit-btn" class="submit-btn" type="submit">Submit Host Brief →</button>
         </section>
 
         <section class="after">
-          <span>What happens next?</span>
-          <h2>ISC turns your answers into the launch world.</h2>
-          <p>Your brief may shape the official launch headline, motto, colour system, visual motifs, homepage presentation, host-nation section, opening editorial, social artwork and launch playlist. Competition rules, voting and administration remain managed by ISC.</p>
+          <span>Bundan sonra ne olacak?</span>
+          <h2>ISC, cevaplarınızı launch dünyasına dönüştürecek.</h2>
+          <p>Creative Brief; official launch headline, motto, colour system, visual motifler, homepage sunumu, Host Nation bölümü, opening editorial, social artwork ve launch playlist üzerinde belirleyici olabilir. Yarışma kuralları, voting ve yönetim ISC tarafından yürütülmeye devam edecek.</p>
         </section>
       </form>
     </main>
@@ -339,8 +339,8 @@
     };
 
     const deny = () => {
-      gateTitle.textContent = 'This invitation link is not valid.';
-      gateCopy.textContent = 'The ISC 156 Host Nation Creative Brief can only be opened from the private link issued to the host delegation.';
+      gateTitle.textContent = 'Bu davet linki geçerli değil.';
+      gateCopy.textContent = 'ISC 156 Host Nation Creative Brief yalnızca Host Nation delegasyonu için oluşturulan private link üzerinden açılabilir.';
       gateSpinner.style.display = 'none';
       document.title = 'ISC — Private Host Brief';
     };
@@ -380,13 +380,13 @@
 
       if (!form.checkValidity()) {
         form.reportValidity();
-        status.textContent = 'Please complete the required questions before submitting.';
+        status.textContent = 'Submit etmeden önce zorunlu soruları tamamlayın.';
         status.classList.add('error');
         return;
       }
 
       submitButton.disabled = true;
-      submitButton.textContent = 'Saving…';
+      submitButton.textContent = 'Kaydediliyor…';
 
       try {
         const result = await rpc('isc_host_brief_submit', {
@@ -395,17 +395,17 @@
           p_payload: collect()
         });
 
-        if (!result || result.ok !== true) throw new Error(result?.error || 'Unable to save');
+        if (!result || result.ok !== true) throw new Error(result?.error || 'Kayıt yapılamadı');
 
-        status.textContent = 'Saved successfully. Thank you — STJOHN’s creative brief is now with ISC.';
+        status.textContent = 'Başarıyla kaydedildi. Teşekkürler — STJOHN Creative Brief artık ISC’ye ulaştı.';
         status.classList.add('success');
         savedBanner.classList.add('show');
-        submitButton.textContent = 'Update saved brief →';
+        submitButton.textContent = 'Update Saved Brief →';
       } catch (error) {
         console.error(error);
-        status.textContent = 'The brief could not be saved. Please use the original invitation link and try again.';
+        status.textContent = 'Creative Brief kaydedilemedi. Lütfen size gönderilen orijinal davet linkini kullanarak tekrar deneyin.';
         status.classList.add('error');
-        submitButton.textContent = 'Submit host brief →';
+        submitButton.textContent = 'Submit Host Brief →';
       } finally {
         submitButton.disabled = false;
       }
@@ -430,7 +430,7 @@
         if (result.payload) fill(result.payload);
         if (result.submitted) {
           savedBanner.classList.add('show');
-          submitButton.textContent = 'Update saved brief →';
+          submitButton.textContent = 'Update Saved Brief →';
         }
         updateProgress();
 
@@ -438,8 +438,8 @@
         portal.hidden = false;
       } catch (error) {
         console.error(error);
-        gateTitle.textContent = 'The private portal could not be opened.';
-        gateCopy.textContent = 'Please try the invitation link again in a moment.';
+        gateTitle.textContent = 'Private portal açılamadı.';
+        gateCopy.textContent = 'Lütfen davet linkini kısa bir süre sonra yeniden deneyin.';
         gateSpinner.style.display = 'none';
       }
     })();
