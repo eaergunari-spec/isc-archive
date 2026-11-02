@@ -83,6 +83,10 @@
     $('window-deadline').textContent = closesAt ? formatTime(closesAt) : 'Henüz açıklanmadı';
     $('submit-live').classList.toggle('closed', !state.open);
     $('submit-live').lastChild.textContent = state.open ? ' BAŞVURULAR AÇIK' : ' BAŞVURULAR KAPALI';
+    const heroCta = document.querySelector('.submit-hero-cta');
+    if (heroCta) heroCta.innerHTML = state.open
+      ? 'ŞARKINI GÖNDER <span aria-hidden="true">→</span>'
+      : 'BAŞVURU PENCERESİ KAPALI <span aria-hidden="true">→</span>';
   }
 
   function populateCountries(countries) {
