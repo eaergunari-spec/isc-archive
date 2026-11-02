@@ -1,7 +1,7 @@
 (() => {
   const SUPABASE_URL = 'https://knwvnbfqnccjiezprrme.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_Zw8H9mMmUop7wkYNKtZB3Q_7dM1QHut';
-  const EDITION = 155;
+  const EDITION = 156;
   const STORAGE_KEY = 'isc_voter_browser_session_v1';
   const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -82,6 +82,7 @@
     $('window-status').textContent = state.open ? 'BAŞVURULAR AÇIK' : 'BAŞVURULAR KAPALI';
     $('window-deadline').textContent = closesAt ? formatTime(closesAt) : 'Henüz açıklanmadı';
     $('submit-live').classList.toggle('closed', !state.open);
+    $('submit-live').lastChild.textContent = state.open ? ' BAŞVURULAR AÇIK' : ' BAŞVURULAR KAPALI';
   }
 
   function populateCountries(countries) {
@@ -240,9 +241,9 @@
     $('receipt').hidden = false;
     $('receipt-title').textContent = data.created ? 'Başvurun kaydedildi.' : 'Resmî entry güncellendi.';
     const provider = detectProvider(item.media_url);
-    $('receipt-copy').textContent = (provider?.label || 'Şarkı bağlantısı') + ' ISC 155 için ' + state.country.name + ' delegasyonunun aktif entry’si olarak kaydedildi.';
+    $('receipt-copy').textContent = (provider?.label || 'Şarkı bağlantısı') + ' ISC ' + EDITION + ' için ' + state.country.name + ' delegasyonunun aktif entry’si olarak kaydedildi.';
     $('receipt-country').textContent = state.country.name;
-    $('receipt-code').textContent = data.receipt || ('ISC155-' + item.id);
+    $('receipt-code').textContent = data.receipt || ('ISC' + EDITION + '-' + item.id);
     $('receipt-revision').textContent = String(item.revision_count || 1);
     $('receipt-time').textContent = formatTime(item.updated_at);
   }
