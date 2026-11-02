@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="ISC 155 resmî delegasyon entry başvuru masası. Son başvuru: 9 Ekim 2026, 20.00 TSİ." />
-  <meta name="theme-color" content="#0b0a0e" />
+  <meta name="description" content="ISC 156 resmî şarkı başvuruları açıldı. Son başvuru: 11 Kasım 2026, 17.00 Türkiye saati." />
+  <meta name="theme-color" content="#10182f" />
   <link rel="canonical" href="https://eaergunari-spec.github.io/isc-archive/submit.html" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="International Song Contest" />
-  <meta property="og:title" content="ISC 155 — Entry Submission" />
-  <meta property="og:description" content="Delegasyonunu doğrula ve ISC 155 entry’ni 9 Ekim 2026, 20.00 TSİ’ye kadar gönder." />
+  <meta property="og:title" content="ISC 156 — Official Entry Desk" />
+  <meta property="og:description" content="ISC 156 başvuruları başladı. STJOHN ev sahipliğinde, 11 Kasım 2026 saat 17.00 TSİ’ye kadar şarkını gönder." />
   <meta property="og:url" content="https://eaergunari-spec.github.io/isc-archive/submit.html" />
   <title>ISC 155 — Entry Submission</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,12 +18,14 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="submit.css?v=20261001-1" />
+  <link rel="stylesheet" href="submit-156.css?v=20261102-1" />
 </head>
-<body class="submit-page">
+<body class="submit-page submit-page-156">
   <header class="site-header">
     <a class="brand" href="index.html"><span class="brand-mark">ISC</span><span>International Song Contest</span></a>
     <nav>
-      <a href="editions/155/">ISC 155</a>
+      <a href="index.html">ISC 156</a>
+      <a href="index.html#host">Host Nation</a>
       <a href="countries/">Ülkeler</a>
       <a href="archive.html">Arşiv</a>
       <a href="search.html">Ara</a>
@@ -32,23 +34,28 @@
   </header>
 
   <main>
-    <section class="submit-hero">
-      <div>
-        <span class="submit-live" id="submit-live"><i></i> ENTRY WINDOW</span>
-        <p class="eyebrow">ISC 155 · Official entry desk</p>
-        <h1>Bir şarkı.<br><em>Senin seçimin.</em></h1>
-        <p class="submit-hero-copy">Delegasyonunu doğrula, şarkının YouTube, YouTube Music veya Spotify bağlantısını gönder. Başvuru penceresi kapanana kadar linkini güncelleyebilirsin.</p>
+    <section class="submit-hero" aria-labelledby="submission-headline">
+      <div class="submit-hero-content">
+        <span class="submit-live" id="submit-live"><i></i> BAŞVURULAR AÇIK</span>
+        <p class="eyebrow">ISC 156 · HOSTED BY STJOHN · OFFICIAL ENTRY DESK</p>
+        <h1 id="submission-headline">YOUR SONG.<br><em>LET IT IN.</em></h1>
+        <p class="submit-hero-copy">Yeni bir şafak, yeni bir şarkı. Delegasyonunu doğrula ve YouTube, YouTube Music veya Spotify üzerinden resmî ISC 156 entry’ni gönder. Başvuru süresi dolmadan bağlantını dilediğin zaman güncelleyebilirsin.</p>
+        <a class="submit-hero-cta" href="#entry-desk">ŞARKINI GÖNDER <span aria-hidden="true">→</span></a>
       </div>
-      <aside class="submit-hero-mark" aria-hidden="true"><span>155</span><small>SUBMIT<br>YOUR<br>ENTRY</small></aside>
+      <div class="submit-hero-mark" aria-hidden="true">
+        <div class="submit-bird-halo"></div>
+        <img src="assets/isc156-turul-mark.svg?v=20261102-refined-2" alt="" />
+        <div class="submit-poster-foot"><strong>LET THE LIGHT IN</strong><span>A NEW DAWN, A NEW SONG</span></div>
+      </div>
     </section>
 
     <section class="submit-statusbar">
       <div><span>STATUS</span><strong id="window-status">Kontrol ediliyor…</strong></div>
-      <div><span>DEADLINE</span><strong id="window-deadline">9 Ekim 2026 · 20.00 TSİ</strong></div>
+      <div><span>DEADLINE</span><strong id="window-deadline">11 Kasım 2026 · 17.00 TSİ</strong></div>
       <div><span>ACCEPTED</span><strong>YouTube · YT Music · Spotify</strong></div>
     </section>
 
-    <section class="entry-desk">
+    <section class="entry-desk" id="entry-desk">
       <div class="entry-desk-intro">
         <span class="eyebrow">Delegation access</span>
         <h2>Önce kim olduğunu doğrulayalım.</h2>
@@ -90,7 +97,7 @@
 
             <div class="submission-rule">
               <b>Tek resmî entry.</b>
-              <p>Her delegasyonun ISC 155 için tek aktif şarkı bağlantısı bulunur. Yeni bir link gönderdiğinde mevcut resmî kaydın güncellenir.</p>
+              <p>Her delegasyonun ISC 156 için tek aktif şarkı bağlantısı bulunur. Yeni bir link gönderdiğinde mevcut resmî kaydın güncellenir.</p>
             </div>
 
             <button class="submit-entry-button" id="submit-entry-button" type="submit">ŞARKI LİNKİNİ GÖNDER <span>→</span></button>
@@ -101,7 +108,7 @@
             <span class="receipt-kicker">ENTRY RECEIVED</span>
             <div class="receipt-check">✓</div>
             <h3 id="receipt-title">Başvurun kaydedildi.</h3>
-            <p id="receipt-copy">ISC 155 resmî entry kaydı güncellendi.</p>
+            <p id="receipt-copy">ISC 156 resmî entry kaydı güncellendi.</p>
             <dl>
               <div><dt>Delegasyon</dt><dd id="receipt-country">—</dd></div>
               <div><dt>Kayıt</dt><dd id="receipt-code">—</dd></div>
@@ -127,10 +134,10 @@
 
   <footer>
     <div class="footer-brand">ISC</div>
-    <p>International Song Contest · ISC 155 Entry Desk</p>
+    <p>International Song Contest · ISC 156 Entry Desk · Hosted by STJOHN</p>
     <p>Secure delegation submission</p>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="submit.js?v=20261001-3"></script>
+  <script src="submit.js?v=20261102-1"></script>
 </body>
 </html>
