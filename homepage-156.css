@@ -415,3 +415,73 @@
   .previous-score-156>strong{font-size:82px}
   .previous-links-156{display:grid;grid-template-columns:1fr}
 }
+/* ISC 156 entry period · live campaign signage */
+.home-156 .site-header .nav-vote{color:#526c09;font-weight:800}
+.home-156 .hero-deadline-156{
+  display:flex;gap:13px;align-items:center;flex-wrap:wrap;
+  margin-top:23px;color:rgba(244,240,231,.72);
+  font-size:9px;letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.home-156 .hero-deadline-156 strong{color:var(--156-green);font-weight:800}
+.home-156 .hero-deadline-indicator{width:7px;height:7px;background:var(--156-green);border-radius:50%;box-shadow:0 0 0 5px rgba(201,242,74,.1)}
+.home-156 .submission-open-156{
+  display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,.65fr);
+  align-items:stretch;
+  background:var(--156-ivory);
+  color:var(--156-night);
+  border-bottom:1px solid var(--156-line);
+}
+.home-156 .submission-open-copy{
+  padding:clamp(57px,6vw,95px) clamp(25px,6vw,92px);
+}
+.home-156 .submission-open-eyebrow{
+  display:inline-flex;gap:13px;align-items:center;
+  font-size:9px;font-weight:800;letter-spacing:.16em;
+  color:#596d28;
+}
+.home-156 .submission-open-eyebrow i{width:7px;height:7px;background:#789631;border-radius:50%;box-shadow:0 0 0 5px rgba(120,150,49,.10)}
+.home-156 .submission-open-copy h2{
+  margin:23px 0 20px;
+  font-family:"Libre Caslon Display",serif;
+  font-weight:400;letter-spacing:-.038em;
+  line-height:.92;
+  font-size:clamp(56px,6.2vw,102px);
+}
+.home-156 .submission-open-copy h2 em{font-style:normal;color:#729023}
+.home-156 .submission-open-copy p{font-size:14px;line-height:1.68;color:var(--156-muted);max-width:600px}
+.home-156 .submission-open-button{
+  min-height:50px;min-width:218px;display:inline-flex;align-items:center;justify-content:space-between;
+  gap:30px;margin-top:16px;padding:0 20px;background:var(--156-night);color:#fff;
+  font-size:9px;font-weight:800;letter-spacing:.15em;
+  transition:transform .2s,background .2s;
+}
+.home-156 .submission-open-button:hover{transform:translateY(-2px);background:#304162}
+.home-156 .submission-open-button span{font-size:21px;font-weight:400;color:var(--156-green)}
+.home-156 .submission-open-deadline{
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+  border-left:1px solid rgba(16,24,47,.10);
+  background:var(--156-green);
+  padding:50px clamp(30px,4.5vw,72px);
+}
+.home-156 .submission-open-deadline>span{font-size:9px;letter-spacing:.2em;font-weight:800}
+.home-156 .submission-open-deadline strong{
+  display:block;margin:26px 0 7px;
+  font-family:"Libre Caslon Display",serif;font-size:clamp(84px,9vw,148px);
+  line-height:.8;font-weight:400;letter-spacing:-.055em;white-space:nowrap;
+}
+.home-156 .submission-open-deadline strong em{display:block;font-size:.52em;font-style:normal;letter-spacing:.02em;margin-top:12px}
+.home-156 .submission-open-deadline b{margin-top:22px;font-size:14px;letter-spacing:.12em}
+.home-156 .submission-open-deadline small{margin-top:6px;font-size:10px;color:rgba(16,24,47,.7)}
+@media(max-width:900px){
+  .home-156 .submission-open-156{grid-template-columns:1fr}
+  .home-156 .submission-open-deadline{border-left:0;border-top:1px solid rgba(16,24,47,.10)}
+  .home-156 .submission-open-deadline strong{font-size:108px}
+}
+@media(max-width:620px){
+  .home-156 .hero-deadline-156{gap:9px;font-size:8px}
+  .home-156 .submission-open-copy{padding:65px 19px}
+  .home-156 .submission-open-copy h2{font-size:clamp(54px,12vw,73px)}
+  .home-156 .submission-open-deadline{padding:45px 19px}
+  .home-156 .submission-open-deadline strong{font-size:92px}
+}
