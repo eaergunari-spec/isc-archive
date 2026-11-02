@@ -549,11 +549,11 @@
 
 
 /* ISC 156 · hero-sized full-width submission ribbon */
-.home-156 .hero-156-copy{grid-column:1;grid-row:1}
-.home-156 .hero-identity-poster{grid-column:2;grid-row:1}
+.home-156 .hero-156-copy{grid-column:1;grid-row:2}
+.home-156 .hero-identity-poster{grid-column:2;grid-row:2}
 .home-156 .hero-entry-ribbon{
   grid-column:1 / -1;
-  grid-row:2;
+  grid-row:1;
   position:relative;
   isolation:isolate;
   display:grid;
@@ -667,8 +667,8 @@
   .home-156 .hero-entry-ribbon-title{font-size:clamp(42px,6.1vw,75px)}
 }
 @media(max-width:980px){
-  .home-156 .hero-156-copy{grid-column:1;grid-row:1}
-  .home-156 .hero-entry-ribbon{grid-column:1;grid-row:2}
+  .home-156 .hero-entry-ribbon{grid-column:1;grid-row:1}
+  .home-156 .hero-156-copy{grid-column:1;grid-row:2}
   .home-156 .hero-identity-poster{grid-column:1;grid-row:3}
   .home-156 .hero-entry-ribbon-title{font-size:clamp(47px,8vw,76px)}
 }
