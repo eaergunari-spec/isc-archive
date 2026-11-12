@@ -6,7 +6,7 @@ Current edition: **ISC 156 — LET THE LIGHT IN** (Host Nation: STJOHN)
 
 - Homepage and current edition launch: `/`
 - Official ISC 156 entry desk: `/submit.html`
-- Submission deadline: **2026-11-11 17:00 Europe/Istanbul** (2026-11-11T14:00:00Z)
+- Submission deadline: **2026-11-14 17:00 Europe/Istanbul** (2026-11-14T14:00:00Z)
 - Accepted links: YouTube, YouTube Music and Spotify track
 - One active entry per delegation. Existing delegation codes and remembered sessions carry forward.
 - ISC 155 completed results: `/results.html`
