@@ -1,6 +1,6 @@
 /* ISC 156 submission-window notice. Server-side Supabase gate is authoritative. */
 (() => {
-  const deadline = Date.parse('2026-11-11T14:00:00Z'); // 17:00 Europe/Istanbul
+  const deadline = Date.parse('2026-11-14T14:00:00Z'); // 17:00 Europe/Istanbul
   if (!Number.isFinite(deadline)) return;
   const one = (q) => document.querySelector(q);
 
@@ -22,7 +22,7 @@
     const kicker = one('.submission-open-eyebrow');
     if (kicker) kicker.innerHTML = '<i aria-hidden="true"></i> ISC 156 · SUBMISSIONS CLOSED';
     const copy = one('.submission-open-copy p');
-    if (copy) copy.textContent = 'ISC 156 şarkı başvuruları 11 Kasım 2026 saat 17.00 TSİ itibarıyla kapandı. Delegasyonlar kayıt durumlarını başvuru masasından görüntüleyebilir.';
+    if (copy) copy.textContent = 'ISC 156 şarkı başvuruları 14 Kasım 2026 saat 17.00 TSİ itibarıyla kapandı. Delegasyonlar kayıt durumlarını başvuru masasından görüntüleyebilir.';
     const button = one('.submission-open-button');
     if (button) button.innerHTML = 'VIEW ENTRY DESK <span aria-hidden="true">→</span>';
     const progress = one('.road-steps-156 article.active');
