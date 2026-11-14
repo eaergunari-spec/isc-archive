@@ -1,0 +1,33 @@
+/* ISC 156 — host-nation visual identity over the shared canonical edition hub */
+.edition-hub-156{--hub-black:#10182f;--hub-black-2:#13213e;--hub-cream:#f2f0e7;--hub-paper:#f7f4e9;--hub-pink:#ef9576;--hub-lime:#c9f24a;--hub-ink:#15213b;--hub-muted:#555e66;--hub-line:rgba(17,28,47,.13)}
+.edition-hub-156 .site-header{background:rgba(16,24,47,.97)}
+.edition-hub-156 .edition-hub-hero{background:radial-gradient(circle at 82% 26%,rgba(201,242,74,.12),transparent 32%),linear-gradient(120deg,#10182f,#122244 75%,#10182f);isolation:isolate}
+.edition-hub-156 .edition-hub-hero:after{content:"";position:absolute;right:-4%;top:0;width:55%;height:100%;background:url("assets/isc156-phoenix.avif") center/contain no-repeat;opacity:.075;pointer-events:none;z-index:-1}
+.edition-hub-156 .edition-hub-hero h1 span{color:#c9f24a}
+.edition-hub-156 .isc156-hub-theme{font-family:"Libre Caslon Display",serif;font-size:clamp(32px,4.6vw,75px);line-height:.94;letter-spacing:-.035em;margin:12px 0 16px;color:#f9f8ec}
+.edition-hub-156 .isc156-hub-theme em{font-weight:400;color:#c9f24a}
+.edition-hub-156 .hub-live-pill{border-color:rgba(201,242,74,.3)}
+.edition-hub-156 .hub-entry-order{color:#c9f24a}
+.edition-hub-156 .hub-entry-card{background:#10182f}
+.edition-hub-156 .hub-entry-copy h3{overflow-wrap:anywhere}
+.edition-hub-156 .hub-hero-gallery{z-index:1}
+.edition-hub-156 .hub-hero-mark{color:rgba(201,242,74,.05)}
+.isc156-run-band{display:flex;align-items:center;justify-content:center;gap:16px;padding:23px 24px;background:#c9f24a;color:#10182f;flex-wrap:wrap;letter-spacing:.095em;font-size:10px}
+.isc156-run-band span{font-weight:800;font-size:8px;letter-spacing:.23em}
+.isc156-run-band b{font-family:"Libre Caslon Display",serif;font-size:32px;font-weight:400;line-height:1}
+.isc156-run-band strong{font-size:11px;font-weight:800}
+.isc156-run-band i{width:34px;border-top:1px solid rgba(16,24,47,.35)}
+.edition-hub-156 .hub-magazine{background:#e7e9dc}
+.isc156-story-inner{display:grid;grid-template-columns:minmax(220px,.8fr) 1.2fr;gap:clamp(18px,5vw,70px);align-items:center;max-width:1120px;margin:30px auto 0;padding:22px;background:#10182f;color:#f7f6e9;border-radius:18px}
+.isc156-story-inner img{display:block;width:100%;max-height:355px;object-fit:contain}
+.isc156-story-inner div{padding:24px}
+.isc156-story-inner div>span{letter-spacing:.2em;color:#c9f24a;font-weight:800;font-size:9px}
+.isc156-story-inner h3{font-family:"Libre Caslon Display",serif;font-size:clamp(40px,5vw,74px);font-weight:400;line-height:1;margin:16px 0}
+.isc156-story-inner p{color:#c2c8cc;line-height:1.7;font-size:14px;max-width:490px}
+.isc156-story-inner a{display:inline-block;margin-top:14px;color:#c9f24a;text-decoration:none;font-size:11px;font-weight:800;letter-spacing:.12em}
+.edition-hub-156 .hub-platform-card{background:#15213b}
+.edition-hub-156 .hub-listen-section{background:#10182f}
+.edition-hub-156 .hub-section-head h2{letter-spacing:-.035em}
+.edition-hub-156 :focus-visible{outline:3px solid #ef9576;outline-offset:3px}
+@media(max-width:760px){.isc156-story-inner{grid-template-columns:1fr}.isc156-story-inner img{max-height:250px}.isc156-story-inner div{padding:10px 8px 20px}.isc156-run-band{gap:9px}.isc156-run-band span{width:100%;text-align:center}.isc156-run-band i{width:16px}}
+@media(prefers-reduced-motion:reduce){.edition-hub-156 *{scroll-behavior:auto!important;transition:none!important}}

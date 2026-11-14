@@ -476,9 +476,9 @@ async function init() {
 
   context = data;
   edition = data.edition;
-  if (Number(edition?.edition_number) !== 155) {
-    countrySelect.innerHTML = '<option>ISC 155 şu anda aktif edisyon değil</option>';
-    loginMessage.textContent = 'ISC 155 dışındaki edisyon için bu oylama odası kullanılamaz.';
+  if (Number(edition?.edition_number) !== 156) {
+    countrySelect.innerHTML = '<option>ISC 156 şu anda aktif edisyon değil</option>';
+    loginMessage.textContent = 'ISC 156 dışındaki edisyon için bu oylama odası kullanılamaz.';
     return;
   }
   scheme = data.voting_scheme;
@@ -584,7 +584,7 @@ function validateConfiguration() {
 
 function openBallotFromData(data, slug, options = {}) {
   const { scroll = true, remembered = false } = options;
-  if (Number(data?.edition_number) !== 155) {
+  if (Number(data?.edition_number) !== 156) {
     loginMessage.textContent = 'Güvenlik kontrolü: Başka bir edisyonun pusulası bu ekranda açılamaz.';
     return false;
   }

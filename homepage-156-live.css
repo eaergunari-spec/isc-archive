@@ -1,0 +1,44 @@
+/* ISC 156 — live competition homepage */
+.home-156 .isc156-live-intro .submission-open-deadline strong{font-size:clamp(86px,11vw,156px);white-space:nowrap}
+.home-156 .isc156-live-intro .submission-open-deadline strong em{font-size:.25em}
+.home-156 .isc156-live-links{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:26px}
+.home-156 .isc156-live-link{font:800 10px "DM Sans",sans-serif;color:#10182f;letter-spacing:.1em;text-decoration:none}
+.home-156 .isc156-lineup-section{padding:clamp(64px,7vw,110px) clamp(18px,5vw,80px);background:#f2f0e7;color:#10182f}
+.home-156 .isc156-lineup-heading{display:grid;grid-template-columns:1fr minmax(220px,.43fr);align-items:end;gap:35px;margin:0 auto 34px;max-width:1450px}
+.home-156 .isc156-lineup-heading span{font-size:10px;font-weight:800;letter-spacing:.2em;color:#626a64}
+.home-156 .isc156-lineup-heading h2{font:400 clamp(52px,6vw,96px)/.9 "Libre Caslon Display",serif;letter-spacing:-.05em;margin:16px 0 0}
+.home-156 .isc156-lineup-heading h2 em{color:#6c813b}
+.home-156 .isc156-lineup-heading>p{font-size:13px;line-height:1.7;color:#626a64;margin:0}
+.home-156 .isc156-track-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;max-width:1450px;margin:auto;background:rgba(16,24,47,.15);border:1px solid rgba(16,24,47,.15)}
+.home-156 .isc156-track{display:grid;grid-template-columns:160px minmax(0,1fr) 48px;align-items:center;gap:20px;padding:18px;background:#f2f0e7;min-width:0;position:relative}
+.home-156 .isc156-track--opening,.home-156 .isc156-track--finale{background:#e5ead7}
+.home-156 .isc156-track-art{position:relative;aspect-ratio:4/3;display:block;background:#10182f;overflow:hidden}
+.home-156 .isc156-track-art img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.home-156 .isc156-track:hover .isc156-track-art img{transform:scale(1.05)}
+.home-156 .isc156-track-number{position:absolute;top:8px;left:8px;font:400 28px "Libre Caslon Display",serif;background:#c9f24a;color:#10182f;padding:3px 8px}
+.home-156 .isc156-track-info{min-width:0}
+.home-156 .isc156-track-country{display:block;font-size:8px;font-weight:800;letter-spacing:.17em;color:#65763b}
+.home-156 .isc156-track h3{font:400 clamp(22px,2.25vw,35px)/1.05 "Libre Caslon Display",serif;margin:12px 0 6px;overflow-wrap:anywhere}
+.home-156 .isc156-track p{font-size:12px;color:#60696b;margin:0}
+.home-156 .isc156-track-file{display:inline-block;color:#10182f;margin-top:15px;font-size:9px;font-weight:800;letter-spacing:.14em;text-decoration:none}
+.home-156 .isc156-track-play{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:#10182f;color:#c9f24a;text-decoration:none;font-size:13px}
+.home-156 .isc156-lineup-all{display:table;margin:35px auto 0;padding:16px 26px;color:#10182f;border:1px solid #10182f;text-decoration:none;font-size:10px;font-weight:800;letter-spacing:.13em}
+.home-156 .isc156-playlist-section{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:center;padding:clamp(65px,7vw,120px) clamp(18px,5vw,80px);background:#10182f;color:#f5f3e7}
+.home-156 .isc156-playlist-section>div:first-child>span{display:block;font-size:10px;letter-spacing:.2em;font-weight:800;color:#c9f24a}
+.home-156 .isc156-playlist-section h2{font:400 clamp(50px,5.5vw,95px)/.95 "Libre Caslon Display",serif;letter-spacing:-.04em;margin:18px 0}
+.home-156 .isc156-playlist-section h2 em{color:#c9f24a}
+.home-156 .isc156-playlist-section p{color:#abb5bd;font-size:13px;line-height:1.7;max-width:420px}
+.home-156 .isc156-playlist-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.home-156 .isc156-playlist-card{display:flex;flex-direction:column;align-items:flex-start;gap:20px;background:#192843;border:1px solid rgba(255,255,255,.13);color:#f5f5ee;padding:35px 25px;text-decoration:none;min-height:265px;transition:transform .25s,background .25s}
+.home-156 .isc156-playlist-card:hover{transform:translateY(-5px);background:#213350}
+.home-156 .isc156-playlist-card>span{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:#ed554f;color:#fff;font-size:25px}
+.home-156 .isc156-playlist-card.spotify>span{background:#1ed760;color:#10182f}
+.home-156 .isc156-playlist-card small{font-size:8px;letter-spacing:.16em;font-weight:800;color:#aebac5}
+.home-156 .isc156-playlist-card strong{font:400 clamp(25px,3vw,37px)/1 "Libre Caslon Display",serif}
+.home-156 .isc156-playlist-card b{margin-top:auto;font-size:9px;letter-spacing:.15em;color:#c9f24a}
+.home-156 .hero-entry-ribbon-title{font-size:clamp(48px,6.1vw,96px)}
+.home-156 :focus-visible{outline:3px solid #eea382;outline-offset:4px}
+@media(max-width:1020px){.home-156 .isc156-track{grid-template-columns:130px minmax(0,1fr) 36px;gap:12px;padding:13px}.home-156 .isc156-track-play{width:34px;height:34px}.home-156 .isc156-playlist-section{grid-template-columns:1fr}}
+@media(max-width:750px){.home-156 .isc156-lineup-heading{grid-template-columns:1fr}.home-156 .isc156-track-grid{grid-template-columns:1fr}.home-156 .isc156-playlist-cards{grid-template-columns:1fr}.home-156 .isc156-track{grid-template-columns:112px minmax(0,1fr) 34px}.home-156 .isc156-track h3{font-size:25px}.home-156 .isc156-track-art{aspect-ratio:1}.home-156 .isc156-track-file{font-size:8px}.home-156 .isc156-live-intro .submission-open-deadline strong{font-size:90px}}
+@media(max-width:400px){.home-156 .isc156-track{grid-template-columns:90px minmax(0,1fr) 30px;gap:9px;padding:10px}.home-156 .isc156-track-country{font-size:7px}.home-156 .isc156-track h3{font-size:22px}.home-156 .isc156-track-number{font-size:21px}.home-156 .isc156-track-play{width:30px;height:30px}.home-156 .hero-entry-ribbon-title{font-size:42px!important}}
+@media(prefers-reduced-motion:reduce){.home-156 .isc156-track-art img,.home-156 .isc156-playlist-card{transition:none}}

@@ -1,0 +1,8 @@
+/* ISC 156 — ballot theme, dynamic voting engine retained */
+.vote-body{--v156-night:#10182f;--v156-lime:#c9f24a}
+.vote-body .vote-hero{background:radial-gradient(circle at 85% 25%,rgba(201,242,74,.13),transparent 27%),linear-gradient(135deg,#10182f,#162948)!important}
+.vote-body .vote-hero h1 em,.vote-body .hero-twelve{color:var(--v156-lime)!important}
+.vote-body .site-header{background:var(--v156-night)}
+.vote-body .vote-header .nav-vote{background:var(--v156-lime)!important;color:var(--v156-night)!important}
+.vote-body .vote-live:not(.closed){color:var(--v156-lime)}
+.vote-body :focus-visible{outline:3px solid #c9f24a;outline-offset:3px}
