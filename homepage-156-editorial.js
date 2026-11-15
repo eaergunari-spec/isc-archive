@@ -28,7 +28,7 @@
     frame.replaceChildren(iframe);
     modal.hidden = false;
     document.body.style.overflow = "hidden";
-    modal.querySelector("[data-close-welcome]")?.focus();
+    modal.querySelector("button[data-close-welcome]")?.focus();
   }
 
   play?.addEventListener("click", openWelcome);
