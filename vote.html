@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="technical-polish.css" />
   <link rel="stylesheet" href="vote-155.css?v=20261019-1" />
   <link rel="stylesheet" href="vote-156-live.css?v=20261114" />
+  <link rel="stylesheet" href="isc156-countdown.css?v=20261115" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="vote-body">
@@ -70,6 +71,19 @@
         <span class="hero-points" id="hero-other-points">Puanlama yükleniyor</span>
       </div>
     </section>
+
+    <section class="isc156-countdown isc156-countdown--vote" data-isc156-countdown role="timer" aria-live="off" aria-label="ISC 156 oylamasının kapanmasına kalan süre">
+  <div class="isc156-countdown-head">
+    <span class="isc156-countdown-kicker" data-isc156-countdown-label>VOTING CLOSES IN</span>
+    <time datetime="2026-11-25T17:00:00+03:00" data-isc156-countdown-date>25 NOVEMBER 2026 <i>·</i> 17:00 TSİ</time>
+  </div>
+  <div class="isc156-countdown-units" aria-label="Gün, saat, dakika, saniye">
+    <span class="isc156-countdown-unit"><strong data-isc156-days>--</strong><small>DAYS</small></span>
+    <span class="isc156-countdown-unit"><strong data-isc156-hours>--</strong><small>HOURS</small></span>
+    <span class="isc156-countdown-unit"><strong data-isc156-minutes>--</strong><small>MIN</small></span>
+    <span class="isc156-countdown-unit"><strong data-isc156-seconds>--</strong><small>SEC</small></span>
+  </div>
+</section>
 
     <section class="identity-stage" id="login-step">
       <div class="stage-kicker">01 <small>IDENTITY</small></div>
@@ -232,5 +246,6 @@
   <script src="vote.js?v=20261114-156-1"></script>
   <script src="vote-polish.js"></script>
 
+  <script src="isc156-countdown.js?v=20261115" defer></script>
 </body>
 </html>

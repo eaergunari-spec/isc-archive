@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="homepage-156-phoenix.css?v=20261115">
   <link rel="stylesheet" href="homepage-156-editorial.css?v=20261115-v1">
+  <link rel="stylesheet" href="isc156-countdown.css?v=20261115">
   <link rel="stylesheet" href="homepage-156-identity.css?v=20261115-v2">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"CollectionPage","name":"ISC 156 — LET THE LIGHT IN","url":"https://eaergunari-spec.github.io/isc-archive/","isPartOf":{"@type":"WebSite","name":"International Song Contest","url":"https://eaergunari-spec.github.io/isc-archive/"},"about":{"@type":"MusicEvent","name":"International Song Contest 156","description":"Eight delegations. Eight songs. Hosted by STJOHN."}}
@@ -69,6 +70,18 @@
           <a class="btn btn-accent" href="vote.html" data-vote-cta><span>ENTER THE VOTING ROOM</span><span aria-hidden="true">↗</span></a>
           <a class="btn btn-outline" href="#running-order"><span>EXPLORE THE LINE-UP</span><span aria-hidden="true">↓</span></a>
         </div>
+        <section class="isc156-countdown isc156-countdown--home" data-isc156-countdown role="timer" aria-live="off" aria-label="ISC 156 oylamasının kapanmasına kalan süre">
+  <div class="isc156-countdown-head">
+    <span class="isc156-countdown-kicker" data-isc156-countdown-label>VOTING CLOSES IN</span>
+    <time datetime="2026-11-25T17:00:00+03:00" data-isc156-countdown-date>25 NOVEMBER 2026 <i>·</i> 17:00 TSİ</time>
+  </div>
+  <div class="isc156-countdown-units" aria-label="Gün, saat, dakika, saniye">
+    <span class="isc156-countdown-unit"><strong data-isc156-days>--</strong><small>DAYS</small></span>
+    <span class="isc156-countdown-unit"><strong data-isc156-hours>--</strong><small>HOURS</small></span>
+    <span class="isc156-countdown-unit"><strong data-isc156-minutes>--</strong><small>MIN</small></span>
+    <span class="isc156-countdown-unit"><strong data-isc156-seconds>--</strong><small>SEC</small></span>
+  </div>
+</section>
         <div class="hero-footline"><span class="tiny-line"></span>RETURN <i>·</i> DAWN <i>·</i> NEW BEGINNINGS</div>
       </div>
       <div class="hero-art-col">
@@ -239,6 +252,7 @@
       <div><p class="vote-kicker"><i class="live-light" data-live-dot></i><span data-voting-label>VOTING IS OPEN</span></p>
         <h2 id="vote-title">Your country.<br><em>Your twelve.</em></h2></div>
       <div class="vote-right"><p>Delegasyonunu kalıcı voter kodunla doğrula, yedi şarkıya puan ver. Kendi entry’ne oy yok; sonuçlar resmî açıklamaya kadar gizli.</p>
+        <p class="isc156-vote-deadline"><time datetime="2026-11-25T17:00:00+03:00">VOTING CLOSES · 25 NOVEMBER 2026 · 17.00 TSİ</time></p>
         <a class="vote-button" href="vote.html" data-vote-cta><span>CAST YOUR VOTE</span><span aria-hidden="true">↗</span></a>
         <span class="vote-progress">OFFICIAL BALLOTS RECEIVED <b data-ballots>— / 8</b></span>
       </div>
@@ -290,4 +304,5 @@
 </div>
 <script src="homepage-156-phoenix.js?v=20261115" defer></script>
 <script src="homepage-156-editorial.js?v=20261115-v1" defer></script>
+<script src="isc156-countdown.js?v=20261115" defer></script>
 </body></html>
