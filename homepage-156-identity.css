@@ -1,0 +1,235 @@
+/* ISC 156 / STJOHN — event identity takeover.
+   Deliberate hierarchy: edition > host > theme. The official Turul animation remains untouched. */
+
+.home-156-editorial .site-header .brand-current{
+  font:900 29px/.9 "DM Sans",sans-serif;
+  letter-spacing:-.09em;
+  color:var(--isc-accent);
+  border-left:1px solid rgba(255,255,255,.25);
+  padding-left:13px;
+}
+.home-156-editorial .site-header .brand-full{border-left:0;padding-left:0}
+.home-156-editorial .site-header .nav-edition{
+  color:var(--isc-accent)!important;
+  font-weight:900;
+}
+.home-156-editorial .hero-shell{
+  background:
+    radial-gradient(ellipse at 74% 39%,rgba(224,146,88,.1),transparent 42%),
+    linear-gradient(125deg,#0c1529,#14233d 61%,#0e1a30);
+}
+.home-156-editorial .hero-inner{
+  grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  min-height:800px;
+  gap:clamp(18px,3vw,54px);
+  padding-top:clamp(39px,4vw,69px);
+  padding-bottom:42px;
+}
+.home-156-editorial .hero-copy{justify-content:center;padding-bottom:16px}
+.home-156-editorial .hero-upper{margin-bottom:clamp(27px,3.3vw,52px)}
+.home-156-editorial .hero-premiere{margin-bottom:clamp(18px,2vw,29px)}
+.home-156-editorial .hero-copy h1.hero-edition-title{
+  display:block;
+  margin:0 0 25px;
+  font:900 clamp(147px,14.2vw,252px)/.78 "DM Sans",sans-serif;
+  letter-spacing:-.115em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  width:max-content;
+  max-width:100%;
+  color:#f8f7ed;
+}
+.home-156-editorial .hero-edition-title .hero-edition-isc{display:block}
+.home-156-editorial .hero-edition-title .hero-edition-number{
+  position:relative;
+  display:block;
+  width:max-content;
+  color:var(--isc-accent);
+  letter-spacing:-.116em;
+  padding-right:.18em;
+}
+.home-156-editorial .hero-edition-flash{
+  position:absolute;
+  right:0;
+  top:.06em;
+  display:inline-block!important;
+  font:700 .19em/1 "DM Sans",sans-serif;
+  letter-spacing:0;
+  color:var(--isc-coral);
+  transform:rotate(16deg);
+}
+.home-156-editorial .hero-theme{
+  border-left:3px solid var(--isc-coral);
+  padding-left:17px;
+  margin-bottom:24px;
+}
+.home-156-editorial .hero-theme-label{
+  display:block;
+  color:#bdc9c9;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.22em;
+  margin-bottom:7px;
+}
+.home-156-editorial .hero-theme strong{
+  display:block;
+  font:400 clamp(30px,3.3vw,54px)/1.02 "Libre Caslon Display",Georgia,serif;
+  color:#f6f4e9;
+  letter-spacing:-.035em;
+}
+.home-156-editorial .hero-theme em{color:var(--isc-accent);font-weight:400}
+.home-156-editorial .hero-host-identity{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:5px 12px;
+  align-items:end;
+  width:100%;
+  max-width:590px;
+  padding:18px 0 16px;
+  margin:0 0 20px;
+  border-top:1px solid rgba(255,255,255,.27);
+  border-bottom:1px solid rgba(255,255,255,.17);
+}
+.home-156-editorial .hero-host-identity .host-ident-label{
+  grid-column:1/-1;
+  font-size:10px;
+  font-weight:900;
+  color:var(--isc-coral);
+  letter-spacing:.24em;
+}
+.home-156-editorial .hero-host-identity a{
+  display:block;
+  width:max-content;
+  max-width:100%;
+  font:900 clamp(41px,5vw,80px)/.9 "DM Sans",sans-serif;
+  letter-spacing:-.085em;
+  color:#f8f7f1;
+  text-decoration:none;
+  transition:color .2s;
+}
+.home-156-editorial .hero-host-identity a:hover{color:var(--isc-accent)}
+.home-156-editorial .host-ident-arrow{
+  display:inline-block;
+  font:700 .29em/1 "DM Sans",sans-serif;
+  vertical-align:top;
+  color:var(--isc-accent);
+  margin-left:9px;
+  letter-spacing:0;
+}
+.home-156-editorial .hero-host-identity .host-ident-caption{
+  text-align:right;
+  max-width:136px;
+  font:800 9px/1.5 "DM Sans",sans-serif;
+  letter-spacing:.13em;
+  color:#bbc8c7;
+}
+.home-156-editorial .hero-intro{
+  margin:0 0 6px;
+  font-size:clamp(20px,2.15vw,30px);
+}
+.home-156-editorial .hero-body{margin-bottom:25px}
+.home-156-editorial .hero-footline{margin-top:28px}
+.home-156-editorial .hero-identity-poster{
+  border-color:rgba(201,237,116,.28);
+  box-shadow:0 20px 80px rgba(2,9,24,.26);
+}
+.home-156-editorial .hero-art-top{
+  top:30px;
+  left:28px;
+  right:26px;
+  font-size:10px;
+  color:#e4e7d9;
+  letter-spacing:.16em;
+  align-items:flex-start;
+}
+.home-156-editorial .hero-art-top b{
+  font:900 clamp(38px,4.65vw,75px)/.9 "DM Sans",sans-serif;
+  letter-spacing:-.085em;
+  color:var(--isc-accent);
+  text-shadow:0 5px 30px rgba(6,14,29,.8);
+}
+.home-156-editorial .hero-art-bottom{
+  font-size:10px;
+  color:#f4e5b7;
+}
+.home-156-editorial .edition-ribbon{background:#c9ed74}
+.home-156-editorial .edition-ribbon-inner{gap:28px;padding-top:18px;padding-bottom:18px}
+.home-156-editorial .edition-ribbon-marker{font-size:24px}
+.home-156-editorial .edition-ribbon-identity{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  white-space:nowrap;
+  letter-spacing:-.055em;
+  font:900 clamp(26px,3.5vw,54px)/1 "DM Sans",sans-serif;
+}
+.home-156-editorial .edition-ribbon-identity b{font-weight:900}
+.home-156-editorial .edition-ribbon-identity strong{font-weight:900}
+.home-156-editorial .edition-ribbon-identity i{
+  font-style:normal;
+  font-size:.6em;
+  color:#587445;
+}
+.home-156-editorial .edition-ribbon-detail{font-size:9px}
+.home-156-editorial .host-narrative h2.host-brand-title{
+  font:900 clamp(71px,8.2vw,135px)/.95 "DM Sans",sans-serif;
+  letter-spacing:-.09em;
+  color:#10192e;
+  overflow-wrap:anywhere;
+}
+.home-156-editorial .host-narrative h2 .host-subtitle{
+  display:block;
+  margin-top:17px;
+  font:400 clamp(40px,4.2vw,67px)/.96 "Libre Caslon Display",Georgia,serif;
+  letter-spacing:-.045em;
+}
+.home-156-editorial .host-narrative h2 .host-subtitle em{color:#688449}
+@media (max-width:1270px){
+  .home-156-editorial .hero-inner{grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr)}
+  .home-156-editorial .hero-copy h1.hero-edition-title{font-size:clamp(127px,13.8vw,185px)}
+  .home-156-editorial .hero-host-identity a{font-size:clamp(39px,4.5vw,63px)}
+}
+@media (max-width:1000px){
+  .home-156-editorial .hero-inner{grid-template-columns:1fr;min-height:0;gap:18px}
+  .home-156-editorial .hero-copy{max-width:730px}
+  .home-156-editorial .hero-copy h1.hero-edition-title{font-size:clamp(146px,23vw,235px)}
+  .home-156-editorial .hero-host-identity a{font-size:clamp(49px,8vw,78px)}
+  .home-156-editorial .hero-art-col{max-width:730px}
+  .home-156-editorial .hero-art-top b{font-size:clamp(40px,7vw,70px)}
+}
+@media (max-width:700px){
+  .home-156-editorial .site-header .brand-current{font-size:25px;padding-left:9px}
+  .home-156-editorial .hero-inner{padding-top:27px;gap:14px}
+  .home-156-editorial .hero-upper{margin-bottom:30px}
+  .home-156-editorial .hero-premiere{margin-bottom:21px}
+  .home-156-editorial .hero-copy h1.hero-edition-title{
+    font-size:clamp(116px,36vw,240px);
+    line-height:.79;
+    margin-bottom:24px;
+  }
+  .home-156-editorial .hero-theme{padding-left:13px;margin-bottom:23px}
+  .home-156-editorial .hero-theme strong{font-size:clamp(27px,8.2vw,48px)}
+  .home-156-editorial .hero-host-identity{padding-top:14px;padding-bottom:14px;margin-bottom:18px}
+  .home-156-editorial .hero-host-identity a{font-size:clamp(43px,12.5vw,69px)}
+  .home-156-editorial .hero-host-identity .host-ident-caption{font-size:8px;max-width:91px}
+  .home-156-editorial .hero-intro{font-size:23px}
+  .home-156-editorial .hero-footline{margin-top:23px}
+  .home-156-editorial .hero-art-top{top:25px;left:23px;right:23px;font-size:8px}
+  .home-156-editorial .hero-art-top b{font-size:clamp(31px,9vw,50px)}
+  .home-156-editorial .hero-art-bottom{font-size:8px}
+  .home-156-editorial .edition-ribbon-inner{flex-wrap:wrap;gap:11px}
+  .home-156-editorial .edition-ribbon-marker{font-size:21px}
+  .home-156-editorial .edition-ribbon-identity{font-size:clamp(23px,6.4vw,42px);gap:8px;flex:1}
+  .home-156-editorial .edition-ribbon a{width:100%;margin:2px 0 0 31px;padding-bottom:5px}
+  .home-156-editorial .host-narrative h2.host-brand-title{font-size:clamp(57px,15.5vw,105px)}
+  .home-156-editorial .host-narrative h2 .host-subtitle{font-size:clamp(39px,10vw,65px)}
+}
+@media (max-width:390px){
+  .home-156-editorial .hero-copy h1.hero-edition-title{font-size:35vw}
+  .home-156-editorial .hero-host-identity a{font-size:12vw}
+  .home-156-editorial .edition-ribbon-identity{font-size:6.2vw}
+  .home-156-editorial .hero-art-top b{font-size:8vw}
+}
+@media (prefers-reduced-motion:reduce){
+  .home-156-editorial .hero-host-identity a{transition:none}
+}
