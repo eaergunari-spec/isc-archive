@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>From Forecast to Decision | BİLGİ Industrial Engineering</title>
+<style>
+:root{
+  --wine:#7a001f;--red:#e30613;--ink:#121212;--muted:#667085;--soft:#f6f7f9;--line:#e6e7eb;
+  --cyan:#17b6d3;--green:#65a844;--purple:#7c3c9e;--white:#fff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.45}
+button,input{font:inherit}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:12px 22px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{font-weight:850;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.brandmark{width:18px;height:18px;border-radius:50%;background:var(--red);border:3px solid #111;box-shadow:0 0 0 2px #fff inset}
+.brand span{font-weight:500;color:#333}
+.progress{font-size:.83rem;color:var(--muted);font-weight:700}
+.wrap{max-width:1120px;margin:auto;padding:28px 20px 90px}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center;padding:26px 0 24px}
+.kicker{color:var(--wine);font-size:.82rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+h1{font-size:clamp(3rem,7vw,6.2rem);line-height:.9;letter-spacing:-.06em;margin:.12em 0 .18em}
+.hero p{font-size:1.22rem;max-width:690px;color:#292929}
+.hero .question{font-size:1.35rem;font-weight:850;margin-top:24px}
+.art{position:relative;min-height:300px}
+.sq{position:absolute}
+.sq1{width:190px;height:190px;background:var(--wine);right:16%;top:8%}
+.sq2{width:122px;height:122px;background:var(--red);right:2%;top:41%}
+.sq3{width:22px;height:22px;background:var(--cyan);right:76%;top:24%}
+.sq4{width:18px;height:18px;background:var(--green);right:10%;top:82%}
+.sq5{width:15px;height:15px;background:var(--purple);right:0;top:15%}
+.startbtn,.btn{border:0;border-radius:11px;padding:12px 17px;font-weight:850;cursor:pointer}
+.startbtn,.btn.primary{background:var(--wine);color:#fff}
+.btn.dark{background:#161616;color:white}
+.btn.light{background:#f0f1f3;color:#111}
+.btn.red{background:var(--red);color:#fff}
+.btn:active{transform:translateY(1px)}
+.stage{margin:54px 0 0;scroll-margin-top:80px}
+.stagehead{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin-bottom:16px}
+.stage h2{font-size:2.1rem;line-height:1.05;margin:0;letter-spacing:-.04em}
+.step{font-weight:900;color:var(--wine);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
+.card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:20px;box-shadow:0 8px 30px rgba(55,0,18,.05)}
+.card.accent{border-left:6px solid var(--red)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stat,.metric{background:var(--soft);padding:15px;border-radius:14px}
+.stat b,.metric b{display:block;font-size:1.8rem;color:var(--wine);margin-top:3px}
+.stat small,.metric small{color:var(--muted)}
+table{width:100%;border-collapse:collapse}
+th,td{padding:11px 10px;border-bottom:1px solid #eee;text-align:left}
+th{text-transform:uppercase;font-size:.78rem;letter-spacing:.06em;color:#555}
+.zones{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.zone{border:1px solid var(--line);border-radius:14px;padding:14px;background:white}
+.zrow{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.pill{font-weight:900;color:var(--wine);background:#f7e9ee;padding:5px 10px;border-radius:999px}
+input[type=range]{width:100%;accent-color:var(--wine)}
+.prompt{font-size:1.28rem;font-weight:850;border-left:6px solid var(--wine);background:#faf1f4;padding:16px;border-radius:7px}
+.callout{font-size:1.5rem;font-weight:900;letter-spacing:-.02em}
+.callout strong{color:var(--wine)}
+.code{position:relative;background:#111;color:#f8f8f8;border-radius:16px;padding:18px;overflow:auto}
+.code pre{white-space:pre;margin:0;font:13.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.copy{position:absolute;right:10px;top:10px;border:0;background:var(--red);color:#fff;border-radius:8px;padding:8px 10px;font-weight:800;cursor:pointer}
+.result{display:none;margin-top:14px}
+.result.show{display:block}
+.badge{display:inline-block;border-radius:999px;padding:6px 10px;font-weight:850;font-size:.82rem;background:#eee}
+.badge.red{background:#ffe8ea;color:#9d0019}.badge.green{background:#e9f5e4;color:#2f6a23}.badge.cyan{background:#e7f8fc;color:#0d6f82}
+.flow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.flow span{padding:9px 12px;border:1px solid #ddd;border-radius:999px;font-weight:850}
+.flow i{font-style:normal;font-weight:900;color:var(--wine)}
+.canvasbox{border:1px solid var(--line);border-radius:14px;padding:10px;background:white}
+canvas{width:100%;height:260px;display:block}
+.twist{background:linear-gradient(120deg,#19000a,#7a001f);color:white;border-radius:20px;padding:24px}
+.twist h3{font-size:2rem;margin:0 0 8px;letter-spacing:-.04em}
+.twist p{font-size:1.1rem;margin:0}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.policy{border:1px solid var(--line);border-radius:16px;padding:18px}
+.policy h3{margin:0 0 10px}
+.policy .big{font-size:2.6rem;font-weight:900;color:var(--wine)}
+.coursemap{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.coursemap div{padding:12px 14px;border-bottom:1px solid var(--line)}
+.coursemap div:nth-child(odd){font-weight:850;background:#fafafa}
+.coursemap div:nth-last-child(-n+2){border-bottom:0}
+.footer{margin-top:60px;padding:25px;border-top:1px solid var(--line);color:#555;font-size:.9rem}
+.hidden{display:none!important}
+@media(max-width:760px){
+  .hero,.grid2,.compare,.coursemap{grid-template-columns:1fr}
+  .art{display:none}
+  .stats,.grid3{grid-template-columns:repeat(2,1fr)}
+  .zones{grid-template-columns:1fr}
+  .stage{margin-top:42px}
+  h1{font-size:3.25rem}
+  .topbar{padding:11px 14px}
+  .brand span{display:none}
+  .wrap{padding:22px 14px 70px}
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><span class="brandmark"></span>İstanbul Bilgi University <span>| Industrial Engineering</span></div>
+  <div class="progress" id="progress">Decision Lab</div>
+</div>
+
+<main class="wrap">
+<section class="hero" id="top">
+  <div>
+    <div class="kicker">Your first Industrial Engineering decision lab</div>
+    <h1>FROM FORECAST<br>TO DECISION</h1>
+    <p>A forecast tells you what you expect. Engineering starts when you must decide what to do with limited resources, competing goals and an uncertain future.</p>
+    <div class="question">You have 20 couriers. Where would you send them?</div>
+    <p><button class="startbtn" onclick="document.getElementById('stage1').scrollIntoView()">Start Lab ↓</button></p>
+  </div>
+  <div class="art"><div class="sq sq1"></div><div class="sq sq2"></div><div class="sq sq3"></div><div class="sq sq4"></div><div class="sq sq5"></div></div>
+</section>
+
+<section class="stage" id="stage1">
+  <div class="stagehead"><div><div class="step">Stage 1 · Forecast</div><h2>18:00 — Istanbul</h2></div><span class="badge cyan">100 forecast orders</span></div>
+  <div class="grid3">
+    <div class="stat"><small>Forecast demand</small><b>100</b>orders</div>
+    <div class="stat"><small>Available resources</small><b>20</b>couriers</div>
+    <div class="stat"><small>Decision horizon</small><b>1</b>hour</div>
+  </div>
+  <div class="card accent" style="margin-top:16px">
+    <div class="prompt">A forecast is not a decision. How should the 20 couriers be allocated?</div>
+    <table>
+      <thead><tr><th>Zone</th><th>Forecast demand</th><th>Orders per courier</th></tr></thead>
+      <tbody>
+        <tr><td>Beyoğlu</td><td>32</td><td>4</td></tr>
+        <tr><td>Şişli</td><td>28</td><td>3</td></tr>
+        <tr><td>Kağıthane</td><td>24</td><td>5</td></tr>
+        <tr><td>Beşiktaş</td><td>16</td><td>2</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="stage" id="stage2">
+  <div class="stagehead"><div><div class="step">Stage 2 · Decide</div><h2>Try your own allocation</h2></div><span class="badge">manual decision</span></div>
+  <p>Move the sliders. Keep the total at 20. The page evaluates your plan immediately.</p>
+  <div class="zones" id="zones"></div>
+  <div class="card" style="margin-top:14px">
+    <div class="stats">
+      <div class="metric"><small>Total couriers</small><b id="mTotal">20</b></div>
+      <div class="metric"><small>Orders served</small><b id="mServed">69</b></div>
+      <div class="metric"><small>Unserved</small><b id="mUnserved">31</b></div>
+      <div class="metric"><small>Worst service level</small><b id="mWorst">50%</b></div>
+    </div>
+    <p id="planMsg" style="margin-bottom:0;color:var(--muted)"></p>
+  </div>
+</section>
+
+<section class="stage" id="stage3">
+  <div class="stagehead"><div><div class="step">Stage 3 · Optimize</div><h2>How do we know what is best?</h2></div><span class="badge red">Code Moment 1</span></div>
+  <div class="grid2">
+    <div>
+      <div class="prompt">Your manual plan may be good. But can you prove that no better feasible allocation exists?</div>
+      <p>The short Python code checks every feasible way to allocate 20 couriers. Copy it into a Python cell if your instructor asks you to run it.</p>
+      <button class="btn primary" onclick="runOptimizer()">Reveal the best throughput plan</button>
+    </div>
+    <div class="code">
+      <button class="copy" onclick="copyCode('code1',this)">Copy</button>
+<pre id="code1">forecast = [32, 28, 24, 16]
+rate = [4, 3, 5, 2]
+
+best_score = -1
+best_plan = None
+
+for a in range(21):
+    for b in range(21-a):
+        for c in range(21-a-b):
+            d = 20-a-b-c
+            plan = [a, b, c, d]
+            served = sum(
+                min(forecast[i], rate[i]*plan[i])
+                for i in range(4)
+            )
+            if served > best_score:
+                best_score = served
+                best_plan = plan
+
+print(best_plan, best_score)</pre>
+    </div>
+  </div>
+  <div class="card accent result" id="optReveal">
+    <div class="callout">Throughput-maximizing plan: <strong>[8, 7, 5, 0]</strong> → <strong>77 orders served</strong></div>
+    <p>Mathematically correct. Operationally uncomfortable: <b>Beşiktaş receives zero couriers.</b></p>
+    <div class="prompt">Is the “optimal” solution automatically a good decision?</div>
+  </div>
+</section>
+
+<section class="stage" id="stage4">
+  <div class="stagehead"><div><div class="step">Stage 4 · Define “better”</div><h2>Objectives create behavior</h2></div><span class="badge green">trade-offs</span></div>
+  <div class="flow"><span>Throughput</span><i>↔</i><span>Service quality</span><i>↔</i><span>Fairness</span><i>↔</i><span>Cost</span><i>↔</i><span>Resilience</span></div>
+  <p class="callout">Optimization does not define what <strong>“good”</strong> means. People do.</p>
+  <div class="compare">
+    <div class="policy">
+      <h3>Policy A · Maximum throughput</h3>
+      <div class="big">77</div>
+      <p>orders served</p>
+      <p><b>Problem:</b> one zone receives no couriers.</p>
+    </div>
+    <div class="policy">
+      <h3>Policy B · Minimum 50% service in every zone</h3>
+      <div class="big" id="fairScore">—</div>
+      <p>orders served</p>
+      <button class="btn dark" onclick="runFairOptimizer()">Find best fair plan</button>
+      <p id="fairText"></p>
+    </div>
+  </div>
+</section>
+
+<section class="stage" id="stage5">
+  <div class="twist">
+    <h3>19:00 — Reality arrives.</h3>
+    <p>The forecast was useful. It was not the future.</p>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <table>
+      <thead><tr><th>Zone</th><th>Forecast</th><th>Actual demand</th><th>Forecast error</th></tr></thead>
+      <tbody>
+        <tr><td>Beyoğlu</td><td>32</td><td>25</td><td>-7</td></tr>
+        <tr><td>Şişli</td><td>28</td><td>37</td><td>+9</td></tr>
+        <tr><td>Kağıthane</td><td>24</td><td>19</td><td>-5</td></tr>
+        <tr><td>Beşiktaş</td><td>16</td><td>24</td><td>+8</td></tr>
+      </tbody>
+    </table>
+    <div class="prompt">Was the optimization wrong — or was the future uncertain?</div>
+  </div>
+</section>
+
+<section class="stage" id="stage6">
+  <div class="stagehead"><div><div class="step">Stage 6 · Simulate</div><h2>One forecast is not one future</h2></div><span class="badge red">Code Moment 2</span></div>
+  <div class="grid2">
+    <div>
+      <p>Generate 1,000 plausible evenings around the same forecast. The same decision now produces a distribution of outcomes, not one number.</p>
+      <button class="btn primary" onclick="simulate1000()">Simulate 1,000 evenings</button>
+      <button class="btn light" onclick="simulate1000()">Run again</button>
+      <div class="stats" style="grid-template-columns:repeat(2,1fr);margin-top:14px">
+        <div class="metric"><small>Average served</small><b id="sAvg">—</b></div>
+        <div class="metric"><small>10th percentile</small><b id="sP10">—</b></div>
+        <div class="metric"><small>Worst evening</small><b id="sMin">—</b></div>
+        <div class="metric"><small>Best evening</small><b id="sMax">—</b></div>
+      </div>
+    </div>
+    <div class="code">
+      <button class="copy" onclick="copyCode('code2',this)">Copy</button>
+<pre id="code2">import numpy as np
+import matplotlib.pyplot as plt
+
+forecast = np.array([32, 28, 24, 16])
+rate = np.array([4, 3, 5, 2])
+allocation = np.array([6, 5, 5, 4])
+
+future_demand = np.random.poisson(
+    forecast, size=(1000, 4)
+)
+
+capacity = allocation * rate
+served = np.minimum(future_demand, capacity)
+total_served = served.sum(axis=1)
+
+print("Average:", total_served.mean())
+print("10th percentile:",
+      np.percentile(total_served, 10))
+
+plt.hist(total_served, bins=15)
+plt.show()</pre>
+    </div>
+  </div>
+  <div class="canvasbox" style="margin-top:16px"><canvas id="hist" width="900" height="260"></canvas></div>
+</section>
+
+<section class="stage" id="stage7">
+  <div class="stagehead"><div><div class="step">Stage 7 · Adapt</div><h2>The system changes</h2></div><span class="badge">sensitivity</span></div>
+  <div class="twist">
+    <h3>Heavy rain starts at 19:20.</h3>
+    <p>Şişli demand rises by 20%. Kağıthane courier productivity falls from 5 to 3 orders/hour.</p>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <button class="btn red" onclick="runDisruption()">Re-optimize after disruption</button>
+    <div class="result" id="disruptReveal">
+      <p class="callout">The best decision <strong>changes</strong> because the system changed.</p>
+      <p id="disruptText"></p>
+    </div>
+  </div>
+  <p class="callout" style="margin-top:22px">Observe → Forecast → Model → Decide → Optimize → Simulate → <strong>Adapt</strong></p>
+</section>
+
+<section class="stage" id="stage8">
+  <div class="stagehead"><div><div class="step">Stage 8 · Connect the dots</div><h2>Your next four years at BİLGİ</h2></div></div>
+  <div class="coursemap">
+    <div>You instructed a computer</div><div>Algorithms & Programming</div>
+    <div>You reasoned about uncertain demand</div><div>Probability & Engineering Statistics</div>
+    <div>You searched systematically for a better decision</div><div>Optimization Methods</div>
+    <div>You created many possible futures</div><div>Stochastic Modeling & Simulation</div>
+    <div>You questioned what “better” means for the whole system</div><div>Systems Thinking</div>
+    <div>You combined tools around one real decision</div><div>Senior Design Project</div>
+  </div>
+  <p class="callout" style="margin-top:24px">Today you used the tools. Over the next four years, you will learn <strong>how they work — and when to use them.</strong></p>
+</section>
+
+<div class="footer">İstanbul Bilgi University · Department of Industrial Engineering · From Forecast to Decision</div>
+</main>
+
+<script>
+const baseForecast=[32,28,24,16];
+const baseRate=[4,3,5,2];
+const names=['Beyoğlu','Şişli','Kağıthane','Beşiktaş'];
+let plan=[5,5,5,5];
+
+function servedFor(p,forecast=baseForecast,rate=baseRate){
+  return p.map((x,i)=>Math.min(forecast[i],rate[i]*x));
+}
+function scorePlan(p,forecast=baseForecast,rate=baseRate){
+  return servedFor(p,forecast,rate).reduce((a,b)=>a+b,0);
+}
+function levelsFor(p,forecast=baseForecast,rate=baseRate){
+  return servedFor(p,forecast,rate).map((s,i)=>s/forecast[i]);
+}
+function renderZones(){
+  const box=document.getElementById('zones');
+  box.innerHTML='';
+  names.forEach((n,i)=>{
+    const z=document.createElement('div');
+    z.className='zone';
+    z.innerHTML='<div class="zrow"><b>'+n+'</b><span class="pill">'+plan[i]+'</span></div>'+
+      '<div style="color:#666;font-size:.9rem;margin:5px 0 8px">Forecast '+baseForecast[i]+' · '+baseRate[i]+' orders/courier</div>'+
+      '<input type="range" min="0" max="20" value="'+plan[i]+'" data-i="'+i+'">';
+    z.querySelector('input').addEventListener('input',e=>{
+      plan[+e.target.dataset.i]=+e.target.value;
+      renderZones();
+    });
+    box.appendChild(z);
+  });
+  updatePlan();
+}
+function updatePlan(){
+  const total=plan.reduce((a,b)=>a+b,0);
+  const served=scorePlan(plan);
+  const worst=Math.min(...levelsFor(plan));
+  document.getElementById('mTotal').textContent=total;
+  document.getElementById('mServed').textContent=served;
+  document.getElementById('mUnserved').textContent=100-served;
+  document.getElementById('mWorst').textContent=Math.round(worst*100)+'%';
+  const msg=document.getElementById('planMsg');
+  if(total===20){msg.textContent='Feasible resource total. Keep experimenting.';msg.style.color='#2e6d35';}
+  else{msg.textContent='Your plan uses '+total+' couriers. Adjust the sliders to return to exactly 20.';msg.style.color='#a0001b';}
+}
+function allPlans(callback){
+  let bestScore=-1,best=null;
+  for(let a=0;a<=20;a++)for(let b=0;b<=20-a;b++)for(let c=0;c<=20-a-b;c++){
+    const d=20-a-b-c,p=[a,b,c,d];
+    const s=callback(p);
+    if(s!==null && s>bestScore){bestScore=s;best=p.slice();}
+  }
+  return {best,bestScore};
+}
+function runOptimizer(){
+  const r=allPlans(p=>scorePlan(p));
+  document.getElementById('optReveal').classList.add('show');
+  document.getElementById('optReveal').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function runFairOptimizer(){
+  const r=allPlans(p=>{
+    const levels=levelsFor(p);
+    if(Math.min(...levels)<0.5) return null;
+    return scorePlan(p);
+  });
+  document.getElementById('fairScore').textContent=r.bestScore;
+  document.getElementById('fairText').innerHTML='<b>Best fair plan:</b> ['+r.best.join(', ')+']';
+}
+function poisson(lambda){
+  const L=Math.exp(-lambda);let k=0,p=1;
+  do{k++;p*=Math.random();}while(p>L);
+  return k-1;
+}
+function simulate1000(){
+  const allocation=[6,5,5,4], capacity=allocation.map((x,i)=>x*baseRate[i]);
+  const arr=[];
+  for(let t=0;t<1000;t++){
+    let total=0;
+    for(let i=0;i<4;i++) total+=Math.min(poisson(baseForecast[i]),capacity[i]);
+    arr.push(total);
+  }
+  arr.sort((a,b)=>a-b);
+  const avg=arr.reduce((a,b)=>a+b,0)/arr.length;
+  document.getElementById('sAvg').textContent=avg.toFixed(1);
+  document.getElementById('sP10').textContent=arr[Math.floor(arr.length*.10)];
+  document.getElementById('sMin').textContent=arr[0];
+  document.getElementById('sMax').textContent=arr[arr.length-1];
+  drawHist(arr);
+}
+function drawHist(arr){
+  const c=document.getElementById('hist'),ctx=c.getContext('2d');
+  const w=c.width,h=c.height;ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);
+  const min=Math.min(...arr),max=Math.max(...arr),bins=16,counts=new Array(bins).fill(0);
+  arr.forEach(v=>{let j=Math.min(bins-1,Math.floor((v-min)/(max-min+1)*bins));counts[j]++;});
+  const peak=Math.max(...counts),pad=42,bw=(w-pad*2)/bins;
+  ctx.strokeStyle='#d9d9df';ctx.beginPath();ctx.moveTo(pad,15);ctx.lineTo(pad,h-pad);ctx.lineTo(w-15,h-pad);ctx.stroke();
+  counts.forEach((v,i)=>{
+    const bh=(h-pad-30)*(v/peak);
+    ctx.fillStyle='#7a001f';ctx.fillRect(pad+i*bw+2,h-pad-bh,bw-4,bh);
+  });
+  ctx.fillStyle='#555';ctx.font='14px Arial';ctx.fillText(String(min),pad,h-15);ctx.fillText(String(max),w-42,h-15);
+  ctx.fillStyle='#111';ctx.font='bold 15px Arial';ctx.fillText('Orders served across 1,000 simulated evenings',pad,22);
+}
+function runDisruption(){
+  const f=[32,Math.round(28*1.2),24,16],r=[4,3,3,2];
+  let bestScore=-1,best=null;
+  for(let a=0;a<=20;a++)for(let b=0;b<=20-a;b++)for(let c=0;c<=20-a-b;c++){
+    const d=20-a-b-c,p=[a,b,c,d],s=scorePlan(p,f,r);
+    if(s>bestScore){bestScore=s;best=p.slice();}
+  }
+  document.getElementById('disruptReveal').classList.add('show');
+  document.getElementById('disruptText').innerHTML='After the disruption, a throughput-maximizing allocation is <b>['+best.join(', ')+']</b>, serving <b>'+bestScore+'</b> orders under the new conditions.';
+}
+function copyCode(id,btn){
+  const txt=document.getElementById(id).innerText;
+  navigator.clipboard.writeText(txt).then(()=>{const old=btn.textContent;btn.textContent='Copied ✓';setTimeout(()=>btn.textContent=old,1400);});
+}
+renderZones();
+</script>
+</body>
+</html>
