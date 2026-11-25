@@ -8,7 +8,7 @@
   const editionNumber = 156;
   const endpoint = "https://knwvnbfqnccjiezprrme.supabase.co/rest/v1/rpc/isc_public_current_live_status";
   const key = "sb_publishable_Zw8H9mMmUop7wkYNKtZB3Q_7dM1QHut";
-  const fallbackDeadline = Date.parse("2026-11-25T17:00:00+03:00");
+  const fallbackDeadline = Date.parse("2026-11-26T18:00:00+03:00");
   let deadline = fallbackDeadline;
   let votingOpen = true;
   let closureNotified = false;
@@ -35,6 +35,7 @@
       if (label) label.textContent = closed ? "VOTING HAS CLOSED" : "VOTING CLOSES IN";
     });
 
+    if (!closed) closureNotified = false;
     if (closed && !closureNotified) {
       closureNotified = true;
       window.dispatchEvent(new CustomEvent("isc:voting-deadline", {
@@ -60,7 +61,22 @@
       if (!payload || payload.ok !== true || Number(payload.edition_number) !== editionNumber) return;
 
       const serverDeadline = Date.parse(payload.voting_closes_at || "");
-      if (Number.isFinite(serverDeadline)) deadline = serverDeadline;
+      if (Number.isFinite(serverDeadline)) {
+        deadline = serverDeadline;
+        const stamp = new Date(deadline);
+        const parts = Object.fromEntries(new Intl.DateTimeFormat('en-GB', {
+          timeZone:'Europe/Istanbul',day:'2-digit',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',hourCycle:'h23'
+        }).formatToParts(stamp).map(x=>[x.type,x.value]));
+        widgets.forEach(widget => {
+          const target = widget.querySelector('[data-isc156-countdown-date]');
+          if (!target) return;
+          target.dateTime = stamp.toISOString();
+          target.replaceChildren(document.createTextNode(`${parts.day} ${parts.month.toUpperCase()} ${parts.year} `));
+          const separator = document.createElement('i');
+          separator.textContent = '·';
+          target.append(separator, document.createTextNode(` ${parts.hour}:${parts.minute} TSİ`));
+        });
+      }
       votingOpen = payload.voting_open === true;
       render();
     } catch (_) {
