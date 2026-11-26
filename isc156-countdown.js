@@ -8,7 +8,7 @@
   const editionNumber = 156;
   const endpoint = "https://knwvnbfqnccjiezprrme.supabase.co/rest/v1/rpc/isc_public_current_live_status";
   const key = "sb_publishable_Zw8H9mMmUop7wkYNKtZB3Q_7dM1QHut";
-  const fallbackDeadline = Date.parse("2026-11-26T18:00:00+03:00");
+  const fallbackDeadline = Date.parse("2026-11-27T20:00:00+03:00");
   let deadline = fallbackDeadline;
   let votingOpen = true;
   let closureNotified = false;
